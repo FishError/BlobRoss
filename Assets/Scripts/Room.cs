@@ -23,7 +23,7 @@ public class Room
     private string bottomRoom;
     private string leftRoom;
     private string rightRoom;
-    private MobInfo[] mobs;
+    private List<MobInfo> mobs;
 
     public string Scene { get; }
     public string TopRoom { get; }
@@ -34,11 +34,13 @@ public class Room
     public Room(string sceneName)
     {
         scene = sceneName;
+        mobs = new List<MobInfo>();
     }
 
     public void addMobToRoom(GameObject mob, float x, float y)
     {
         MobInfo m = new MobInfo(mob, x, y);
+        mobs.Add(m);
     }
 
     public void removeMobFromRoom()
