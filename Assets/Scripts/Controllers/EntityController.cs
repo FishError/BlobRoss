@@ -2,17 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityController : MonoBehaviour
+public abstract class EntityController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    protected float _hp;
+    protected float _speed;
+    protected float _attack;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public float HP { get; set; }
+    public float Speed { get; set; }
+    
+    public float AttackDamage { get; set; }
+
+    public abstract void Move();
+
+    public abstract void Attack();
+
+
+
 }
