@@ -10,8 +10,9 @@ public class Map
     public Room StartRoom { get; }
     public Room CurrentRoom { get; set; }
 
-    public Map()
+    public Map(Room startingRoom)
     {
-
+        startRoom = startingRoom;
+        currentRoom = startRoom;
     }
 }

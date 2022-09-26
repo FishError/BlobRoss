@@ -7,6 +7,13 @@ public class MobInfo
     public GameObject mob;
     public float x_pos;
     public float y_pos;
+
+    public MobInfo(GameObject m, float x, float y)
+    {
+        mob = m;
+        x_pos = x;
+        y_pos = y;
+    }
 }
 
 public class Room
@@ -29,8 +36,18 @@ public class Room
         scene = sceneName;
     }
 
-    public void addMobToRoom()
+    public void addMobToRoom(GameObject mob, float x, float y)
     {
+        MobInfo m = new MobInfo(mob, x, y);
+    }
 
+    public void removeMobFromRoom()
+    {
+        // havent decided what method to use for this yet
+    }
+
+    public void updateMobInfo()
+    {
+        // needs to be developed in the future probably
     }
 }
