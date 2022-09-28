@@ -19,28 +19,28 @@ public class MobInfo
 public class Room
 {
     private string scene;
-    private string topRoom;
-    private string bottomRoom;
-    private string leftRoom;
-    private string rightRoom;
-    private List<MobInfo> mobs;
+    private Room topRoom;
+    private Room bottomRoom;
+    private Room leftRoom;
+    private Room rightRoom;
+    private List<MobInfo> _mobs;
 
-    public string Scene { get; }
-    public string TopRoom { get; }
-    public string BottomRoom { get; }
-    public string LeftRoom { get; }
-    public string RightRoom { get; }
+    public string Scene { get; private set; }
+    public Room TopRoom { get; set; }
+    public Room BottomRoom { get; set; }
+    public Room LeftRoom { get; set; }
+    public Room RightRoom { get; set; }
 
     public Room(string sceneName)
     {
-        scene = sceneName;
-        mobs = new List<MobInfo>();
+        Scene = sceneName;
+        _mobs = new List<MobInfo>();
     }
 
     public void addMobToRoom(GameObject mob, float x, float y)
     {
         MobInfo m = new MobInfo(mob, x, y);
-        mobs.Add(m);
+        _mobs.Add(m);
     }
 
     public void removeMobFromRoom()
