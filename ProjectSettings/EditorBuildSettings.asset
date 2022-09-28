@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Rooms/Placeholders/placeholder_1.unity
+    guid: 921570145ec68ec4ea67d497410a6f4c
+  - enabled: 1
+    path: Assets/Scenes/Rooms/Placeholders/placeholder_2.unity
+    guid: 280bc155d52d6354fb57c3066cad9c46
+  - enabled: 1
+    path: Assets/Scenes/Rooms/Placeholders/placeholder_3.unity
+    guid: 97e5f86be15f2e74793599f3b989d005
   m_configObjects: {}
