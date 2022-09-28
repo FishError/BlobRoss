@@ -13,12 +13,11 @@ enum Direction
     Down
 }
 
-public class PGM
+public class PGM: MonoBehaviour
 {
     public static Map ProcedurallyGenerateMap(int maxWidth, int maxHeight, string roomType)
     {
         System.Random random = new System.Random();
-        Room[,] matrix = new Room[maxWidth, maxHeight]; ;
         int[] start, end;
         Direction dir;
 
@@ -48,15 +47,45 @@ public class PGM
                 end = new int[] { 0, 0 };
                 break;
         }
+        print(start[0] + " " + start[1]);
+        print(end[0] + " " + end[1]);
 
-        matrix[start[0], start[1]] = new Room(roomType + random.Next(1, 4));
+        Room[,] matrix = new Room[maxWidth, maxHeight];
+        matrix[start[0], start[1]] = new Room(roomType + "_" + random.Next(1, 4));
         int[] current = start;
+        int otherDirCount = 0;
         while (!(current[0] == end[0] && current[1] == end[1]))
         {
-            current = GetRandomAdjacentLocation(current, dir, matrix, random);
+            if ((dir == Direction.Left || dir == Direction.Right) && current[0] == end[0])
+            {
+                if (end[1] > current[1])
+                    current[1]++;
+                else
+                    current[1]--;
+            }
+            else if ((dir == Direction.Up || dir == Direction.Down) && current[1] == end[1])
+            {
+                if (end[0] > current[0])
+                    current[0]++;
+                else
+                    current[0]--;
+            }
+            else
+            {
+                List<Direction> avaliableDirections = GetAvailableDirections(current, dir, matrix, random);
+                if (otherDirCount > 2)
+                    avaliableDirections = new List<Direction> { dir };
+
+                Direction rd = avaliableDirections[random.Next(avaliableDirections.Count)];
+                if (rd != dir)
+                    otherDirCount++;
+
+                current = GetAdjacentLocation(current, rd);
+            }
+            
             if (matrix[current[0], current[1]] == null)
             {
-                matrix[current[0], current[1]] = new Room(roomType + random.Next(1, 4));
+                matrix[current[0], current[1]] = new Room(roomType + "_" + random.Next(1, 4));
             }
         }
 
@@ -85,24 +114,29 @@ public class PGM
         return new Map(matrix[start[0], start[1]]);
     }
 
-    private static int[] GetRandomAdjacentLocation(int[] current, Direction dir, Room[,] matrix, System.Random r)
+    private static List<Direction> GetAvailableDirections(int[] current, Direction mapDir, Room[,] matrix, System.Random r)
     {
         List<Direction> values = Enum.GetValues(typeof(Direction)).Cast<Direction>().ToList();
 
-        if (current[0] == 0 || dir == Direction.Right)
+        if (current[0] == 0 || mapDir == Direction.Right)
             values.Remove(Direction.Left);
 
-        if (current[0] == matrix.GetUpperBound(0) - 1 || dir == Direction.Left)
+        if (current[0] == matrix.GetUpperBound(0) - 1 || mapDir == Direction.Left)
             values.Remove(Direction.Right);
 
-        if (current[1] == 0 || dir == Direction.Down)
+        if (current[1] == 0 || mapDir == Direction.Down)
             values.Remove(Direction.Up);
 
-        if (current[1] == matrix.GetUpperBound(1) - 1 || dir == Direction.Up)
+        if (current[1] == matrix.GetUpperBound(1) - 1 || mapDir == Direction.Up)
             values.Remove(Direction.Down);
 
+        return values;
+    }
+
+    private static int[] GetAdjacentLocation(int[] current, Direction dir)
+    {
         int[] next = current.Select(i => i).ToArray();
-        switch (values[r.Next(values.Count)])
+        switch (dir)
         {
             case Direction.Left:
                 next[0] -= 1;

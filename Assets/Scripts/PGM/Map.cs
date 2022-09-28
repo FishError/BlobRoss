@@ -7,12 +7,12 @@ public class Map
     private Room startRoom;
     private Room currentRoom;
 
-    public Room StartRoom { get; }
+    public Room StartRoom { get; private set; }
     public Room CurrentRoom { get; set; }
 
     public Map(Room startingRoom)
     {
-        startRoom = startingRoom;
-        currentRoom = startRoom;
+        StartRoom = startingRoom;
+        CurrentRoom = startRoom;
     }
 }
