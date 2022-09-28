@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class PlayerController : EntityController
 {
-    [Header("Player's Stats")]
-    public float healthPoints;
-    public float speed = 5f;
-    public float attackDmg;
-
     [Header("Rigidbody")]
     public Rigidbody2D rb;
 
     [Header("Movement Vector")]
     Vector2 movement;
-
 
     private void Update()
     {
@@ -24,7 +18,7 @@ public class PlayerController : EntityController
 
     private void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * _speed * Time.fixedDeltaTime);
     }
 
     public override void Attack()
