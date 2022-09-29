@@ -5,10 +5,20 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-    public Vector2 MovementInput { get; private set; }
+    public Vector2 RawMovementInput { get; private set; }
+    public float NormInputX { get; private set; }
+    public float NormInputY { get; private set; }
 
-    public void OnMoveInput(InputAction.CallbackContext context)
+    private void OnMovement(InputValue value)
     {
-        MovementInput = context.ReadValue<Vector2>();
+        RawMovementInput = value.Get<Vector2>();
+        
+    }
+
+    private void FixedUpdate()
+    {
+        NormInputX = (float)RawMovementInput.x;
+        NormInputY = (float)RawMovementInput.y;
+
     }
 }
