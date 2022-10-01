@@ -18,11 +18,6 @@ public class MobInfo
 
 public class Room
 {
-    private string scene;
-    private Room topRoom;
-    private Room bottomRoom;
-    private Room leftRoom;
-    private Room rightRoom;
     private List<MobInfo> _mobs;
 
     public string Scene { get; private set; }

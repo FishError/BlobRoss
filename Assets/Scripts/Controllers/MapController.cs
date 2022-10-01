@@ -8,6 +8,7 @@ public class MapController : MonoBehaviour
     [Header("Map Settings")]
     public int maxWidth;
     public int maxHeight;
+    public int numOfRooms;
     public string roomType;
 
     public GameObject player;
@@ -19,7 +20,7 @@ public class MapController : MonoBehaviour
     {
         SceneManager.activeSceneChanged += ChangedActiveScene;
 
-        Map = PGM.ProcedurallyGenerateMap(maxWidth, maxHeight, 5, roomType);
+        Map = PGM.ProcedurallyGenerateMap(maxWidth, maxHeight, numOfRooms, roomType);
         SceneManager.LoadScene(Map.StartRoom.Scene);
         print("left: " + Map.StartRoom.LeftRoom);
         print("top: " + Map.StartRoom.TopRoom);

@@ -170,7 +170,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxWidth: 5
   maxHeight: 5
+  numOfRooms: 5
   roomType: Placeholder
+  player: {fileID: 0}
 --- !u!114 &573305549
 MonoBehaviour:
   m_ObjectHideFlags: 0
