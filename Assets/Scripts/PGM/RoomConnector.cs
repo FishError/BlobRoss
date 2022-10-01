@@ -7,18 +7,6 @@ public class RoomConnector : MonoBehaviour
 {
     public Direction dir;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void ChangeToConnectRoom(Collision2D collision)
     {
         if (collision.gameObject.layer == 6)

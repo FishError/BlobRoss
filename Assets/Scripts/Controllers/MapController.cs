@@ -30,12 +30,6 @@ public class MapController : MonoBehaviour
         print("bottom: " + Map.StartRoom.BottomRoom);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void ChangedActiveScene(Scene current, Scene next)
     {
         Map.CurrentRoom.MatchSceneToRoomConstraints();

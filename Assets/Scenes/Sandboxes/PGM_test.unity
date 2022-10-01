@@ -170,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxWidth: 5
   maxHeight: 5
-  numOfRooms: 5
+  numOfRooms: 7
   roomType: Placeholder
   player: {fileID: 597370254}
 --- !u!114 &573305549

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Map
 {
-
     public Room StartRoom { get; private set; }
     public Room CurrentRoom { get; set; }
     public Room PreviousRoom { get; set; }
