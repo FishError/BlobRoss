@@ -5,24 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class MapController : MonoBehaviour
 {
-    private Map map;
-
     [Header("Map Settings")]
     public int maxWidth;
     public int maxHeight;
     public string roomType;
+
+    public GameObject player;
+
+    public Map Map { get; private set; }
 
     // Start is called before the first frame update
     void Start()
     {
         SceneManager.activeSceneChanged += ChangedActiveScene;
 
-        map = PGM.ProcedurallyGenerateMap(maxWidth, maxHeight, 5, roomType);
-        SceneManager.LoadScene(map.StartRoom.Scene);
-        print("left: " + map.StartRoom.LeftRoom);
-        print("top: " + map.StartRoom.TopRoom);
-        print("right: " + map.StartRoom.RightRoom);
-        print("bottom: " + map.StartRoom.BottomRoom);
+        Map = PGM.ProcedurallyGenerateMap(maxWidth, maxHeight, 5, roomType);
+        SceneManager.LoadScene(Map.StartRoom.Scene);
+        print("left: " + Map.StartRoom.LeftRoom);
+        print("top: " + Map.StartRoom.TopRoom);
+        print("right: " + Map.StartRoom.RightRoom);
+        print("bottom: " + Map.StartRoom.BottomRoom);
     }
 
     // Update is called once per frame
@@ -33,6 +35,6 @@ public class MapController : MonoBehaviour
 
     private void ChangedActiveScene(Scene current, Scene next)
     {
-        map.StartRoom.MatchSceneToRoomConstraints();
+        Map.CurrentRoom.MatchSceneToRoomConstraints();
     }
 }

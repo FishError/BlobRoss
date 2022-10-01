@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Map
 {
-    private Room startRoom;
-    private Room currentRoom;
 
     public Room StartRoom { get; private set; }
     public Room CurrentRoom { get; set; }
+    public Room PreviousRoom { get; set; }
 
-    public Map(Room startingRoom)
+    public Map(Room startRoom)
     {
-        StartRoom = startingRoom;
-        CurrentRoom = startRoom;
+        StartRoom = startRoom;
+        CurrentRoom = StartRoom;
     }
 }

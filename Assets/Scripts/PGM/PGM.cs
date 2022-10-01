@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-enum Direction
+public enum Direction
 {
     Left,
     Right,
