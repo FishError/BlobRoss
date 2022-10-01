@@ -11,9 +11,11 @@ public class MapController : MonoBehaviour
     public int numOfRooms;
     public string roomType;
 
+    [Header("Player Reference")]
     public GameObject player;
 
     public Map Map { get; private set; }
+    public Direction previousRoomDir { get; set; }
 
     // Start is called before the first frame update
     void Start()
@@ -37,5 +39,31 @@ public class MapController : MonoBehaviour
     private void ChangedActiveScene(Scene current, Scene next)
     {
         Map.CurrentRoom.MatchSceneToRoomConstraints();
+
+        GameObject roomConnector = null;
+        switch (previousRoomDir)
+        {
+            case Direction.Left:
+                roomConnector = GameObject.Find("RoomConnectorLeft");
+                break;
+            case Direction.Right:
+                roomConnector = GameObject.Find("RoomConnectorRight");
+                break;
+            case Direction.Up:
+                roomConnector = GameObject.Find("RoomConnectorTop");
+                break;
+            case Direction.Down:
+                roomConnector = GameObject.Find("RoomConnectorBottom");
+                break;
+        }
+
+        if (roomConnector != null)
+        {
+            Transform spawnLocation = roomConnector.transform.Find("EntranceSpawn");
+            if (spawnLocation != null)
+            {
+                player.transform.position = spawnLocation.position;
+            }
+        }
     }
 }

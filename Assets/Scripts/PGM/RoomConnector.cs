@@ -21,7 +21,7 @@ public class RoomConnector : MonoBehaviour
 
     public void ChangeToConnectRoom(Collision2D collision)
     {
-        if (collision.gameObject.layer == 1)
+        if (collision.gameObject.layer == 6)
         {
             GameObject gameObject = GameObject.Find("MapController");
             if (gameObject != null)
@@ -30,18 +30,23 @@ public class RoomConnector : MonoBehaviour
                 switch (dir)
                 {
                     case Direction.Left:
-                        SceneManager.LoadScene(mc.Map.CurrentRoom.LeftRoom.Scene);
+                        mc.previousRoomDir = Direction.Right;
+                        mc.Map.CurrentRoom = mc.Map.CurrentRoom.LeftRoom;
                         break;
                     case Direction.Right:
-                        SceneManager.LoadScene(mc.Map.CurrentRoom.RightRoom.Scene);
+                        mc.previousRoomDir = Direction.Left;
+                        mc.Map.CurrentRoom = mc.Map.CurrentRoom.RightRoom;
                         break;
                     case Direction.Up:
-                        SceneManager.LoadScene(mc.Map.CurrentRoom.TopRoom.Scene);
+                        mc.previousRoomDir = Direction.Down;
+                        mc.Map.CurrentRoom = mc.Map.CurrentRoom.TopRoom;
                         break;
                     case Direction.Down:
-                        SceneManager.LoadScene(mc.Map.CurrentRoom.BottomRoom.Scene);
+                        mc.previousRoomDir = Direction.Up;
+                        mc.Map.CurrentRoom = mc.Map.CurrentRoom.BottomRoom;
                         break;
                 }
+                SceneManager.LoadScene(mc.Map.CurrentRoom.Scene);
             }
         }
     }

@@ -5,6 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class DontDestroyOnLoad : MonoBehaviour
 {
+    public string objectID;
+
+    private void Awake()
+    {
+        objectID = name + transform.position.ToString() + transform.eulerAngles.ToString();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -12,7 +19,10 @@ public class DontDestroyOnLoad : MonoBehaviour
         {
             if (Object.FindObjectsOfType<DontDestroyOnLoad>()[i] != this)
             {
-                Destroy(gameObject);
+                if (Object.FindObjectsOfType<DontDestroyOnLoad>()[i].objectID == objectID)
+                {
+                    Destroy(gameObject);
+                }
             }
         }
         DontDestroyOnLoad(gameObject);
