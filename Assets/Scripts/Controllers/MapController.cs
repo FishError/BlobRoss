@@ -17,8 +17,12 @@ public class MapController : MonoBehaviour
     {
         SceneManager.activeSceneChanged += ChangedActiveScene;
 
-        map = PGM.ProcedurallyGenerateMap(maxWidth, maxHeight, roomType);
+        map = PGM.ProcedurallyGenerateMap(maxWidth, maxHeight, 5, roomType);
         SceneManager.LoadScene(map.StartRoom.Scene);
+        print("left: " + map.StartRoom.LeftRoom);
+        print("top: " + map.StartRoom.TopRoom);
+        print("right: " + map.StartRoom.RightRoom);
+        print("bottom: " + map.StartRoom.BottomRoom);
     }
 
     // Update is called once per frame

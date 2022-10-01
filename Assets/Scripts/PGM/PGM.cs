@@ -15,120 +15,70 @@ enum Direction
 
 public class PGM: MonoBehaviour
 {
-    public static Map ProcedurallyGenerateMap(int maxWidth, int maxHeight, string roomType)
+    public static Map ProcedurallyGenerateMap(int maxWidth, int maxHeight, int numOfRooms, string roomType)
     {
         System.Random random = new System.Random();
-        int[] start, end;
-        Direction dir;
+        Room[,] array2D = new Room[maxHeight + 1, maxWidth + 1];
 
-        Array values = typeof(Direction).GetEnumValues();
-        dir = (Direction)values.GetValue(random.Next(values.Length));
-
-        switch (dir)
-        {
-            case Direction.Right:
-                start = new int[] { 0, random.Next(0, maxHeight - 1) };
-                end = new int[] { maxWidth - 1, random.Next(0, maxHeight - 1) };
-                break;
-            case Direction.Left:
-                start = new int[] { maxWidth - 1, random.Next(0, maxHeight - 1) };
-                end = new int[] { 0, random.Next(0, maxHeight - 1) };
-                break;
-            case Direction.Down:
-                start = new int[] { random.Next(0, maxWidth - 1), 0 };
-                end = new int[] { random.Next(0, maxWidth - 1), maxHeight - 1 };
-                break;
-            case Direction.Up:
-                start = new int[] { random.Next(0, maxWidth - 1), maxHeight - 1 };
-                end = new int[] { random.Next(0, maxWidth - 1), 0 };
-                break;
-            default:
-                start = new int[] { 0, 0 };
-                end = new int[] { 0, 0 };
-                break;
-        }
+        int[] start = new int[] { random.Next(0, maxWidth), random.Next(0, maxHeight) };
         print(start[0] + " " + start[1]);
-        print(end[0] + " " + end[1]);
-
-        Room[,] matrix = new Room[maxWidth, maxHeight];
-        matrix[start[0], start[1]] = new Room(roomType + "_" + random.Next(1, 4));
+        array2D[start[0], start[1]] = new Room(roomType + "_" + random.Next(1, 4));
+        
+        int roomCount = 1;
         int[] current = start;
-        int otherDirCount = 0;
-        while (!(current[0] == end[0] && current[1] == end[1]))
+        while (roomCount != numOfRooms)
         {
-            if ((dir == Direction.Left || dir == Direction.Right) && current[0] == end[0])
-            {
-                if (end[1] > current[1])
-                    current[1]++;
-                else
-                    current[1]--;
-            }
-            else if ((dir == Direction.Up || dir == Direction.Down) && current[1] == end[1])
-            {
-                if (end[0] > current[0])
-                    current[0]++;
-                else
-                    current[0]--;
-            }
-            else
-            {
-                List<Direction> avaliableDirections = GetAvailableDirections(current, dir, matrix, random);
-                if (otherDirCount > 2)
-                    avaliableDirections = new List<Direction> { dir };
+            List<Direction> avaliableDirections = GetAvailableDirections(current, array2D);
+            Direction randomDirection = avaliableDirections[random.Next(avaliableDirections.Count)];
+            current = GetAdjacentLocation(current, randomDirection);
 
-                Direction rd = avaliableDirections[random.Next(avaliableDirections.Count)];
-                if (rd != dir)
-                    otherDirCount++;
-
-                current = GetAdjacentLocation(current, rd);
-            }
-            
-            if (matrix[current[0], current[1]] == null)
+            if (array2D[current[0], current[1]] == null)
             {
-                matrix[current[0], current[1]] = new Room(roomType + "_" + random.Next(1, 4));
+                array2D[current[0], current[1]] = new Room(roomType + "_" + random.Next(1, 4));
+                roomCount++;
             }
         }
 
-        for (int x = 0; x < matrix.GetUpperBound(0); x++)
+        for (int y = 0; y < array2D.GetUpperBound(0); y++)
         {
-            for (int y = 0; y < matrix.GetUpperBound(1); y++)
+            for (int x = 0; x < array2D.GetUpperBound(1); x++)
             {
-                if (matrix[x, y] != null)
+                if (array2D[x, y] != null)
                 {
-                    Room room = matrix[x, y];
-                    if (x < matrix.GetUpperBound(0) - 1 && matrix[x + 1, y] != null)
-                        room.RightRoom = matrix[x + 1, y];
+                    Room room = array2D[x, y];
+                    if (x < array2D.GetUpperBound(0) - 1 && array2D[x + 1, y] != null)
+                        room.BottomRoom = array2D[x + 1, y];
 
-                    if (x > 0 && matrix[x - 1, y] != null)
-                        room.LeftRoom = matrix[x - 1, y];
+                    if (x > 0 && array2D[x - 1, y] != null)
+                        room.TopRoom = array2D[x - 1, y];
 
-                    if (y < matrix.GetUpperBound(1) - 1 && matrix[x, y + 1] != null)
-                        room.BottomRoom = matrix[x, y + 1];
+                    if (y < array2D.GetUpperBound(1) - 1 && array2D[x, y + 1] != null)
+                        room.RightRoom = array2D[x, y + 1];
 
-                    if (y > 0 && matrix[x, y - 1] != null)
-                        room.TopRoom = matrix[x, y - 1];
+                    if (y > 0 && array2D[x, y - 1] != null)
+                        room.LeftRoom = array2D[x, y - 1];
                 }
             }
         }
 
-        return new Map(matrix[start[0], start[1]]);
+        return new Map(array2D[start[0], start[1]]);
     }
 
-    private static List<Direction> GetAvailableDirections(int[] current, Direction mapDir, Room[,] matrix, System.Random r)
+    private static List<Direction> GetAvailableDirections(int[] current, Room[,] matrix)
     {
         List<Direction> values = Enum.GetValues(typeof(Direction)).Cast<Direction>().ToList();
 
-        if (current[0] == 0 || mapDir == Direction.Right)
-            values.Remove(Direction.Left);
-
-        if (current[0] == matrix.GetUpperBound(0) - 1 || mapDir == Direction.Left)
-            values.Remove(Direction.Right);
-
-        if (current[1] == 0 || mapDir == Direction.Down)
+        if (current[0] == 0)
             values.Remove(Direction.Up);
 
-        if (current[1] == matrix.GetUpperBound(1) - 1 || mapDir == Direction.Up)
+        if (current[0] == matrix.GetUpperBound(0) - 1)
             values.Remove(Direction.Down);
+
+        if (current[1] == 0)
+            values.Remove(Direction.Left);
+
+        if (current[1] == matrix.GetUpperBound(1) - 1)
+            values.Remove(Direction.Right);
 
         return values;
     }
@@ -139,16 +89,16 @@ public class PGM: MonoBehaviour
         switch (dir)
         {
             case Direction.Left:
-                next[0] -= 1;
-                break;
-            case Direction.Right:
-                next[0] += 1;
-                break;
-            case Direction.Up:
                 next[1] -= 1;
                 break;
-            case Direction.Down:
+            case Direction.Right:
                 next[1] += 1;
+                break;
+            case Direction.Up:
+                next[0] -= 1;
+                break;
+            case Direction.Down:
+                next[0] += 1;
                 break;
         }
 
