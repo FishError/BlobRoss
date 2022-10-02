@@ -13,9 +13,3 @@ MonoBehaviour:
   m_Name: playerData
   m_EditorClassIdentifier: 
   movementVelocity: 5
-  clip:
-  - {fileID: 0}
-  - {fileID: 7400000, guid: 907e2d6e42f9ae942a64107a2bdab8fc, type: 2}
-  - {fileID: 7400000, guid: 1fb52ce5b3bb41449af002cda4b6abec, type: 2}
-  - {fileID: 7400000, guid: a0af501857a92d244875f502fdecf4d8, type: 2}
-  - {fileID: 7400000, guid: 98061b3a0461f344f932cceb15d38245, type: 2}
