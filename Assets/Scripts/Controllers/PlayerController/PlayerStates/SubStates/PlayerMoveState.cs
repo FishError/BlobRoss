@@ -16,18 +16,18 @@ public class PlayerMoveState : PlayerGroundedStates
     public override void Enter()
     {
         base.Enter();
-        if (wepAnim)
+        if (redGearAnim)
         {
-            wepAnim.SetBool("WeaponMove", true);
+            redGearAnim.SetBool("WeaponMove", true);
         }
     }
 
     public override void Exit()
     {
         base.Exit();
-        if (wepAnim)
+        if (redGearAnim)
         {
-            wepAnim.SetBool("WeaponMove", false);
+            redGearAnim.SetBool("WeaponMove", false);
         }
     }
 
@@ -118,19 +118,19 @@ public class PlayerMoveState : PlayerGroundedStates
 
     public void CheckWeaponMove()
     {
-        if (wepAnim)
+        if (redGearAnim)
         {
-            wepAnim.SetFloat("Horizontal", xInput);
-            wepAnim.SetFloat("Vertical", yInput);
+            redGearAnim.SetFloat("Horizontal", xInput);
+            redGearAnim.SetFloat("Vertical", yInput);
         }
     }
 
     public void CheckWeaponIdle()
     {
-        if (wepAnim)
+        if (redGearAnim)
         {
-            wepAnim.SetFloat("IdleHorizontal", player.LastX);
-            wepAnim.SetFloat("IdleVertical", player.LastY);
+            redGearAnim.SetFloat("IdleHorizontal", player.LastX);
+            redGearAnim.SetFloat("IdleVertical", player.LastY);
         }
     }
 }

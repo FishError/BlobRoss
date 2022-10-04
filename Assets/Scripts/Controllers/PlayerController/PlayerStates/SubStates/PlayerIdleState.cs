@@ -18,18 +18,18 @@ public class PlayerIdleState : PlayerGroundedStates
         base.Enter();
         player.SetVelocityX(0f);
         player.SetVelocityY(0f);
-        if (wepAnim)
+        if (redGearAnim)
         {
-            wepAnim.SetBool("WeaponIdle", true);
+            redGearAnim.SetBool("WeaponIdle", true);
         }
     }
 
     public override void Exit()
     {
         base.Exit();
-        if (wepAnim)
+        if (redGearAnim)
         {
-            wepAnim.SetBool("WeaponIdle", false);
+            redGearAnim.SetBool("WeaponIdle", false);
         }
     }
 

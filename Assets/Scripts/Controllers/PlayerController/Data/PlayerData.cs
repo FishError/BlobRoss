@@ -8,11 +8,13 @@ public class PlayerData : ScriptableObject
     [Header("Move State")]
     public float movementVelocity = 5f;
 
-    [Header("Current Weapon")]
-    public GameObject currentWeapon;
+    [Header("Current Gear Equipped")]
+    public GameObject redGear;
+    public GameObject blueGear;
+    public GameObject yellowGear;
 
     public void OnEnable()
     {
-        currentWeapon = GameObject.FindGameObjectWithTag("Weapon");
+        redGear = GameObject.FindGameObjectWithTag("Weapon");
     }
 }

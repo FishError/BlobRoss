@@ -6,7 +6,7 @@ public class PlayerGroundedStates : PlayerState
 {
     protected float xInput;
     protected float yInput;
-    protected Animator wepAnim;
+    protected Animator redGearAnim;
 
     public PlayerGroundedStates(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animName) : base(player, stateMachine, playerData, animName)
     {
@@ -34,9 +34,9 @@ public class PlayerGroundedStates : PlayerState
 
         xInput = player.InputHandler.NormInputX;
         yInput = player.InputHandler.NormInputY;
-        if (playerData.currentWeapon)
+        if (playerData.redGear)
         {
-            wepAnim = playerData.currentWeapon.GetComponent<Animator>();
+            redGearAnim = playerData.redGear.GetComponent<Animator>();
         }
     }
 

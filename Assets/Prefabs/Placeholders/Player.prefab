@@ -249,7 +249,7 @@ GameObject:
   - component: {fileID: 4684409475654365255}
   - component: {fileID: 4684409475654365254}
   m_Layer: 7
-  m_Name: Weapon
+  m_Name: RedGear
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
