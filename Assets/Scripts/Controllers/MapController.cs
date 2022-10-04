@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class MapController : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class MapController : MonoBehaviour
 
     [Header("Player Reference")]
     public GameObject player;
+    public GameObject playerCamera;
 
     public Map Map { get; private set; }
     public Direction previousRoomDir { get; set; }
@@ -55,5 +57,12 @@ public class MapController : MonoBehaviour
                 player.transform.position = spawnLocation.position;
             }
         }
+        SetCameraConfiner();
+    }
+
+    private void SetCameraConfiner()
+    {
+        var grid = GameObject.Find("Grid").GetComponent<PolygonCollider2D>();
+        playerCamera.GetComponent<CinemachineConfiner>().m_BoundingShape2D = grid;
     }
 }
