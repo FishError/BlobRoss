@@ -24,10 +24,6 @@ public class MapController : MonoBehaviour
 
         Map = PGM.ProcedurallyGenerateMap(maxWidth, maxHeight, numOfRooms, roomType);
         SceneManager.LoadScene(Map.StartRoom.Scene);
-        print("left: " + Map.StartRoom.LeftRoom);
-        print("top: " + Map.StartRoom.TopRoom);
-        print("right: " + Map.StartRoom.RightRoom);
-        print("bottom: " + Map.StartRoom.BottomRoom);
     }
 
     private void ChangedActiveScene(Scene current, Scene next)
