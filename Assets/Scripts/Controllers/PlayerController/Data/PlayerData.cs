@@ -8,7 +8,7 @@ public class PlayerData : ScriptableObject
     [Header("Move State")]
     public float movementVelocity = 5f;
 
-    [Header("Current Gear Equipped")]
+    [Header("Current Gear Equipped")] //hello
     public GameObject redGear;
     public GameObject blueGear;
     public GameObject yellowGear;
