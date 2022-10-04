@@ -14,7 +14,7 @@ public class MapController : MonoBehaviour
 
     [Header("Player Reference")]
     public GameObject player;
-    public GameObject camera;
+    public GameObject cinemachineCamera;
 
     public Map Map { get; private set; }
     public Direction previousRoomDir { get; set; }
@@ -63,6 +63,6 @@ public class MapController : MonoBehaviour
     private void SetCameraConfiner()
     {
         var grid = GameObject.Find("Grid").GetComponent<PolygonCollider2D>();
-        camera.GetComponentInChildren<CinemachineConfiner>().m_BoundingShape2D = grid;
+        cinemachineCamera.GetComponentInChildren<CinemachineConfiner>().m_BoundingShape2D = grid;
     }
 }
