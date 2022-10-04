@@ -6,6 +6,7 @@ public class PlayerGroundedStates : PlayerState
 {
     protected float xInput;
     protected float yInput;
+    protected Animator wepAnim;
 
     public PlayerGroundedStates(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animName) : base(player, stateMachine, playerData, animName)
     {
@@ -33,6 +34,10 @@ public class PlayerGroundedStates : PlayerState
 
         xInput = player.InputHandler.NormInputX;
         yInput = player.InputHandler.NormInputY;
+        if (playerData.currentWeapon)
+        {
+            wepAnim = playerData.currentWeapon.GetComponent<Animator>();
+        }
     }
 
     public override void PhysicsUpdate()

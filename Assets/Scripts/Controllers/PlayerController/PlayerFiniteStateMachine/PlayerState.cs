@@ -9,7 +9,7 @@ public class PlayerState
     protected PlayerData playerData;
     protected float startTime;
 
-    private string animName;
+    private string animName, weapName;
 
     public PlayerState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animName)
     {
