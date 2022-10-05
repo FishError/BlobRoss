@@ -16,6 +16,7 @@ public class PlayerGroundedStates : PlayerState
     public override void DoChecks()
     {
         base.DoChecks();
+        redGearAnim = GameObject.FindGameObjectWithTag("Weapon").GetComponent<Animator>();
     }
 
     public override void Enter()
@@ -34,10 +35,6 @@ public class PlayerGroundedStates : PlayerState
 
         xInput = player.InputHandler.NormInputX;
         yInput = player.InputHandler.NormInputY;
-        if (playerData.redGear)
-        {
-            redGearAnim = playerData.redGear.GetComponent<Animator>();
-        }
     }
 
     public override void PhysicsUpdate()
