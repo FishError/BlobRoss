@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateMachine
+public class FiniteStateMachine : MonoBehaviour
 {
-    public PlayerState CurrentState { get; private set; }
+    public EntityState CurrentState { get; private set; }
 
-    public void Initialize(PlayerState startState)
+    public void Initialize(EntityState startState)
     {
         CurrentState = startState;
         CurrentState.Enter();
     }
 
-    public void ChangeState(PlayerState newState)
+    public void ChangeState(EntityState newState)
     {
         CurrentState.Exit();
         CurrentState = newState;

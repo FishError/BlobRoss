@@ -2,16 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerState
+public class PlayerState : EntityState
 {
     protected Player player;
-    protected PlayerStateMachine stateMachine;
     protected PlayerData playerData;
     protected float startTime;
 
     private string animName, weapName;
 
-    public PlayerState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animName)
+    public PlayerState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, string animName)
     {
         this.player = player;
         this.stateMachine = stateMachine;
@@ -20,7 +19,7 @@ public class PlayerState
     }
 
     //Gets called when entered a specific state
-    public virtual void Enter()
+    public override void Enter()
     {
         DoChecks();
         player.Anim.SetBool(animName, true);
@@ -29,25 +28,25 @@ public class PlayerState
     }
 
     //Gets called when leaving a specific state
-    public virtual void Exit()
+    public override void Exit()
     {
         player.Anim.SetBool(animName, false);
     }
 
     //Gets called every frame
-    public virtual void LogicUpdate()
+    public override void LogicUpdate()
     {
 
     }
 
     //Gets called every FixedUpdate
-    public virtual void PhysicsUpdate()
+    public override void PhysicsUpdate()
     {
         DoChecks();
     }
 
     //Check for Walls/Grounded etc
-    public virtual void DoChecks()
+    public override void DoChecks()
     {
 
     }

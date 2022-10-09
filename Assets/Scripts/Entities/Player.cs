@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Entity
 {
     #region States
-    public PlayerStateMachine StateMachine { get; private set; }
     public PlayerIdleState IdleState { get; private set; }
-
     public PlayerMoveState MoveState { get; private set; }
     #endregion
 
     #region Animation References
-    public Animator Anim { get; private set; }
     public float LastX { get; set; }
     public float LastY { get; set; }
     #endregion
@@ -21,41 +18,33 @@ public class Player : MonoBehaviour
     public PlayerInputHandler InputHandler { get; private set; }
     #endregion
 
-    #region Physics References
-    public Rigidbody2D rb { get; private set; }
-    public Vector2 CurrentVelocity { get; private set; }
-    private Vector2 workspace;
-    #endregion
-
     #region Player Data
     [SerializeField] private PlayerData playerData;
     #endregion
 
     
-    private void Awake()
+    protected override void Awake()
     {
-        StateMachine = new PlayerStateMachine();
+        base.Awake();
         IdleState = new PlayerIdleState(this, StateMachine, playerData, "Idle");
         MoveState = new PlayerMoveState(this, StateMachine, playerData, "Move");
     }
 
-    private void Start()
+    protected override void Start()
     {
-        Anim = GetComponent<Animator>();
+        base.Start();
         InputHandler = GetComponent<PlayerInputHandler>();
-        rb = GetComponent<Rigidbody2D>();
         StateMachine.Initialize(IdleState);
     }
 
-    private void Update()
+    protected override void Update()
     {
-        CurrentVelocity = rb.velocity;
-        StateMachine.CurrentState.LogicUpdate();
+        base.Update();
     }
 
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
-        StateMachine.CurrentState.PhysicsUpdate();
+        base.FixedUpdate();
     }
 
     public void SetVelocityX(float amt)

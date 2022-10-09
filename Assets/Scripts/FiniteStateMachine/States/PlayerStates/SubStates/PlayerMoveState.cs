@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMoveState : PlayerGroundedStates
 {
-    public PlayerMoveState(Player player, PlayerStateMachine stateMachine, PlayerData playerData, string animName) : base(player, stateMachine, playerData, animName)
+    public PlayerMoveState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, string animName) : base(player, stateMachine, playerData, animName)
     {
     }
 
@@ -40,14 +40,14 @@ public class PlayerMoveState : PlayerGroundedStates
             SetHorizontalAnimation();
             player.LastX = xInput;
             player.LastY = yInput;
-            player.SetVelocityX(playerData.movementVelocity * xInput);
+            player.SetVelocityX(playerData.MovementVelocity * xInput);
         }
         if (yInput > 0 || yInput < 0)
         {
             SetVerticalAnimation();
             player.LastX = xInput;
             player.LastY = yInput;
-            player.SetVelocityY(playerData.movementVelocity * yInput);
+            player.SetVelocityY(playerData.MovementVelocity * yInput);
         }
         if (xInput == 0f && yInput == 0f)
         {
@@ -58,13 +58,13 @@ public class PlayerMoveState : PlayerGroundedStates
         {
             SetOnlyVerticalAnimation();
             player.LastY = yInput;
-            player.SetVelocityX(playerData.movementVelocity * xInput);
+            player.SetVelocityX(playerData.MovementVelocity * xInput);
         }
         if (xInput != 0f && yInput == 0f)
         {
             SetOnlyHorizontalAnimation();
             player.LastX = xInput;
-            player.SetVelocityY(playerData.movementVelocity * yInput);
+            player.SetVelocityY(playerData.MovementVelocity * yInput);
         }
         
     }
