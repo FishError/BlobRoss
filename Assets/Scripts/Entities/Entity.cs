@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Entity : MonoBehaviour
+public abstract class Entity : MonoBehaviour
 {
     #region StateMachine
     public FiniteStateMachine StateMachine { get; protected set; }
@@ -20,7 +20,7 @@ public class Entity : MonoBehaviour
 
     protected virtual void Awake()
     {
-        StateMachine = new FiniteStateMachine();
+        StateMachine = gameObject.AddComponent<FiniteStateMachine>();
     }
 
     protected virtual void Start()
