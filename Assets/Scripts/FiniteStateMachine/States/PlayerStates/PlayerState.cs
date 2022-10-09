@@ -24,7 +24,6 @@ public class PlayerState : EntityState
         DoChecks();
         player.Anim.SetBool(animName, true);
         startTime = Time.time;
-        //Debug.Log(animName);
     }
 
     //Gets called when leaving a specific state
