@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class GearGroundedStates : GearState
 {
+    protected float xInput;
+    protected float yInput;
+
+    public float XInput{
+        get { return xInput; }
+        set { xInput = value; } 
+    }
+
+    public float YInput{
+        get { return yInput; }
+        set { yInput = value; } 
+    }
 
     public GearGroundedStates(Gear gear, FiniteStateMachine stateMachine, GearData gearData, string animName) : base(gear, stateMachine, gearData, animName) { }
 
@@ -27,8 +39,9 @@ public class GearGroundedStates : GearState
         base.PhysicsUpdate();
     }
 
-        public override void DoChecks()
+    public override void DoChecks()
     {
         base.DoChecks();
     }
+
 }

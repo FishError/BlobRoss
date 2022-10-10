@@ -8,7 +8,15 @@ public class PlayerState : EntityState
     protected PlayerData playerData;
     protected float startTime;
 
-    private string animName, weapName;
+    private string animName;
+
+    #region Gears
+    //TODO: replace this with just Gears[] gears eventually once red, blue and yellow gears have animation
+    public Transform gears;
+    public Gear redGear {get; private set; }
+    // public Gear blueGear {get; private set; }
+    // public Gear yellowGear {get; private set; }
+    #endregion
 
     public PlayerState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, string animName)
     {
@@ -16,6 +24,13 @@ public class PlayerState : EntityState
         this.stateMachine = stateMachine;
         this.playerData = playerData;
         this.animName = animName;
+        this.gears = player.gameObject.transform.Find("Gears");
+        this.redGear = gears.GetChild(0).GetComponent<Gear>();
+        // this.blueGear = gears.GetChild(1).GetComponent<Gear>();
+        // this.yellowGear = gears.GetChild(2).GetComponent<Gear>();
+        Debug.Log(redGear.name);
+        // Debug.Log(blueGear.name);
+        // Debug.Log(yellowGear.name);
     }
 
     //Gets called when entered a specific state

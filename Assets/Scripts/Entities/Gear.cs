@@ -14,7 +14,7 @@ public class Gear : Entity
     public float LastY { get; set; }
     #endregion
 
-    #region Player Data
+    #region Gear Data
     [SerializeField] private GearData gearData;
     #endregion
 

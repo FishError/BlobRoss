@@ -4,31 +4,16 @@ using UnityEngine;
 
 public class PlayerMoveState : PlayerGroundedStates
 {
-    public PlayerMoveState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, string animName) : base(player, stateMachine, playerData, animName)
-    {
-    }
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
-    }
+    public PlayerMoveState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, string animName) : base(player, stateMachine, playerData, animName) {}
 
     public override void Enter()
     {
         base.Enter();
-        if (redGearAnim)
-        {
-            redGearAnim.SetBool("WeaponMove", true);
-        }
     }
 
     public override void Exit()
     {
         base.Exit();
-        if (redGearAnim)
-        {
-            redGearAnim.SetBool("WeaponMove", false);
-        }
     }
 
     public override void LogicUpdate()
@@ -69,39 +54,39 @@ public class PlayerMoveState : PlayerGroundedStates
         
     }
 
+    public override void DoChecks()
+    {
+        base.DoChecks();
+    }
+
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
     }
 
-    public void SetVerticalAnimation()
-    {
-        SetMove();
-        CheckWeaponMove();
-    }
-
     public void SetHorizontalAnimation()
     {
         SetMove();
-        CheckWeaponMove();
+    }
+
+    public void SetVerticalAnimation()
+    {
+        SetMove();
     }
 
     public void SetIdleAnimation()
     {
         SetIdle();
-        CheckWeaponIdle();
     }
 
     public void SetOnlyVerticalAnimation()
     {
         SetIdle();
-        CheckWeaponIdle();
     }
 
     public void SetOnlyHorizontalAnimation()
     {
         SetIdle();
-        CheckWeaponIdle();
     }
 
     public void SetMove()
@@ -116,21 +101,4 @@ public class PlayerMoveState : PlayerGroundedStates
         player.Anim.SetFloat("IdleVertical", player.LastY);
     }
 
-    public void CheckWeaponMove()
-    {
-        if (redGearAnim)
-        {
-            redGearAnim.SetFloat("Horizontal", xInput);
-            redGearAnim.SetFloat("Vertical", yInput);
-        }
-    }
-
-    public void CheckWeaponIdle()
-    {
-        if (redGearAnim)
-        {
-            redGearAnim.SetFloat("IdleHorizontal", player.LastX);
-            redGearAnim.SetFloat("IdleVertical", player.LastY);
-        }
-    }
 }

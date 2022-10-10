@@ -21,14 +21,14 @@ public class GearState : EntityState
     public override void Enter()
     {
         DoChecks();
-        //gear.anim.SetBool(animName, true);
+        gear.Anim.SetBool(animName, true);
         startTime = Time.time;
     }
 
     //Gets called when leaving a specific state
     public override void Exit()
     {
-        //gear.anim.SetBool(animName, false);
+        gear.Anim.SetBool(animName, false);
     }
 
     //Gets called every frame
@@ -48,4 +48,6 @@ public class GearState : EntityState
     {
 
     }
+
+
 }
