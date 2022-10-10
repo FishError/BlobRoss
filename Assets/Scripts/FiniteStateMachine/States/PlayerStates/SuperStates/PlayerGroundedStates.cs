@@ -6,18 +6,8 @@ public class PlayerGroundedStates : PlayerState
 {
     protected float xInput;
     protected float yInput;
-    protected Animator redGearAnim;
 
-    public PlayerGroundedStates(Player player, FiniteStateMachine stateMachine, PlayerData playerData, string animName) : base(player, stateMachine, playerData, animName)
-    {
-    
-    }
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
-        redGearAnim = GameObject.FindGameObjectWithTag("Weapon").GetComponent<Animator>();
-    }
+    public PlayerGroundedStates(Player player, FiniteStateMachine stateMachine, PlayerData playerData, string animName) : base(player, stateMachine, playerData, animName) {}
 
     public override void Enter()
     {
@@ -32,13 +22,23 @@ public class PlayerGroundedStates : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
         xInput = player.InputHandler.NormInputX;
         yInput = player.InputHandler.NormInputY;
+ 
+        redEquipment.IdleState.XInput = xInput;
+        redEquipment.IdleState.YInput = yInput;
+        redEquipment.MoveState.XInput = xInput;
+        redEquipment.MoveState.YInput = yInput;
+
     }
 
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+    }
+
+     public override void DoChecks()
+    {
+        base.DoChecks();
     }
 }
