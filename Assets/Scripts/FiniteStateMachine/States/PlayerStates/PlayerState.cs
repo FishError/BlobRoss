@@ -28,7 +28,6 @@ public class PlayerState : EntityState
         this.redGear = gears.GetChild(0).GetComponent<Gear>();
         // this.blueGear = gears.GetChild(1).GetComponent<Gear>();
         // this.yellowGear = gears.GetChild(2).GetComponent<Gear>();
-        Debug.Log(redGear.name);
         // Debug.Log(blueGear.name);
         // Debug.Log(yellowGear.name);
     }
