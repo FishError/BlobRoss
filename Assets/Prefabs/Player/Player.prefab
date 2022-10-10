@@ -422,7 +422,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2916919972303057810}
   - component: {fileID: 1622503582369817053}
-  - component: {fileID: 5674934057234096318}
   m_Layer: 7
   m_Name: Palette
   m_TagString: BlueEquipment
@@ -466,19 +465,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &5674934057234096318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6649136531447998245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b1c82f33d38246e0b89acec0d789e00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  equipmentData: {fileID: 11400000, guid: 3ecdf5b946d744d1eaf5519b3b3f8318, type: 2}
 --- !u!1 &8906370083410833265
 GameObject:
   m_ObjectHideFlags: 0
@@ -489,7 +475,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3618883395305983163}
   - component: {fileID: 1435153349656888193}
-  - component: {fileID: 9151527499906087423}
   m_Layer: 7
   m_Name: Dash
   m_TagString: YellowEquipment
@@ -533,16 +518,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &9151527499906087423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8906370083410833265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b1c82f33d38246e0b89acec0d789e00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  equipmentData: {fileID: 11400000, guid: 3ecdf5b946d744d1eaf5519b3b3f8318, type: 2}
