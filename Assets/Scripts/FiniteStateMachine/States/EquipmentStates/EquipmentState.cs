@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GearState : EntityState
+public class EquipmentState : EntityState
 {
-    protected Gear gear;
-    protected GearData gearData;
+    protected Equipment equipment;
+    protected EquipmentData equipmentData;
     protected float startTime;
     private string animName;
 
-    public GearState(Gear gear, FiniteStateMachine stateMachine, GearData gearData, string animName)
+    public EquipmentState(Equipment equipment, FiniteStateMachine stateMachine, EquipmentData equipmentData, string animName)
     {
-        this.gear = gear;
+        this.equipment = equipment;
         this.stateMachine = stateMachine;
-        this.gearData = gearData;
+        this.equipmentData = equipmentData;
         this.animName = animName;
     }
 
@@ -21,14 +21,14 @@ public class GearState : EntityState
     public override void Enter()
     {
         DoChecks();
-        gear.Anim.SetBool(animName, true);
+        equipment.Anim.SetBool(animName, true);
         startTime = Time.time;
     }
 
     //Gets called when leaving a specific state
     public override void Exit()
     {
-        gear.Anim.SetBool(animName, false);
+        equipment.Anim.SetBool(animName, false);
     }
 
     //Gets called every frame

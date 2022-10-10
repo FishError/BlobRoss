@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GearGroundedStates : GearState
+public class EquipmentGroundedStates : EquipmentState
 {
     protected float xInput;
     protected float yInput;
@@ -17,7 +17,7 @@ public class GearGroundedStates : GearState
         set { yInput = value; } 
     }
 
-    public GearGroundedStates(Gear gear, FiniteStateMachine stateMachine, GearData gearData, string animName) : base(gear, stateMachine, gearData, animName) { }
+    public EquipmentGroundedStates(Equipment equipment, FiniteStateMachine stateMachine, EquipmentData equipmentData, string animName) : base(equipment, stateMachine, equipmentData, animName) { }
 
     public override void Enter()
     {

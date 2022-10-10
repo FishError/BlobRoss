@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5931360789702231396}
   m_Layer: 6
-  m_Name: Gears
+  m_Name: Equipments
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -286,7 +286,7 @@ GameObject:
   - component: {fileID: 7481606849688432301}
   m_Layer: 7
   m_Name: Paintbrush
-  m_TagString: RedGear
+  m_TagString: RedEquipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -411,7 +411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1c82f33d38246e0b89acec0d789e00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gearData: {fileID: 11400000, guid: dbd0d63ad599e4bb4b7156f55cce4122, type: 2}
+  equipmentData: {fileID: 11400000, guid: 3ecdf5b946d744d1eaf5519b3b3f8318, type: 2}
 --- !u!1 &6649136531447998245
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,7 +425,7 @@ GameObject:
   - component: {fileID: 5674934057234096318}
   m_Layer: 7
   m_Name: Palette
-  m_TagString: BlueGear
+  m_TagString: BlueEquipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -478,7 +478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1c82f33d38246e0b89acec0d789e00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gearData: {fileID: 11400000, guid: dbd0d63ad599e4bb4b7156f55cce4122, type: 2}
+  equipmentData: {fileID: 11400000, guid: 3ecdf5b946d744d1eaf5519b3b3f8318, type: 2}
 --- !u!1 &8906370083410833265
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,7 +492,7 @@ GameObject:
   - component: {fileID: 9151527499906087423}
   m_Layer: 7
   m_Name: Dash
-  m_TagString: YellowGear
+  m_TagString: YellowEquipment
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -545,4 +545,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1c82f33d38246e0b89acec0d789e00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gearData: {fileID: 11400000, guid: dbd0d63ad599e4bb4b7156f55cce4122, type: 2}
+  equipmentData: {fileID: 11400000, guid: 3ecdf5b946d744d1eaf5519b3b3f8318, type: 2}

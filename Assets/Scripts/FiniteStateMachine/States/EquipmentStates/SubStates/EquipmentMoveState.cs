@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GearMoveState : GearGroundedStates
+public class EquipmentMoveState : EquipmentGroundedStates
 {
-    public GearMoveState(Gear gear, FiniteStateMachine stateMachine, GearData gearData, string animName) : base(gear, stateMachine, gearData, animName) {}
+    public EquipmentMoveState(Equipment equipment, FiniteStateMachine stateMachine, EquipmentData equipmentData, string animName) : base(equipment, stateMachine, equipmentData, animName) {}
 
     public override void Enter()
     {
@@ -22,29 +22,29 @@ public class GearMoveState : GearGroundedStates
         if (xInput > 0 || xInput < 0)
         {
             SetHorizontalAnimation();
-            gear.LastX = xInput;
-            gear.LastY = yInput;
+            equipment.LastX = xInput;
+            equipment.LastY = yInput;
         }
         if (yInput > 0 || yInput < 0)
         {
             SetVerticalAnimation();
-            gear.LastX = xInput;
-            gear.LastY = yInput;
+            equipment.LastX = xInput;
+            equipment.LastY = yInput;
         }
         if (xInput == 0f && yInput == 0f)
         {
             SetIdleAnimation();
-            stateMachine.ChangeState(gear.IdleState);
+            stateMachine.ChangeState(equipment.IdleState);
         }
         if (xInput == 0f && yInput != 0f)
         {
             SetOnlyVerticalAnimation();
-            gear.LastY = yInput;
+            equipment.LastY = yInput;
         }
         if (xInput != 0f && yInput == 0f)
         {
             SetOnlyHorizontalAnimation();
-            gear.LastX = xInput;
+            equipment.LastX = xInput;
         }
         
     }
@@ -84,17 +84,17 @@ public class GearMoveState : GearGroundedStates
         SetIdle();
     }
 
-    // Setting the gear's Move Blend tree animation based on player input
+    // Setting the equipment's Move Blend tree animation based on player input
     public void SetMove()
     {
-        gear.Anim.SetFloat("Horizontal", xInput);
-        gear.Anim.SetFloat("Vertical", yInput);
+        equipment.Anim.SetFloat("Horizontal", xInput);
+        equipment.Anim.SetFloat("Vertical", yInput);
     }
 
     public void SetIdle()
     {
-        gear.Anim.SetFloat("IdleHorizontal", gear.LastX);
-        gear.Anim.SetFloat("IdleVertical", gear.LastY);
+        equipment.Anim.SetFloat("IdleHorizontal", equipment.LastX);
+        equipment.Anim.SetFloat("IdleVertical", equipment.LastY);
     }
 
 }

@@ -4,10 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Weapon
-  - RedGear
-  - BlueGear
-  - YellowGear
+  - RedEquipment
+  - BlueEquipment
+  - YellowEquipment
   layers:
   - Default
   - TransparentFX

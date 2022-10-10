@@ -25,10 +25,10 @@ public class PlayerGroundedStates : PlayerState
         xInput = player.InputHandler.NormInputX;
         yInput = player.InputHandler.NormInputY;
  
-        redGear.IdleState.XInput = xInput;
-        redGear.IdleState.YInput = yInput;
-        redGear.MoveState.XInput = xInput;
-        redGear.MoveState.YInput = yInput;
+        redEquipment.IdleState.XInput = xInput;
+        redEquipment.IdleState.YInput = yInput;
+        redEquipment.MoveState.XInput = xInput;
+        redEquipment.MoveState.YInput = yInput;
 
     }
 

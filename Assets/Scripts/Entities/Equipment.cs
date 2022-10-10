@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Gear : Entity
+public class Equipment : Entity
 {
     #region States
-    public GearIdleState IdleState { get; private set; }
-    public GearMoveState MoveState { get; private set; }
+    public EquipmentIdleState IdleState { get; private set; }
+    public EquipmentMoveState MoveState { get; private set; }
     #endregion
 
     #region Animation References
@@ -14,16 +14,16 @@ public class Gear : Entity
     public float LastY { get; set; }
     #endregion
 
-    #region Gear Data
-    [SerializeField] private GearData gearData;
+    #region Equipment Data
+    [SerializeField] private EquipmentData equipmentData;
     #endregion
 
     
     protected override void Awake()
     {
         base.Awake();
-        IdleState = new GearIdleState(this, StateMachine, gearData, "GearIdle");
-        MoveState = new GearMoveState(this, StateMachine, gearData, "GearMove");
+        IdleState = new EquipmentIdleState(this, StateMachine, equipmentData, "EquipmentIdle");
+        MoveState = new EquipmentMoveState(this, StateMachine, equipmentData, "EquipmentMove");
     }
 
     protected override void Start()

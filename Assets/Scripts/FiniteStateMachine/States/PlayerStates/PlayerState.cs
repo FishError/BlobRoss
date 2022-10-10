@@ -10,12 +10,12 @@ public class PlayerState : EntityState
 
     private string animName;
 
-    #region Gears
-    //TODO: replace this with just Gears[] gears eventually once red, blue and yellow gears have animation
-    public Transform gears;
-    public Gear redGear {get; private set; }
-    // public Gear blueGear {get; private set; }
-    // public Gear yellowGear {get; private set; }
+    #region Equipments
+    //TODO: replace this with just Equipments[] equipments eventually once red, blue and yellow equipments have animation
+    public Transform equipments;
+    public Equipment redEquipment {get; private set; }
+    // public Equipment blueEquipment {get; private set; }
+    // public Equipment yellowEquipment {get; private set; }
     #endregion
 
     public PlayerState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, string animName)
@@ -24,12 +24,12 @@ public class PlayerState : EntityState
         this.stateMachine = stateMachine;
         this.playerData = playerData;
         this.animName = animName;
-        this.gears = player.gameObject.transform.Find("Gears");
-        this.redGear = gears.GetChild(0).GetComponent<Gear>();
-        // this.blueGear = gears.GetChild(1).GetComponent<Gear>();
-        // this.yellowGear = gears.GetChild(2).GetComponent<Gear>();
-        // Debug.Log(blueGear.name);
-        // Debug.Log(yellowGear.name);
+        this.equipments = player.gameObject.transform.Find("Equipments");
+        this.redEquipment = equipments.GetChild(0).GetComponent<Equipment>();
+        // this.blueEquipment = equipments.GetChild(1).GetComponent<Equipment>();
+        // this.yellowEquipment = equipments.GetChild(2).GetComponent<Equipment>();
+        // Debug.Log(blueEquipment.name);
+        // Debug.Log(yellowEquipment.name);
     }
 
     //Gets called when entered a specific state

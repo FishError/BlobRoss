@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GearIdleState : GearGroundedStates
+public class EquipmentIdleState : EquipmentGroundedStates
 {
-    public GearIdleState(Gear gear, FiniteStateMachine stateMachine, GearData gearData, string animName) : base(gear, stateMachine, gearData, animName) {}
+    public EquipmentIdleState(Equipment equipment, FiniteStateMachine stateMachine, EquipmentData equipmentData, string animName) : base(equipment, stateMachine, equipmentData, animName) {}
 
     public override void Enter()
     {
@@ -21,7 +21,7 @@ public class GearIdleState : GearGroundedStates
         base.LogicUpdate();
         if(xInput != 0 || yInput != 0)
         {
-            stateMachine.ChangeState(gear.MoveState);
+            stateMachine.ChangeState(equipment.MoveState);
         }
     }
 
