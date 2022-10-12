@@ -46,18 +46,4 @@ public class Player : Entity
     {
         base.FixedUpdate();
     }
-
-    public void SetVelocityX(float amt)
-    {
-        workspace.Set(amt, CurrentVelocity.y);
-        rb.velocity = workspace;
-        CurrentVelocity = workspace;
-    }
-
-    public void SetVelocityY(float amt)
-    {
-        workspace.Set(CurrentVelocity.x, amt);
-        rb.velocity = workspace;
-        CurrentVelocity = workspace;
-    }
 }

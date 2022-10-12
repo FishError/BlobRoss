@@ -4,28 +4,37 @@ using UnityEngine;
 
 public class EnemyState : EntityState
 {
+    protected Enemy enemy;
+
+    public EnemyState(Enemy enemy, FiniteStateMachine stateMachine): base(stateMachine)
+    {
+        this.enemy = enemy;
+    }
+
     public override void DoChecks()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void Enter()
     {
-        throw new System.NotImplementedException();
+        base.Enter();
+        DoChecks();
+        startPosition = enemy.transform.position;
     }
 
     public override void Exit()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void LogicUpdate()
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void PhysicsUpdate()
     {
-        throw new System.NotImplementedException();
+        
     }
 }

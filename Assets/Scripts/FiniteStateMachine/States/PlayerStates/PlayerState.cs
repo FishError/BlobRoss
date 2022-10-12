@@ -6,7 +6,6 @@ public class PlayerState : EntityState
 {
     protected Player player;
     protected PlayerData playerData;
-    protected float startTime;
 
     private string animName;
 
@@ -18,10 +17,9 @@ public class PlayerState : EntityState
     // public Equipment yellowEquipment {get; private set; }
     #endregion
 
-    public PlayerState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, string animName)
+    public PlayerState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, string animName) : base(stateMachine)
     {
         this.player = player;
-        this.stateMachine = stateMachine;
         this.playerData = playerData;
         this.animName = animName;
         this.equipments = player.gameObject.transform.Find("Equipments");
@@ -35,9 +33,10 @@ public class PlayerState : EntityState
     //Gets called when entered a specific state
     public override void Enter()
     {
+        base.Enter();
         DoChecks();
         player.Anim.SetBool(animName, true);
-        startTime = Time.time;
+        startPosition = player.transform.position;
     }
 
     //Gets called when leaving a specific state

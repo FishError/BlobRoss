@@ -6,7 +6,18 @@ public abstract class EntityState
 {
     protected FiniteStateMachine stateMachine;
 
-    public abstract void Enter();
+    protected float startTime;
+    protected Vector2 startPosition;
+
+    public EntityState(FiniteStateMachine stateMachine)
+    {
+        this.stateMachine = stateMachine;
+    }
+
+    public virtual void Enter() 
+    {
+        startTime = Time.time;
+    }
 
     public abstract void Exit();
 
