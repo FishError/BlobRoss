@@ -16,4 +16,5 @@ MonoBehaviour:
   Defense: 5
   Attack: 5
   AttackSpeed: 1
-  MovementVelocity: 2
+  PatrolVelocity: 2
+  MovementVelocity: 4

@@ -25,7 +25,7 @@ public class EnemyPatrolState : EnemyState
     {
         base.LogicUpdate();
 
-        enemy.SetVelocity(enemy.MovementVelocity, patrolDirection);
+        enemy.SetVelocity(enemy.PatrolVelocity, patrolDirection);
 
         if (Vector2.Distance(enemy.transform.position, startPosition) >= patrolDistance)
             stateMachine.ChangeState(enemy.IdleState);

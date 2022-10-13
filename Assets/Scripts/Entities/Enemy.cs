@@ -24,6 +24,7 @@ public class Enemy : Entity
     public float AttackSpeed;
 
     [Header("Move State")]
+    public float PatrolVelocity;
     public float MovementVelocity;
     #endregion
 
@@ -46,6 +47,7 @@ public class Enemy : Entity
         Defense = enemyData.Defense;
         Attack = enemyData.Attack;
         AttackSpeed = enemyData.AttackSpeed;
+        PatrolVelocity = enemyData.PatrolVelocity;
         MovementVelocity = enemyData.MovementVelocity;
     }
 

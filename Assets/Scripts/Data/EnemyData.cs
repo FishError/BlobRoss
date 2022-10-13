@@ -14,5 +14,6 @@ public class EnemyData : ScriptableObject
     public float AttackSpeed = 1f;
 
     [Header("Move State")]
-    public float MovementVelocity = 5f;
+    public float PatrolVelocity = 2f;
+    public float MovementVelocity = 4f;
 }
