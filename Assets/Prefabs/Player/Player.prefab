@@ -283,7 +283,7 @@ GameObject:
   - component: {fileID: 4684409475654365255}
   - component: {fileID: 62641504492502944}
   - component: {fileID: 4684409475654365254}
-  - component: {fileID: 7481606849688432301}
+  - component: {fileID: 4483612665698408525}
   m_Layer: 7
   m_Name: Paintbrush
   m_TagString: RedEquipment
@@ -399,7 +399,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7481606849688432301
+--- !u!114 &4483612665698408525
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -408,10 +408,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4684409475654365253}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b1c82f33d38246e0b89acec0d789e00, type: 3}
+  m_Script: {fileID: 11500000, guid: 56e5d1590d1e54c4f898dad4e9db6fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   equipmentData: {fileID: 11400000, guid: 3ecdf5b946d744d1eaf5519b3b3f8318, type: 2}
+  color: 
 --- !u!1 &6649136531447998245
 GameObject:
   m_ObjectHideFlags: 0

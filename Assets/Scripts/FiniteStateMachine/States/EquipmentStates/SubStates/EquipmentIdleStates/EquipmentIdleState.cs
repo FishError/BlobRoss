@@ -23,6 +23,11 @@ public class EquipmentIdleState : EquipmentGroundedStates
         {
             stateMachine.ChangeState(equipment.MoveState);
         }
+        
+        if(leftClickInput && equipment.color == "red"){
+            stateMachine.ChangeState(equipment.EffectState);
+        }
+
     }
 
     public override void PhysicsUpdate()

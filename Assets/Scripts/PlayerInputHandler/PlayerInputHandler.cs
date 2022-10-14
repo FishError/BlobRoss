@@ -8,6 +8,8 @@ public class PlayerInputHandler : MonoBehaviour
     public Vector2 RawMovementInput { get; private set; }
     public float NormInputX { get; private set; }
     public float NormInputY { get; private set; }
+    public bool leftClickInput { get; private set; }
+
 
     private void OnMovement(InputValue value)
     {
@@ -15,10 +17,20 @@ public class PlayerInputHandler : MonoBehaviour
         
     }
 
+    private void OnAttack(InputValue value)
+    {
+
+        if (value.Get<float>() == 1){
+            leftClickInput = true;
+        } else {
+            leftClickInput = false;
+        }
+    } 
+
+
     private void FixedUpdate()
     {
         NormInputX = (float)RawMovementInput.x;
         NormInputY = (float)RawMovementInput.y;
-
     }
 }
