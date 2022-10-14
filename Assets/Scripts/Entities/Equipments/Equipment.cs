@@ -28,7 +28,6 @@ public class Equipment : Entity
         base.Awake();
         IdleState = new EquipmentIdleState(this, StateMachine, equipmentData, "EquipmentIdle");
         MoveState = new EquipmentMoveState(this, StateMachine, equipmentData, "EquipmentMove");
-        EffectState = new EquipmentEffectState(this,StateMachine,equipmentData,"EquipmentEffect");
     }
 
     protected override void Start()
