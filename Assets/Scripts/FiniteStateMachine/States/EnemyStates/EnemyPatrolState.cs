@@ -14,6 +14,7 @@ public class EnemyPatrolState : EnemyState
         base.Enter();
         SetRandomPatrolDistance();
         SetRandomPatrolDirection();
+        enemy.lookAt = patrolDirection;
     }
 
     public override void Exit()
@@ -25,10 +26,20 @@ public class EnemyPatrolState : EnemyState
     {
         base.LogicUpdate();
 
-        enemy.SetVelocity(enemy.PatrolVelocity, patrolDirection);
-
-        if (Vector2.Distance(enemy.transform.position, startPosition) >= patrolDistance)
+        // change state if conditions are met
+        if (enemy.TargetDetected())
+        {
+            stateMachine.ChangeState(enemy.AlertedState);
+            return;
+        }
+        else if (Vector2.Distance(enemy.transform.position, startPosition) >= patrolDistance)
+        {
             stateMachine.ChangeState(enemy.IdleState);
+            return;
+        }
+
+        enemy.lookAt = patrolDirection;
+        enemy.SetVelocity(enemy.PatrolVelocity, patrolDirection);
     }
 
     public override void DoChecks()

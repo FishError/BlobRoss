@@ -185,6 +185,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 912761965900819776, guid: 6f9300fb66588ab4f9bb8f22c6ba87ec, type: 3}
   m_PrefabInstance: {fileID: 164368497}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &251568164 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4684409474894387617, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
+  m_PrefabInstance: {fileID: 592108020}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &310539426
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24555,7 +24560,7 @@ GameObject:
   - component: {fileID: 945174684}
   - component: {fileID: 945174683}
   - component: {fileID: 945174682}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40803,7 +40808,7 @@ GameObject:
   - component: {fileID: 1348222987}
   - component: {fileID: 1348222986}
   - component: {fileID: 1348222985}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40884,7 +40889,7 @@ GameObject:
   - component: {fileID: 1396516236}
   - component: {fileID: 1396516235}
   - component: {fileID: 1396516234}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40904,11 +40909,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyData: {fileID: 11400000, guid: 265b0829e7afee54ba4b9ead0b03b459, type: 2}
-  HealthPoints: 0
-  Defense: 0
-  Attack: 0
-  AttackSpeed: 0
-  MovementVelocity: 0
+  target: {fileID: 251568164}
+  FOV: 120
+  detectionRange: 10
 --- !u!50 &1396516235
 Rigidbody2D:
   serializedVersion: 4
