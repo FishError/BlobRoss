@@ -24,7 +24,7 @@ public class EquipmentIdleState : EquipmentGroundedStates
             stateMachine.ChangeState(equipment.MoveState);
         }
         
-        if(leftClickInput && equipment.color == "red"){
+        if(leftClickInput && equipment.color == "RedEquipment"){
             stateMachine.ChangeState(equipment.EffectState);
         }
 

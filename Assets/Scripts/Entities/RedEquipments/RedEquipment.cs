@@ -7,6 +7,7 @@ public class RedEquipment : Equipment
     protected override void Awake()
     {
         base.Awake();
-        color = "red";
+        color = gameObject.tag;
+        print(color);
     }
 }

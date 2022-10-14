@@ -19,7 +19,7 @@ public class EquipmentMoveState : EquipmentGroundedStates
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if(leftClickInput && equipment.color == "red"){
+        if(leftClickInput && equipment.color == "RedEquipment"){
             stateMachine.ChangeState(equipment.EffectState);
         } 
         if (xInput > 0 || xInput < 0)
