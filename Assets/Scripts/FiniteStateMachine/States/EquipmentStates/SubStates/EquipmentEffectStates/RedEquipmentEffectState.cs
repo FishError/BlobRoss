@@ -10,6 +10,7 @@ public class RedEquipmentEffectState : EquipmentEffectState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        SetWeaponDirectionUpward();
         HandelAnimation();
         Debug.Log("You inflicted 100 attack damage");
         /*Put any red equipment related effects here:
@@ -20,9 +21,8 @@ public class RedEquipmentEffectState : EquipmentEffectState
     }
 
     private void HandelAnimation(){
-
         //When using effect
-        if(leftClickInput){
+        if (leftClickInput){
             if (xInput > 0 || xInput < 0)
             {
                 SetEffectDirection(xInput,yInput);
@@ -34,6 +34,7 @@ public class RedEquipmentEffectState : EquipmentEffectState
                 SetEffectDirection(xInput,yInput);
                 equipment.LastX = xInput;
                 equipment.LastY = yInput;
+                
             }
             if (xInput == 0f && yInput == 0f)
             {
@@ -56,7 +57,8 @@ public class RedEquipmentEffectState : EquipmentEffectState
         if(equipment.LastX == 0 && equipment.LastY == 0){
             SetIdleAnimation();
             stateMachine.ChangeState(equipment.IdleState);
-        } else {
+        } 
+        else {
             stateMachine.ChangeState(equipment.MoveState);
         }
 
