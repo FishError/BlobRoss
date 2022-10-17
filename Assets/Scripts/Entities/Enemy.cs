@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : Entity
 {
@@ -29,12 +30,17 @@ public class Enemy : Entity
     public float MovementVelocity { get; set; }
     #endregion
 
+    #region NavMesh
+    public NavMeshAgent navMeshAgent { get; private set; }
+    #endregion
+
     [Header("Target Detection")]
     public GameObject target;
-    public float FOV;
-    public float detectionRange;
     public Vector2 lookAt { get; set; }
-    public LayerMask layersToIgnore { get; set; }
+
+    public LayerMask unWalkableLayers { get; set; }
+    public LayerMask targetDetectionIgnoreLayers { get; set; }
+
 
     protected override void Awake()
     {
@@ -59,7 +65,16 @@ public class Enemy : Entity
         PatrolVelocity = enemyData.PatrolVelocity;
         MovementVelocity = enemyData.MovementVelocity;
         lookAt = transform.right;
-        layersToIgnore = LayerMask.GetMask("Grid", "Enemy");
+
+        unWalkableLayers = LayerMask.GetMask("Wall");
+        targetDetectionIgnoreLayers = LayerMask.GetMask("Grid", "Enemy");
+
+        // NavMeshAgent setup for navigation around obstacles
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent.updatePosition = false;
+        navMeshAgent.updateRotation = false;
+        navMeshAgent.updateUpAxis = false;
+        navMeshAgent.speed = MovementVelocity;
     }
 
     protected override void Update()
@@ -77,10 +92,10 @@ public class Enemy : Entity
         Vector2 dir = target.transform.position - transform.position;
         float angle = Vector2.Angle(dir, lookAt);
 
-        if (angle < FOV / 2)
+        if (angle < enemyData.FieldOFView / 2)
         {
-            RaycastHit2D r = Physics2D.Raycast(transform.position, dir, detectionRange, ~layersToIgnore);
-            if (r.collider.gameObject == target)
+            RaycastHit2D r = Physics2D.Raycast(transform.position, dir, enemyData.DetectionRange, ~targetDetectionIgnoreLayers);
+            if (r.collider != null && r.collider.gameObject == target)
             {
                 return true;
             }
@@ -89,8 +104,5 @@ public class Enemy : Entity
         return false;
     }
 
-    public RaycastHit2D CheckForObstacles(Vector2 dir)
-    {
-        return Physics2D.Raycast(transform.position, dir, detectionRange, ~layersToIgnore);
-    }
+
 }

@@ -16,4 +16,8 @@ public class EnemyData : ScriptableObject
     [Header("Move State")]
     public float PatrolVelocity = 2f;
     public float MovementVelocity = 4f;
+
+    [Header("Detection")]
+    public float FieldOFView;
+    public float DetectionRange;
 }

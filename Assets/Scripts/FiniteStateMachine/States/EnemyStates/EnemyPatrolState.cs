@@ -6,6 +6,7 @@ public class EnemyPatrolState : EnemyState
 {
     protected float patrolDistance;
     protected Vector2 patrolDirection;
+    protected Vector2 patrolDestination;
 
     public EnemyPatrolState(Enemy enemy, FiniteStateMachine stateMachine) : base(enemy, stateMachine) { }
 
@@ -55,7 +56,15 @@ public class EnemyPatrolState : EnemyState
     private void SetRandomPatrolDirection()
     {
         Vector2 randomVector = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-        patrolDirection = randomVector.normalized;
+        RaycastHit2D hit = Physics2D.CircleCast(enemy.transform.position, 0.6f, randomVector, patrolDistance, enemy.unWalkableLayers);
+        if (hit.collider == null)
+        {
+            patrolDirection = randomVector.normalized;
+        }
+        else
+        {
+            patrolDirection = ((Vector3)(hit.point + hit.normal * patrolDistance) - enemy.transform.position).normalized;
+        }
     }
 
     private void SetRandomPatrolDistance()
