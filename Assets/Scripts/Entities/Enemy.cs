@@ -104,5 +104,101 @@ public class Enemy : Entity
         return false;
     }
 
+    #region Stat Modifier Functions
+    // Health
+    public void ModifyHealthPoints(float amt)
+    {
+        HealthPoints += amt;
+        if (HealthPoints < 0) HealthPoints = 0;
+    }
 
+    public void ScaleHealthPoints(float percent)
+    {
+        HealthPoints *= percent;
+        if (HealthPoints < 0) HealthPoints = 0;
+    }
+
+    public void ResetHealthPoints()
+    {
+        HealthPoints = enemyData.HealthPoints;
+    }
+
+    // Defense
+    public void ModifyDefense(float amt)
+    {
+        Defense += amt;
+        if (Defense < 0) Defense = 0;
+    }
+
+    public void ScaleDefense(float percent)
+    {
+        Defense *= percent;
+        if (Defense < 0) Defense = 0;
+    }
+
+    public void ResetDefense()
+    {
+        Defense = enemyData.Defense;
+    }
+
+    // Attack
+    public void ModifyAttack(float amt)
+    {
+        Attack += amt;
+        if (Attack < 0) Attack = 0;
+    }
+
+    public void ScaleAttack(float percent)
+    {
+        Attack *= percent;
+        if (Attack < 0) Attack = 0;
+    }
+
+    public void ResetAttack()
+    {
+        Attack = enemyData.Attack;
+    }
+
+    // Attack Speed
+    public void ModifyAttackSpeed(float amt)
+    {
+        AttackSpeed += amt;
+        if (AttackSpeed < 0) AttackSpeed = 0;
+    }
+
+    public void ScaleAttackSpeed(float percent)
+    {
+        AttackSpeed *= percent;
+        if (AttackSpeed < 0) AttackSpeed = 0;
+    }
+
+    public void ResetAttackSpeed()
+    {
+        AttackSpeed = enemyData.AttackSpeed;
+    }
+
+    // Velocity
+    public void ModifyVelocity(float amt)
+    {
+        PatrolVelocity += amt;
+        if (PatrolVelocity < 0) PatrolVelocity = 0;
+        MovementVelocity += amt;
+        if (MovementVelocity < 0) MovementVelocity = 0;
+    }
+
+    public void ScaleVelocity(float percent)
+    {
+        PatrolVelocity *= percent;
+        if (PatrolVelocity < 0) PatrolVelocity = 0;
+        MovementVelocity *= percent;
+        if (MovementVelocity < 0) MovementVelocity = 0;
+
+    }
+
+    public void ResetVelocity()
+    {
+        PatrolVelocity = enemyData.PatrolVelocity;
+        MovementVelocity = enemyData.MovementVelocity;
+    }
+    #endregion
 }
