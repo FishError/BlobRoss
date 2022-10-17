@@ -21,5 +21,15 @@ public class EquipmentEffectState : EquipmentGroundedStates
         equipment.Anim.SetFloat("IdleVertical", equipment.LastY);
     }
 
-
+    protected void SetWeaponDirectionUpward()
+    {
+        if(equipment.LastY == 1)
+        {
+            equipment.GetComponent<SpriteRenderer>().sortingLayerName = "Default";
+        }
+        else
+        {
+            equipment.GetComponent<SpriteRenderer>().sortingLayerName = "Weapon";
+        }
+    }
 }
