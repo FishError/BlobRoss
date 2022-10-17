@@ -18,3 +18,5 @@ MonoBehaviour:
   AttackSpeed: 1
   PatrolVelocity: 2
   MovementVelocity: 4
+  FieldOFView: 130
+  DetectionRange: 8
