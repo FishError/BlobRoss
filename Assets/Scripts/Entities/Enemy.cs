@@ -18,6 +18,7 @@ public class Enemy : Entity
 
     #region Enemy Current Stats
     // Health
+    public float MaxHealthPoints { get; set; }
     public float HealthPoints { get; set; }
     public float Defense { get; set; }
 
@@ -58,7 +59,8 @@ public class Enemy : Entity
         // initialize other variables and do additional setup
         StateMachine.Initialize(IdleState);
 
-        HealthPoints = enemyData.HealthPoints;
+        MaxHealthPoints = enemyData.HealthPoints;
+        HealthPoints = MaxHealthPoints;
         Defense = enemyData.Defense;
         Attack = enemyData.Attack;
         AttackSpeed = enemyData.AttackSpeed;
@@ -106,21 +108,43 @@ public class Enemy : Entity
 
     #region Stat Modifier Functions
     // Health
+    public void ModifyMaxHealthPoints(float amt)
+    {
+        MaxHealthPoints += amt;
+        if (MaxHealthPoints < 0) MaxHealthPoints = 0;
+        ModifyHealthPoints(amt);
+    }
+
+    public void ScaleMaxHealthPoints(float percent)
+    {
+        MaxHealthPoints *= percent;
+        if (MaxHealthPoints < 0) MaxHealthPoints = 0;
+        ModifyHealthPoints(MaxHealthPoints * (percent - 1f));
+    }
+
+    public void ResetMaxHealthPoints()
+    {
+        MaxHealthPoints = enemyData.HealthPoints;
+        if (HealthPoints > MaxHealthPoints) ResetHealthPoints();
+    }
+
     public void ModifyHealthPoints(float amt)
     {
         HealthPoints += amt;
         if (HealthPoints < 0) HealthPoints = 0;
+        else if (HealthPoints > MaxHealthPoints) HealthPoints = MaxHealthPoints;
     }
 
     public void ScaleHealthPoints(float percent)
     {
         HealthPoints *= percent;
         if (HealthPoints < 0) HealthPoints = 0;
+        else if (HealthPoints > MaxHealthPoints) HealthPoints = MaxHealthPoints;
     }
 
     public void ResetHealthPoints()
     {
-        HealthPoints = enemyData.HealthPoints;
+        HealthPoints = MaxHealthPoints;
     }
 
     // Defense
