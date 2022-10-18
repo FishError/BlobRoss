@@ -8,6 +8,7 @@ public class Equipment : Entity
     public EquipmentIdleState IdleState { get; private set; }
     public EquipmentMoveState MoveState { get; private set; }
     public EquipmentEffectState EffectState { get; protected set; }
+    public float transitionOffset;
     #endregion
 
     #region Animation References

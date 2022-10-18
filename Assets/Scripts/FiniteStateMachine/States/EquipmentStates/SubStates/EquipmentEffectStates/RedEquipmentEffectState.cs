@@ -10,9 +10,9 @@ public class RedEquipmentEffectState : EquipmentEffectState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        SetWeaponDirectionUpward();
         HandelAnimation();
-        Debug.Log("You inflicted 100 attack damage");
+        
+        //Debug.Log("You inflicted 100 attack damage");
         /*Put any red equipment related effects here:
             DamageInfliction();
             AddingColor();
@@ -53,18 +53,16 @@ public class RedEquipmentEffectState : EquipmentEffectState
 
         }
 
-        //When no longer using effect
-        if(equipment.LastX == 0 && equipment.LastY == 0){
+        //When no longer using red equipment's effect
+        if(xInput == 0f && yInput == 0f){
             SetIdleAnimation();
+            SyncAnimations();
             stateMachine.ChangeState(equipment.IdleState);
-        } 
-        else {
+        } else {
+            SyncAnimations();
             stateMachine.ChangeState(equipment.MoveState);
         }
 
     }
-
-    
-
 
 }

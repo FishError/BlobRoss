@@ -99,6 +99,7 @@ public class EquipmentMoveState : EquipmentGroundedStates
     {
         equipment.Anim.SetFloat("IdleHorizontal", equipment.LastX);
         equipment.Anim.SetFloat("IdleVertical", equipment.LastY);
+        equipment.Anim.SetFloat("offset",0f);
     }
 
 }

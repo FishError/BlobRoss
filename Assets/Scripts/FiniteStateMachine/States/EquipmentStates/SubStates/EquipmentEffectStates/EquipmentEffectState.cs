@@ -19,17 +19,18 @@ public class EquipmentEffectState : EquipmentGroundedStates
     {
         equipment.Anim.SetFloat("IdleHorizontal", equipment.LastX);
         equipment.Anim.SetFloat("IdleVertical", equipment.LastY);
+
+    
+        //TODO figure out how to reset offset
+        // if(equipment.Anim.GetCurrentAnimatorStateInfo(0).isName("BaseIdle")){
+        //     Debug.Log("yes");
+        // }
+        
     }
 
-    protected void SetWeaponDirectionUpward()
-    {
-        if(equipment.LastY == 1)
-        {
-            equipment.GetComponent<SpriteRenderer>().sortingLayerName = "Default";
-        }
-        else
-        {
-            equipment.GetComponent<SpriteRenderer>().sortingLayerName = "Weapon";
-        }
+    protected void SyncAnimations(){
+        AnimatorStateInfo currentPlayerAnimState = equipment.transform.parent.parent.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
+        float offset = currentPlayerAnimState.normalizedTime % 1;
+        equipment.Anim.SetFloat("offset",offset+equipment.transitionOffset);
     }
 }
