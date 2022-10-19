@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class EnemyChaseTarget : EnemyState
 {
-    protected LayerMask obstacles;
-
     public EnemyChaseTarget(Enemy enemy, FiniteStateMachine stateMachine) : base(enemy, stateMachine) 
     {
-        obstacles = LayerMask.GetMask("Wall");
+        
     }
 
     public override void Enter()
