@@ -37,6 +37,9 @@ public class PlayerGroundedStates : PlayerState
         redEquipment.EffectState.YInput = yInput;
         redEquipment.EffectState.LeftClickInput = player.InputHandler.leftClickInput;
 
+
+        //copy 9 lines above for yellow & blue
+
     }
 
     public override void PhysicsUpdate()

@@ -24,6 +24,7 @@ public class PlayerState : EntityState
         this.stateMachine = stateMachine;
         this.playerData = playerData;
         this.animName = animName;
+        //Change to find children
         this.equipments = player.gameObject.transform.Find("Equipments");
         this.redEquipment = equipments.GetChild(0).GetComponent<RedEquipment>();
         // this.blueEquipment = equipments.GetChild(1).GetComponent<Equipment>();
