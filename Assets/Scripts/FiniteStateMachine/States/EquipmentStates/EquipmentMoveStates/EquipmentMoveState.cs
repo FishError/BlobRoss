@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EquipmentMoveState : EquipmentGroundedStates
+public class EquipmentMoveState : EquipmentState
 {
     public EquipmentMoveState(Equipment equipment, FiniteStateMachine stateMachine, EquipmentData equipmentData, string animName) : base(equipment, stateMachine, equipmentData, animName) {}
 
@@ -19,38 +19,33 @@ public class EquipmentMoveState : EquipmentGroundedStates
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if(leftClickInput && equipment.color == "RedEquipment"){
-            stateMachine.ChangeState(equipment.EffectState);
-        } 
         if (xInput > 0 || xInput < 0)
         {
-            SetHorizontalAnimation();
+            SetMove(xInput,yInput);
             equipment.LastX = xInput;
             equipment.LastY = yInput;
         }
         if (yInput > 0 || yInput < 0)
         {
-            SetVerticalAnimation();
+            SetMove(xInput,yInput);
             equipment.LastX = xInput;
             equipment.LastY = yInput;
         }
         if (xInput == 0f && yInput == 0f)
         {
-            SetIdleAnimation();
+            SetIdle(equipment.LastX,equipment.LastY);
             stateMachine.ChangeState(equipment.IdleState);
         }
         if (xInput == 0f && yInput != 0f)
         {
-            SetOnlyVerticalAnimation();
+            SetIdle(equipment.LastX,equipment.LastY);
             equipment.LastY = yInput;
         }
         if (xInput != 0f && yInput == 0f)
         {
-            SetOnlyHorizontalAnimation();
+            SetIdle(equipment.LastX,equipment.LastY);
             equipment.LastX = xInput;
         }
-        
-        
     }
 
     public override void PhysicsUpdate()
@@ -62,44 +57,4 @@ public class EquipmentMoveState : EquipmentGroundedStates
     {
         base.DoChecks();
     }
-
-    public void SetHorizontalAnimation()
-    {
-        SetMove();
-    }
-
-    public void SetVerticalAnimation()
-    {
-        SetMove();
-    }
-
-    public void SetIdleAnimation()
-    {
-        SetIdle();
-    }
-
-    public void SetOnlyVerticalAnimation()
-    {
-        SetIdle();
-    }
-
-    public void SetOnlyHorizontalAnimation()
-    {
-        SetIdle();
-    }
-
-    // Setting the equipment's Move Blend tree animation based on player input
-    public void SetMove()
-    {
-        equipment.Anim.SetFloat("Horizontal", xInput);
-        equipment.Anim.SetFloat("Vertical", yInput);
-    }
-
-    public void SetIdle()
-    {
-        equipment.Anim.SetFloat("IdleHorizontal", equipment.LastX);
-        equipment.Anim.SetFloat("IdleVertical", equipment.LastY);
-        equipment.Anim.SetFloat("offset",0f);
-    }
-
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EquipmentIdleState : EquipmentGroundedStates
+public class EquipmentIdleState : EquipmentState
 {
     public EquipmentIdleState(Equipment equipment, FiniteStateMachine stateMachine, EquipmentData equipmentData, string animName) : base(equipment, stateMachine, equipmentData, animName) {}
 
@@ -22,10 +22,6 @@ public class EquipmentIdleState : EquipmentGroundedStates
         if(xInput != 0 || yInput != 0)
         {
             stateMachine.ChangeState(equipment.MoveState);
-        }
-        
-        if(leftClickInput && equipment.color == "RedEquipment"){
-            stateMachine.ChangeState(equipment.EffectState);
         }
 
     }

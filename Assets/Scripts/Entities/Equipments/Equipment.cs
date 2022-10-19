@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Color {
+    Red,
+    Blue,
+    Yellow
+}
+
 public class Equipment : Entity
 {
     #region States
-    public EquipmentIdleState IdleState { get; private set; }
-    public EquipmentMoveState MoveState { get; private set; }
+    public EquipmentIdleState IdleState { get; protected set; }
+    public EquipmentMoveState MoveState { get; protected set; }
     public EquipmentEffectState EffectState { get; protected set; }
     public float transitionOffset;
     #endregion
@@ -21,14 +27,12 @@ public class Equipment : Entity
     #endregion
 
     #region Categorize Equipment
-    public string color { get; protected set; }
+    public Color color { get; protected set; }
     #endregion
     
     protected override void Awake()
     {
         base.Awake();
-        IdleState = new EquipmentIdleState(this, StateMachine, equipmentData, "EquipmentIdle");
-        MoveState = new EquipmentMoveState(this, StateMachine, equipmentData, "EquipmentMove");
     }
 
     protected override void Start()

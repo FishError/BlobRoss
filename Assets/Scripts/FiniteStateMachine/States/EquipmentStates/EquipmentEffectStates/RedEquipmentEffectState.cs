@@ -10,7 +10,7 @@ public class RedEquipmentEffectState : EquipmentEffectState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        HandelAnimation();
+        HandleAnimation();
         
         //Debug.Log("You inflicted 100 attack damage");
         /*Put any red equipment related effects here:
@@ -20,34 +20,34 @@ public class RedEquipmentEffectState : EquipmentEffectState
 
     }
 
-    private void HandelAnimation(){
+    private void HandleAnimation(){
         //When using effect
         if (leftClickInput){
             if (xInput > 0 || xInput < 0)
             {
-                SetEffectDirection(xInput,yInput);
+                SetEffect(xInput,yInput);
                 equipment.LastX = xInput;
                 equipment.LastY = yInput;
             }
             if (yInput > 0 || yInput < 0)
             {
-                SetEffectDirection(xInput,yInput);
+                SetEffect(xInput,yInput);
                 equipment.LastX = xInput;
                 equipment.LastY = yInput;
                 
             }
             if (xInput == 0f && yInput == 0f)
             {
-                SetEffectDirection(equipment.LastX,equipment.LastY);
+                SetEffect(equipment.LastX,equipment.LastY);
             }
             if (xInput == 0f && yInput != 0f)
             {
-                SetEffectDirection(equipment.LastX,equipment.LastY);
+                SetEffect(equipment.LastX,equipment.LastY);
                 equipment.LastY = yInput;
             }
             if (xInput != 0f && yInput == 0f)
             {
-                SetEffectDirection(equipment.LastX,equipment.LastY);
+                SetEffect(equipment.LastX,equipment.LastY);
                 equipment.LastX = xInput;
             }
 
@@ -55,7 +55,7 @@ public class RedEquipmentEffectState : EquipmentEffectState
 
         //When no longer using red equipment's effect
         if(xInput == 0f && yInput == 0f){
-            SetIdleAnimation();
+            SetIdle(equipment.LastX,equipment.LastY);
             SyncAnimations();
             stateMachine.ChangeState(equipment.IdleState);
         } else {
