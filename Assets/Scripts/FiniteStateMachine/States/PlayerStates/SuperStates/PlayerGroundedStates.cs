@@ -27,8 +27,18 @@ public class PlayerGroundedStates : PlayerState
  
         redEquipment.IdleState.XInput = xInput;
         redEquipment.IdleState.YInput = yInput;
+        redEquipment.IdleState.LeftClickInput = player.InputHandler.leftClickInput;
+
         redEquipment.MoveState.XInput = xInput;
         redEquipment.MoveState.YInput = yInput;
+        redEquipment.MoveState.LeftClickInput = player.InputHandler.leftClickInput;
+
+        redEquipment.EffectState.XInput = xInput;
+        redEquipment.EffectState.YInput = yInput;
+        redEquipment.EffectState.LeftClickInput = player.InputHandler.leftClickInput;
+
+
+        //copy 9 lines above for yellow & blue
 
     }
 
