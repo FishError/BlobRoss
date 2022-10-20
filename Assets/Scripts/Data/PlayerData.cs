@@ -7,13 +7,13 @@ public class PlayerData : ScriptableObject
 {
     [Header("Health")]
     public float HealthPoints = 100f;
+    public float Defense = 5f;
 
     [Header("Attack")]
     public float Attack = 5f;
     public float AttackSpeed = 1f;
-
-    [Header("Defense")]
-    public float Defense = 5f;
+    public float CritRate = 0.05f;
+    public float CritDamage = 0.5f;
 
     [Header("Move State")]
     public float MovementVelocity = 5f;

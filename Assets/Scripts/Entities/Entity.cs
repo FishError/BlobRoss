@@ -39,4 +39,25 @@ public abstract class Entity : MonoBehaviour
     {
         StateMachine.CurrentState.PhysicsUpdate();
     }
+
+    public void SetVelocityX(float amt)
+    {
+        workspace.Set(amt, CurrentVelocity.y);
+        rb.velocity = workspace;
+        CurrentVelocity = workspace;
+    }
+
+    public void SetVelocityY(float amt)
+    {
+        workspace.Set(CurrentVelocity.x, amt);
+        rb.velocity = workspace;
+        CurrentVelocity = workspace;
+    }
+
+    public void SetVelocity(float amt, Vector2 dir)
+    {
+        workspace.Set(amt * dir.x, amt * dir.y);
+        rb.velocity = workspace;
+        CurrentVelocity = workspace;
+    }
 }

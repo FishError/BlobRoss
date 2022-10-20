@@ -6,7 +6,6 @@ public class EquipmentState : EntityState
 {
     protected Equipment equipment;
     protected EquipmentData equipmentData;
-    protected float startTime;
     private string animName;
 
     #region inputs
@@ -34,10 +33,9 @@ public class EquipmentState : EntityState
     //Put same for RightClickInput
     //Put same for SpaceClickInput
 
-    public EquipmentState(Equipment equipment, FiniteStateMachine stateMachine, EquipmentData equipmentData, string animName)
+    public EquipmentState(Equipment equipment, FiniteStateMachine stateMachine, EquipmentData equipmentData, string animName): base(stateMachine)
     {
         this.equipment = equipment;
-        this.stateMachine = stateMachine;
         this.equipmentData = equipmentData;
         this.animName = animName;
     }
