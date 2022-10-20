@@ -6,7 +6,6 @@ public class EnemyPatrolState : EnemyState
 {
     protected float patrolDistance;
     protected Vector2 patrolDirection;
-    protected Vector2 patrolDestination;
 
     public EnemyPatrolState(Enemy enemy, FiniteStateMachine stateMachine) : base(enemy, stateMachine) { }
 
