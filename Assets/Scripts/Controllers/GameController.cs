@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-// top controller that manages all other controllers
+// manages the game play loop and contains references to other controllers
 public class GameController : MonoBehaviour
 {
     public MapController mapController;
