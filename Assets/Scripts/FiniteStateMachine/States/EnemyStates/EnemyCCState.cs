@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyCCState : EnemyState
 {
-    public EnemyCCState(Enemy enemy, FiniteStateMachine stateMachine) : base(enemy, stateMachine) { }
+    public EnemyCCState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData) : base(enemy, stateMachine, enemyData) { }
 
     public override void Enter()
     {

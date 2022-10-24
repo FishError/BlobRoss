@@ -7,7 +7,7 @@ public class EnemyPatrolState : EnemyState
     protected float patrolDistance;
     protected Vector2 patrolDirection;
 
-    public EnemyPatrolState(Enemy enemy, FiniteStateMachine stateMachine) : base(enemy, stateMachine) { }
+    public EnemyPatrolState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData) : base(enemy, stateMachine, enemyData) { }
 
     public override void Enter()
     {
@@ -52,7 +52,7 @@ public class EnemyPatrolState : EnemyState
         enemy.SetVelocity(enemy.PatrolVelocity, patrolDirection);
     }
 
-    private void SetRandomPatrolDirection()
+    protected void SetRandomPatrolDirection()
     {
         Vector2 randomVector = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
         RaycastHit2D hit = Physics2D.CircleCast(enemy.transform.position, 0.6f, randomVector, patrolDistance, enemy.unWalkableLayers);
@@ -66,7 +66,7 @@ public class EnemyPatrolState : EnemyState
         }
     }
 
-    private void SetRandomPatrolDistance()
+    protected void SetRandomPatrolDistance()
     {
         patrolDistance = Random.Range(2f, 4f);
     }

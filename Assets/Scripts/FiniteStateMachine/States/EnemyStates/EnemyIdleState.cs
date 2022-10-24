@@ -6,7 +6,7 @@ public class EnemyIdleState : EnemyState
 {
     protected float idleTime;
 
-    public EnemyIdleState(Enemy enemy, FiniteStateMachine stateMachine) : base(enemy, stateMachine) { }
+    public EnemyIdleState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData) : base(enemy, stateMachine, enemyData) { }
 
     public override void Enter()
     {
@@ -47,8 +47,8 @@ public class EnemyIdleState : EnemyState
         base.PhysicsUpdate();
     }
 
-    private void SetRandomIdleTime()
+    protected void SetRandomIdleTime()
     {
-        idleTime = Random.Range(1f, 2f);
+        idleTime = Random.Range(enemyData.MinIdleDuration, enemyData.MaxIdleDuration);
     }
 }

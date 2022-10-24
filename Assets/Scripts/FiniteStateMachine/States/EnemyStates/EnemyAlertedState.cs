@@ -6,7 +6,7 @@ public class EnemyAlertedState : EnemyState
 {
     protected float alertTime;
 
-    public EnemyAlertedState(Enemy enemy, FiniteStateMachine stateMachine) : base(enemy, stateMachine) { }
+    public EnemyAlertedState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData) : base(enemy, stateMachine, enemyData) { }
 
     public override void Enter()
     {
@@ -14,7 +14,7 @@ public class EnemyAlertedState : EnemyState
         enemy.SetVelocityX(0);
         enemy.SetVelocityY(0);
         enemy.lookAt = enemy.target.transform.position - enemy.transform.position;
-        alertTime = 0.5f;
+        alertTime = enemyData.AlertTime;
         // play enemy alerted animation (if we have one)
     }
 

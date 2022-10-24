@@ -5,15 +5,20 @@ using UnityEngine.AI;
 
 public class Enemy : Entity
 {
-    #region States
-    public EnemyAgroState AgroState { get; private set; }
-    public EnemyIdleState IdleState { get; private set; }
-    public EnemyPatrolState PatrolState { get; private set; }
-    public EnemyAlertedState AlertedState { get; private set; }
+    #region States 
+    // base states that all children are required to have but dont always have use
+    // children may also have more than just these states
+    public EnemyIdleState IdleState { get; protected set; }
+    public EnemyPatrolState PatrolState { get; protected set; }
+    public EnemyAlertedState AlertedState { get; protected set; }
+    public EnemyAgroState AgroState { get; protected set; }
+    public EnemyAttackState AttackState { get; protected set; }
+    public EnemyCCState CCState { get; protected set; }
+    public EnemyDeathState DeathState { get; protected set; }
     #endregion
 
     #region Enemy Data
-    [SerializeField] private EnemyData enemyData;
+    [SerializeField] protected EnemyData enemyData;
     #endregion
 
     #region Enemy Current Stats
@@ -47,10 +52,10 @@ public class Enemy : Entity
     {
         base.Awake();
         // initialize enemy states here
-        AgroState = new EnemyAgroState(this, StateMachine);
-        IdleState = new EnemyIdleState(this, StateMachine);
-        PatrolState = new EnemyPatrolState(this, StateMachine);
-        AlertedState = new EnemyAlertedState(this, StateMachine);
+        AgroState = new EnemyAgroState(this, StateMachine, enemyData);
+        IdleState = new EnemyIdleState(this, StateMachine, enemyData);
+        PatrolState = new EnemyPatrolState(this, StateMachine, enemyData);
+        AlertedState = new EnemyAlertedState(this, StateMachine, enemyData);
     }
 
     protected override void Start()
@@ -68,15 +73,15 @@ public class Enemy : Entity
         MovementVelocity = enemyData.MovementVelocity;
         lookAt = transform.right;
 
-        unWalkableLayers = LayerMask.GetMask("Wall");
-        targetDetectionIgnoreLayers = LayerMask.GetMask("Grid", "Enemy");
-
         // NavMeshAgent setup for navigation around obstacles
         navMeshAgent = GetComponent<NavMeshAgent>();
         navMeshAgent.updatePosition = false;
         navMeshAgent.updateRotation = false;
         navMeshAgent.updateUpAxis = false;
         navMeshAgent.speed = MovementVelocity;
+
+        unWalkableLayers = LayerMask.GetMask("Wall");
+        targetDetectionIgnoreLayers = LayerMask.GetMask("Grid", "Enemy");
     }
 
     protected override void Update()
@@ -94,7 +99,7 @@ public class Enemy : Entity
         Vector2 dir = target.transform.position - transform.position;
         float angle = Vector2.Angle(dir, lookAt);
 
-        if (angle < enemyData.FieldOFView / 2)
+        if (angle < enemyData.FieldOfView / 2)
         {
             RaycastHit2D r = Physics2D.Raycast(transform.position, dir, enemyData.DetectionRange, ~targetDetectionIgnoreLayers);
             if (r.collider != null && r.collider.gameObject == target)

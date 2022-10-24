@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAgroState : EnemyState
 {
-    public EnemyAgroState(Enemy enemy, FiniteStateMachine stateMachine) : base(enemy, stateMachine) 
+    public EnemyAgroState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData) : base(enemy, stateMachine, enemyData) 
     {
         
     }

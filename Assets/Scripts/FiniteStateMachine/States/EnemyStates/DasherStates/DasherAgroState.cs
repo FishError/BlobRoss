@@ -2,17 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DasherAgroedState : MonoBehaviour
+public class DasherAgroState : EnemyAgroState
 {
-    // Start is called before the first frame update
-    void Start()
+    public DasherAgroState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData) : base(enemy, stateMachine, enemyData) { }
+
+    public override void Enter()
     {
-        
+        base.Enter();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Exit()
     {
-        
+        base.Exit();
+    }
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+
+        float distance = Vector2.Distance(enemy.target.transform.position, enemy.transform.position);
+        if (distance <= enemyData.AttackRange)
+        {
+            stateMachine.ChangeState(enemy.AttackState);
+            return;
+        }
+    }
+
+    public override void DoChecks()
+    {
+        base.DoChecks();
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
     }
 }

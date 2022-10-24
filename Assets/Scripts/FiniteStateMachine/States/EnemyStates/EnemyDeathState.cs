@@ -5,7 +5,7 @@ using UnityEngine;
 // not implemented yet
 public class EnemyDeathState : EnemyState
 {
-    public EnemyDeathState(Enemy enemy, FiniteStateMachine stateMachine) : base(enemy, stateMachine) { }
+    public EnemyDeathState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData) : base(enemy, stateMachine, enemyData) { }
 
     public override void Enter()
     {
