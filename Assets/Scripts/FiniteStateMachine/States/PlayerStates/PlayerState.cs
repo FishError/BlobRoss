@@ -13,7 +13,7 @@ public class PlayerState : EntityState
     //TODO: replace this with just Equipments[] equipments eventually once red, blue and yellow equipments have animation
     public Transform equipments;
     public RedEquipment redEquipment {get; private set; }
-    // public Equipment blueEquipment {get; private set; }
+    public BlueEquipment blueEquipment { get; private set; }
     // public Equipment yellowEquipment {get; private set; }
     #endregion
 
@@ -25,7 +25,7 @@ public class PlayerState : EntityState
         //Change to find children
         this.equipments = player.gameObject.transform.Find("Equipments");
         this.redEquipment = equipments.GetChild(0).GetComponent<RedEquipment>();
-        // this.blueEquipment = equipments.GetChild(1).GetComponent<Equipment>();
+        this.blueEquipment = equipments.GetChild(1).GetComponent<BlueEquipment>();
         // this.yellowEquipment = equipments.GetChild(2).GetComponent<Equipment>();
         // Debug.Log(blueEquipment.name);
         // Debug.Log(yellowEquipment.name);
