@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Enemy : Entity
 {
     #region States
-    public EnemyChaseTarget ChaseTargetState { get; private set; }
+    public EnemyAgroState AgroState { get; private set; }
     public EnemyIdleState IdleState { get; private set; }
     public EnemyPatrolState PatrolState { get; private set; }
     public EnemyAlertedState AlertedState { get; private set; }
@@ -47,7 +47,7 @@ public class Enemy : Entity
     {
         base.Awake();
         // initialize enemy states here
-        ChaseTargetState = new EnemyChaseTarget(this, StateMachine);
+        AgroState = new EnemyAgroState(this, StateMachine);
         IdleState = new EnemyIdleState(this, StateMachine);
         PatrolState = new EnemyPatrolState(this, StateMachine);
         AlertedState = new EnemyAlertedState(this, StateMachine);

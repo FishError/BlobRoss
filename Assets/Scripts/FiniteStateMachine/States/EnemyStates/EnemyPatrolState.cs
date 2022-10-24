@@ -37,9 +37,6 @@ public class EnemyPatrolState : EnemyState
             stateMachine.ChangeState(enemy.IdleState);
             return;
         }
-
-        enemy.lookAt = patrolDirection;
-        enemy.SetVelocity(enemy.PatrolVelocity, patrolDirection);
     }
 
     public override void DoChecks()
@@ -50,6 +47,9 @@ public class EnemyPatrolState : EnemyState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+
+        enemy.lookAt = patrolDirection;
+        enemy.SetVelocity(enemy.PatrolVelocity, patrolDirection);
     }
 
     private void SetRandomPatrolDirection()
