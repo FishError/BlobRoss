@@ -6,10 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Sandboxes/Sample_Camera_Movement.unity
+    path: Assets/Scenes/Sandboxes/UI_related/build_2_menu.unity
+    guid: 0e64725ff8934254594bb0fe4b507cdd
+  - enabled: 1
+    path: Assets/Scenes/Sandboxes/player_related/Sample_Camera_Movement.unity
     guid: 2cb26a9587b95874e82c7d4e584bb2dd
   - enabled: 1
-    path: Assets/Scenes/Sandboxes/sample_menu.unity
+    path: Assets/Scenes/Sandboxes/UI_related/sample_menu.unity
     guid: a60d8df6247144af8bc601bdbac19d0e
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
@@ -23,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Rooms/Placeholders/placeholder_3.unity
     guid: 97e5f86be15f2e74793599f3b989d005
+  - enabled: 1
+    path: Assets/Scenes/Sandboxes/PGM_related/PGM_test.unity
+    guid: 4d6e538b8a8ee434895bfadbca507bfc
+  - enabled: 1
+    path: Assets/Scenes/Sandboxes/enemy_related/enemy_prototype_test.unity
+    guid: 9033f150a0612c042bc3b6c76a0f07af
   m_configObjects: {}
