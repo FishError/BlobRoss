@@ -11,14 +11,15 @@ public class EnemyIdleState : EnemyState
     public override void Enter()
     {
         base.Enter();
-        enemy.SetVelocityX(0);
-        enemy.SetVelocityY(0);
+        enemy.rb.velocity = Vector2.zero;
         SetRandomIdleTime();
+        enemy.SetAnimHorizontalVertical(enemy.lookAt);
     }
 
     public override void Exit()
     {
         base.Exit();
+        enemy.SetAnimHorizontalVertical(enemy.lookAt);
     }
 
     public override void LogicUpdate()

@@ -13,14 +13,16 @@ public class EnemyAlertedState : EnemyState
         base.Enter();
         enemy.SetVelocityX(0);
         enemy.SetVelocityY(0);
-        enemy.lookAt = enemy.target.transform.position - enemy.transform.position;
+        enemy.lookAt = (enemy.target.transform.position - enemy.transform.position).normalized;
         alertTime = enemyData.AlertTime;
+        enemy.SetAnimHorizontalVertical(enemy.lookAt);
         // play enemy alerted animation (if we have one)
     }
 
     public override void Exit()
     {
         base.Exit();
+        enemy.SetAnimHorizontalVertical(enemy.lookAt);
     }
 
     public override void LogicUpdate()
@@ -33,7 +35,8 @@ public class EnemyAlertedState : EnemyState
             return;
         }
 
-        enemy.lookAt = enemy.target.transform.position - enemy.transform.position;
+        enemy.lookAt = (enemy.target.transform.position - enemy.transform.position).normalized;
+        enemy.SetAnimHorizontalVertical(enemy.lookAt);
     }
 
     public override void DoChecks()

@@ -56,10 +56,6 @@ public class Enemy : Entity
     {
         base.Awake();
         // initialize enemy states here
-        AgroState = new EnemyAgroState(this, StateMachine, enemyData, "");
-        IdleState = new EnemyIdleState(this, StateMachine, enemyData, "");
-        PatrolState = new EnemyPatrolState(this, StateMachine, enemyData, "");
-        AlertedState = new EnemyAlertedState(this, StateMachine, enemyData, "");
     }
 
     protected override void Start()
@@ -96,6 +92,12 @@ public class Enemy : Entity
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
+    }
+
+    public void SetAnimHorizontalVertical(Vector2 v)
+    {
+        Anim.SetFloat("Horizontal", v.x);
+        Anim.SetFloat("Vertical", v.y);
     }
 
     public bool TargetDetected()

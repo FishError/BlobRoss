@@ -12,13 +12,13 @@ public class EnemyAgroState : EnemyState
     public override void Enter()
     {
         base.Enter();
+        enemy.SetAnimHorizontalVertical(enemy.lookAt);
     }
 
     public override void Exit()
     {
         base.Exit();
-        enemy.Anim.SetFloat("IdleHorizontal", enemy.lookAt.x);
-        enemy.Anim.SetFloat("IdleVertical", enemy.lookAt.y);
+        enemy.SetAnimHorizontalVertical(enemy.lookAt);
     }
 
     public override void LogicUpdate()
@@ -40,7 +40,6 @@ public class EnemyAgroState : EnemyState
         enemy.navMeshAgent.SetDestination(enemy.target.transform.position);
         enemy.rb.velocity = enemy.navMeshAgent.velocity;
         enemy.lookAt = enemy.rb.velocity.normalized;
-        enemy.Anim.SetFloat("MoveHorizontal", enemy.lookAt.x); 
-        enemy.Anim.SetFloat("MoveVertical", enemy.lookAt.y);
+        enemy.SetAnimHorizontalVertical(enemy.lookAt);
     }
 }

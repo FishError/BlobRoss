@@ -15,15 +15,13 @@ public class EnemyPatrolState : EnemyState
         SetRandomPatrolDistance();
         SetRandomPatrolDirection();
         enemy.lookAt = patrolDirection;
-        enemy.Anim.SetFloat("MoveHorizontal", enemy.lookAt.x);
-        enemy.Anim.SetFloat("MoveVertical", enemy.lookAt.y);
+        enemy.SetAnimHorizontalVertical(enemy.lookAt);
     }
 
     public override void Exit()
     {
         base.Exit();
-        enemy.Anim.SetFloat("IdleHorizontal", enemy.lookAt.x);
-        enemy.Anim.SetFloat("IdleVertical", enemy.lookAt.y);
+        enemy.SetAnimHorizontalVertical(enemy.lookAt);
     }
 
     public override void LogicUpdate()
@@ -72,6 +70,6 @@ public class EnemyPatrolState : EnemyState
 
     protected void SetRandomPatrolDistance()
     {
-        patrolDistance = Random.Range(2f, 4f);
+        patrolDistance = Random.Range(enemyData.MinPatrolDistance, enemyData.MaxPatrolDistance);
     }
 }

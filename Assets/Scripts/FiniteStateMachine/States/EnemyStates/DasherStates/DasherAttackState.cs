@@ -18,8 +18,8 @@ public class DasherAttackState : EnemyAttackState
         base.Enter();
         enemy.rb.velocity = Vector2.zero;
         attackDirection = (enemy.target.transform.position - enemy.transform.position).normalized;
-        enemy.Anim.SetFloat("MoveHorizontal", attackDirection.x);
-        enemy.Anim.SetFloat("MoveVertical", attackDirection.y);
+        enemy.lookAt = attackDirection;
+        enemy.SetAnimHorizontalVertical(enemy.lookAt);
     }
 
     public override void Exit()
@@ -34,7 +34,7 @@ public class DasherAttackState : EnemyAttackState
 
         if (Time.time > startTime + attackChargeUpTime && enemy.collision != null)
         {
-            enemy.CCState.SetKnockbackValues(enemy.collision.GetContact(0).normal * 4, 0.4f);
+            enemy.CCState.SetKnockbackValues(enemy.collision.GetContact(0).normal * 5, 0.3f);
             stateMachine.ChangeState(enemy.CCState);
             return;
         }
