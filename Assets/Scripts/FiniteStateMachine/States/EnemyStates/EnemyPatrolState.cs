@@ -7,7 +7,7 @@ public class EnemyPatrolState : EnemyState
     protected float patrolDistance;
     protected Vector2 patrolDirection;
 
-    public EnemyPatrolState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData) : base(enemy, stateMachine, enemyData) { }
+    public EnemyPatrolState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
 
     public override void Enter()
     {
@@ -15,11 +15,15 @@ public class EnemyPatrolState : EnemyState
         SetRandomPatrolDistance();
         SetRandomPatrolDirection();
         enemy.lookAt = patrolDirection;
+        enemy.Anim.SetFloat("MoveHorizontal", enemy.lookAt.x);
+        enemy.Anim.SetFloat("MoveVertical", enemy.lookAt.y);
     }
 
     public override void Exit()
     {
         base.Exit();
+        enemy.Anim.SetFloat("IdleHorizontal", enemy.lookAt.x);
+        enemy.Anim.SetFloat("IdleVertical", enemy.lookAt.y);
     }
 
     public override void LogicUpdate()

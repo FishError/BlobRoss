@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyAgroState : EnemyState
 {
-    public EnemyAgroState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData) : base(enemy, stateMachine, enemyData) 
+    public EnemyAgroState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) 
     {
         
     }
@@ -17,6 +17,8 @@ public class EnemyAgroState : EnemyState
     public override void Exit()
     {
         base.Exit();
+        enemy.Anim.SetFloat("IdleHorizontal", enemy.lookAt.x);
+        enemy.Anim.SetFloat("IdleVertical", enemy.lookAt.y);
     }
 
     public override void LogicUpdate()
@@ -38,5 +40,7 @@ public class EnemyAgroState : EnemyState
         enemy.navMeshAgent.SetDestination(enemy.target.transform.position);
         enemy.rb.velocity = enemy.navMeshAgent.velocity;
         enemy.lookAt = enemy.rb.velocity.normalized;
+        enemy.Anim.SetFloat("MoveHorizontal", enemy.lookAt.x); 
+        enemy.Anim.SetFloat("MoveVertical", enemy.lookAt.y);
     }
 }

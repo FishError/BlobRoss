@@ -11,13 +11,13 @@ public class Dasher : Enemy
     protected override void Awake()
     {
         base.Awake();
-        IdleState = new DasherIdleState(this, StateMachine, enemyData);
-        PatrolState = new DasherPatrolState(this, StateMachine, enemyData);
-        AlertedState = new DasherAlertedState(this, StateMachine, enemyData);
-        AgroState = new DasherAgroState(this, StateMachine, enemyData);
-        AttackState = new DasherAttackState(this, StateMachine, enemyData);
-        CCState = new DasherCCState(this, StateMachine, enemyData);
-        DeathState = new DasherDeathState(this, StateMachine, enemyData);
+        IdleState = new DasherIdleState(this, StateMachine, enemyData, "Idle");
+        PatrolState = new DasherPatrolState(this, StateMachine, enemyData, "Move");
+        AlertedState = new DasherAlertedState(this, StateMachine, enemyData, "Idle");
+        AgroState = new DasherAgroState(this, StateMachine, enemyData, "Move");
+        AttackState = new DasherAttackState(this, StateMachine, enemyData, "Attack");
+        CCState = new DasherCCState(this, StateMachine, enemyData, "Idle");
+        DeathState = new DasherDeathState(this, StateMachine, enemyData, "Death");
     }
 
     protected override void Start()

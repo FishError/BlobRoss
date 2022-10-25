@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DasherAgroState : EnemyAgroState
 {
-    public DasherAgroState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData) : base(enemy, stateMachine, enemyData) { }
+    public DasherAgroState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
 
     public override void Enter()
     {

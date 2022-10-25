@@ -40,6 +40,10 @@ public class Enemy : Entity
     public NavMeshAgent navMeshAgent { get; private set; }
     #endregion
 
+    #region Collision
+    public Collision2D collision { get; protected set; }
+    #endregion
+
     [Header("Target Detection")]
     public GameObject target;
     public Vector2 lookAt { get; set; }
@@ -52,10 +56,10 @@ public class Enemy : Entity
     {
         base.Awake();
         // initialize enemy states here
-        AgroState = new EnemyAgroState(this, StateMachine, enemyData);
-        IdleState = new EnemyIdleState(this, StateMachine, enemyData);
-        PatrolState = new EnemyPatrolState(this, StateMachine, enemyData);
-        AlertedState = new EnemyAlertedState(this, StateMachine, enemyData);
+        AgroState = new EnemyAgroState(this, StateMachine, enemyData, "");
+        IdleState = new EnemyIdleState(this, StateMachine, enemyData, "");
+        PatrolState = new EnemyPatrolState(this, StateMachine, enemyData, "");
+        AlertedState = new EnemyAlertedState(this, StateMachine, enemyData, "");
     }
 
     protected override void Start()
@@ -230,4 +234,14 @@ public class Enemy : Entity
         MovementVelocity = enemyData.MovementVelocity;
     }
     #endregion
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        this.collision = collision;
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        this.collision = null;
+    }
 }

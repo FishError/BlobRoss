@@ -6,7 +6,7 @@ public class EnemyAlertedState : EnemyState
 {
     protected float alertTime;
 
-    public EnemyAlertedState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData) : base(enemy, stateMachine, enemyData) { }
+    public EnemyAlertedState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
 
     public override void Enter()
     {

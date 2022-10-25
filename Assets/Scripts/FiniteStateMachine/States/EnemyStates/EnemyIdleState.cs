@@ -6,7 +6,7 @@ public class EnemyIdleState : EnemyState
 {
     protected float idleTime;
 
-    public EnemyIdleState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData) : base(enemy, stateMachine, enemyData) { }
+    public EnemyIdleState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
 
     public override void Enter()
     {
