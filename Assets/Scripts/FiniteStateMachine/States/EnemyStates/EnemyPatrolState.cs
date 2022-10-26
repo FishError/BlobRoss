@@ -51,7 +51,7 @@ public class EnemyPatrolState : EnemyState
         base.PhysicsUpdate();
 
         enemy.lookAt = patrolDirection;
-        enemy.SetVelocity(enemy.PatrolVelocity, patrolDirection);
+        enemy.SetVelocity(enemy.PatrolSpeed, patrolDirection);
     }
 
     protected void SetRandomPatrolDirection()

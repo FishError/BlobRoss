@@ -32,8 +32,8 @@ public class Enemy : Entity
     public float AttackSpeed { get; set; }
 
     // Move State
-    public float PatrolVelocity { get; set; }
-    public float MovementVelocity { get; set; }
+    public float PatrolSpeed { get; set; }
+    public float MovementSpeed { get; set; }
     #endregion
 
     #region NavMesh
@@ -69,8 +69,9 @@ public class Enemy : Entity
         Defense = enemyData.Defense;
         Attack = enemyData.Attack;
         AttackSpeed = enemyData.AttackSpeed;
-        PatrolVelocity = enemyData.PatrolVelocity;
-        MovementVelocity = enemyData.MovementVelocity;
+        PatrolSpeed = enemyData.PatrolSpeed;
+        MovementSpeed = enemyData.MovementSpeed;
+
         lookAt = transform.right;
 
         // NavMeshAgent setup for navigation around obstacles
@@ -78,7 +79,7 @@ public class Enemy : Entity
         navMeshAgent.updatePosition = false;
         navMeshAgent.updateRotation = false;
         navMeshAgent.updateUpAxis = false;
-        navMeshAgent.speed = MovementVelocity;
+        navMeshAgent.speed = MovementSpeed;
 
         unWalkableLayers = LayerMask.GetMask("Wall");
         targetDetectionIgnoreLayers = LayerMask.GetMask("Grid", "Enemy");
@@ -212,34 +213,39 @@ public class Enemy : Entity
         AttackSpeed = enemyData.AttackSpeed;
     }
 
-    // Velocity
-    public void ModifyVelocity(float amt)
+    // Speed
+    public void ModifySpeed(float amt)
     {
-        PatrolVelocity += amt;
-        if (PatrolVelocity < 0) PatrolVelocity = 0;
-        MovementVelocity += amt;
-        if (MovementVelocity < 0) MovementVelocity = 0;
+        PatrolSpeed += amt;
+        if (PatrolSpeed < 0) PatrolSpeed = 0;
+        MovementSpeed += amt;
+        if (MovementSpeed < 0) MovementSpeed = 0;
     }
 
-    public void ScaleVelocity(float percent)
+    public void ScaleSpeed(float percent)
     {
-        PatrolVelocity *= percent;
-        if (PatrolVelocity < 0) PatrolVelocity = 0;
-        MovementVelocity *= percent;
-        if (MovementVelocity < 0) MovementVelocity = 0;
+        PatrolSpeed *= percent;
+        if (PatrolSpeed < 0) PatrolSpeed = 0;
+        MovementSpeed *= percent;
+        if (MovementSpeed < 0) MovementSpeed = 0;
 
     }
 
-    public void ResetVelocity()
+    public void ResetSpeed()
     {
-        PatrolVelocity = enemyData.PatrolVelocity;
-        MovementVelocity = enemyData.MovementVelocity;
+        PatrolSpeed = enemyData.PatrolSpeed;
+        MovementSpeed = enemyData.MovementSpeed;
     }
     #endregion
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         this.collision = collision;
+
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<Player>().ModifyHealthPoints(-Attack);
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)

@@ -56,7 +56,7 @@ public class DasherAttackState : EnemyAttackState
 
         if (Time.time > startTime + attackChargeUpTime && Time.time < startTime + attackChargeUpTime + attackDuration)
         {
-            enemy.rb.velocity = attackDirection * enemy.MovementVelocity * 2;
+            enemy.rb.velocity = attackDirection * enemy.MovementSpeed * 2;
         }
     }
 }

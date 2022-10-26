@@ -25,14 +25,14 @@ public class PlayerMoveState : PlayerGroundedStates
             SetHorizontalAnimation();
             player.LastX = xInput;
             player.LastY = yInput;
-            player.SetVelocityX(playerData.MovementVelocity * xInput);
+            player.SetVelocityX(playerData.MovementSpeed * xInput);
         }
         if (yInput > 0 || yInput < 0)
         {
             SetVerticalAnimation();
             player.LastX = xInput;
             player.LastY = yInput;
-            player.SetVelocityY(playerData.MovementVelocity * yInput);
+            player.SetVelocityY(playerData.MovementSpeed * yInput);
         }
         if (xInput == 0f && yInput == 0f)
         {
@@ -43,13 +43,13 @@ public class PlayerMoveState : PlayerGroundedStates
         {
             SetOnlyVerticalAnimation();
             player.LastY = yInput;
-            player.SetVelocityX(playerData.MovementVelocity * xInput);
+            player.SetVelocityX(playerData.MovementSpeed * xInput);
         }
         if (xInput != 0f && yInput == 0f)
         {
             SetOnlyHorizontalAnimation();
             player.LastX = xInput;
-            player.SetVelocityY(playerData.MovementVelocity * yInput);
+            player.SetVelocityY(playerData.MovementSpeed * yInput);
         }
         
     }

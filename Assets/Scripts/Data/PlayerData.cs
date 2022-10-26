@@ -16,5 +16,5 @@ public class PlayerData : ScriptableObject
     public float CritDamage = 0.5f;
 
     [Header("Move State")]
-    public float MovementVelocity = 5f;
+    public float MovementSpeed = 5f;
 }
