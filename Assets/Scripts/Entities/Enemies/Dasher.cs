@@ -13,7 +13,7 @@ public class Dasher : Enemy
         base.Awake();
         IdleState = new DasherIdleState(this, StateMachine, enemyData, "Idle");
         PatrolState = new DasherPatrolState(this, StateMachine, enemyData, "Move");
-        AlertedState = new DasherAlertedState(this, StateMachine, enemyData, "Idle");
+        AlertedState = new DasherAlertedState(this, StateMachine, enemyData, "Alerted");
         AgroState = new DasherAgroState(this, StateMachine, enemyData, "Move");
         AttackState = new DasherAttackState(this, StateMachine, enemyData, "Attack");
         CCState = new DasherCCState(this, StateMachine, enemyData, "Idle");
