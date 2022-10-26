@@ -14,15 +14,16 @@ public class EnemyAlertedState : EnemyState
         enemy.SetVelocityX(0);
         enemy.SetVelocityY(0);
         enemy.lookAt = (enemy.target.transform.position - enemy.transform.position).normalized;
-        alertTime = enemyData.AlertTime;
         enemy.SetAnimHorizontalVertical(enemy.lookAt);
-        // play enemy alerted animation (if we have one)
+        enemy.transform.Find("Alert").gameObject.SetActive(true);
+        alertTime = enemyData.AlertTime;
     }
 
     public override void Exit()
     {
         base.Exit();
         enemy.SetAnimHorizontalVertical(enemy.lookAt);
+        enemy.transform.Find("Alert").gameObject.SetActive(false);
     }
 
     public override void LogicUpdate()
