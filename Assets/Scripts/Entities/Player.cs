@@ -69,7 +69,6 @@ public class Player : Entity
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-        print(HealthPoints);
     }
 
     #region Stat Modifier Functions

@@ -17,8 +17,8 @@ MonoBehaviour:
   Attack: 5
   AttackSpeed: 1
   AttackRange: 3
-  PatrolVelocity: 2
-  MovementVelocity: 5
+  PatrolSpeed: 2
+  MovementSpeed: 5
   FieldOfView: 130
   DetectionRange: 8
   MinIdleDuration: 1
