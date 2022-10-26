@@ -11,6 +11,7 @@ public class EnemyData : ScriptableObject
 
     [Header("Attack")]
     public float Attack;
+    [Tooltip("Number of attacks per second")]
     public float AttackSpeed;
     public float AttackRange;
 

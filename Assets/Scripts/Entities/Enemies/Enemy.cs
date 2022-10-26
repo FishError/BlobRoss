@@ -30,6 +30,7 @@ public class Enemy : Entity
     // Attack
     public float Attack { get; set; }
     public float AttackSpeed { get; set; }
+    public float AttackCoolDown { get; set; }
 
     // Move State
     public float PatrolSpeed { get; set; }
@@ -88,6 +89,8 @@ public class Enemy : Entity
     protected override void Update()
     {
         base.Update();
+        if (AttackCoolDown > 0)
+            AttackCoolDown -= Time.deltaTime;
     }
 
     protected override void FixedUpdate()

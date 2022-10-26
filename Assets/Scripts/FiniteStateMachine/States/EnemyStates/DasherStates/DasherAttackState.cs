@@ -26,6 +26,7 @@ public class DasherAttackState : EnemyAttackState
     {
         base.Exit();
         enemy.rb.velocity = Vector2.zero;
+        enemy.AttackCoolDown = 1 / enemyData.AttackSpeed;
     }
 
     public override void LogicUpdate()
