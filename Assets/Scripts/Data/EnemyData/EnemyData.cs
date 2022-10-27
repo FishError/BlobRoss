@@ -3,22 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewEnemyData", menuName = "Data/Enemy Data/Base Data")]
-public class EnemyData : ScriptableObject
+public class EnemyData : CombatEntityData
 {
-    [Header("Health")]
-    public float HealthPoints;
-    public float Defense;
-
-    [Header("Attack")]
-    public float Attack;
-    [Tooltip("Number of attacks per second")]
-    public float AttackSpeed;
-    public float AttackRange;
-
-    [Header("Move State")]
-    public float PatrolSpeed;
-    public float MovementSpeed;
-
     [Header("Detection")]
     public float FieldOfView = 130f;
     public float DetectionRange = 8f;
@@ -28,9 +14,13 @@ public class EnemyData : ScriptableObject
     public float MaxIdleDuration = 2f;
 
     [Header("Patrol State")]
+    public float PatrolSpeed = 2f;
     public float MinPatrolDistance = 2f;
     public float MaxPatrolDistance = 4f;
 
-    [Header("Patrol State")]
+    [Header("Alert State")]
     public float AlertTime = 1f;
+
+    [Header("Attack State")]
+    public float AttackRange;
 }

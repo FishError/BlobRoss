@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : Entity
+public class Enemy : CombatEntity
 {
     #region States 
     // base states that all children are required to have but dont always have use
@@ -17,24 +17,12 @@ public class Enemy : Entity
     public EnemyDeathState DeathState { get; protected set; }
     #endregion
 
-    #region Enemy Data
-    [SerializeField] protected EnemyData enemyData;
-    #endregion
-
     #region Enemy Current Stats
-    // Health
-    public float MaxHealthPoints { get; set; }
-    public float HealthPoints { get; set; }
-    public float Defense { get; set; }
-
     // Attack
-    public float Attack { get; set; }
-    public float AttackSpeed { get; set; }
     public float AttackCoolDown { get; set; }
 
     // Move State
     public float PatrolSpeed { get; set; }
-    public float MovementSpeed { get; set; }
     #endregion
 
     #region NavMesh
@@ -61,13 +49,13 @@ public class Enemy : Entity
         // initialize other variables and do additional setup
         StateMachine.Initialize(IdleState);
 
-        MaxHealthPoints = enemyData.HealthPoints;
+        MaxHealthPoints = data.HealthPoints;
         HealthPoints = MaxHealthPoints;
-        Defense = enemyData.Defense;
-        Attack = enemyData.Attack;
-        AttackSpeed = enemyData.AttackSpeed;
-        PatrolSpeed = enemyData.PatrolSpeed;
-        MovementSpeed = enemyData.MovementSpeed;
+        Defense = data.Defense;
+        Attack = data.Attack;
+        AttackSpeed = data.AttackSpeed;
+        PatrolSpeed = ((EnemyData)data).PatrolSpeed;
+        MovementSpeed = data.MovementSpeed;
 
         lookAt = transform.right;
 
@@ -105,9 +93,9 @@ public class Enemy : Entity
         Vector2 dir = target.transform.position - transform.position;
         float angle = Vector2.Angle(dir, lookAt);
 
-        if (angle < enemyData.FieldOfView / 2)
+        if (angle < ((EnemyData)data).FieldOfView / 2)
         {
-            RaycastHit2D r = Physics2D.Raycast(transform.position, dir, enemyData.DetectionRange, ~targetDetectionIgnoreLayers);
+            RaycastHit2D r = Physics2D.Raycast(transform.position, dir, ((EnemyData)data).DetectionRange, ~targetDetectionIgnoreLayers);
             if (r.collider != null && r.collider.gameObject == target)
             {
                 return true;
@@ -116,126 +104,6 @@ public class Enemy : Entity
 
         return false;
     }
-
-    #region Stat Modifier Functions
-    // Health
-    public void ModifyMaxHealthPoints(float amt)
-    {
-        MaxHealthPoints += amt;
-        if (MaxHealthPoints < 0) MaxHealthPoints = 0;
-        ModifyHealthPoints(amt);
-    }
-
-    public void ScaleMaxHealthPoints(float percent)
-    {
-        MaxHealthPoints *= percent;
-        if (MaxHealthPoints < 0) MaxHealthPoints = 0;
-        ModifyHealthPoints(MaxHealthPoints * (percent - 1f));
-    }
-
-    public void ResetMaxHealthPoints()
-    {
-        MaxHealthPoints = enemyData.HealthPoints;
-        if (HealthPoints > MaxHealthPoints) ResetHealthPoints();
-    }
-
-    public void ModifyHealthPoints(float amt)
-    {
-        HealthPoints += amt;
-        if (HealthPoints < 0) HealthPoints = 0;
-        else if (HealthPoints > MaxHealthPoints) HealthPoints = MaxHealthPoints;
-    }
-
-    public void ScaleHealthPoints(float percent)
-    {
-        HealthPoints *= percent;
-        if (HealthPoints < 0) HealthPoints = 0;
-        else if (HealthPoints > MaxHealthPoints) HealthPoints = MaxHealthPoints;
-    }
-
-    public void ResetHealthPoints()
-    {
-        HealthPoints = MaxHealthPoints;
-    }
-
-    // Defense
-    public void ModifyDefense(float amt)
-    {
-        Defense += amt;
-        if (Defense < 0) Defense = 0;
-    }
-
-    public void ScaleDefense(float percent)
-    {
-        Defense *= percent;
-        if (Defense < 0) Defense = 0;
-    }
-
-    public void ResetDefense()
-    {
-        Defense = enemyData.Defense;
-    }
-
-    // Attack
-    public void ModifyAttack(float amt)
-    {
-        Attack += amt;
-        if (Attack < 0) Attack = 0;
-    }
-
-    public void ScaleAttack(float percent)
-    {
-        Attack *= percent;
-        if (Attack < 0) Attack = 0;
-    }
-
-    public void ResetAttack()
-    {
-        Attack = enemyData.Attack;
-    }
-
-    // Attack Speed
-    public void ModifyAttackSpeed(float amt)
-    {
-        AttackSpeed += amt;
-        if (AttackSpeed < 0) AttackSpeed = 0;
-    }
-
-    public void ScaleAttackSpeed(float percent)
-    {
-        AttackSpeed *= percent;
-        if (AttackSpeed < 0) AttackSpeed = 0;
-    }
-
-    public void ResetAttackSpeed()
-    {
-        AttackSpeed = enemyData.AttackSpeed;
-    }
-
-    // Speed
-    public void ModifySpeed(float amt)
-    {
-        PatrolSpeed += amt;
-        if (PatrolSpeed < 0) PatrolSpeed = 0;
-        MovementSpeed += amt;
-        if (MovementSpeed < 0) MovementSpeed = 0;
-    }
-
-    public void ScaleSpeed(float percent)
-    {
-        PatrolSpeed *= percent;
-        if (PatrolSpeed < 0) PatrolSpeed = 0;
-        MovementSpeed *= percent;
-        if (MovementSpeed < 0) MovementSpeed = 0;
-
-    }
-
-    public void ResetSpeed()
-    {
-        PatrolSpeed = enemyData.PatrolSpeed;
-        MovementSpeed = enemyData.MovementSpeed;
-    }
-    #endregion
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
