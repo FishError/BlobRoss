@@ -15,7 +15,7 @@ MonoBehaviour:
   HealthPoints: 20
   Defense: 5
   Attack: 5
-  AttackSpeed: 1
+  AttackSpeed: 1.3
   AttackRange: 3
   PatrolSpeed: 2
   MovementSpeed: 5
