@@ -26,4 +26,20 @@ public abstract class EntityState
     public abstract void PhysicsUpdate();
 
     public abstract void DoChecks();
+
+    // do something on collision else leave empty
+    public virtual void OnCollisionEnter(Collision2D collision)
+    {
+
+    }
+
+    public virtual void OnCollisionStay(Collision2D collision)
+    {
+
+    }
+
+    public virtual void OnCollisionExit(Collision2D collision)
+    {
+
+    }
 }

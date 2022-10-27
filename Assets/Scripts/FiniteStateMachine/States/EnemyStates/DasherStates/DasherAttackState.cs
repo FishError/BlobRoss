@@ -33,13 +33,7 @@ public class DasherAttackState : EnemyAttackState
     {
         base.LogicUpdate();
 
-        if (Time.time > startTime + attackChargeUpTime && enemy.collision != null)
-        {
-            enemy.CCState.SetKnockbackValues(enemy.collision.GetContact(0).normal * 5, 0.3f);
-            stateMachine.ChangeState(enemy.CCState);
-            return;
-        }
-        else if (Time.time > startTime + attackDuration + attackChargeUpTime)
+        if (Time.time > startTime + attackDuration + attackChargeUpTime)
         {
             stateMachine.ChangeState(enemy.AgroState);
             return;
@@ -58,6 +52,15 @@ public class DasherAttackState : EnemyAttackState
         if (Time.time > startTime + attackChargeUpTime && Time.time < startTime + attackChargeUpTime + attackDuration)
         {
             enemy.rb.velocity = attackDirection * enemy.MovementSpeed * 2;
+        }
+    }
+
+    public override void OnCollisionEnter(Collision2D collision)
+    {
+        if (Time.time > startTime + attackChargeUpTime)
+        {
+            enemy.CCState.SetKnockbackValues(collision.GetContact(0).normal * 5, 0.3f);
+            stateMachine.ChangeState(enemy.CCState);
         }
     }
 }

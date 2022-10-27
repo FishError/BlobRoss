@@ -41,10 +41,6 @@ public class Enemy : Entity
     public NavMeshAgent navMeshAgent { get; private set; }
     #endregion
 
-    #region Collision
-    public Collision2D collision { get; protected set; }
-    #endregion
-
     [Header("Target Detection")]
     public GameObject target;
     public Vector2 lookAt { get; set; }
@@ -241,18 +237,12 @@ public class Enemy : Entity
     }
     #endregion
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        this.collision = collision;
-
+        base.OnCollisionEnter2D(collision);
         if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<Player>().ModifyHealthPoints(-Attack);
         }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        this.collision = null;
     }
 }
