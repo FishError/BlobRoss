@@ -46,6 +46,14 @@ public class EquipmentMoveState : EquipmentState
             SetIdle(equipment.LastX,equipment.LastY);
             equipment.LastX = xInput;
         }
+
+        /* 
+            If Equipment enters Move state but effect animation 
+            is still playing, sync equipment and blob animation
+        */ 
+        else if(!equipment.Anim.GetCurrentAnimatorStateInfo(0).IsName("Move")){
+            SyncAnimations();
+        }
     }
 
     public override void PhysicsUpdate()

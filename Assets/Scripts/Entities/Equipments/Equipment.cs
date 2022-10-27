@@ -14,7 +14,6 @@ public class Equipment : Entity
     public EquipmentIdleState IdleState { get; protected set; }
     public EquipmentMoveState MoveState { get; protected set; }
     public EquipmentEffectState EffectState { get; protected set; }
-    public float transitionOffset;
     #endregion
 
     #region Animation References

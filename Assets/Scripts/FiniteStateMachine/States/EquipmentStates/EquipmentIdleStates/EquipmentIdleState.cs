@@ -24,6 +24,14 @@ public class EquipmentIdleState : EquipmentState
             stateMachine.ChangeState(equipment.MoveState);
         }
 
+        /* 
+            If Equipment enters Idle state but effect animation 
+            is still playing, sync equipment and blob animation
+        */ 
+        else if(!equipment.Anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")){
+            SyncAnimations();
+        }
+
     }
 
     public override void PhysicsUpdate()

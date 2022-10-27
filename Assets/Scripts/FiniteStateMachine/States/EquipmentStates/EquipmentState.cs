@@ -82,7 +82,6 @@ public class EquipmentState : EntityState
     {
         equipment.Anim.SetFloat("IdleHorizontal", x);
         equipment.Anim.SetFloat("IdleVertical", y);
-        equipment.Anim.SetFloat("offset",0f);
     }
 
     // Setting the equipment's effect Move Blend tree animation based on player input (direction they're facing)
@@ -95,7 +94,7 @@ public class EquipmentState : EntityState
     protected void SyncAnimations(){
         AnimatorStateInfo currentPlayerAnimState = equipment.transform.parent.parent.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
         float offset = currentPlayerAnimState.normalizedTime % 1;
-        equipment.Anim.SetFloat("offset",offset+equipment.transitionOffset);
+        equipment.Anim.SetFloat("offset",offset);
     }
 
 }
