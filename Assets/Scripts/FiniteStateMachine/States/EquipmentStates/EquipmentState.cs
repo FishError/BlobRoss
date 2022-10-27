@@ -84,7 +84,6 @@ public class EquipmentState : EntityState
         equipment.Anim.SetFloat("IdleVertical", y);
     }
 
-    // Setting the equipment's effect Move Blend tree animation based on player input (direction they're facing)
     protected void SetEffect(float x, float y)
     {
         equipment.Anim.SetFloat("EffectHorizontal", x);

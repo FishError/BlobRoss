@@ -12,7 +12,7 @@ public class RedEquipmentEffectState : EquipmentEffectState
         base.LogicUpdate();
         HandleAnimation();
         
-        //Debug.Log("You inflicted 100 attack damage");
+        Debug.Log("You inflicted 100 attack damage");
         /*Put any red equipment related effects here:
             DamageInfliction();
             AddingColor();
@@ -20,8 +20,9 @@ public class RedEquipmentEffectState : EquipmentEffectState
 
     }
 
+    //TODO: Might move this a level up
     private void HandleAnimation(){
-        //When using effect
+        //When using equipment's effect
         if (leftClickInput){
             if (xInput > 0 || xInput < 0)
             {
@@ -52,13 +53,11 @@ public class RedEquipmentEffectState : EquipmentEffectState
 
         }
 
-        //When no longer using red equipment's effect
+        //When no longer using equipment's effect
         else if(xInput == 0f && yInput == 0f){
             SetIdle(equipment.LastX,equipment.LastY);
-            // SyncAnimations();
             stateMachine.ChangeState(equipment.IdleState);
         } else {
-            // SyncAnimations();
             stateMachine.ChangeState(equipment.MoveState);
         }
 
