@@ -8,7 +8,10 @@ public class EquipmentData : ScriptableObject
     [Header("Equipment Rate")]
     public float rate = 1f;
 
-    [Header("Shield")]
-    public float duration = 1f;
-    public float cooldown = 15f;
+    [Header("Blue Equipment Stats")]
+    public float duration = 0f;
+    public int durability = 0;
+    public float knockback = 0f;
+    public float cooldown = 0f;
+    public float range = 0f;
 }

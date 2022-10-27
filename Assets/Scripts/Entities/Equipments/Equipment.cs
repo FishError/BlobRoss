@@ -29,7 +29,13 @@ public class Equipment : Entity
     #region Categorize Equipment
     public Color color { get; protected set; }
     #endregion
-    
+
+    #region Equipment Stats
+    public bool OnCooldown { get; set; }
+    public float Cooldown { get; set; }
+    public float Range { get; set; }
+    #endregion
+
     protected override void Awake()
     {
         base.Awake();

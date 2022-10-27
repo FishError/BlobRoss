@@ -11,8 +11,9 @@ public class BlueEquipmentMoveState : EquipmentMoveState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (rightClickInput)
+        if (rightClickInput && !equipment.OnCooldown)
         {
+            equipment.OnCooldown = true;
             stateMachine.ChangeState(equipment.EffectState);
         }
     }
