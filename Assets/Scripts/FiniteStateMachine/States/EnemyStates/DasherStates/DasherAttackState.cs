@@ -5,8 +5,7 @@ using UnityEngine;
 public class DasherAttackState : EnemyAttackState
 {
     protected Vector2 attackDirection;
-    protected float attackDuration = 0.5f;
-    protected float attackChargeUpTime = 0.5f;
+    protected static float attackChargeUpTime = 0.5f;
 
     public DasherAttackState(Dasher enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) 
     {
@@ -33,7 +32,8 @@ public class DasherAttackState : EnemyAttackState
     {
         base.LogicUpdate();
 
-        if (Time.time > startTime + attackDuration + attackChargeUpTime)
+        AnimatorStateInfo animState = enemy.Anim.GetCurrentAnimatorStateInfo(0);
+        if (animState.IsName("Attack") && animState.normalizedTime >= 1)
         {
             stateMachine.ChangeState(enemy.AgroState);
             return;
@@ -49,7 +49,8 @@ public class DasherAttackState : EnemyAttackState
     {
         base.PhysicsUpdate();
 
-        if (Time.time > startTime + attackChargeUpTime && Time.time < startTime + attackChargeUpTime + attackDuration)
+        AnimatorStateInfo animState = enemy.Anim.GetCurrentAnimatorStateInfo(0);
+        if (animState.IsName("Attack") && animState.normalizedTime >= attackChargeUpTime)
         {
             enemy.rb.velocity = attackDirection * enemy.MovementSpeed * 2;
         }
