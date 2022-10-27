@@ -7,7 +7,7 @@ public class PlayerState : EntityState
     protected Player player;
     protected PlayerData playerData;
 
-    private string animName;
+    protected string animName;
 
     #region Equipments
     //TODO: replace this with just Equipments[] equipments eventually once red, blue and yellow equipments have animation

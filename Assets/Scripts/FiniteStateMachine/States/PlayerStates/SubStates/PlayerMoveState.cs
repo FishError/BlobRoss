@@ -22,32 +22,32 @@ public class PlayerMoveState : PlayerGroundedStates
 
         if (xInput > 0 || xInput < 0)
         {
-            SetHorizontalAnimation();
+            SetMove(xInput,yInput);
             player.LastX = xInput;
             player.LastY = yInput;
             player.SetVelocityX(playerData.MovementVelocity * xInput);
         }
         if (yInput > 0 || yInput < 0)
         {
-            SetVerticalAnimation();
+            SetMove(xInput,yInput);
             player.LastX = xInput;
             player.LastY = yInput;
             player.SetVelocityY(playerData.MovementVelocity * yInput);
         }
         if (xInput == 0f && yInput == 0f)
         {
-            SetIdleAnimation();
+            SetIdle(player.LastX, player.LastY);
             stateMachine.ChangeState(player.IdleState);
         }
         if (xInput == 0f && yInput != 0f)
         {
-            SetOnlyVerticalAnimation();
+            SetIdle(player.LastX, player.LastY);
             player.LastY = yInput;
             player.SetVelocityX(playerData.MovementVelocity * xInput);
         }
         if (xInput != 0f && yInput == 0f)
         {
-            SetOnlyHorizontalAnimation();
+            SetIdle(player.LastX, player.LastY);
             player.LastX = xInput;
             player.SetVelocityY(playerData.MovementVelocity * yInput);
         }
@@ -62,43 +62,6 @@ public class PlayerMoveState : PlayerGroundedStates
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-    }
-
-    public void SetHorizontalAnimation()
-    {
-        SetMove();
-    }
-
-    public void SetVerticalAnimation()
-    {
-        SetMove();
-    }
-
-    public void SetIdleAnimation()
-    {
-        SetIdle();
-    }
-
-    public void SetOnlyVerticalAnimation()
-    {
-        SetIdle();
-    }
-
-    public void SetOnlyHorizontalAnimation()
-    {
-        SetIdle();
-    }
-
-    public void SetMove()
-    {
-        player.Anim.SetFloat("Horizontal", xInput);
-        player.Anim.SetFloat("Vertical", yInput);
-    }
-
-    public void SetIdle()
-    {
-        player.Anim.SetFloat("IdleHorizontal", player.LastX);
-        player.Anim.SetFloat("IdleVertical", player.LastY);
     }
 
 }

@@ -34,7 +34,6 @@ public class RedEquipmentEffectState : EquipmentEffectState
                 SetEffect(xInput,yInput);
                 equipment.LastX = xInput;
                 equipment.LastY = yInput;
-                
             }
             if (xInput == 0f && yInput == 0f)
             {
@@ -54,12 +53,12 @@ public class RedEquipmentEffectState : EquipmentEffectState
         }
 
         //When no longer using red equipment's effect
-        if(xInput == 0f && yInput == 0f){
+        else if(xInput == 0f && yInput == 0f){
             SetIdle(equipment.LastX,equipment.LastY);
-            SyncAnimations();
+            // SyncAnimations();
             stateMachine.ChangeState(equipment.IdleState);
         } else {
-            SyncAnimations();
+            // SyncAnimations();
             stateMachine.ChangeState(equipment.MoveState);
         }
 
