@@ -9,7 +9,7 @@ public class PaletteEffect : MonoBehaviour
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
-        transform.right = direction * -1;
+        transform.right = -direction;
     }
 
     private void Update()
