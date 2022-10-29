@@ -6,8 +6,10 @@ public class PlayerState : EntityState
 {
     protected Player player;
     protected PlayerData playerData;
+    protected float xInput;
+    protected float yInput;
 
-    private string animName;
+    protected string animName;
 
     #region Equipments
     //TODO: replace this with just Equipments[] equipments eventually once red, blue and yellow equipments have animation
@@ -49,6 +51,23 @@ public class PlayerState : EntityState
     //Gets called every frame
     public override void LogicUpdate()
     {
+        // Setting x,y and equipment inputs for each equipment's states 
+        xInput = player.InputHandler.NormInputX;
+        yInput = player.InputHandler.NormInputY;
+ 
+        redEquipment.IdleState.XInput = xInput;
+        redEquipment.IdleState.YInput = yInput;
+        redEquipment.IdleState.LeftClickInput = player.InputHandler.leftClickInput;
+
+        redEquipment.MoveState.XInput = xInput;
+        redEquipment.MoveState.YInput = yInput;
+        redEquipment.MoveState.LeftClickInput = player.InputHandler.leftClickInput;
+
+        redEquipment.EffectState.XInput = xInput;
+        redEquipment.EffectState.YInput = yInput;
+        redEquipment.EffectState.LeftClickInput = player.InputHandler.leftClickInput;
+        
+        //TODO: copy 9 lines above for yellow & blue
 
     }
 
@@ -62,5 +81,17 @@ public class PlayerState : EntityState
     public override void DoChecks()
     {
 
+    }
+
+     public void SetMoveAnimation(float x, float y)
+    {
+        player.Anim.SetFloat("Horizontal", x);
+        player.Anim.SetFloat("Vertical", y);
+    }
+
+    public void SetIdleAnimation(float x, float y)
+    {
+        player.Anim.SetFloat("IdleHorizontal", x);
+        player.Anim.SetFloat("IdleVertical", y);
     }
 }
