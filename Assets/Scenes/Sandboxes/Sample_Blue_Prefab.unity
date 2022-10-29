@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 130460944}
   - component: {fileID: 130460943}
   - component: {fileID: 130460945}
+  - component: {fileID: 130460946}
   m_Layer: 7
   m_Name: Effect
   m_TagString: BlueEquipment
@@ -241,6 +242,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3697419a7c6007649bae663f8384a81a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!60 &130460946
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 130460941}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.24136698, y: 0.46795925}
+      - {x: -0.2993068, y: 0.4604203}
+      - {x: -0.40223682, y: 0.36046904}
+      - {x: -0.49057633, y: 0.08225748}
+      - {x: -0.49266008, y: -0.078307115}
+      - {x: -0.46042043, y: -0.20555672}
+      - {x: -0.3965826, y: -0.3529301}
+      - {x: -0.361092, y: -0.4060051}
+      - {x: -0.297422, y: -0.46042037}
+      - {x: -0.22210404, y: -0.46913213}
+      - {x: -0.21954069, y: -0.43780327}
+      - {x: -0.29984492, y: -0.38181147}
+      - {x: -0.35147303, y: -0.2807626}
+      - {x: -0.40673742, y: -0.035566557}
+      - {x: -0.38380536, y: 0.190216}
+      - {x: -0.30767477, y: 0.37751663}
+      - {x: -0.26753634, y: 0.422934}
+      - {x: -0.21388647, y: 0.43774372}
+      - {x: -0.22142541, y: 0.47118175}
 --- !u!1 &520054179
 GameObject:
   m_ObjectHideFlags: 0

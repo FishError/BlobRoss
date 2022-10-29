@@ -23,7 +23,7 @@ public class PaletteEffect : MonoBehaviour
     IEnumerator ShieldDuration()
     {
         yield return new WaitForSeconds(3f);
-        ResetEffectPosition();
+        ResetEffectProperties();
         this.gameObject.SetActive(false);
     }
 
@@ -32,9 +32,26 @@ public class PaletteEffect : MonoBehaviour
         transform.localPosition = direction * 0.25f;
     }
 
-    public void ResetEffectPosition()
+    public void ResetEffectProperties()
     {
         transform.localPosition = new Vector2(0f, 0.085f);
+        GetComponent<PolygonCollider2D>().enabled = false;
+
+    }
+
+    public void EnableCollider()
+    {
+        GetComponent<PolygonCollider2D>().enabled = true;
+    }
+
+    //The actual projectile is not implemented yet
+    private void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.tag == "Projectile")
+        {
+            print("hit");
+        }
+
     }
 
 }
