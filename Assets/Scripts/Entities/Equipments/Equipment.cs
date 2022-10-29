@@ -14,7 +14,6 @@ public class Equipment : Entity
     public EquipmentIdleState IdleState { get; protected set; }
     public EquipmentMoveState MoveState { get; protected set; }
     public EquipmentEffectState EffectState { get; protected set; }
-    public float transitionOffset;
     #endregion
 
     #region Animation References
@@ -28,6 +27,12 @@ public class Equipment : Entity
 
     #region Categorize Equipment
     public Color color { get; protected set; }
+    #endregion
+
+    #region Equipment Stats 
+    public bool OnCooldown { get; set; } 
+    public float Cooldown { get; set; } 
+    public float Range { get; set; } 
     #endregion
     
     protected override void Awake()
