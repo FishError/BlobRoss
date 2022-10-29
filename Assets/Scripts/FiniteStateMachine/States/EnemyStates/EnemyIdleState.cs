@@ -6,19 +6,20 @@ public class EnemyIdleState : EnemyState
 {
     protected float idleTime;
 
-    public EnemyIdleState(Enemy enemy, FiniteStateMachine stateMachine) : base(enemy, stateMachine) { }
+    public EnemyIdleState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
 
     public override void Enter()
     {
         base.Enter();
-        enemy.SetVelocityX(0);
-        enemy.SetVelocityY(0);
+        enemy.rb.velocity = Vector2.zero;
         SetRandomIdleTime();
+        enemy.SetAnimHorizontalVertical(enemy.lookAt);
     }
 
     public override void Exit()
     {
         base.Exit();
+        enemy.SetAnimHorizontalVertical(enemy.lookAt);
     }
 
     public override void LogicUpdate()
@@ -47,8 +48,8 @@ public class EnemyIdleState : EnemyState
         base.PhysicsUpdate();
     }
 
-    private void SetRandomIdleTime()
+    protected void SetRandomIdleTime()
     {
-        idleTime = Random.Range(1f, 2f);
+        idleTime = Random.Range(enemyData.MinIdleDuration, enemyData.MaxIdleDuration);
     }
 }
