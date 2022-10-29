@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class EquipmentState : EntityState
 {
+    #region GameObjects
+    protected GameObject playerGameObject;
+    #endregion
+
     protected Equipment equipment;
     protected EquipmentData equipmentData;
     private string animName;
@@ -43,6 +47,7 @@ public class EquipmentState : EntityState
         this.equipment = equipment;
         this.equipmentData = equipmentData;
         this.animName = animName;
+        this.playerGameObject = equipment.transform.parent.parent.gameObject;
     }
 
     //Gets called when entered a specific state
@@ -87,10 +92,8 @@ public class EquipmentState : EntityState
     {
         equipment.Anim.SetFloat("IdleHorizontal", x);
         equipment.Anim.SetFloat("IdleVertical", y);
-        equipment.Anim.SetFloat("offset",0f);
     }
 
-    // Setting the equipment's effect Move Blend tree animation based on player input (direction they're facing)
     protected void SetEffect(float x, float y)
     {
         equipment.Anim.SetFloat("EffectHorizontal", x);
@@ -98,9 +101,9 @@ public class EquipmentState : EntityState
     }
 
     protected void SyncAnimations(){
-        AnimatorStateInfo currentPlayerAnimState = equipment.transform.parent.parent.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo currentPlayerAnimState = playerGameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
         float offset = currentPlayerAnimState.normalizedTime % 1;
-        equipment.Anim.SetFloat("offset",offset+equipment.transitionOffset);
+        equipment.Anim.SetFloat("offset",offset);
     }
 
 }

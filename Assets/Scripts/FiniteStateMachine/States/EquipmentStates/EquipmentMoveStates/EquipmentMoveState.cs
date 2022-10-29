@@ -34,6 +34,7 @@ public class EquipmentMoveState : EquipmentState
         if (xInput == 0f && yInput == 0f)
         {
             SetIdle(equipment.LastX,equipment.LastY);
+            equipment.Anim.SetFloat("offset",0f);
             stateMachine.ChangeState(equipment.IdleState);
         }
         if (xInput == 0f && yInput != 0f)
@@ -45,6 +46,14 @@ public class EquipmentMoveState : EquipmentState
         {
             SetIdle(equipment.LastX,equipment.LastY);
             equipment.LastX = xInput;
+        }
+
+        /* 
+            If Equipment enters Move state but effect animation 
+            is still playing, sync equipment and blob animation
+        */ 
+        if(!equipment.Anim.GetCurrentAnimatorStateInfo(0).IsName("Move")){
+            SyncAnimations();
         }
     }
 
