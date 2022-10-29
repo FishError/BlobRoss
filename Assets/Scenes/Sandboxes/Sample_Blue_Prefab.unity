@@ -288,7 +288,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e5d1590d1e54c4f898dad4e9db6fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionOffset: 0.15943
   equipmentData: {fileID: 11400000, guid: 3ecdf5b946d744d1eaf5519b3b3f8318, type: 2}
 --- !u!95 &520054182
 Animator:
@@ -514,6 +513,7 @@ GameObject:
   - component: {fileID: 1271617745}
   - component: {fileID: 1271617746}
   - component: {fileID: 1271617748}
+  - component: {fileID: 1271617749}
   m_Layer: 7
   m_Name: Palette
   m_TagString: BlueEquipment
@@ -642,8 +642,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db3d2228357b49e4e9347016dd74fbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitionOffset: 0.15943
   equipmentData: {fileID: 11400000, guid: 4cf99e84d9c889149b45a3b8dc30bbec, type: 2}
+--- !u!114 &1271617749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271617743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152e604cc78cded4e88c0b59ac3f72db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2037059108
 GameObject:
   m_ObjectHideFlags: 0

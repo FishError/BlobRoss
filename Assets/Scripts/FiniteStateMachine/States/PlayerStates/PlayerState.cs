@@ -66,8 +66,18 @@ public class PlayerState : EntityState
         redEquipment.EffectState.XInput = xInput;
         redEquipment.EffectState.YInput = yInput;
         redEquipment.EffectState.LeftClickInput = player.InputHandler.leftClickInput;
-        
+
         //TODO: copy 9 lines above for yellow & blue
+        //Blue Equipment
+        blueEquipment.IdleState.XInput = xInput;
+        blueEquipment.IdleState.YInput = yInput;
+        blueEquipment.IdleState.RightClickInput = player.InputHandler.rightClickInput;
+
+        blueEquipment.MoveState.XInput = xInput;
+        blueEquipment.MoveState.YInput = yInput;
+        blueEquipment.MoveState.RightClickInput = player.InputHandler.rightClickInput;
+
+        blueEquipment.EffectState.RightClickInput = player.InputHandler.rightClickInput;
 
     }
 
