@@ -3,18 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewPlayerData", menuName = "Data/Player Data/Base Data")]
-public class PlayerData : ScriptableObject
+public class PlayerData : CombatEntityData
 {
-    [Header("Health")]
-    public float HealthPoints = 100f;
-    public float Defense = 5f;
-
-    [Header("Attack")]
-    public float Attack = 5f;
-    public float AttackSpeed = 1f;
+    [Header("Crit")]
     public float CritRate = 0.05f;
     public float CritDamage = 0.5f;
-
-    [Header("Move State")]
-    public float MovementVelocity = 5f;
 }

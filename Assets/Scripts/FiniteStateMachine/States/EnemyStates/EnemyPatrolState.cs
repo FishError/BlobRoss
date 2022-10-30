@@ -7,7 +7,7 @@ public class EnemyPatrolState : EnemyState
     protected float patrolDistance;
     protected Vector2 patrolDirection;
 
-    public EnemyPatrolState(Enemy enemy, FiniteStateMachine stateMachine) : base(enemy, stateMachine) { }
+    public EnemyPatrolState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
 
     public override void Enter()
     {
@@ -15,11 +15,13 @@ public class EnemyPatrolState : EnemyState
         SetRandomPatrolDistance();
         SetRandomPatrolDirection();
         enemy.lookAt = patrolDirection;
+        enemy.SetAnimHorizontalVertical(enemy.lookAt);
     }
 
     public override void Exit()
     {
         base.Exit();
+        enemy.SetAnimHorizontalVertical(enemy.lookAt);
     }
 
     public override void LogicUpdate()
@@ -37,9 +39,6 @@ public class EnemyPatrolState : EnemyState
             stateMachine.ChangeState(enemy.IdleState);
             return;
         }
-
-        enemy.lookAt = patrolDirection;
-        enemy.SetVelocity(enemy.PatrolVelocity, patrolDirection);
     }
 
     public override void DoChecks()
@@ -50,9 +49,12 @@ public class EnemyPatrolState : EnemyState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+
+        enemy.lookAt = patrolDirection;
+        enemy.SetVelocity(enemy.PatrolSpeed, patrolDirection);
     }
 
-    private void SetRandomPatrolDirection()
+    protected void SetRandomPatrolDirection()
     {
         Vector2 randomVector = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
         RaycastHit2D hit = Physics2D.CircleCast(enemy.transform.position, 0.6f, randomVector, patrolDistance, enemy.unWalkableLayers);
@@ -66,8 +68,8 @@ public class EnemyPatrolState : EnemyState
         }
     }
 
-    private void SetRandomPatrolDistance()
+    protected void SetRandomPatrolDistance()
     {
-        patrolDistance = Random.Range(2f, 4f);
+        patrolDistance = Random.Range(enemyData.MinPatrolDistance, enemyData.MaxPatrolDistance);
     }
 }

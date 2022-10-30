@@ -6,21 +6,23 @@ public class EnemyAlertedState : EnemyState
 {
     protected float alertTime;
 
-    public EnemyAlertedState(Enemy enemy, FiniteStateMachine stateMachine) : base(enemy, stateMachine) { }
+    public EnemyAlertedState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
 
     public override void Enter()
     {
         base.Enter();
-        enemy.SetVelocityX(0);
-        enemy.SetVelocityY(0);
-        enemy.lookAt = enemy.target.transform.position - enemy.transform.position;
-        alertTime = 0.5f;
-        // play enemy alerted animation (if we have one)
+        enemy.rb.velocity = Vector2.zero;
+        enemy.lookAt = (enemy.target.transform.position - enemy.transform.position).normalized;
+        enemy.SetAnimHorizontalVertical(enemy.lookAt);
+        enemy.transform.Find("Alert").gameObject.SetActive(true);
+        alertTime = enemyData.AlertTime;
     }
 
     public override void Exit()
     {
         base.Exit();
+        enemy.SetAnimHorizontalVertical(enemy.lookAt);
+        enemy.transform.Find("Alert").gameObject.SetActive(false);
     }
 
     public override void LogicUpdate()
@@ -29,11 +31,12 @@ public class EnemyAlertedState : EnemyState
 
         if (Time.time >= startTime + alertTime)
         {
-            stateMachine.ChangeState(enemy.ChaseTargetState);
+            stateMachine.ChangeState(enemy.AgroState);
             return;
         }
 
-        enemy.lookAt = enemy.target.transform.position - enemy.transform.position;
+        enemy.lookAt = (enemy.target.transform.position - enemy.transform.position).normalized;
+        enemy.SetAnimHorizontalVertical(enemy.lookAt);
     }
 
     public override void DoChecks()

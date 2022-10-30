@@ -5,10 +5,15 @@ using UnityEngine;
 public class EnemyState : EntityState
 {
     protected Enemy enemy;
+    protected EnemyData enemyData;
 
-    public EnemyState(Enemy enemy, FiniteStateMachine stateMachine): base(stateMachine)
+    private string animName;
+
+    public EnemyState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName): base(stateMachine)
     {
         this.enemy = enemy;
+        this.enemyData = enemyData;
+        this.animName = animName;
     }
 
     public override void DoChecks()
@@ -21,11 +26,12 @@ public class EnemyState : EntityState
         base.Enter();
         DoChecks();
         startPosition = enemy.transform.position;
+        enemy.Anim.SetBool(animName, true);
     }
 
     public override void Exit()
     {
-        
+        enemy.Anim.SetBool(animName, false);
     }
 
     public override void LogicUpdate()

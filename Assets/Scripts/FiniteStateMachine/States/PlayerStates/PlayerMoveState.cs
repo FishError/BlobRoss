@@ -25,14 +25,14 @@ public class PlayerMoveState : PlayerState
             SetMoveAnimation(xInput,yInput);
             player.LastX = xInput;
             player.LastY = yInput;
-            player.SetVelocityX(playerData.MovementVelocity * xInput);
+            player.SetVelocityX(playerData.MovementSpeed * xInput);
         }
         if (yInput > 0 || yInput < 0)
         {
             SetMoveAnimation(xInput,yInput);
             player.LastX = xInput;
             player.LastY = yInput;
-            player.SetVelocityY(playerData.MovementVelocity * yInput);
+            player.SetVelocityY(playerData.MovementSpeed * yInput);
         }
         if (xInput == 0f && yInput == 0f)
         {
@@ -43,13 +43,13 @@ public class PlayerMoveState : PlayerState
         {
             SetIdleAnimation(player.LastX, player.LastY);
             player.LastY = yInput;
-            player.SetVelocityX(playerData.MovementVelocity * xInput);
+            player.SetVelocityX(playerData.MovementSpeed * xInput);
         }
         if (xInput != 0f && yInput == 0f)
         {
             SetIdleAnimation(player.LastX, player.LastY);
             player.LastX = xInput;
-            player.SetVelocityY(playerData.MovementVelocity * yInput);
+            player.SetVelocityY(playerData.MovementSpeed * yInput);
         }
         
     }

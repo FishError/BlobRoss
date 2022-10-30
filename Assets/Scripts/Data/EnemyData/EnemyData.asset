@@ -20,3 +20,5 @@ MonoBehaviour:
   MovementVelocity: 4
   FieldOFView: 130
   DetectionRange: 8
+  MinIdleDuration: 1
+  MaxIdleDuration: 2

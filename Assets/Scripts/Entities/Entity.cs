@@ -60,4 +60,22 @@ public abstract class Entity : MonoBehaviour
         rb.velocity = workspace;
         CurrentVelocity = workspace;
     }
+
+    #region Collision Functions
+    // if  current state need to do something on collision
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        StateMachine.CurrentState.OnCollisionEnter(collision);
+    }
+
+    protected virtual void OnCollisionStay2D(Collision2D collision)
+    {
+        StateMachine.CurrentState.OnCollisionStay(collision);
+    }
+
+    protected virtual void OnCollisionExit2D(Collision2D collision)
+    {
+        StateMachine.CurrentState.OnCollisionExit(collision);
+    }
+    #endregion
 }
