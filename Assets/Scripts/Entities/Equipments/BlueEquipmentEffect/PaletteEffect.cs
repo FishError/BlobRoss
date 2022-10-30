@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class PaletteEffect : MonoBehaviour
 {
     private Vector2 direction;
+    private int enemyHitCounter = 0;
+    private BlueEquipment equipment;
 
     private void OnEnable()
     {
@@ -13,6 +15,11 @@ public class PaletteEffect : MonoBehaviour
         direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
         direction.Normalize();
         transform.right = -direction;
+    }
+
+    private void Start()
+    {
+         equipment = transform.parent.GetComponent<BlueEquipment>();
     }
 
     private void Update()
@@ -35,23 +42,24 @@ public class PaletteEffect : MonoBehaviour
     public void ResetEffectProperties()
     {
         transform.localPosition = new Vector2(0f, 0.085f);
-        GetComponent<PolygonCollider2D>().enabled = false;
 
     }
 
-    public void EnableCollider()
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        GetComponent<PolygonCollider2D>().enabled = true;
-    }
-
-    //The actual projectile is not implemented yet
-    private void OnCollisionEnter(Collision other)
-    {
-        if(other.gameObject.tag == "Projectile")
+        //Projectiles not implemented yet
+        if (other.gameObject.layer == LayerMask.NameToLayer("Projectile"))
         {
             print("hit");
+            Destroy(other.gameObject);
         }
 
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            //Enemy makes contact with shield
+
+
+        }
     }
 
 }

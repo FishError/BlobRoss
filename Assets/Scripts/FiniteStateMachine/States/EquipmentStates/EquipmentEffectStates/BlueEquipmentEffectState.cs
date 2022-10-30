@@ -24,7 +24,6 @@ public class BlueEquipmentEffectState : EquipmentEffectState
     private void ActivateEffect()
     {
         //When using effect
-        Debug.Log("Shield Up");
 
         if (xInput > 0 || xInput < 0)
         {
