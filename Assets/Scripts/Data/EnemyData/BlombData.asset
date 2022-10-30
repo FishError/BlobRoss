@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57954d4e61d601e4580aeaa51ea586fa, type: 3}
   m_Name: BlombData
   m_EditorClassIdentifier: 
-  HealthPoints: 0
-  Defense: 0
-  Attack: 0
+  HealthPoints: 20
+  Defense: 5
+  Attack: 10
   AttackSpeed: 0
-  MovementSpeed: 0
+  MovementSpeed: 7
   FieldOfView: 130
   DetectionRange: 8
   MinIdleDuration: 1
@@ -25,4 +25,4 @@ MonoBehaviour:
   MinPatrolDistance: 2
   MaxPatrolDistance: 4
   AlertTime: 1
-  AttackRange: 0
+  AttackRange: 0.5
