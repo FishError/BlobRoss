@@ -19,17 +19,23 @@ public class PaletteEffect : MonoBehaviour
 
     private void Start()
     {
-         equipment = transform.parent.GetComponent<BlueEquipment>();
+        equipment = transform.parent.GetComponent<BlueEquipment>(); 
     }
 
     private void Update()
     {
         StartCoroutine(ShieldDuration());
+        if(enemyHitCounter > equipment.Durability)
+        {
+            ResetEffectProperties();
+            this.gameObject.SetActive(false);
+            enemyHitCounter = 0;
+        }
     }
 
     IEnumerator ShieldDuration()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(equipment.Duration);
         ResetEffectProperties();
         this.gameObject.SetActive(false);
     }
@@ -42,6 +48,7 @@ public class PaletteEffect : MonoBehaviour
     public void ResetEffectProperties()
     {
         transform.localPosition = new Vector2(0f, 0.085f);
+        enemyHitCounter = 0;
 
     }
 
@@ -50,15 +57,14 @@ public class PaletteEffect : MonoBehaviour
         //Projectiles not implemented yet
         if (other.gameObject.layer == LayerMask.NameToLayer("Projectile"))
         {
-            print("hit");
+            enemyHitCounter++;
             Destroy(other.gameObject);
         }
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             //Enemy makes contact with shield
-
-
+            enemyHitCounter++;
         }
     }
 
