@@ -9,7 +9,7 @@ public class Blomb : Enemy
         base.Awake();
         IdleState = new BlombIdleState(this, StateMachine, (EnemyData)data, "Idle");
         PatrolState = new BlombPatrolState(this, StateMachine, (EnemyData)data, "Move");
-        AlertedState = new BlombAlertedState(this, StateMachine, (EnemyData)data, "Alerted");
+        AlertedState = new BlombAlertedState(this, StateMachine, (EnemyData)data, "Idle");
         AgroState = new BlombAgroState(this, StateMachine, (EnemyData)data, "Move");
         AttackState = new BlombAttackState(this, StateMachine, (EnemyData)data, "Attack");
         CCState = new EnemyCCState(this, StateMachine, (EnemyData)data, "Idle");
