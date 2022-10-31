@@ -18,11 +18,12 @@ MonoBehaviour:
   AttackSpeed: 2
   MovementSpeed: 6
   FieldOfView: 130
-  DetectionRange: 8
+  DetectionRange: 10
   MinIdleDuration: 1
   MaxIdleDuration: 2
   PatrolSpeed: 2
   MinPatrolDistance: 2
   MaxPatrolDistance: 4
   AlertTime: 1
-  AttackRange: 7
+  AttackRange: 8
+  ProjectileSpeed: 7

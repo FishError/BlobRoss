@@ -23,4 +23,5 @@ public class EnemyData : CombatEntityData
 
     [Header("Attack State")]
     public float AttackRange;
+    public float ProjectileSpeed;
 }

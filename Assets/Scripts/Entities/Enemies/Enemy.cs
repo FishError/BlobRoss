@@ -113,4 +113,9 @@ public class Enemy : CombatEntity
             collision.gameObject.GetComponent<Player>().ModifyHealthPoints(-Attack);
         }
     }
+
+    public void DestroyObject(GameObject obj, float time)
+    {
+        Destroy(obj, time);
+    }
 }

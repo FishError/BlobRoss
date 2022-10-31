@@ -8,7 +8,7 @@ public class CombatEntity : Entity
     [SerializeField] protected CombatEntityData data;
     #endregion
 
-    #region Comabt Entity Current Stats
+    #region Combat Entity Current Stats
     // Health & Defense
     public float MaxHealthPoints { get; set; }
     public float HealthPoints { get; set; }

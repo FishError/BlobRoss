@@ -37,6 +37,10 @@ public class ArchieAgroState : EnemyAgroState
 
     public override void PhysicsUpdate()
     {
-        base.PhysicsUpdate();
+        //enemy.navMeshAgent.nextPosition = enemy.transform.position;
+        //enemy.navMeshAgent.SetDestination(enemy.target.transform.position);
+        //enemy.rb.velocity = enemy.navMeshAgent.velocity;
+        //enemy.lookAt = enemy.rb.velocity.normalized;
+        //enemy.SetAnimHorizontalVertical(enemy.lookAt);
     }
 }
