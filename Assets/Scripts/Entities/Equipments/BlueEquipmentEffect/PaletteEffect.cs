@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PaletteEffect : MonoBehaviour
 {
     private Vector2 direction;
-    private int enemyHitCounter = 0;
+    private int enemyHitCounter = -1;
     private BlueEquipment equipment;
 
     private void OnEnable()
@@ -29,7 +29,7 @@ public class PaletteEffect : MonoBehaviour
         {
             ResetEffectProperties();
             this.gameObject.SetActive(false);
-            enemyHitCounter = 0;
+            enemyHitCounter = -1;
         }
     }
 
@@ -48,7 +48,7 @@ public class PaletteEffect : MonoBehaviour
     public void ResetEffectProperties()
     {
         transform.localPosition = new Vector2(0f, 0.085f);
-        enemyHitCounter = 0;
+        enemyHitCounter = -1;
 
     }
 
@@ -63,7 +63,9 @@ public class PaletteEffect : MonoBehaviour
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            //Enemy makes contact with shield
+            Enemy enemy = other.gameObject.GetComponent<Enemy>();
+            enemy.CCState.SetKnockbackValues(-other.GetContact(0).normal * 3, 0.5f);
+            enemy.StateMachine.ChangeState(enemy.CCState);
             enemyHitCounter++;
         }
     }
