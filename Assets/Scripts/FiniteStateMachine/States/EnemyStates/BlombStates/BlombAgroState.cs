@@ -42,6 +42,9 @@ public class BlombAgroState : EnemyAgroState
     public override void OnCollisionEnter(Collision2D collision)
     {
         base.OnCollisionEnter(collision);
-        stateMachine.ChangeState(enemy.AttackState);
+        if (collision.gameObject.tag == "Player")
+        {
+            stateMachine.ChangeState(enemy.AttackState);
+        }
     }
 }

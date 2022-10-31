@@ -110,6 +110,7 @@ public class Enemy : CombatEntity
         base.OnCollisionEnter2D(collision);
         if (collision.gameObject.tag == "Player")
         {
+            StateMachine.ChangeState(AlertedState);
             collision.gameObject.GetComponent<Player>().ModifyHealthPoints(-Attack);
         }
     }

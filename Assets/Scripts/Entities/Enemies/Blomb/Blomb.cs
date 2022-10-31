@@ -35,9 +35,10 @@ public class Blomb : Enemy
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        StateMachine.CurrentState.OnCollisionExit(collision);
-        if (collision.gameObject.tag == "Player")
+        StateMachine.CurrentState.OnCollisionEnter(collision);
+        if (collision.gameObject.tag == "Player" && StateMachine.CurrentState != AttackState)
         {
+            StateMachine.ChangeState(AlertedState);
             collision.gameObject.GetComponent<Player>().ModifyHealthPoints(-Attack/2);
         }
     }
