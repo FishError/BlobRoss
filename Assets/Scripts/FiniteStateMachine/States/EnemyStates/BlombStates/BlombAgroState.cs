@@ -9,16 +9,24 @@ public class BlombAgroState : EnemyAgroState
     public override void Enter()
     {
         base.Enter();
+        enemy.Anim.speed = 1.2f;
     }
 
     public override void Exit()
     {
         base.Exit();
+        enemy.Anim.speed = 1f;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        float distance = Vector2.Distance(enemy.target.transform.position, enemy.transform.position);
+        if (distance <= enemyData.AttackRange)
+        {
+            stateMachine.ChangeState(enemy.AttackState);
+            return;
+        }
     }
 
     public override void DoChecks()
@@ -29,5 +37,11 @@ public class BlombAgroState : EnemyAgroState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+    }
+
+    public override void OnCollisionEnter(Collision2D collision)
+    {
+        base.OnCollisionEnter(collision);
+        stateMachine.ChangeState(enemy.AttackState);
     }
 }

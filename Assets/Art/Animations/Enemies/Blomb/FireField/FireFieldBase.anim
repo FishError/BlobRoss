@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BlombMoveDown
+  m_Name: FireFieldBase
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,18 +20,14 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -1599676140, guid: b7e336544e30d474caa63c4f368efdf9, type: 3}
-    - time: 0.14285715
-      value: {fileID: -1058530721, guid: b7e336544e30d474caa63c4f368efdf9, type: 3}
-    - time: 0.2857143
-      value: {fileID: 1380342197, guid: b7e336544e30d474caa63c4f368efdf9, type: 3}
-    - time: 0.42857143
-      value: {fileID: 348281069, guid: b7e336544e30d474caa63c4f368efdf9, type: 3}
+      value: {fileID: 316304286, guid: 8f2aa4d8e0c94b5489028c47d1341a41, type: 3}
+    - time: 0.25
+      value: {fileID: 74514338, guid: 8f2aa4d8e0c94b5489028c47d1341a41, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 7
+  m_SampleRate: 4
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -46,16 +42,14 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -1599676140, guid: b7e336544e30d474caa63c4f368efdf9, type: 3}
-    - {fileID: -1058530721, guid: b7e336544e30d474caa63c4f368efdf9, type: 3}
-    - {fileID: 1380342197, guid: b7e336544e30d474caa63c4f368efdf9, type: 3}
-    - {fileID: 348281069, guid: b7e336544e30d474caa63c4f368efdf9, type: 3}
+    - {fileID: 316304286, guid: 8f2aa4d8e0c94b5489028c47d1341a41, type: 3}
+    - {fileID: 74514338, guid: 8f2aa4d8e0c94b5489028c47d1341a41, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.5714286
+    m_StopTime: 0.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

@@ -25,4 +25,4 @@ MonoBehaviour:
   MinPatrolDistance: 2
   MaxPatrolDistance: 4
   AlertTime: 1
-  AttackRange: 0.5
+  AttackRange: 1

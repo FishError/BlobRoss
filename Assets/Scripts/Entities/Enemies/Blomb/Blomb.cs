@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Blomb : Enemy
 {
+    public GameObject fieldOnDeath;
+
     protected override void Awake()
     {
         base.Awake();
@@ -13,7 +15,7 @@ public class Blomb : Enemy
         AgroState = new BlombAgroState(this, StateMachine, (EnemyData)data, "Move");
         AttackState = new BlombAttackState(this, StateMachine, (EnemyData)data, "Attack");
         CCState = new EnemyCCState(this, StateMachine, (EnemyData)data, "Idle");
-        DeathState = new EnemyDeathState(this, StateMachine, (EnemyData)data, "Death");
+        DeathState = new BlombDeathState(this, StateMachine, (EnemyData)data, "Death");
     }
 
     protected override void Start()
@@ -29,5 +31,14 @@ public class Blomb : Enemy
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
+    }
+
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        StateMachine.CurrentState.OnCollisionExit(collision);
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<Player>().ModifyHealthPoints(-Attack/2);
+        }
     }
 }

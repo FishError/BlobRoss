@@ -58,6 +58,7 @@ public class DasherAttackState : EnemyAttackState
 
     public override void OnCollisionEnter(Collision2D collision)
     {
+        base.OnCollisionEnter(collision);
         if (Time.time > startTime + attackChargeUpTime)
         {
             enemy.CCState.SetKnockbackValues(collision.GetContact(0).normal * 5, 0.3f);

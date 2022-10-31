@@ -7,6 +7,7 @@ public class Player : CombatEntity
     #region States
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
+    public PlayerCCState CCState { get; private set; }
     #endregion
 
     #region Animation References
@@ -29,6 +30,7 @@ public class Player : CombatEntity
         base.Awake();
         IdleState = new PlayerIdleState(this, StateMachine, (PlayerData)data, "Idle");
         MoveState = new PlayerMoveState(this, StateMachine, (PlayerData)data, "Move");
+        CCState = new PlayerCCState(this, StateMachine, (PlayerData)data, "Idle");
     }
 
     protected override void Start()
