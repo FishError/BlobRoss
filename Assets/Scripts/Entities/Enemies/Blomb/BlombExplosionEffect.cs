@@ -13,7 +13,7 @@ public class BlombExplosionEffect : MonoBehaviour
             Player player = collision.gameObject.GetComponent<Player>();
             player.CCState.SetKnockbackValues(-collision.GetContact(0).normal * blomb.KnockbackForce, blomb.KnockbackDuration);
             player.StateMachine.ChangeState(player.CCState);
-            player.ModifyHealthPoints(-blomb.ExplosionDamage);
+            player.ModifyHealthPoints(-blomb.Attack * blomb.ExplosionDamageRatio);
         }
     }
 }

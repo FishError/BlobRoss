@@ -6,9 +6,9 @@ public class Blomb : Enemy
 {
     public GameObject fieldOnDeath;
 
-    public float ExplosionDamage;
-    public float KnockbackForce;
-    public float KnockbackDuration;
+    public float ExplosionDamageRatio { get; set; }
+    public float KnockbackForce { get; set; }
+    public float KnockbackDuration { get; set; }
 
     protected override void Awake()
     {
@@ -25,7 +25,7 @@ public class Blomb : Enemy
     protected override void Start()
     {
         base.Start();
-        ExplosionDamage = ((BlombData)data).ExplosionDamage;
+        ExplosionDamageRatio = ((BlombData)data).ExplosionDamageRatio;
         KnockbackForce = ((BlombData)data).KnockbackForce;
         KnockbackDuration = ((BlombData)data).KnockbackDuration;
     }

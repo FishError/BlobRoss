@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57954d4e61d601e4580aeaa51ea586fa, type: 3}
-  m_Name: BlombData
+  m_Script: {fileID: 11500000, guid: f63b08dd16769814b9536e43d2646fcc, type: 3}
+  m_Name: RedDasherData
   m_EditorClassIdentifier: 
-  HealthPoints: 20
-  Defense: 5
-  Attack: 10
+  HealthPoints: 0
+  Defense: 0
+  Attack: 0
   AttackSpeed: 0
-  MovementSpeed: 7
+  MovementSpeed: 0
   FieldOfView: 130
   DetectionRange: 8
   MinIdleDuration: 1
@@ -25,4 +25,8 @@ MonoBehaviour:
   MinPatrolDistance: 2
   MaxPatrolDistance: 4
   AlertTime: 1
-  AttackRange: 1.15
+  AttackRange: 0
+  DashDamageScaling: 0
+  DashSpeedScaling: 0
+  KnockbackForce: 0
+  KnockbackDuration: 0

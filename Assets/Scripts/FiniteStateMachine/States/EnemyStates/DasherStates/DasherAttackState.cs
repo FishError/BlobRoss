@@ -52,7 +52,7 @@ public class DasherAttackState : EnemyAttackState
         AnimatorStateInfo animState = enemy.Anim.GetCurrentAnimatorStateInfo(0);
         if (animState.IsName("Attack") && animState.normalizedTime >= attackChargeUpTime)
         {
-            enemy.rb.velocity = attackDirection * enemy.MovementSpeed * 2;
+            enemy.rb.velocity = attackDirection * enemy.MovementSpeed * ((Dasher)enemy).DashSpeedRatio;
         }
     }
 
@@ -62,9 +62,9 @@ public class DasherAttackState : EnemyAttackState
         if (Time.time > startTime + attackChargeUpTime)
         {
             if (collision.gameObject.tag == "Player")
-                collision.gameObject.GetComponent<Player>().ModifyHealthPoints(-enemy.Attack);
+                collision.gameObject.GetComponent<Player>().ModifyHealthPoints(-enemy.Attack * ((Dasher)enemy).DashDamageRatio);
 
-            enemy.CCState.SetKnockbackValues(collision.GetContact(0).normal * 5, 0.3f);
+            enemy.CCState.SetKnockbackValues(collision.GetContact(0).normal * ((Dasher)enemy).KnockbackForce, ((Dasher)enemy).KnockbackDuration);
             stateMachine.ChangeState(enemy.CCState);
         }
     }
