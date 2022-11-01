@@ -21,9 +21,9 @@ MonoBehaviour:
   DetectionRange: 10
   MinIdleDuration: 1
   MaxIdleDuration: 2
-  PatrolSpeed: 2
-  MinPatrolDistance: 2
-  MaxPatrolDistance: 4
+  PatrolSpeed: 3
+  MinPatrolDistance: 1
+  MaxPatrolDistance: 2
   AlertTime: 1
   AttackRange: 8
   ProjectileSpeed: 7

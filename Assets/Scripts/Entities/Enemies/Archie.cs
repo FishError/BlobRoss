@@ -6,7 +6,6 @@ public class Archie : Enemy
 {
     [SerializeField] protected GameObject arrow;
     [SerializeField] protected Transform spawnPosition;
-
     protected override void Awake()
     {
         base.Awake();

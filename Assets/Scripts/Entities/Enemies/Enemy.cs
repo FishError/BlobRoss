@@ -15,6 +15,7 @@ public class Enemy : CombatEntity
     public EnemyAttackState AttackState { get; protected set; }
     public EnemyCCState CCState { get; protected set; }
     public EnemyDeathState DeathState { get; protected set; }
+
     #endregion
 
     #region Enemy Current Stats

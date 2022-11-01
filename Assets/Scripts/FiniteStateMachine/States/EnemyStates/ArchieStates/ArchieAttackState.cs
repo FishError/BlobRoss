@@ -5,10 +5,13 @@ using UnityEngine;
 public class ArchieAttackState : EnemyAttackState
 {
     protected Vector2 attackDirection;
+    protected float attackAngle;
     protected static float attackChargeUpTime = 0.5f;
     protected GameObject arrow;
     protected Transform spawnPosition;
     private GameObject arrowObj;
+    private float moveDistance;
+    protected Vector2 moveDirection;
     public ArchieAttackState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName, GameObject arrow, Transform spawnPosition) : base(enemy, stateMachine, enemyData, animName)
     {
         this.arrow = arrow;
@@ -23,9 +26,19 @@ public class ArchieAttackState : EnemyAttackState
         enemy.lookAt = attackDirection;
         enemy.SetAnimHorizontalVertical(enemy.lookAt);
 
-        arrowObj = GameObject.Instantiate(this.arrow, this.spawnPosition.position, Quaternion.identity);
+        SetRandomMoveDistance();
+        SetRandomMoveDirection();
+
+        float posX = enemy.transform.position.x - enemy.target.transform.position.x;
+        float posY = enemy.transform.position.y - enemy.target.transform.position.y;
+        attackAngle = Mathf.Atan2(posY, posX) * Mathf.Rad2Deg;
+
+        Quaternion rot = Quaternion.Euler(new Vector3(0f, 0f, attackAngle + 90f));
+
+        arrowObj = GameObject.Instantiate(this.arrow, this.spawnPosition.position, rot);
         Rigidbody2D arrow_rb = arrowObj.GetComponent<Rigidbody2D>();
         arrow_rb.velocity = attackDirection * enemyData.ProjectileSpeed;
+
     }
 
     public override void Exit()
@@ -38,12 +51,12 @@ public class ArchieAttackState : EnemyAttackState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        //Archie moves to better position
+        
+        enemy.DestroyObject(arrowObj, 2f);
 
         AnimatorStateInfo animState = enemy.Anim.GetCurrentAnimatorStateInfo(0);
         if (animState.IsName("Attack") && animState.normalizedTime >= 1)
         {
-            enemy.DestroyObject(arrowObj, 2f);
             stateMachine.ChangeState(enemy.AgroState);
             return;
         }
@@ -57,6 +70,7 @@ public class ArchieAttackState : EnemyAttackState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+        enemy.SetVelocity(enemy.PatrolSpeed, moveDirection);
     }
 
     public override void OnCollisionEnter(Collision2D collision)
@@ -66,5 +80,25 @@ public class ArchieAttackState : EnemyAttackState
             enemy.CCState.SetKnockbackValues(collision.GetContact(0).normal * 5, 0.3f);
             stateMachine.ChangeState(enemy.CCState);
         }
+    }
+
+    protected void SetRandomMoveDirection()
+    {
+        Vector2 randomVector = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
+        RaycastHit2D hit = Physics2D.CircleCast(enemy.transform.position, 0.6f, randomVector, moveDistance, enemy.unWalkableLayers);
+        if (hit.collider == null)
+        {
+            moveDirection = randomVector.normalized;
+        }
+        else
+        {
+            moveDirection = ((Vector3)(hit.point + hit.normal * moveDistance) - enemy.transform.position).normalized;
+        }
+
+    }
+
+    protected void SetRandomMoveDistance()
+    {
+        moveDistance = Random.Range(enemyData.MinPatrolDistance, enemyData.MaxPatrolDistance);
     }
 }
