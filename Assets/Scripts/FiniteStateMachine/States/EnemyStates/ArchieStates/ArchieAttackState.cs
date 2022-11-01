@@ -29,9 +29,7 @@ public class ArchieAttackState : EnemyAttackState
         SetRandomMoveDistance();
         SetRandomMoveDirection();
 
-        float posX = enemy.transform.position.x - enemy.target.transform.position.x;
-        float posY = enemy.transform.position.y - enemy.target.transform.position.y;
-        attackAngle = Mathf.Atan2(posY, posX) * Mathf.Rad2Deg;
+        attackAngle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
 
         Quaternion rot = Quaternion.Euler(new Vector3(0f, 0f, attackAngle + 90f));
 
