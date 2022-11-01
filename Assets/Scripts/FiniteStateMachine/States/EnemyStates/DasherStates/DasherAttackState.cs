@@ -61,6 +61,9 @@ public class DasherAttackState : EnemyAttackState
         base.OnCollisionEnter(collision);
         if (Time.time > startTime + attackChargeUpTime)
         {
+            if (collision.gameObject.tag == "Player")
+                collision.gameObject.GetComponent<Player>().ModifyHealthPoints(-enemy.Attack);
+
             enemy.CCState.SetKnockbackValues(collision.GetContact(0).normal * 5, 0.3f);
             stateMachine.ChangeState(enemy.CCState);
         }

@@ -6,6 +6,10 @@ public class Blomb : Enemy
 {
     public GameObject fieldOnDeath;
 
+    public float ExplosionDamage;
+    public float KnockbackForce;
+    public float KnockbackDuration;
+
     protected override void Awake()
     {
         base.Awake();
@@ -21,6 +25,9 @@ public class Blomb : Enemy
     protected override void Start()
     {
         base.Start();
+        ExplosionDamage = ((BlombData)data).ExplosionDamage;
+        KnockbackForce = ((BlombData)data).KnockbackForce;
+        KnockbackDuration = ((BlombData)data).KnockbackDuration;
     }
 
     protected override void Update()
@@ -31,15 +38,5 @@ public class Blomb : Enemy
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-    }
-
-    protected override void OnCollisionEnter2D(Collision2D collision)
-    {
-        StateMachine.CurrentState.OnCollisionEnter(collision);
-        if (collision.gameObject.tag == "Player" && StateMachine.CurrentState != AttackState)
-        {
-            StateMachine.ChangeState(AlertedState);
-            collision.gameObject.GetComponent<Player>().ModifyHealthPoints(-Attack/2);
-        }
     }
 }

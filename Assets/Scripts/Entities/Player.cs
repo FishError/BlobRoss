@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : CombatEntity
+public class Player : CombatOrganismEntity
 {
     #region States
     public PlayerIdleState IdleState { get; private set; }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CombatEntity : Entity
+public class CombatOrganismEntity : Entity
 {
     #region Combat Entity Data
     [SerializeField] protected CombatEntityData data;
@@ -49,6 +49,7 @@ public class CombatEntity : Entity
         HealthPoints += amt;
         if (HealthPoints < 0) HealthPoints = 0;
         else if (HealthPoints > MaxHealthPoints) HealthPoints = MaxHealthPoints;
+        print(gameObject.name + " HP: " + MaxHealthPoints + "/" + HealthPoints);
     }
 
     public void ScaleHealthPoints(float percent)

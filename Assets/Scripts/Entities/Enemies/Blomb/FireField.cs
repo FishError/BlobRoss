@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class EntityFieldInfo
 {
-    public CombatEntity entity { get; set; }
+    public CombatOrganismEntity entity { get; set; }
     public float timer { get; set; }
 
-    public EntityFieldInfo(CombatEntity entity, float timer)
+    public EntityFieldInfo(CombatOrganismEntity entity, float timer)
     {
         this.entity = entity;
         this.timer = timer;
@@ -47,7 +47,6 @@ public class FireField : MonoBehaviour
     {
         info.entity.ModifyHealthPoints(-damage);
         info.timer = Time.time + interval;
-        print(info.entity.HealthPoints);
     }
 
     private IEnumerator DestroyField()
@@ -60,7 +59,7 @@ public class FireField : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            EntityFieldInfo info = new EntityFieldInfo(collision.gameObject.GetComponent<CombatEntity>(), Time.time + interval);
+            EntityFieldInfo info = new EntityFieldInfo(collision.gameObject.GetComponent<CombatOrganismEntity>(), Time.time + interval);
             entitesInField.Add(info);
         }
     }
@@ -69,7 +68,7 @@ public class FireField : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            EntityFieldInfo info = entitesInField.Find(i => i.entity == collision.gameObject.GetComponent<CombatEntity>());
+            EntityFieldInfo info = entitesInField.Find(i => i.entity == collision.gameObject.GetComponent<CombatOrganismEntity>());
             entitesInField.Remove(info);
         }
     }

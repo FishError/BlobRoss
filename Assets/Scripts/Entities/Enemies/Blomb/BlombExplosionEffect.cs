@@ -11,10 +11,9 @@ public class BlombExplosionEffect : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             Player player = collision.gameObject.GetComponent<Player>();
-            player.CCState.SetKnockbackValues(-collision.GetContact(0).normal * 7, 0.5f);
+            player.CCState.SetKnockbackValues(-collision.GetContact(0).normal * blomb.KnockbackForce, blomb.KnockbackDuration);
             player.StateMachine.ChangeState(player.CCState);
-            player.ModifyHealthPoints(-blomb.Attack);
-            print(player.HealthPoints);
+            player.ModifyHealthPoints(-blomb.ExplosionDamage);
         }
     }
 }
