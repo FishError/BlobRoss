@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f4ec23b7f2e2ef43b20517182b5ad89, type: 3}
   m_Name: RedBlombData
   m_EditorClassIdentifier: 
-  HealthPoints: 0
-  Defense: 0
-  Attack: 0
+  HealthPoints: 20
+  Defense: 5
+  Attack: 5
   AttackSpeed: 0
-  MovementSpeed: 0
+  MovementSpeed: 7
   FieldOfView: 130
   DetectionRange: 8
   MinIdleDuration: 1
@@ -25,7 +25,7 @@ MonoBehaviour:
   MinPatrolDistance: 2
   MaxPatrolDistance: 4
   AlertTime: 1
-  AttackRange: 0
-  ExplosionDamage: 0
-  KnockbackForce: 0
-  KnockbackDuration: 0
+  AttackRange: 1
+  ExplosionDamageRatio: 2
+  KnockbackForce: 7
+  KnockbackDuration: 0.5
