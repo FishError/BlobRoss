@@ -17,7 +17,7 @@ public class EquipmentState : EntityState
     protected float yInput;
     protected bool leftClickInput;
     //Put same for rightClickInput
-    //Put same for spaceClickInput
+    protected bool spaceClickInput;
     #endregion
 
     public float XInput{
@@ -36,6 +36,11 @@ public class EquipmentState : EntityState
     }
     //Put same for RightClickInput
     //Put same for SpaceClickInput
+    public bool SpaceClickInput
+    {
+        get { return spaceClickInput; }
+        set { spaceClickInput = value; }
+    }
 
     public EquipmentState(Equipment equipment, FiniteStateMachine stateMachine, EquipmentData equipmentData, string animName): base(stateMachine)
     {

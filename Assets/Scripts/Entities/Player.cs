@@ -7,6 +7,7 @@ public class Player : CombatEntity
     #region States
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
+    public PlayerYellowState YellowState { get; private set; }
     #endregion
 
     #region Animation References
@@ -29,6 +30,7 @@ public class Player : CombatEntity
         base.Awake();
         IdleState = new PlayerIdleState(this, StateMachine, (PlayerData)data, "Idle");
         MoveState = new PlayerMoveState(this, StateMachine, (PlayerData)data, "Move");
+        YellowState = new PlayerYellowState(this, StateMachine, (PlayerData)data, "Yellow");
     }
 
     protected override void Start()
@@ -45,6 +47,8 @@ public class Player : CombatEntity
         CritRate = ((PlayerData)data).CritRate;
         CritDamage = ((PlayerData)data).CritDamage;
         MovementSpeed = data.MovementSpeed;
+        LastX = 0;
+        LastY = -1;
     }
 
     protected override void Update()

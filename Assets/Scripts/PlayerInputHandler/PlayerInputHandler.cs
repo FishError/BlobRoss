@@ -9,7 +9,7 @@ public class PlayerInputHandler : MonoBehaviour
     public float NormInputX { get; private set; }
     public float NormInputY { get; private set; }
     public bool leftClickInput { get; private set; }
-
+    public bool spaceClickInput { get; private set; }
 
     private void OnMovement(InputValue value)
     {
@@ -31,6 +31,18 @@ public class PlayerInputHandler : MonoBehaviour
     // OnDefend
 
     // OnUtil
+    private void OnDash(InputValue value)
+    {
+        print(value.Get<float>());
+        if (value.Get<float>() == 1)
+        {
+            spaceClickInput = true;
+        }
+        else
+        {
+            spaceClickInput = false;
+        }
+    }
 
 
     private void FixedUpdate()
