@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : CombatEntity
+public class Player : CombatOrganismEntity
 {
     #region States
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
     public PlayerYellowState YellowState { get; private set; }
+    public PlayerCCState CCState { get; private set; }
     #endregion
 
     #region Animation References
@@ -31,6 +32,7 @@ public class Player : CombatEntity
         IdleState = new PlayerIdleState(this, StateMachine, (PlayerData)data, "Idle");
         MoveState = new PlayerMoveState(this, StateMachine, (PlayerData)data, "Move");
         YellowState = new PlayerYellowState(this, StateMachine, (PlayerData)data, "Yellow");
+        CCState = new PlayerCCState(this, StateMachine, (PlayerData)data, "Idle");
     }
 
     protected override void Start()

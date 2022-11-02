@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CombatEntity : Entity
+public class CombatOrganismEntity : Entity
 {
     #region Combat Entity Data
     [SerializeField] protected CombatEntityData data;
@@ -24,116 +24,151 @@ public class CombatEntity : Entity
 
     #region Stat Modifer Functions
     // Health
-    public void ModifyMaxHealthPoints(float amt)
+    public virtual void ModifyMaxHealthPoints(float amt)
     {
         MaxHealthPoints += amt;
         if (MaxHealthPoints < 0) MaxHealthPoints = 0;
         ModifyHealthPoints(amt);
     }
 
-    public void ScaleMaxHealthPoints(float percent)
+    public virtual void ScaleMaxHealthPoints(float percent)
     {
         MaxHealthPoints *= percent;
         if (MaxHealthPoints < 0) MaxHealthPoints = 0;
         ModifyHealthPoints(MaxHealthPoints * (percent - 1f));
     }
 
-    public void ResetMaxHealthPoints()
+    public virtual void ResetMaxHealthPoints()
     {
         MaxHealthPoints = data.HealthPoints;
         if (HealthPoints > MaxHealthPoints) ResetHealthPoints();
     }
 
-    public void ModifyHealthPoints(float amt)
+    public virtual void ModifyHealthPoints(float amt)
     {
         HealthPoints += amt;
         if (HealthPoints < 0) HealthPoints = 0;
         else if (HealthPoints > MaxHealthPoints) HealthPoints = MaxHealthPoints;
+        print(gameObject.name + " HP: " + HealthPoints + "/" + MaxHealthPoints);
     }
 
-    public void ScaleHealthPoints(float percent)
+    public virtual void ScaleHealthPoints(float percent)
     {
         HealthPoints *= percent;
         if (HealthPoints < 0) HealthPoints = 0;
         else if (HealthPoints > MaxHealthPoints) HealthPoints = MaxHealthPoints;
     }
 
-    public void ResetHealthPoints()
+    public virtual void ResetHealthPoints()
     {
         HealthPoints = MaxHealthPoints;
     }
 
     // Defense
-    public void ModifyDefense(float amt)
+    public virtual void ModifyDefense(float amt)
     {
         Defense += amt;
         if (Defense < 0) Defense = 0;
     }
 
-    public void ScaleDefense(float percent)
+    public virtual void ScaleDefense(float percent)
     {
         Defense *= percent;
         if (Defense < 0) Defense = 0;
     }
 
-    public void ResetDefense()
+    public virtual void ResetDefense()
     {
         Defense = data.Defense;
     }
 
     // Attack
-    public void ModifyAttack(float amt)
+    public virtual void ModifyAttack(float amt)
     {
         Attack += amt;
         if (Attack < 0) Attack = 0;
     }
 
-    public void ScaleAttack(float percent)
+    public virtual void ScaleAttack(float percent)
     {
         Attack *= percent;
         if (Attack < 0) Attack = 0;
     }
 
-    public void ResetAttack()
+    public virtual void ResetAttack()
     {
         Attack = data.Attack;
     }
 
     // Attack Speed
-    public void ModifyAttackSpeed(float amt)
+    public virtual void ModifyAttackSpeed(float amt)
     {
         AttackSpeed += amt;
         if (AttackSpeed < 0) AttackSpeed = 0;
     }
 
-    public void ScaleAttackSpeed(float percent)
+    public virtual void ScaleAttackSpeed(float percent)
     {
         AttackSpeed *= percent;
         if (AttackSpeed < 0) AttackSpeed = 0;
     }
 
-    public void ResetAttackSpeed()
+    public virtual void ResetAttackSpeed()
     {
         AttackSpeed = data.AttackSpeed;
     }
 
     // Speed
-    public void ModifySpeed(float amt)
+    public virtual void ModifySpeed(float amt)
     {
         MovementSpeed += amt;
         if (MovementSpeed < 0) MovementSpeed = 0;
     }
 
-    public void ScaleSpeed(float percent)
+    public virtual void ScaleSpeed(float percent)
     {
         MovementSpeed *= percent;
         if (MovementSpeed < 0) MovementSpeed = 0;
 
     }
 
-    public void ResetSpeed()
+    public virtual void ResetSpeed()
     {
         MovementSpeed = data.MovementSpeed;
     }
     #endregion
+
+    #region Status Effects
+    public List<StatusEffect> statusEffects;
+    #endregion
+
+    protected override void Start()
+    {
+        base.Start();
+        statusEffects = new List<StatusEffect>();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        ApplyStatusEffects();
+    }
+
+    public virtual void AddStatusEffect(StatusEffect statusEffect)
+    {
+        statusEffects.Add(statusEffect);
+    }
+
+    public virtual void RemoveStatusEffect(StatusEffect statusEffect)
+    {
+        statusEffects.Remove(statusEffect);
+    }
+
+    protected virtual void ApplyStatusEffects()
+    {
+        foreach(StatusEffect se in statusEffects)
+        {
+            se.Effect();
+        }
+    }
 }
