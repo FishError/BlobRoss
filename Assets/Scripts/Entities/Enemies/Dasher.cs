@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Dasher : Enemy
 {
+    public float DashDamageRatio { get; set; }
+    public float DashSpeedRatio { get; set; }
+    public float KnockbackForce { get; set; }
+    public float KnockbackDuration { get; set; }
+
     protected override void Awake()
     {
         base.Awake();
@@ -19,6 +24,10 @@ public class Dasher : Enemy
     protected override void Start()
     {
         base.Start();
+        DashDamageRatio = ((DasherData)data).DashDamageRatio;
+        DashSpeedRatio = ((DasherData)data).DashSpeedRatio;
+        KnockbackForce = ((DasherData)data).KnockbackForce;
+        KnockbackDuration = ((DasherData)data).KnockbackDuration;
     }
 
     protected override void Update()

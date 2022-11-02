@@ -12,6 +12,7 @@ public class EnemyAlertedState : EnemyState
     {
         base.Enter();
         enemy.rb.velocity = Vector2.zero;
+        enemy.alerted = true;
         enemy.lookAt = (enemy.target.transform.position - enemy.transform.position).normalized;
         enemy.SetAnimHorizontalVertical(enemy.lookAt);
         enemy.transform.Find("Alert").gameObject.SetActive(true);
