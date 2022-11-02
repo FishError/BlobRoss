@@ -137,4 +137,32 @@ public class CombatOrganismEntity : Entity
         MovementSpeed = data.MovementSpeed;
     }
     #endregion
+
+    #region Status Effects
+    public List<StatusEffect> statusEffects;
+    #endregion
+
+    protected override void Update()
+    {
+        base.Update();
+        ApplyStatusEffects();
+    }
+
+    protected virtual void AddStatusEffect(StatusEffect statusEffect)
+    {
+        statusEffects.Add(statusEffect);
+    }
+
+    protected virtual void RemoveStatusEffect(StatusEffect statusEffect)
+    {
+        statusEffects.Remove(statusEffect);
+    }
+
+    protected virtual void ApplyStatusEffects()
+    {
+        foreach(StatusEffect se in statusEffects)
+        {
+            se.Effect();
+        }
+    }
 }
