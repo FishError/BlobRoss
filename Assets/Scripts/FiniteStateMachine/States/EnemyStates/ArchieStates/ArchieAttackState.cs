@@ -10,8 +10,7 @@ public class ArchieAttackState : EnemyAttackState
     protected GameObject arrow;
     protected Transform spawnPosition;
     private GameObject arrowObj;
-    private float moveDistance;
-    protected Vector2 moveDirection;
+
     public ArchieAttackState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName, GameObject arrow, Transform spawnPosition) : base(enemy, stateMachine, enemyData, animName)
     {
         this.arrow = arrow;
@@ -25,9 +24,6 @@ public class ArchieAttackState : EnemyAttackState
         attackDirection = (enemy.target.transform.position - enemy.transform.position).normalized;
         enemy.lookAt = attackDirection;
         enemy.SetAnimHorizontalVertical(enemy.lookAt);
-
-        SetRandomMoveDistance();
-        SetRandomMoveDirection();
 
         attackAngle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
 
@@ -68,7 +64,6 @@ public class ArchieAttackState : EnemyAttackState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        enemy.SetVelocity(enemy.PatrolSpeed, moveDirection);
     }
 
     public override void OnCollisionEnter(Collision2D collision)
@@ -78,25 +73,5 @@ public class ArchieAttackState : EnemyAttackState
             enemy.CCState.SetKnockbackValues(collision.GetContact(0).normal * 5, 0.3f);
             stateMachine.ChangeState(enemy.CCState);
         }
-    }
-
-    protected void SetRandomMoveDirection()
-    {
-        Vector2 randomVector = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-        RaycastHit2D hit = Physics2D.CircleCast(enemy.transform.position, 0.6f, randomVector, moveDistance, enemy.unWalkableLayers);
-        if (hit.collider == null)
-        {
-            moveDirection = randomVector.normalized;
-        }
-        else
-        {
-            moveDirection = ((Vector3)(hit.point + hit.normal * moveDistance) - enemy.transform.position).normalized;
-        }
-
-    }
-
-    protected void SetRandomMoveDistance()
-    {
-        moveDistance = Random.Range(enemyData.MinPatrolDistance, enemyData.MaxPatrolDistance);
     }
 }
