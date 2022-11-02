@@ -48,9 +48,4 @@ public class ArchieAgroState : EnemyAgroState
     {
         base.DoChecks();
     }
-
-    public override void PhysicsUpdate()
-    {
-        
-    }
 }

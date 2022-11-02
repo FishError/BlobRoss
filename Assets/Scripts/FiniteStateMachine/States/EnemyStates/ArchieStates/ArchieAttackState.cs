@@ -46,7 +46,7 @@ public class ArchieAttackState : EnemyAttackState
     {
         base.LogicUpdate();
         
-        enemy.DestroyObject(arrowObj, 2f);
+        enemy.DestroyObject(arrowObj, 2f); //TODO: change the time to destroy object using enemy data
 
         AnimatorStateInfo animState = enemy.Anim.GetCurrentAnimatorStateInfo(0);
         if (animState.IsName("Attack") && animState.normalizedTime >= 1)
@@ -64,14 +64,5 @@ public class ArchieAttackState : EnemyAttackState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-    }
-
-    public override void OnCollisionEnter(Collision2D collision)
-    {
-        if (Time.time > startTime + attackChargeUpTime)
-        {
-            enemy.CCState.SetKnockbackValues(collision.GetContact(0).normal * 5, 0.3f);
-            stateMachine.ChangeState(enemy.CCState);
-        }
     }
 }
