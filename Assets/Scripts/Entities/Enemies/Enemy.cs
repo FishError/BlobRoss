@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Enemy : CombatEntity
+public class Enemy : CombatOrganismEntity
 {
     #region States 
     // base states that all children are required to have but dont always have use
@@ -32,6 +32,7 @@ public class Enemy : CombatEntity
 
     [Header("Target Detection")]
     public GameObject target;
+    public bool alerted { get; set; }
     public Vector2 lookAt { get; set; }
 
     public LayerMask unWalkableLayers { get; set; }
@@ -111,7 +112,14 @@ public class Enemy : CombatEntity
         base.OnCollisionEnter2D(collision);
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<Player>().ModifyHealthPoints(-Attack);
+            if (StateMachine.CurrentState != AttackState && StateMachine.CurrentState != CCState)
+            {
+                collision.gameObject.GetComponent<Player>().ModifyHealthPoints(-Attack);
+            }
+            if (!alerted)
+            {
+                StateMachine.ChangeState(AlertedState);
+            }
         }
     }
 
