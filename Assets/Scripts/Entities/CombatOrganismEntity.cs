@@ -49,7 +49,7 @@ public class CombatOrganismEntity : Entity
         HealthPoints += amt;
         if (HealthPoints < 0) HealthPoints = 0;
         else if (HealthPoints > MaxHealthPoints) HealthPoints = MaxHealthPoints;
-        print(gameObject.name + " HP: " + MaxHealthPoints + "/" + HealthPoints);
+        print(gameObject.name + " HP: " + HealthPoints + "/" + MaxHealthPoints);
     }
 
     public virtual void ScaleHealthPoints(float percent)
@@ -142,18 +142,24 @@ public class CombatOrganismEntity : Entity
     public List<StatusEffect> statusEffects;
     #endregion
 
+    protected override void Start()
+    {
+        base.Start();
+        statusEffects = new List<StatusEffect>();
+    }
+
     protected override void Update()
     {
         base.Update();
         ApplyStatusEffects();
     }
 
-    protected virtual void AddStatusEffect(StatusEffect statusEffect)
+    public virtual void AddStatusEffect(StatusEffect statusEffect)
     {
         statusEffects.Add(statusEffect);
     }
 
-    protected virtual void RemoveStatusEffect(StatusEffect statusEffect)
+    public virtual void RemoveStatusEffect(StatusEffect statusEffect)
     {
         statusEffects.Remove(statusEffect);
     }

@@ -19,7 +19,7 @@ public abstract class StatusEffect
 
     public virtual void End()
     {
-        entity.statusEffects.Remove(this);
+        entity.RemoveStatusEffect(this);
     }
 
     public abstract void Effect();

@@ -6,12 +6,12 @@ using UnityEngine;
 public class EntityFieldInfo
 {
     public CombatOrganismEntity entity { get; set; }
-    public float timer { get; set; }
+    public StatusEffect statusEffect { get; set; }
 
-    public EntityFieldInfo(CombatOrganismEntity entity, float timer)
+    public EntityFieldInfo(CombatOrganismEntity entity, StatusEffect statusEffect)
     {
         this.entity = entity;
-        this.timer = timer;
+        this.statusEffect = statusEffect;
     }
 }
 
@@ -21,7 +21,6 @@ public class FireField : MonoBehaviour
     public float interval;
     public float duration;
 
-    private float timer;
     private List<EntityFieldInfo> entitesInField; 
 
     // Start is called before the first frame update
@@ -29,24 +28,6 @@ public class FireField : MonoBehaviour
     {
         entitesInField = new List<EntityFieldInfo>();
         yield return StartCoroutine(DestroyField());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        foreach(EntityFieldInfo info in entitesInField)
-        {
-            if (Time.time >= info.timer)
-            {
-                FieldEffect(info);
-            }
-        }
-    }
-
-    private void FieldEffect(EntityFieldInfo info)
-    {
-        info.entity.ModifyHealthPoints(-damage);
-        info.timer = Time.time + interval;
     }
 
     private IEnumerator DestroyField()
@@ -59,17 +40,24 @@ public class FireField : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            EntityFieldInfo info = new EntityFieldInfo(collision.gameObject.GetComponent<CombatOrganismEntity>(), Time.time + interval);
+            CombatOrganismEntity entity = collision.gameObject.GetComponent<CombatOrganismEntity>();
+            StatusEffect burn = new Burn(entity, damage, interval, Mathf.Infinity);
+            entity.AddStatusEffect(burn);
+            EntityFieldInfo info = new EntityFieldInfo(entity, burn);
             entitesInField.Add(info);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        CombatOrganismEntity entity = collision.gameObject.GetComponent<CombatOrganismEntity>();
+        if (entity != null)
         {
-            EntityFieldInfo info = entitesInField.Find(i => i.entity == collision.gameObject.GetComponent<CombatOrganismEntity>());
-            entitesInField.Remove(info);
+            EntityFieldInfo info = entitesInField.Find(i => i.entity == entity);
+            if (info != null)
+            {
+                info.statusEffect.End();
+            }
         }
     }
 }
