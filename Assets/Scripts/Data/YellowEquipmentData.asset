@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: YellowEquipmentData
   m_EditorClassIdentifier: 
   rate: 1
-  DashVelocity: 10
+  DashVelocity: 20
   DashCooldown: 2
-  Duration: 1
+  Duration: 0.2
