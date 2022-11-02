@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class YellowEquipment : Equipment
 {
+    public Player player { get; set; }
+
     #region Yellow Equipment Stats
     public float Duration { get; set; }
     public float Velocity { get; set; }

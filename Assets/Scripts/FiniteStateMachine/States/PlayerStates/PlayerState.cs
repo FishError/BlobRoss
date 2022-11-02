@@ -29,6 +29,7 @@ public class PlayerState : EntityState
         this.redEquipment = equipments.GetChild(0).GetComponent<RedEquipment>();
         // this.blueEquipment = equipments.GetChild(1).GetComponent<Equipment>();
         this.yellowEquipment = equipments.GetChild(2).GetComponent<YellowEquipment>();
+        this.yellowEquipment.player = player;
         // Debug.Log(blueEquipment.name);
         // Debug.Log(yellowEquipment.name);
     }
@@ -39,6 +40,7 @@ public class PlayerState : EntityState
         base.Enter();
         DoChecks();
         player.Anim.SetBool(animName, true);
+        //Debug.Log(animName);
         startPosition = player.transform.position;
     }
 
@@ -46,6 +48,7 @@ public class PlayerState : EntityState
     public override void Exit()
     {
         player.Anim.SetBool(animName, false);
+        Debug.Log(animName);
     }
 
     //Gets called every frame

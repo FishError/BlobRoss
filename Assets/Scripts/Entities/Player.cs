@@ -31,7 +31,7 @@ public class Player : CombatOrganismEntity
         base.Awake();
         IdleState = new PlayerIdleState(this, StateMachine, (PlayerData)data, "Idle");
         MoveState = new PlayerMoveState(this, StateMachine, (PlayerData)data, "Move");
-        YellowState = new PlayerYellowState(this, StateMachine, (PlayerData)data, "Yellow");
+        YellowState = new PlayerYellowState(this, StateMachine, (PlayerData)data, "Move");
         CCState = new PlayerCCState(this, StateMachine, (PlayerData)data, "Idle");
     }
 

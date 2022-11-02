@@ -4,18 +4,17 @@ using UnityEngine;
 
 public class YellowEquipmentEffectState : EquipmentEffectState
 {
-    private Player player;
+    public YellowEquipment yellowEquipment;
+    public Vector2 direction;
     public TrailRenderer trailRenderer { get; private set; }
 
     public YellowEquipmentEffectState(Equipment equipment, FiniteStateMachine stateMachine, EquipmentData equipmentData, string animName) : base(equipment, stateMachine, equipmentData, animName) {
-
+        yellowEquipment = (YellowEquipment)equipment;
     }
 
     public override void Enter()
     {
         base.Enter();
-        player = equipment.transform.parent.transform.parent.GetComponent<Player>();
-
         trailRenderer = equipment.GetComponent<TrailRenderer>();
 
         trailRenderer.emitting = true;
@@ -24,16 +23,32 @@ public class YellowEquipmentEffectState : EquipmentEffectState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        stateMachine.ChangeState(player.YellowState);
+        stateMachine.ChangeState(yellowEquipment.player.YellowState);
 
         equipment.StartCoroutine(StopDash());
+    }
+
+    public void YellowStateEnter()
+    {
+        direction = new Vector2(yellowEquipment.player.LastX, yellowEquipment.player.LastY);
+        yellowEquipment.player.SetVelocity(yellowEquipment.Velocity, direction);
+    }
+
+    public void YellowStatePhysicsUpdate()
+    {
+        yellowEquipment.player.SetVelocity(yellowEquipment.Velocity, direction);
+    }
+
+    public void YellowStateExit()
+    {
+
     }
 
     private IEnumerator StopDash()
     {
         yield return new WaitForSeconds(equipmentData.Duration);
         trailRenderer.emitting = false;
-        stateMachine.ChangeState(player.IdleState);
+        yellowEquipment.player.StateMachine.ChangeState(yellowEquipment.player.IdleState);
         stateMachine.ChangeState(equipment.IdleState);
         equipment.OnCooldown = true;
     }

@@ -6,16 +6,14 @@ public class PlayerYellowState : PlayerState
 {
     public PlayerYellowState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, string animName) : base(player, stateMachine, playerData, animName) {}
 
-    private YellowEquipment yellowEquipment;
-    private Vector2 direction;
+    //private YellowEquipment yellowEquipment;
 
     public override void Enter()
     {
         base.Enter();
-        yellowEquipment = base.yellowEquipment.transform.GetComponent<YellowEquipment>();
+        // yellowEquipment = base.yellowEquipment.transform.GetComponent<YellowEquipment>();
 
-        direction = new Vector2(player.LastX, player.LastY);
-        player.SetVelocity(yellowEquipment.Velocity, direction);
+        ((YellowEquipmentEffectState)yellowEquipment.EffectState).YellowStateEnter();
     }
 
     public override void Exit()
@@ -27,7 +25,7 @@ public class PlayerYellowState : PlayerState
     {
         base.LogicUpdate();
 
-        player.SetVelocity(yellowEquipment.Velocity, direction);
+        ((YellowEquipmentEffectState)yellowEquipment.EffectState).YellowStatePhysicsUpdate();
     }
 
     public override void PhysicsUpdate()
