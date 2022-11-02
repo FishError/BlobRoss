@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ArchieCCState : EnemyCCState
 {
-    public ArchieCCState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName)
+    public ArchieCCState(Archie enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName)
     {
     }
 

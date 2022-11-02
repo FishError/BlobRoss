@@ -9,21 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57954d4e61d601e4580aeaa51ea586fa, type: 3}
+  m_Script: {fileID: 11500000, guid: 87d356a56efdbd34d9bb89bdf09f4760, type: 3}
   m_Name: ArchieData
   m_EditorClassIdentifier: 
   HealthPoints: 30
-  Defense: 3
+  Defense: 5
   Attack: 8
   AttackSpeed: 2
   MovementSpeed: 6
-  FieldOfView: 130
+  FieldOfView: 150
   DetectionRange: 10
   MinIdleDuration: 1
   MaxIdleDuration: 2
-  PatrolSpeed: 3
-  MinPatrolDistance: 1
-  MaxPatrolDistance: 2
+  PatrolSpeed: 2
+  MinPatrolDistance: 2
+  MaxPatrolDistance: 4
   AlertTime: 1
-  AttackRange: 8
+  AttackRange: 11
+  ArcherDamageRatio: 1
+  ArcherSpeedRatio: 1
   ProjectileSpeed: 7
+  DestroyTime: 3

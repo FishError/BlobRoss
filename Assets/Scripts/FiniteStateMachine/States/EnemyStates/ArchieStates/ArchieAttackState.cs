@@ -6,12 +6,11 @@ public class ArchieAttackState : EnemyAttackState
 {
     protected Vector2 attackDirection;
     protected float attackAngle;
-    protected static float attackChargeUpTime = 0.5f;
     protected GameObject arrow;
     protected Transform spawnPosition;
     private GameObject arrowObj;
 
-    public ArchieAttackState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName, GameObject arrow, Transform spawnPosition) : base(enemy, stateMachine, enemyData, animName)
+    public ArchieAttackState(Archie enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName, GameObject arrow, Transform spawnPosition) : base(enemy, stateMachine, enemyData, animName)
     {
         this.arrow = arrow;
         this.spawnPosition = spawnPosition;
@@ -30,8 +29,9 @@ public class ArchieAttackState : EnemyAttackState
         Quaternion rot = Quaternion.Euler(new Vector3(0f, 0f, attackAngle - 90f));
 
         arrowObj = GameObject.Instantiate(this.arrow, this.spawnPosition.position, rot);
+        arrowObj.GetComponent<Arrow>().archie = (Archie)enemy;
         Rigidbody2D arrow_rb = arrowObj.GetComponent<Rigidbody2D>();
-        arrow_rb.velocity = attackDirection * enemyData.ProjectileSpeed;
+        arrow_rb.velocity = attackDirection * ((Archie)enemy).ProjectileSpeed;
 
     }
 
@@ -46,7 +46,7 @@ public class ArchieAttackState : EnemyAttackState
     {
         base.LogicUpdate();
         
-        enemy.DestroyObject(arrowObj, 2f); //TODO: change the time to destroy object using enemy data
+        enemy.DestroyObject(arrowObj, ((Archie)enemy).DestroyTime);
 
         AnimatorStateInfo animState = enemy.Anim.GetCurrentAnimatorStateInfo(0);
         if (animState.IsName("Attack") && animState.normalizedTime >= 1)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ArchieIdleState : EnemyIdleState
 {
-    public ArchieIdleState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName)
+    public ArchieIdleState(Archie enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName)
     {
     }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ArchiePatrolState : EnemyPatrolState
 {
-    public ArchiePatrolState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName)
+    public ArchiePatrolState(Archie enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName)
     {
     }
 

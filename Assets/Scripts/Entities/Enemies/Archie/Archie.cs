@@ -6,6 +6,11 @@ public class Archie : Enemy
 {
     [SerializeField] protected GameObject arrow;
     [SerializeField] protected Transform spawnPosition;
+
+    public float ArcherDamageRatio { get; set; }
+    public float ArcherSpeedRatio { get; set; }
+    public float ProjectileSpeed { get; set; }
+    public float DestroyTime { get; set; }
     protected override void Awake()
     {
         base.Awake();
@@ -21,6 +26,10 @@ public class Archie : Enemy
     protected override void Start()
     {
         base.Start();
+        ArcherDamageRatio = ((ArchieData)data).ArcherDamageRatio;
+        ArcherSpeedRatio = ((ArchieData)data).ArcherSpeedRatio;
+        ProjectileSpeed = ((ArchieData)data).ProjectileSpeed;
+        DestroyTime = ((ArchieData)data).DestroyTime;
     }
 
     protected override void Update()
