@@ -6,12 +6,9 @@ public class PlayerYellowState : PlayerState
 {
     public PlayerYellowState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, string animName) : base(player, stateMachine, playerData, animName) {}
 
-    //private YellowEquipment yellowEquipment;
-
     public override void Enter()
     {
         base.Enter();
-        // yellowEquipment = base.yellowEquipment.transform.GetComponent<YellowEquipment>();
 
         ((YellowEquipmentEffectState)yellowEquipment.EffectState).YellowStateEnter();
     }

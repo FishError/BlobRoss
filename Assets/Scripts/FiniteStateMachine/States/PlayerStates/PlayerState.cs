@@ -40,7 +40,6 @@ public class PlayerState : EntityState
         base.Enter();
         DoChecks();
         player.Anim.SetBool(animName, true);
-        //Debug.Log(animName);
         startPosition = player.transform.position;
     }
 
@@ -48,7 +47,6 @@ public class PlayerState : EntityState
     public override void Exit()
     {
         player.Anim.SetBool(animName, false);
-        Debug.Log(animName);
     }
 
     //Gets called every frame

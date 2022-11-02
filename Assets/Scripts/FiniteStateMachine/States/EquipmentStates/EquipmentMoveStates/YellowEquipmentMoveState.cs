@@ -11,8 +11,7 @@ public class YellowEquipmentMoveState : EquipmentMoveState
     {
         base.LogicUpdate();
 
-        if (spaceClickInput && !equipment.OnCooldown){
-            //equipment.OnCooldown = true;
+        if (spaceClickInput && !equipment.OnCooldown) {
             stateMachine.ChangeState(equipment.EffectState);
         } 
     }

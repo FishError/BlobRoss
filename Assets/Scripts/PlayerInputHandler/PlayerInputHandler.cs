@@ -33,7 +33,6 @@ public class PlayerInputHandler : MonoBehaviour
     // OnUtil
     private void OnDash(InputValue value)
     {
-        print(value.Get<float>());
         if (value.Get<float>() == 1)
         {
             spaceClickInput = true;

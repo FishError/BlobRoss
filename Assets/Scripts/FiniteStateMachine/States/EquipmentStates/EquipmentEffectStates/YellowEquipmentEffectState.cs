@@ -16,14 +16,14 @@ public class YellowEquipmentEffectState : EquipmentEffectState
     {
         base.Enter();
         trailRenderer = equipment.GetComponent<TrailRenderer>();
-
         trailRenderer.emitting = true;
+        yellowEquipment.player.StateMachine.ChangeState(yellowEquipment.player.YellowState);
+
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        stateMachine.ChangeState(yellowEquipment.player.YellowState);
 
         equipment.StartCoroutine(StopDash());
     }

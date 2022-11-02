@@ -13,8 +13,6 @@ public class YellowEquipmentIdleState : EquipmentIdleState
 
         if(spaceClickInput && !equipment.OnCooldown)
         {
-            //Debug.Log("here");
-            //equipment.OnCooldown = true;
             stateMachine.ChangeState(equipment.EffectState);
         }
     }
