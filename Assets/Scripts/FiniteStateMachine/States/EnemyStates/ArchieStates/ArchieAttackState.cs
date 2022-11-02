@@ -27,7 +27,7 @@ public class ArchieAttackState : EnemyAttackState
 
         attackAngle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
 
-        Quaternion rot = Quaternion.Euler(new Vector3(0f, 0f, attackAngle + 90f));
+        Quaternion rot = Quaternion.Euler(new Vector3(0f, 0f, attackAngle - 90f));
 
         arrowObj = GameObject.Instantiate(this.arrow, this.spawnPosition.position, rot);
         Rigidbody2D arrow_rb = arrowObj.GetComponent<Rigidbody2D>();
