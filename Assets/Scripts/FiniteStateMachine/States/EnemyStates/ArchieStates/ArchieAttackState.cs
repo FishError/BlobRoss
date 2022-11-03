@@ -33,6 +33,8 @@ public class ArchieAttackState : EnemyAttackState
         Rigidbody2D arrow_rb = arrowObj.GetComponent<Rigidbody2D>();
         arrow_rb.velocity = attackDirection * ((Archie)enemy).ProjectileSpeed;
 
+        enemy.DestroyObject(arrowObj, ((Archie)enemy).DestroyTime);
+
     }
 
     public override void Exit()
@@ -45,8 +47,6 @@ public class ArchieAttackState : EnemyAttackState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        
-        enemy.DestroyObject(arrowObj, ((Archie)enemy).DestroyTime);
 
         AnimatorStateInfo animState = enemy.Anim.GetCurrentAnimatorStateInfo(0);
         if (animState.IsName("Attack") && animState.normalizedTime >= 1)

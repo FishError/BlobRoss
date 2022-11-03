@@ -6,8 +6,9 @@ using UnityEngine.InputSystem;
 public class PaletteEffect : MonoBehaviour
 {
     private Vector2 direction;
-    private int enemyHitCounter = -1;
+    private int enemyHitCounter = 0;
     private BlueEquipment equipment;
+    private bool animState;
 
     private void OnEnable()
     {
@@ -15,6 +16,7 @@ public class PaletteEffect : MonoBehaviour
         direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
         direction.Normalize();
         transform.right = -direction;
+        animState = false;
     }
 
     private void Start()
@@ -29,7 +31,7 @@ public class PaletteEffect : MonoBehaviour
         {
             ResetEffectProperties();
             this.gameObject.SetActive(false);
-            enemyHitCounter = -1;
+            enemyHitCounter = 0;
         }
     }
 
@@ -48,25 +50,33 @@ public class PaletteEffect : MonoBehaviour
     public void ResetEffectProperties()
     {
         transform.localPosition = new Vector2(0f, 0.085f);
-        enemyHitCounter = -1;
+        enemyHitCounter = 0;
 
+    }
+
+    public void EffectIsFinished()
+    {
+        animState = true;
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        //Projectiles not implemented yet
         if (other.gameObject.layer == LayerMask.NameToLayer("Projectile"))
         {
             enemyHitCounter++;
             Destroy(other.gameObject);
         }
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") && animState)
+        {
+            enemyHitCounter++;
+        }
+        
+        if(other.gameObject.layer == LayerMask.NameToLayer("Enemy") && !animState)
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            enemy.CCState.SetKnockbackValues(-other.GetContact(0).normal * 3, 0.5f);
+            enemy.CCState.SetKnockbackValues(-other.GetContact(0).normal * equipment.Knockback, 0.5f);
             enemy.StateMachine.ChangeState(enemy.CCState);
-            enemyHitCounter++;
         }
     }
 
