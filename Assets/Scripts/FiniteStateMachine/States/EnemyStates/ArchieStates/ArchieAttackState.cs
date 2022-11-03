@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ArchieAttackState : EnemyAttackState
 {
-    protected Vector2 attackDirection;
     protected float attackAngle;
     protected GameObject arrow;
     protected Transform spawnPosition;
@@ -20,18 +19,17 @@ public class ArchieAttackState : EnemyAttackState
     {
         base.Enter();
         enemy.rb.velocity = Vector2.zero;
-        attackDirection = (enemy.target.transform.position - enemy.transform.position).normalized;
-        enemy.lookAt = attackDirection;
+        enemy.lookAt = targetDirection;
         enemy.SetAnimHorizontalVertical(enemy.lookAt);
 
-        attackAngle = Mathf.Atan2(attackDirection.y, attackDirection.x) * Mathf.Rad2Deg;
+        attackAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
 
         Quaternion rot = Quaternion.Euler(new Vector3(0f, 0f, attackAngle - 90f));
 
         arrowObj = GameObject.Instantiate(this.arrow, this.spawnPosition.position, rot);
         arrowObj.GetComponent<Arrow>().archie = (Archie)enemy;
         Rigidbody2D arrow_rb = arrowObj.GetComponent<Rigidbody2D>();
-        arrow_rb.velocity = attackDirection * ((Archie)enemy).ProjectileSpeed;
+        arrow_rb.velocity = targetDirection * ((Archie)enemy).ProjectileSpeed;
 
         enemy.DestroyObject(arrowObj, ((Archie)enemy).DestroyTime);
 
@@ -48,12 +46,7 @@ public class ArchieAttackState : EnemyAttackState
     {
         base.LogicUpdate();
 
-        AnimatorStateInfo animState = enemy.Anim.GetCurrentAnimatorStateInfo(0);
-        if (animState.IsName("Attack") && animState.normalizedTime >= 1)
-        {
-            stateMachine.ChangeState(enemy.AgroState);
-            return;
-        }
+        AnimationHasFinish(enemy.AgroState);
     }
 
     public override void DoChecks()

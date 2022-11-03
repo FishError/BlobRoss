@@ -21,7 +21,6 @@ public class BlombAgroState : EnemyAgroState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        float distance = Vector2.Distance(enemy.target.transform.position, enemy.transform.position);
         if (distance <= enemyData.AttackRange)
         {
             stateMachine.ChangeState(enemy.AttackState);

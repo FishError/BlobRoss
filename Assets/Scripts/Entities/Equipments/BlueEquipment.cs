@@ -36,7 +36,6 @@ public class BlueEquipment : Equipment
         if (Cooldown > 0 && OnCooldown)
         {
             Cooldown -= Time.deltaTime;
-            //Debug.Log(Cooldown);
         }
 
         if (Cooldown <= 0)

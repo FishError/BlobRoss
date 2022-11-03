@@ -8,9 +8,9 @@ public class Arrow : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Player player = other.gameObject.GetComponent<Player>();
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+            Player player = other.gameObject.GetComponent<Player>();
             Destroy(gameObject);
             player.ModifyHealthPoints(-archie.Attack * archie.ArcherDamageRatio);
         }
