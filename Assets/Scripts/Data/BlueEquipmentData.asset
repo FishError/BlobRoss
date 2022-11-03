@@ -16,5 +16,5 @@ MonoBehaviour:
   duration: 3
   durability: 5
   knockback: 3
-  cooldown: 15
+  cooldown: 1
   range: 2

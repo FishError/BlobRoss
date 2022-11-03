@@ -12,21 +12,17 @@ public class PaletteEffect : MonoBehaviour
 
     private void OnEnable()
     {
+        equipment = transform.parent.GetComponent<BlueEquipment>();
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
         direction.Normalize();
         transform.right = -direction;
         animState = false;
-    }
-
-    private void Start()
-    {
-        equipment = transform.parent.GetComponent<BlueEquipment>(); 
+        StartCoroutine(ShieldDuration());
     }
 
     private void Update()
     {
-        StartCoroutine(ShieldDuration());
         if(enemyHitCounter > equipment.Durability)
         {
             ResetEffectProperties();
@@ -67,16 +63,18 @@ public class PaletteEffect : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") && animState)
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            enemyHitCounter++;
-        }
-        
-        if(other.gameObject.layer == LayerMask.NameToLayer("Enemy") && !animState)
-        {
-            Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            enemy.CCState.SetKnockbackValues(-other.GetContact(0).normal * equipment.Knockback, 0.5f);
-            enemy.StateMachine.ChangeState(enemy.CCState);
+            if (animState)
+            {
+                enemyHitCounter++;
+            }
+            else
+            {
+                Enemy enemy = other.gameObject.GetComponent<Enemy>();
+                enemy.CCState.SetKnockbackValues(-other.GetContact(0).normal * equipment.Knockback, 0.5f);
+                enemy.StateMachine.ChangeState(enemy.CCState);
+            }
         }
     }
 
