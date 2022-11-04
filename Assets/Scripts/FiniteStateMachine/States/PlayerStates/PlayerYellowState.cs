@@ -22,12 +22,12 @@ public class PlayerYellowState : PlayerState
     {
         base.LogicUpdate();
 
-        ((YellowEquipmentEffectState)yellowEquipment.EffectState).YellowStatePhysicsUpdate();
     }
 
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+        ((YellowEquipmentEffectState)yellowEquipment.EffectState).YellowStatePhysicsUpdate();
     }
 
     public override void DoChecks()

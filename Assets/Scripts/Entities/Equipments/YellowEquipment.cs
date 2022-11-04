@@ -18,15 +18,17 @@ public class YellowEquipment : Equipment
         MoveState = new YellowEquipmentMoveState(this, StateMachine, equipmentData, "EquipmentMove");
         EffectState = new YellowEquipmentEffectState(this, StateMachine, equipmentData, "EquipmentEffect");
         color = Color.Yellow;
+
+        Duration = equipmentData.Duration;
+        Cooldown = equipmentData.DashCooldown;
+        Velocity = equipmentData.DashVelocity;
+        OnCooldown = false;
     }
 
     protected override void Start()
     {
         base.Start();
-        Duration = equipmentData.Duration;
-        Cooldown = equipmentData.DashCooldown;
-        Velocity = equipmentData.DashVelocity;
-        OnCooldown = false;
+
     }
 
 
@@ -36,7 +38,6 @@ public class YellowEquipment : Equipment
         if (Cooldown > 0 && OnCooldown)
         {
             Cooldown -= Time.deltaTime;
-            //Debug.Log(Cooldown);
         }
 
         if (Cooldown <= 0)
