@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: equipmentData
   m_EditorClassIdentifier: 
   rate: 1
+  duration: 0
+  durability: 0
+  knockback: 0

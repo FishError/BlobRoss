@@ -21,11 +21,8 @@ public class BlombAttackState : EnemyAttackState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        AnimatorStateInfo animState = enemy.Anim.GetCurrentAnimatorStateInfo(0);
-        if (animState.IsName("Attack") && animState.normalizedTime >= 1)
-        {
-            stateMachine.ChangeState(enemy.DeathState);
-        }
+
+        AnimationHasFinish(enemy.DeathState);
     }
 
     public override void DoChecks()
