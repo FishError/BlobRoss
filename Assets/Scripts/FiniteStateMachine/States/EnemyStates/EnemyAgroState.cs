@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyAgroState : EnemyState
 {
+    protected float distance;
+    protected Vector2 targetDirection;
+
     public EnemyAgroState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) 
     {
         
@@ -24,6 +27,8 @@ public class EnemyAgroState : EnemyState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        distance = Vector2.Distance(enemy.target.transform.position, enemy.transform.position);
+        targetDirection = (enemy.target.transform.position - enemy.transform.position).normalized;
     }
 
     public override void DoChecks()

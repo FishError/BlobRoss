@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DasherAttackState : EnemyAttackState
 {
-    protected Vector2 attackDirection;
     protected static float attackChargeUpTime = 0.5f;
 
     public DasherAttackState(Dasher enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) 
@@ -16,8 +15,7 @@ public class DasherAttackState : EnemyAttackState
     {
         base.Enter();
         enemy.rb.velocity = Vector2.zero;
-        attackDirection = (enemy.target.transform.position - enemy.transform.position).normalized;
-        enemy.lookAt = attackDirection;
+        enemy.lookAt = targetDirection;
         enemy.SetAnimHorizontalVertical(enemy.lookAt);
     }
 
@@ -32,12 +30,7 @@ public class DasherAttackState : EnemyAttackState
     {
         base.LogicUpdate();
 
-        AnimatorStateInfo animState = enemy.Anim.GetCurrentAnimatorStateInfo(0);
-        if (animState.IsName("Attack") && animState.normalizedTime >= 1)
-        {
-            stateMachine.ChangeState(enemy.AgroState);
-            return;
-        }
+        AnimationHasFinish(enemy.AgroState);
     }
 
     public override void DoChecks()
@@ -52,7 +45,7 @@ public class DasherAttackState : EnemyAttackState
         AnimatorStateInfo animState = enemy.Anim.GetCurrentAnimatorStateInfo(0);
         if (animState.IsName("Attack") && animState.normalizedTime >= attackChargeUpTime)
         {
-            enemy.rb.velocity = attackDirection * enemy.MovementSpeed * ((Dasher)enemy).DashSpeedRatio;
+            enemy.rb.velocity = targetDirection * enemy.MovementSpeed * ((Dasher)enemy).DashSpeedRatio;
         }
     }
 

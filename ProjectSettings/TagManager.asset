@@ -19,7 +19,7 @@ TagManager:
   - Enemy
   - Grid
   - Wall
-  - 
+  - Projectile
   - 
   - 
   - 
@@ -43,6 +43,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Palette
+    uniqueID: 1012468183
     locked: 0
   - name: Player
     uniqueID: 671580021

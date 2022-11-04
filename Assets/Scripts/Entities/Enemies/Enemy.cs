@@ -15,6 +15,7 @@ public class Enemy : CombatOrganismEntity
     public EnemyAttackState AttackState { get; protected set; }
     public EnemyCCState CCState { get; protected set; }
     public EnemyDeathState DeathState { get; protected set; }
+
     #endregion
 
     #region Enemy Current Stats
@@ -120,5 +121,10 @@ public class Enemy : CombatOrganismEntity
                 StateMachine.ChangeState(AlertedState);
             }
         }
+    }
+
+    public void DestroyObject(GameObject obj, float time)
+    {
+        Destroy(obj, time);
     }
 }
