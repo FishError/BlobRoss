@@ -34,10 +34,15 @@ public class Equipment : Entity
     public float Cooldown { get; set; } 
     public float Range { get; set; } 
     #endregion
+
+    #region Player Parent Script
+    public Player player { get; set; }
+    #endregion
     
     protected override void Awake()
     {
         base.Awake();
+        player = transform.parent.parent.gameObject.GetComponent<Player>();
     }
 
     protected override void Start()

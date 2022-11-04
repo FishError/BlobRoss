@@ -83,13 +83,13 @@ public class PlayerState : EntityState
 
     }
 
-     public void SetMoveAnimation(float x, float y)
+     public void SetMove(float x, float y)
     {
         player.Anim.SetFloat("Horizontal", x);
         player.Anim.SetFloat("Vertical", y);
     }
 
-    public void SetIdleAnimation(float x, float y)
+    public void SetIdle(float x, float y)
     {
         player.Anim.SetFloat("IdleHorizontal", x);
         player.Anim.SetFloat("IdleVertical", y);
