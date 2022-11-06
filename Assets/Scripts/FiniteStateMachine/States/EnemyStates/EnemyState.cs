@@ -7,7 +7,7 @@ public class EnemyState : EntityState
     protected Enemy enemy;
     protected EnemyData enemyData;
 
-    private string animName;
+    protected string animName;
 
     public EnemyState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName): base(stateMachine)
     {
@@ -42,5 +42,15 @@ public class EnemyState : EntityState
     public override void PhysicsUpdate()
     {
         
+    }
+
+    protected void ChangeStateAfterAnimation(string animName, EntityState state)
+    {
+        AnimatorStateInfo animState = enemy.Anim.GetCurrentAnimatorStateInfo(0);
+        if (animState.IsName(animName) && animState.normalizedTime >= 1)
+        {
+            stateMachine.ChangeState(state);
+            return;
+        }
     }
 }

@@ -46,7 +46,7 @@ public class ArchieAttackState : EnemyAttackState
     {
         base.LogicUpdate();
 
-        AnimationHasFinish(enemy.AgroState);
+        ChangeStateAfterAnimation(animName, enemy.AgroState);
     }
 
     public override void DoChecks()

@@ -32,14 +32,4 @@ public class EnemyAttackState : EnemyState
     {
         base.PhysicsUpdate();
     }
-
-    protected void AnimationHasFinish(EntityState state)
-    {
-        AnimatorStateInfo animState = enemy.Anim.GetCurrentAnimatorStateInfo(0);
-        if (animState.IsName("Attack") && animState.normalizedTime >= 1)
-        {
-            stateMachine.ChangeState(state);
-            return;
-        }
-    }
 }

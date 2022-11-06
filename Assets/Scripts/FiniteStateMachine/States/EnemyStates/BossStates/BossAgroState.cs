@@ -2,27 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlombAttackState : EnemyAttackState
+public class BossAgroState : EnemyAgroState
 {
-    public BlombAttackState(Blomb enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
+    public BossAgroState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
 
     public override void Enter()
     {
         base.Enter();
-        enemy.rb.velocity = Vector2.zero;
     }
 
     public override void Exit()
     {
         base.Exit();
-        Object.Instantiate(((Blomb)enemy).fieldOnDeath, enemy.transform.position, Quaternion.identity);
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
-        ChangeStateAfterAnimation(animName, enemy.DeathState);
+        if (distance <= enemyData.AttackRange && enemy.AttackCoolDown <= 0)
+        {
+            stateMachine.ChangeState(enemy.AttackState);
+            return;
+        }
     }
 
     public override void DoChecks()
