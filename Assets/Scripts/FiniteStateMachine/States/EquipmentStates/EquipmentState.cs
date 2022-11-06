@@ -57,7 +57,8 @@ public class EquipmentState : EntityState
 
     //Gets called when entered a specific state
     public override void Enter()
-    {
+    {   
+        if(equipment.Anim == null) return;
         DoChecks();
         equipment.Anim.SetBool(animName, true);
         startTime = Time.time;
@@ -66,6 +67,7 @@ public class EquipmentState : EntityState
     //Gets called when leaving a specific state
     public override void Exit()
     {
+        if(equipment.Anim == null) return;
         equipment.Anim.SetBool(animName, false);
     }
 
