@@ -61,7 +61,6 @@ public class EquipmentState : EntityState
         if(equipment.Anim == null) return;
         DoChecks();
         equipment.Anim.SetBool(animName, true);
-        startTime = Time.time;
     }
 
     //Gets called when leaving a specific state
