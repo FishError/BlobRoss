@@ -106,7 +106,7 @@ public class EquipmentState : EntityState
         equipment.Anim.SetFloat("EffectVertical", y);
     }
 
-    protected void SyncAnimations(){
+    public void SyncAnimations(){
         AnimatorStateInfo currentPlayerAnimState = playerGameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
         float offset = currentPlayerAnimState.normalizedTime % 1;
         equipment.Anim.SetFloat("offset",offset);

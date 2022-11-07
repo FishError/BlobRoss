@@ -18,13 +18,11 @@ public class YellowEquipmentEffectState : EquipmentEffectState
         trailRenderer = equipment.GetComponent<TrailRenderer>();
         trailRenderer.emitting = true;
         yellowEquipment.player.StateMachine.ChangeState(yellowEquipment.player.YellowState);
-
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
         equipment.StartCoroutine(StopDash());
     }
 
@@ -48,9 +46,34 @@ public class YellowEquipmentEffectState : EquipmentEffectState
     {
         yield return new WaitForSeconds(equipmentData.Duration);
         trailRenderer.emitting = false;
-        yellowEquipment.player.StateMachine.ChangeState(yellowEquipment.player.IdleState);
-        stateMachine.ChangeState(equipment.IdleState);
+        handleOtherEntityAnimations();
         equipment.OnCooldown = true;
+    }
+
+    private void handleOtherEntityAnimations()
+    {
+        if(xInput != 0 || yInput != 0){
+            yellowEquipment.player.StateMachine.ChangeState(yellowEquipment.player.MoveState);
+            foreach(Equipment equipment in yellowEquipment.player.equipments){
+                if(equipment.Anim != null && equipment.Anim.GetCurrentAnimatorStateInfo(0).IsName("Move")){
+                    equipment.StateMachine.ChangeState(equipment.MoveState);
+                    equipment.Anim.Play("Base Layer.Move",0,0f);
+                    equipment.MoveState.SyncAnimations();
+                }
+            }
+            yellowEquipment.StateMachine.ChangeState(equipment.MoveState);
+
+        } else {
+            yellowEquipment.player.StateMachine.ChangeState(yellowEquipment.player.IdleState);
+            foreach(Equipment equipment in yellowEquipment.player.equipments){
+                if(equipment.Anim != null && equipment.Anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")){
+                    equipment.StateMachine.ChangeState(equipment.IdleState);
+                    equipment.Anim.Play("Base Layer.Idle",0,0f);
+                    equipment.IdleState.SyncAnimations();
+                }
+            }
+            yellowEquipment.StateMachine.ChangeState(equipment.IdleState);
+        }
     }
 
 }

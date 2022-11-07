@@ -27,9 +27,9 @@ public class PlayerState : EntityState
         //Change to find children
         this.equipments = player.gameObject.transform.Find("Equipments");
         this.redEquipment = equipments.GetChild(0).GetComponent<RedEquipment>();
+        this.blueEquipment = equipments.GetChild(1).GetComponent<BlueEquipment>();
         this.yellowEquipment = equipments.GetChild(2).GetComponent<YellowEquipment>();
         this.yellowEquipment.player = player;
-        this.blueEquipment = equipments.GetChild(1).GetComponent<BlueEquipment>();
         // Debug.Log(blueEquipment.name);
         // Debug.Log(yellowEquipment.name);
     }

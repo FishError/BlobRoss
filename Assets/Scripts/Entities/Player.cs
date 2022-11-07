@@ -11,6 +11,11 @@ public class Player : CombatOrganismEntity
     public PlayerCCState CCState { get; private set; }
     #endregion
 
+    #region Equipments
+    public Transform equipmentsContainer;
+    public Equipment[] equipments = new Equipment[3];
+    #endregion
+
     #region Animation References
     public float LastX { get; set; }
     public float LastY { get; set; }
@@ -39,6 +44,11 @@ public class Player : CombatOrganismEntity
     {
         base.Start();
         InputHandler = GetComponent<PlayerInputHandler>();
+
+        equipmentsContainer = gameObject.transform.Find("Equipments");
+        equipments[0] = equipmentsContainer.GetChild(0).GetComponent<RedEquipment>();;
+        equipments[1] = equipmentsContainer.GetChild(1).GetComponent<BlueEquipment>();
+        equipments[2] = equipmentsContainer.GetChild(2).GetComponent<YellowEquipment>();
         StateMachine.Initialize(IdleState);
 
         MaxHealthPoints = data.HealthPoints;
