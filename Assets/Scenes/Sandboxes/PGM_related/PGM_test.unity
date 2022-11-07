@@ -123,6 +123,16 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &52420819 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7034977938710112480, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
+  m_PrefabInstance: {fileID: 597370253}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &52420828 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7034977938710112483, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
+  m_PrefabInstance: {fileID: 597370253}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &597370253
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -192,16 +202,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
---- !u!1 &597370254 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4684409474894387617, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
-  m_PrefabInstance: {fileID: 597370253}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &597370263 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4684409474894387618, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
-  m_PrefabInstance: {fileID: 597370253}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &931504636
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -212,22 +212,22 @@ PrefabInstance:
     - target: {fileID: 5240304747635189270, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_Follow
       value: 
-      objectReference: {fileID: 597370263}
+      objectReference: {fileID: 52420828}
     - target: {fileID: 5240304747635189271, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.9211904
       objectReference: {fileID: 0}
     - target: {fileID: 5240304747635189271, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.6192017
       objectReference: {fileID: 0}
     - target: {fileID: 5240304747806562004, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.9211904
       objectReference: {fileID: 0}
     - target: {fileID: 5240304747806562004, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.6192017
       objectReference: {fileID: 0}
     - target: {fileID: 5240304748295829287, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_Name
@@ -342,7 +342,7 @@ PrefabInstance:
     - target: {fileID: 3162569717160405906, guid: 7260f11011e255846ac09addc3e38684, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 597370254}
+      objectReference: {fileID: 52420819}
     - target: {fileID: 3162569717160405906, guid: 7260f11011e255846ac09addc3e38684, type: 3}
       propertyPath: cinemachineCamera
       value: 

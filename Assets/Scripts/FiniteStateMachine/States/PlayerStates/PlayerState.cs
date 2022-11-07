@@ -16,7 +16,7 @@ public class PlayerState : EntityState
     public Transform equipments;
     public RedEquipment redEquipment {get; private set; }
     public BlueEquipment blueEquipment { get; private set; }
-    // public Equipment yellowEquipment {get; private set; }
+    public YellowEquipment yellowEquipment {get; private set; }
     #endregion
 
     public PlayerState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, string animName) : base(stateMachine)
@@ -28,7 +28,8 @@ public class PlayerState : EntityState
         this.equipments = player.gameObject.transform.Find("Equipments");
         this.redEquipment = equipments.GetChild(0).GetComponent<RedEquipment>();
         this.blueEquipment = equipments.GetChild(1).GetComponent<BlueEquipment>();
-        // this.yellowEquipment = equipments.GetChild(2).GetComponent<Equipment>();
+        this.yellowEquipment = equipments.GetChild(2).GetComponent<YellowEquipment>();
+        this.yellowEquipment.player = player;
         // Debug.Log(blueEquipment.name);
         // Debug.Log(yellowEquipment.name);
     }
@@ -78,6 +79,18 @@ public class PlayerState : EntityState
         blueEquipment.MoveState.RightClickInput = player.InputHandler.rightClickInput;
 
         blueEquipment.EffectState.RightClickInput = player.InputHandler.rightClickInput;
+
+        yellowEquipment.IdleState.XInput = xInput;
+        yellowEquipment.IdleState.YInput = yInput;
+        yellowEquipment.IdleState.SpaceClickInput = player.InputHandler.spaceClickInput;
+
+        yellowEquipment.MoveState.XInput = xInput;
+        yellowEquipment.MoveState.YInput = yInput;
+        yellowEquipment.MoveState.SpaceClickInput = player.InputHandler.spaceClickInput;
+
+        yellowEquipment.EffectState.XInput = xInput;
+        yellowEquipment.EffectState.YInput = yInput;
+        yellowEquipment.EffectState.SpaceClickInput = player.InputHandler.spaceClickInput;
 
     }
 
