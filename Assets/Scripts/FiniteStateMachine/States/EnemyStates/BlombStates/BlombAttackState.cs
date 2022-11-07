@@ -4,25 +4,32 @@ using UnityEngine;
 
 public class BlombAttackState : EnemyAttackState
 {
-    public BlombAttackState(Blomb enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
+    private Blomb blomb;
+    private BlombData data;
+
+    public BlombAttackState(Blomb blomb, FiniteStateMachine stateMachine, BlombData data, string animName) : base(blomb, stateMachine, data, animName) 
+    {
+        this.blomb = blomb;
+        this.data = data;
+    }
 
     public override void Enter()
     {
         base.Enter();
-        enemy.rb.velocity = Vector2.zero;
+        blomb.rb.velocity = Vector2.zero;
     }
 
     public override void Exit()
     {
         base.Exit();
-        Object.Instantiate(((Blomb)enemy).fieldOnDeath, enemy.transform.position, Quaternion.identity);
+        Object.Instantiate(blomb.fieldOnDeath, blomb.transform.position, Quaternion.identity);
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
-        ChangeStateAfterAnimation(animName, enemy.DeathState);
+        ChangeStateAfterAnimation(animName, blomb.DeathState);
     }
 
     public override void DoChecks()

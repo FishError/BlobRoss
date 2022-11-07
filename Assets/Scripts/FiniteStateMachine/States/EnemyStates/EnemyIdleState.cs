@@ -28,12 +28,12 @@ public class EnemyIdleState : EnemyState
         
         if (enemy.TargetDetected())
         {
-            stateMachine.ChangeState(enemy.AlertedState);
+            stateMachine.ChangeState(((MobEnemy)enemy).AlertedState);
             return;
         }
         else if (Time.time >= startTime + idleTime)
         {
-            stateMachine.ChangeState(enemy.PatrolState);
+            stateMachine.ChangeState(((MobEnemy)enemy).PatrolState);
             return;
         }
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dasher : Enemy
+public class Dasher : MobEnemy
 {
     public float DashDamageRatio { get; set; }
     public float DashSpeedRatio { get; set; }
@@ -12,13 +12,13 @@ public class Dasher : Enemy
     protected override void Awake()
     {
         base.Awake();
-        IdleState = new DasherIdleState(this, StateMachine, (EnemyData)data, "Idle");
-        PatrolState = new DasherPatrolState(this, StateMachine, (EnemyData)data, "Move");
-        AlertedState = new DasherAlertedState(this, StateMachine, (EnemyData)data, "Alerted");
-        AgroState = new DasherAgroState(this, StateMachine, (EnemyData)data, "Move");
-        AttackState = new DasherAttackState(this, StateMachine, (EnemyData)data, "Attack");
-        CCState = new DasherCCState(this, StateMachine, (EnemyData)data, "Idle");
-        DeathState = new DasherDeathState(this, StateMachine, (EnemyData)data, "Death");
+        IdleState = new DasherIdleState(this, StateMachine, (DasherData)data, "Idle");
+        PatrolState = new DasherPatrolState(this, StateMachine, (DasherData)data, "Move");
+        AlertedState = new DasherAlertedState(this, StateMachine, (DasherData)data, "Alerted");
+        AgroState = new DasherAgroState(this, StateMachine, (DasherData)data, "Move");
+        AttackState = new DasherAttackState(this, StateMachine, (DasherData)data, "Attack");
+        CCState = new DasherCCState(this, StateMachine, (DasherData)data, "Idle");
+        DeathState = new DasherDeathState(this, StateMachine, (DasherData)data, "Death");
     }
 
     protected override void Start()

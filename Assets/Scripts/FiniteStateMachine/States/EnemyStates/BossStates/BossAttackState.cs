@@ -15,7 +15,8 @@ public class BossAttackState : EnemyAttackState
     public override void Enter()
     {
         base.Enter();
-        // randomly choose attack from Attacks list
+        List<BossAttack> availableAttacks = Attacks.FindAll(a => a.OnCooldown());
+        currentAttack = availableAttacks[Random.Range(0, availableAttacks.Count - 1)];
         currentAttack.Enter();
     }
 
@@ -29,7 +30,7 @@ public class BossAttackState : EnemyAttackState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        currentAttack.LogicUpdate()
+        currentAttack.LogicUpdate();
     }
 
     public override void DoChecks()
@@ -40,6 +41,6 @@ public class BossAttackState : EnemyAttackState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        currentAttack.PhysicsUpdate()
+        currentAttack.PhysicsUpdate();
     }
 }

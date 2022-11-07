@@ -31,12 +31,12 @@ public class EnemyPatrolState : EnemyState
         // change state if conditions are met
         if (enemy.TargetDetected())
         {
-            stateMachine.ChangeState(enemy.AlertedState);
+            stateMachine.ChangeState(((MobEnemy)enemy).AlertedState);
             return;
         }
         else if (Vector2.Distance(enemy.transform.position, startPosition) >= patrolDistance)
         {
-            stateMachine.ChangeState(enemy.IdleState);
+            stateMachine.ChangeState(((MobEnemy)enemy).IdleState);
             return;
         }
     }
@@ -51,7 +51,7 @@ public class EnemyPatrolState : EnemyState
         base.PhysicsUpdate();
 
         enemy.lookAt = patrolDirection;
-        enemy.SetVelocity(enemy.PatrolSpeed, patrolDirection);
+        enemy.SetVelocity(((MobEnemy)enemy).PatrolSpeed, patrolDirection);
     }
 
     protected void SetRandomPatrolDirection()

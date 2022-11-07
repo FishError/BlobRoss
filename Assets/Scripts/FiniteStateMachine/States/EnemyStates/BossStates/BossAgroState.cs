@@ -20,9 +20,9 @@ public class BossAgroState : EnemyAgroState
     {
         base.LogicUpdate();
 
-        if (distance <= enemyData.AttackRange && enemy.AttackCoolDown <= 0)
+        if (distance <= enemyData.AttackRange)
         {
-            stateMachine.ChangeState(enemy.AttackState);
+            //stateMachine.ChangeState(enemy.AttackState);
             return;
         }
     }

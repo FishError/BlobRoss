@@ -4,26 +4,33 @@ using UnityEngine;
 
 public class BlombAgroState : EnemyAgroState
 {
-    public BlombAgroState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
+    private Blomb blomb;
+    private BlombData data;
+
+    public BlombAgroState(Blomb blomb, FiniteStateMachine stateMachine, BlombData data, string animName) : base(blomb, stateMachine, data, animName) 
+    {
+        this.blomb = blomb;
+        this.data = data;
+    }
 
     public override void Enter()
     {
         base.Enter();
-        enemy.Anim.speed = 1.2f;
+        blomb.Anim.speed = 1.2f;
     }
 
     public override void Exit()
     {
         base.Exit();
-        enemy.Anim.speed = 1f;
+        blomb.Anim.speed = 1f;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (distance <= enemyData.AttackRange)
+        if (distance <= data.AttackRange)
         {
-            stateMachine.ChangeState(enemy.AttackState);
+            stateMachine.ChangeState(blomb.AttackState);
             return;
         }
     }
@@ -43,7 +50,7 @@ public class BlombAgroState : EnemyAgroState
         base.OnCollisionEnter(collision);
         if (collision.gameObject.tag == "Player")
         {
-            stateMachine.ChangeState(enemy.AttackState);
+            stateMachine.ChangeState(blomb.AttackState);
         }
     }
 }

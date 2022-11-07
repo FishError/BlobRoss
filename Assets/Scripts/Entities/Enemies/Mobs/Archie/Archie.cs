@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Archie : Enemy
+public class Archie : MobEnemy
 {
     [SerializeField] protected GameObject arrow;
     [SerializeField] protected Transform spawnPosition;
@@ -14,13 +14,13 @@ public class Archie : Enemy
     protected override void Awake()
     {
         base.Awake();
-        IdleState = new ArchieIdleState(this, StateMachine, (EnemyData)data, "Idle");
-        PatrolState = new ArchiePatrolState(this, StateMachine, (EnemyData)data, "Move");
-        AlertedState = new ArchieAlertedState(this, StateMachine, (EnemyData)data, "Alerted");
-        AgroState = new ArchieAgroState(this, StateMachine, (EnemyData)data, "Move");
-        AttackState = new ArchieAttackState(this, StateMachine, (EnemyData)data, "Attack", arrow, spawnPosition);
-        CCState = new ArchieCCState(this, StateMachine, (EnemyData)data, "Idle");
-        DeathState = new ArchieDeathState(this, StateMachine, (EnemyData)data, "Death");
+        IdleState = new ArchieIdleState(this, StateMachine, (ArchieData)data, "Idle");
+        PatrolState = new ArchiePatrolState(this, StateMachine, (ArchieData)data, "Move");
+        AlertedState = new ArchieAlertedState(this, StateMachine, (ArchieData)data, "Alerted");
+        AgroState = new ArchieAgroState(this, StateMachine, (ArchieData)data, "Move");
+        AttackState = new ArchieAttackState(this, StateMachine, (ArchieData)data, "Attack", arrow, spawnPosition);
+        CCState = new ArchieCCState(this, StateMachine, (ArchieData)data, "Idle");
+        DeathState = new ArchieDeathState(this, StateMachine, (ArchieData)data, "Death");
     }
 
     protected override void Start()

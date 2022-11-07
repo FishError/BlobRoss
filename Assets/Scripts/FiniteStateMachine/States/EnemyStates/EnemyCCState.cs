@@ -54,7 +54,7 @@ public class EnemyCCState : EnemyState
             case CrowdControl.Knockback:
                 if (Time.time > startTime + knockbackDuration)
                 {
-                    stateMachine.ChangeState(enemy.AgroState);
+                    stateMachine.ChangeState(((MobEnemy)enemy).AgroState);
                     return;
                 }
                 break;
@@ -63,7 +63,7 @@ public class EnemyCCState : EnemyState
             case CrowdControl.Snarred:
                 if (Time.time > startTime + otherCCDuration)
                 {
-                    stateMachine.ChangeState(enemy.AgroState);
+                    stateMachine.ChangeState(((MobEnemy)enemy).AgroState);
                     return;
                 }
                 break;

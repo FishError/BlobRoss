@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ArchieDeathState : EnemyDeathState
 {
-    public ArchieDeathState(Archie enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName)
+    public ArchieDeathState(Archie archie, FiniteStateMachine stateMachine, ArchieData data, string animName) : base(archie, stateMachine, data, animName)
     {
     }
 }

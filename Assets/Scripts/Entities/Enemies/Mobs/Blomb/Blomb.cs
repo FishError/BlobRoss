@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Blomb : Enemy
+public class Blomb : MobEnemy
 {
     public GameObject fieldOnDeath;
 
@@ -13,13 +13,13 @@ public class Blomb : Enemy
     protected override void Awake()
     {
         base.Awake();
-        IdleState = new BlombIdleState(this, StateMachine, (EnemyData)data, "Idle");
-        PatrolState = new BlombPatrolState(this, StateMachine, (EnemyData)data, "Move");
-        AlertedState = new BlombAlertedState(this, StateMachine, (EnemyData)data, "Idle");
-        AgroState = new BlombAgroState(this, StateMachine, (EnemyData)data, "Move");
-        AttackState = new BlombAttackState(this, StateMachine, (EnemyData)data, "Attack");
-        CCState = new EnemyCCState(this, StateMachine, (EnemyData)data, "Idle");
-        DeathState = new BlombDeathState(this, StateMachine, (EnemyData)data, "Death");
+        IdleState = new BlombIdleState(this, StateMachine, (BlombData)data, "Idle");
+        PatrolState = new BlombPatrolState(this, StateMachine, (BlombData)data, "Move");
+        AlertedState = new BlombAlertedState(this, StateMachine, (BlombData)data, "Idle");
+        AgroState = new BlombAgroState(this, StateMachine, (BlombData)data, "Move");
+        AttackState = new BlombAttackState(this, StateMachine, (BlombData)data, "Attack");
+        CCState = new EnemyCCState(this, StateMachine, (BlombData)data, "Idle");
+        DeathState = new BlombDeathState(this, StateMachine, (BlombData)data, "Death");
     }
 
     protected override void Start()

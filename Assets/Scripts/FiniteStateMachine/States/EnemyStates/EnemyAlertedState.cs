@@ -32,7 +32,7 @@ public class EnemyAlertedState : EnemyState
 
         if (Time.time >= startTime + alertTime)
         {
-            stateMachine.ChangeState(enemy.AgroState);
+            stateMachine.ChangeState(((MobEnemy)enemy).AgroState);
             return;
         }
 
