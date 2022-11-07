@@ -205,14 +205,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
---- !u!1 &661393398 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4684409474894387617, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
-  m_PrefabInstance: {fileID: 661393397}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &661393399 stripped
+--- !u!4 &661393398 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 4684409474894387618, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7034977938710112483, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
   m_PrefabInstance: {fileID: 661393397}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1167970900
@@ -277,13 +272,18 @@ PrefabInstance:
     - target: {fileID: 2902103085162011771, guid: 71d08510b6a14f040afd4744645a7e64, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 661393398}
+      objectReference: {fileID: 1841726806}
     - target: {fileID: 2902103085162011771, guid: 71d08510b6a14f040afd4744645a7e64, type: 3}
       propertyPath: cinemachineCamera
       value: 
       objectReference: {fileID: 242302477}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71d08510b6a14f040afd4744645a7e64, type: 3}
+--- !u!1 &1841726806 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7034977938710112480, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
+  m_PrefabInstance: {fileID: 661393397}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1947672920
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -294,18 +294,18 @@ PrefabInstance:
     - target: {fileID: 5240304747635189270, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_Follow
       value: 
-      objectReference: {fileID: 661393399}
+      objectReference: {fileID: 661393398}
     - target: {fileID: 5240304747635189270, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_Lens.OrthographicSize
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5240304747635189271, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.9211904
       objectReference: {fileID: 0}
     - target: {fileID: 5240304747635189271, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.6192017
       objectReference: {fileID: 0}
     - target: {fileID: 5240304747806562003, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: orthographic size
@@ -313,11 +313,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5240304747806562004, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.9211904
       objectReference: {fileID: 0}
     - target: {fileID: 5240304747806562004, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.6192017
       objectReference: {fileID: 0}
     - target: {fileID: 5240304747806562004, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_LocalPosition.z

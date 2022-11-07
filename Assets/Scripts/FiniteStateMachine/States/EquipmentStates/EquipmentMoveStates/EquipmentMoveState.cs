@@ -18,6 +18,7 @@ public class EquipmentMoveState : EquipmentState
 
     public override void LogicUpdate()
     {
+        if (equipment.Anim == null) return;
         base.LogicUpdate();
         if (xInput > 0 || xInput < 0)
         {

@@ -15,18 +15,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Dash",
-                    "type": "Button",
-                    "id": "0118668a-4b71-41f5-812a-9580be4e8e4d",
+                    "name": "Attack",
+                    "type": "PassThrough",
+                    "id": "db1ad650-807f-4caa-9e20-0883df5604b8",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Attack",
+                    "name": "Dash",
                     "type": "PassThrough",
-                    "id": "db1ad650-807f-4caa-9e20-0883df5604b8",
+                    "id": "c9676a5d-7911-4702-8ccf-ba51a2537835",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -100,23 +100,23 @@
                 },
                 {
                     "name": "",
-                    "id": "1469ae7f-38f4-4f57-913a-75efac6e3509",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "48bf6f68-bde7-4cb5-b439-039470d79f26",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2df1a0b6-0633-4a7f-8037-b8effd53409d",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

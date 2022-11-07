@@ -17,7 +17,7 @@ public class EquipmentState : EntityState
     protected float yInput;
     protected bool leftClickInput;
     protected bool rightClickInput;
-    //Put same for spaceClickInput
+    protected bool spaceClickInput;
     #endregion
 
     public float XInput{
@@ -41,6 +41,11 @@ public class EquipmentState : EntityState
         set { rightClickInput = value; }
     }
     //Put same for SpaceClickInput
+    public bool SpaceClickInput
+    {
+        get { return spaceClickInput; }
+        set { spaceClickInput = value; }
+    }
 
     public EquipmentState(Equipment equipment, FiniteStateMachine stateMachine, EquipmentData equipmentData, string animName): base(stateMachine)
     {
@@ -52,15 +57,16 @@ public class EquipmentState : EntityState
 
     //Gets called when entered a specific state
     public override void Enter()
-    {
+    {   
+        if(equipment.Anim == null) return;
         DoChecks();
         equipment.Anim.SetBool(animName, true);
-        startTime = Time.time;
     }
 
     //Gets called when leaving a specific state
     public override void Exit()
     {
+        if(equipment.Anim == null) return;
         equipment.Anim.SetBool(animName, false);
     }
 
@@ -100,7 +106,7 @@ public class EquipmentState : EntityState
         equipment.Anim.SetFloat("EffectVertical", y);
     }
 
-    protected void SyncAnimations(){
+    public void SyncAnimations(){
         AnimatorStateInfo currentPlayerAnimState = playerGameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0);
         float offset = currentPlayerAnimState.normalizedTime % 1;
         equipment.Anim.SetFloat("offset",offset);

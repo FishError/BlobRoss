@@ -3349,9 +3349,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
---- !u!1 &592108021 stripped
+--- !u!4 &592108021 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7034977938710112483, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
+  m_PrefabInstance: {fileID: 592108020}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &592108022 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 4684409474894387617, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7034977938710112480, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
   m_PrefabInstance: {fileID: 592108020}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &628071045
@@ -4204,11 +4209,6 @@ Transform:
   m_Father: {fileID: 1630809482}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &718103236 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4684409474894387618, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
-  m_PrefabInstance: {fileID: 592108020}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &805745086
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4219,22 +4219,22 @@ PrefabInstance:
     - target: {fileID: 5240304747635189270, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_Follow
       value: 
-      objectReference: {fileID: 718103236}
+      objectReference: {fileID: 592108021}
     - target: {fileID: 5240304747635189271, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.1
+      value: -0.9211904
       objectReference: {fileID: 0}
     - target: {fileID: 5240304747635189271, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.33
+      value: -2.6192017
       objectReference: {fileID: 0}
     - target: {fileID: 5240304747806562004, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.1
+      value: -0.9211904
       objectReference: {fileID: 0}
     - target: {fileID: 5240304747806562004, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.33
+      value: -2.6192017
       objectReference: {fileID: 0}
     - target: {fileID: 5240304748295829287, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_Name
@@ -41949,7 +41949,7 @@ PrefabInstance:
     - target: {fileID: 1216158483919421033, guid: b4535db3975f48f41ad6d4bd1229cfa9, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 592108021}
+      objectReference: {fileID: 592108022}
     - target: {fileID: 1216158483919421035, guid: b4535db3975f48f41ad6d4bd1229cfa9, type: 3}
       propertyPath: m_Name
       value: Blomb
@@ -41966,7 +41966,7 @@ PrefabInstance:
     - target: {fileID: 3781740808952231674, guid: 8a017e2aafd48c24f8a2528718c0cdaa, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 592108021}
+      objectReference: {fileID: 0}
     - target: {fileID: 3781740808952231675, guid: 8a017e2aafd48c24f8a2528718c0cdaa, type: 3}
       propertyPath: m_Name
       value: Dasher
