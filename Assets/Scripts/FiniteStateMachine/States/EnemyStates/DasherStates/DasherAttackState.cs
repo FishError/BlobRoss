@@ -34,7 +34,7 @@ public class DasherAttackState : EnemyAttackState
     {
         base.LogicUpdate();
 
-        ChangeStateAfterAnimation(animName, dasher.AgroState);
+        ChangeStateAfterAnimation(dasher, animName, dasher.AgroState);
     }
 
     public override void DoChecks()

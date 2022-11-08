@@ -29,7 +29,7 @@ public class BlombAttackState : EnemyAttackState
     {
         base.LogicUpdate();
 
-        ChangeStateAfterAnimation(animName, blomb.DeathState);
+        ChangeStateAfterAnimation(blomb, animName, blomb.DeathState);
     }
 
     public override void DoChecks()

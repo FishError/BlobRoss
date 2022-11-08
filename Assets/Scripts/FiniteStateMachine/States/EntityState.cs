@@ -42,4 +42,14 @@ public abstract class EntityState
     {
 
     }
+
+    protected void ChangeStateAfterAnimation(Entity entity, string animName, EntityState state)
+    {
+        AnimatorStateInfo animState = entity.Anim.GetCurrentAnimatorStateInfo(0);
+        if (animState.IsName(animName) && animState.normalizedTime >= 1)
+        {
+            stateMachine.ChangeState(state);
+            return;
+        }
+    }
 }

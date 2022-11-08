@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPatrolState : EnemyState
+public class EnemyPatrolState : MobEnemyState
 {
     protected float patrolDistance;
     protected Vector2 patrolDirection;
 
-    public EnemyPatrolState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
+    public EnemyPatrolState(MobEnemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
 
     public override void Enter()
     {
@@ -31,12 +31,12 @@ public class EnemyPatrolState : EnemyState
         // change state if conditions are met
         if (enemy.TargetDetected())
         {
-            stateMachine.ChangeState(((MobEnemy)enemy).AlertedState);
+            stateMachine.ChangeState(enemy.AlertedState);
             return;
         }
         else if (Vector2.Distance(enemy.transform.position, startPosition) >= patrolDistance)
         {
-            stateMachine.ChangeState(((MobEnemy)enemy).IdleState);
+            stateMachine.ChangeState(enemy.IdleState);
             return;
         }
     }
@@ -51,7 +51,7 @@ public class EnemyPatrolState : EnemyState
         base.PhysicsUpdate();
 
         enemy.lookAt = patrolDirection;
-        enemy.SetVelocity(((MobEnemy)enemy).PatrolSpeed, patrolDirection);
+        enemy.SetVelocity(enemy.PatrolSpeed, patrolDirection);
     }
 
     protected void SetRandomPatrolDirection()

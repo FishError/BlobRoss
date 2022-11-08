@@ -2,16 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyState : EntityState
+// Description:
+// Spawns 10 bomb blobs in random areas around the arena
+
+public class SummonBlombs : BossAttack
 {
-    protected string animName;
-
-    public EnemyState(FiniteStateMachine stateMachine, string animName) : base(stateMachine)
-    {
-        this.animName = animName;
-    }
-
-    public override void DoChecks()
+    public SummonBlombs(RedBoss boss, RedBossData data, string animName) : base(boss, data, animName)
     {
 
     }
@@ -19,21 +15,20 @@ public class EnemyState : EntityState
     public override void Enter()
     {
         base.Enter();
-        DoChecks();
     }
 
     public override void Exit()
     {
-        
+        base.Exit();
     }
 
     public override void LogicUpdate()
     {
-
+        base.LogicUpdate();
     }
 
     public override void PhysicsUpdate()
     {
-
+        base.PhysicsUpdate();
     }
 }

@@ -52,7 +52,7 @@ public class ArchieAttackState : EnemyAttackState
     {
         base.LogicUpdate();
 
-        ChangeStateAfterAnimation(animName, archie.AgroState);
+        ChangeStateAfterAnimation(archie, animName, archie.AgroState);
     }
 
     public override void DoChecks()

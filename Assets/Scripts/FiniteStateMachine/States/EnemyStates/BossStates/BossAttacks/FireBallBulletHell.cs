@@ -2,10 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// not implemented yet
-public class EnemyDeathState : MobEnemyState
+// Description:
+// Boss fires balls of molten rock outward in a straight line in a circular
+// arrangement 5 times with the balls shifting slightly in between each fire
+
+public class FireBallBulletHell : BossAttack
 {
-    public EnemyDeathState(MobEnemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
+    public FireBallBulletHell(RedBoss boss, RedBossData data, string animName) : base(boss, data, animName)
+    {
+
+    }
 
     public override void Enter()
     {
@@ -20,11 +26,6 @@ public class EnemyDeathState : MobEnemyState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-    }
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
     }
 
     public override void PhysicsUpdate()

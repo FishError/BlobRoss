@@ -5,19 +5,20 @@ using UnityEngine;
 public abstract class BossAttack
 {
     // references
-    protected Enemy enemy;
-    protected EnemyData data;
+    protected Enemy boss;
+    protected RedBossData data;
     protected string animName;
 
     // attack stats
     public float DamageRatio { get; set; }
+    public float Range { get; set; }
     public float Cooldown { get; set; }
 
     public float CooldownTimer { get; set; }
 
-    public BossAttack(Enemy enemy, EnemyData data, string animName)
+    public BossAttack(RedBoss boss, RedBossData data, string animName)
     {
-        this.enemy = enemy;
+        this.boss = boss;
         this.data = data;
         this.animName = animName;
 

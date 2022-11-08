@@ -2,10 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// not implemented yet
-public class EnemyDeathState : MobEnemyState
+// Desciption:
+// Boss fires fireballs towards blob in a straight line, flying at speed of 8 and radius of 8px
+
+public class FireBall : BossAttack
 {
-    public EnemyDeathState(MobEnemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
+    public FireBall(RedBoss boss, RedBossData data, string animName) : base(boss, data, animName)
+    {
+
+    }
 
     public override void Enter()
     {
@@ -20,11 +25,6 @@ public class EnemyDeathState : MobEnemyState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-    }
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
     }
 
     public override void PhysicsUpdate()

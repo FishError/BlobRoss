@@ -27,7 +27,7 @@ public class DasherAgroState : EnemyAgroState
     {
         base.LogicUpdate();
 
-        if (distance <= base.enemyData.AttackRange && dasher.AttackCoolDown <= 0)
+        if (distance <= data.AttackRange && dasher.AttackCoolDown <= 0)
         {
             stateMachine.ChangeState(dasher.AttackState);
             return;

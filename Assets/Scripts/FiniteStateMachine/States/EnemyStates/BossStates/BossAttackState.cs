@@ -2,21 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossAttackState : EnemyAttackState
+public class BossAttackState : BossEnemyState
 {
-    private List<BossAttack> Attacks;
     private BossAttack currentAttack;
 
-    public BossAttackState(Dasher enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName)
+    public BossAttackState(RedBoss boss, FiniteStateMachine stateMachine, RedBossData data, string animName) : base(boss, stateMachine, data, animName)
     {
-        Attacks = new List<BossAttack>();
+        
     }
 
     public override void Enter()
     {
         base.Enter();
-        List<BossAttack> availableAttacks = Attacks.FindAll(a => a.OnCooldown());
-        currentAttack = availableAttacks[Random.Range(0, availableAttacks.Count - 1)];
         currentAttack.Enter();
     }
 
@@ -42,5 +39,10 @@ public class BossAttackState : EnemyAttackState
     {
         base.PhysicsUpdate();
         currentAttack.PhysicsUpdate();
+    }
+
+    public void SetCurrentAttack(BossAttack attack)
+    {
+        currentAttack = attack;
     }
 }

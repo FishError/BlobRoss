@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossAgroState : EnemyAgroState
+public class BossAgroState : BossEnemyState
 {
-    public BossAgroState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
+    public BossAgroState(RedBoss boss, FiniteStateMachine stateMachine, RedBossData data, string animName) : base(boss, stateMachine, data, animName) 
+    {
+
+    }
 
     public override void Enter()
     {
@@ -20,10 +23,11 @@ public class BossAgroState : EnemyAgroState
     {
         base.LogicUpdate();
 
-        if (distance <= enemyData.AttackRange)
+        List<BossAttack> attacks = boss.AvaliableAttacks();
+        if (attacks.Count > 0)
         {
-            //stateMachine.ChangeState(enemy.AttackState);
-            return;
+            boss.AttackState.SetCurrentAttack(attacks[Random.Range(0, attacks.Count - 1)]);
+            stateMachine.ChangeState(boss.AttackState);
         }
     }
 
@@ -35,5 +39,9 @@ public class BossAgroState : EnemyAgroState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+        boss.navMeshAgent.nextPosition = boss.transform.position;
+        boss.navMeshAgent.SetDestination(boss.target.transform.position);
+        boss.rb.velocity = boss.navMeshAgent.velocity;
+        boss.lookAt = boss.rb.velocity.normalized;
     }
 }
