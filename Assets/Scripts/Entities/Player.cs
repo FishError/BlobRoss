@@ -7,7 +7,13 @@ public class Player : CombatOrganismEntity
     #region States
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
+    public PlayerYellowState YellowState { get; private set; }
     public PlayerCCState CCState { get; private set; }
+    #endregion
+
+    #region Equipments
+    public Transform equipmentsContainer;
+    public Equipment[] equipments = new Equipment[3];
     #endregion
 
     #region Animation References
@@ -30,6 +36,7 @@ public class Player : CombatOrganismEntity
         base.Awake();
         IdleState = new PlayerIdleState(this, StateMachine, (PlayerData)data, "Idle");
         MoveState = new PlayerMoveState(this, StateMachine, (PlayerData)data, "Move");
+        YellowState = new PlayerYellowState(this, StateMachine, (PlayerData)data, "Move");
         CCState = new PlayerCCState(this, StateMachine, (PlayerData)data, "Idle");
     }
 
@@ -37,6 +44,11 @@ public class Player : CombatOrganismEntity
     {
         base.Start();
         InputHandler = GetComponent<PlayerInputHandler>();
+
+        equipmentsContainer = gameObject.transform.Find("Equipments");
+        equipments[0] = equipmentsContainer.GetChild(0).GetComponent<RedEquipment>();;
+        equipments[1] = equipmentsContainer.GetChild(1).GetComponent<BlueEquipment>();
+        equipments[2] = equipmentsContainer.GetChild(2).GetComponent<YellowEquipment>();
         StateMachine.Initialize(IdleState);
 
         MaxHealthPoints = data.HealthPoints;
@@ -47,6 +59,8 @@ public class Player : CombatOrganismEntity
         CritRate = ((PlayerData)data).CritRate;
         CritDamage = ((PlayerData)data).CritDamage;
         MovementSpeed = data.MovementSpeed;
+        LastX = 0;
+        LastY = -1;
     }
 
     protected override void Update()

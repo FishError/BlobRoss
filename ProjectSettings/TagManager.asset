@@ -19,7 +19,7 @@ TagManager:
   - Enemy
   - Grid
   - Wall
-  - 
+  - Projectile
   - 
   - 
   - 
@@ -44,9 +44,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
-    uniqueID: 671580021
+  - name: EntityBreadcrumbs
+    uniqueID: 1012468183
     locked: 0
-  - name: Weapon
-    uniqueID: 1636926315
+  - name: EntityOrganism
+    uniqueID: 671580021
     locked: 0

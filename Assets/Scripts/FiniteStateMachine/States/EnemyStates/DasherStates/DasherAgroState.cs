@@ -20,7 +20,6 @@ public class DasherAgroState : EnemyAgroState
     {
         base.LogicUpdate();
 
-        float distance = Vector2.Distance(enemy.target.transform.position, enemy.transform.position);
         if (distance <= enemyData.AttackRange && enemy.AttackCoolDown <= 0)
         {
             stateMachine.ChangeState(enemy.AttackState);
