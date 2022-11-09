@@ -4,24 +4,33 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    private GameObject musicController;
+    public AudioSource MusicSource;
+    public AudioSource SFXSource;
+    public static AudioManager Instance = null;
 
     private void Awake()
     {
-        musicController = GameObject.Find("AudioController");
-        
-        if(musicController == null)
+        if(Instance == null)
         {
-            musicController = this.gameObject;
-            musicController.name = "AudioController";
-            DontDestroyOnLoad(musicController);
+            Instance = this;
         }
-        else
+        else if(Instance != this)
         {
-            if(this.gameObject.name != "AudioController")
-            {
-                Destroy(this.gameObject);
-            }
+            Destroy(gameObject);
         }
+        DontDestroyOnLoad(gameObject);
+    }
+
+    public void PlayMusic(AudioClip clip)
+    {
+        MusicSource.clip = clip;
+        MusicSource.Play();
+        MusicSource.loop = true;
+    }
+
+    public void PlaySFX(AudioClip clip)
+    {
+        SFXSource.clip = clip;
+        SFXSource.Play();
     }
 }

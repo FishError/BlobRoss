@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     public MapController mapController;
+    public GameObject optionMenu;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,11 @@ public class GameController : MonoBehaviour
             Destroy(GameObject.Find("Camera"));
             Destroy(GameObject.Find("GameController"));
             SceneManager.LoadScene(0);
+        }
+
+        if (Keyboard.current.pKey.isPressed && !optionMenu.activeInHierarchy)
+        {
+            optionMenu.SetActive(true);
         }
     }
 
