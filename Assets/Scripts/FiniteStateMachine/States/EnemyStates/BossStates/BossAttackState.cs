@@ -14,6 +14,7 @@ public class BossAttackState : BossEnemyState
     public override void Enter()
     {
         base.Enter();
+        boss.rb.velocity = Vector2.zero;
         currentAttack.Enter();
     }
 

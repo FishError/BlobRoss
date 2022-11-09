@@ -8,9 +8,13 @@ using UnityEngine;
 
 public class MortarStrike : BossAttack
 {
-    public MortarStrike(RedBoss boss, RedBossData data, string animName) : base(boss, data, animName)
-    {
+    private RedBoss boss;
+    private RedBossData data;
 
+    public MortarStrike(RedBoss boss, RedBossData data, string animName) : base(animName)
+    {
+        this.boss = boss;
+        this.data = data;
     }
 
     public override void Enter()

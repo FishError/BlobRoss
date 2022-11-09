@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class RedBoss : Boss
 {
+    public GameObject fireball;
+    public Transform FireBallBulletHell;
+
     protected override void Awake()
     {
         base.Awake();
@@ -15,7 +18,7 @@ public class RedBoss : Boss
     {
         base.Start();
         Attacks.Add(new MortarStrike(this, (RedBossData)data, ""));
-        Attacks.Add(new FireBall(this, (RedBossData)data, ""));
+        Attacks.Add(new FireBallAttack(this, (RedBossData)data, ""));
         Attacks.Add(new SummonBlombs(this, (RedBossData)data, ""));
         Attacks.Add(new FireBallBulletHell(this, (RedBossData)data, ""));
     }

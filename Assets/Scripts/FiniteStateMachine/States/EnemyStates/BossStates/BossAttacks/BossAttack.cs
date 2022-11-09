@@ -5,8 +5,6 @@ using UnityEngine;
 public abstract class BossAttack
 {
     // references
-    protected Enemy boss;
-    protected RedBossData data;
     protected string animName;
 
     // attack stats
@@ -16,10 +14,8 @@ public abstract class BossAttack
 
     public float CooldownTimer { get; set; }
 
-    public BossAttack(RedBoss boss, RedBossData data, string animName)
+    public BossAttack(string animName)
     {
-        this.boss = boss;
-        this.data = data;
         this.animName = animName;
 
         CooldownTimer = Time.time;
@@ -45,7 +41,7 @@ public abstract class BossAttack
         
     }
 
-    public bool OnCooldown()
+    public virtual bool OnCooldown()
     {
         return Time.time < CooldownTimer;
     }

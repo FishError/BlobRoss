@@ -22,6 +22,6 @@ public class Boss : Enemy
     public List<BossAttack> AvaliableAttacks()
     {
         float distance = Vector2.Distance(target.transform.position, transform.position);
-        return Attacks.FindAll(a => a.OnCooldown() && distance < a.Range);
+        return Attacks.FindAll(a => !a.OnCooldown() && distance < a.Range);
     }
 }
