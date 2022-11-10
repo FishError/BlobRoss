@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyProjectile : Projectile
 {
-    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    protected override void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
@@ -12,5 +12,7 @@ public class EnemyProjectile : Projectile
             player.ModifyHealthPoints(damage);
             Destroy(gameObject);
         }
+
+        base.OnCollisionEnter2D(collision);
     }
 }

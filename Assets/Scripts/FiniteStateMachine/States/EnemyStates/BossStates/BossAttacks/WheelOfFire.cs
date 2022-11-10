@@ -6,25 +6,27 @@ using UnityEngine;
 // Boss fires balls of molten rock outward in a straight line in a circular
 // arrangement 5 times with the balls shifting slightly in between each fire
 
-public class FireBallBulletHell : BossAttack
+public class WheelOfFire : BossAttack
 {
     private RedBoss boss;
     private RedBossData data;
 
     private float nextShotTimer;
     private static float intervalBetweenShots = 0.5f;
+
     private static int maxNumOfShots = 10;
     private int currentNumOfShots = 0;
+
     private float rotationAmount = 20f;
 
-    public FireBallBulletHell(RedBoss boss, RedBossData data, string animName) : base(animName)
+    public WheelOfFire(RedBoss boss, RedBossData data, string animName) : base(animName)
     {
         this.boss = boss;
         this.data = data;
 
-        DamageRatio = data.FireBallBulletHellDamageRatio;
-        Range = data.FireBallBulletHellRange;
-        Cooldown = data.FireBallBulletHellCooldown;
+        DamageRatio = this.data.FireBallBulletHellDamageRatio;
+        Range = this.data.FireBallBulletHellRange;
+        Cooldown = this.data.FireBallBulletHellCooldown;
     }
 
     public override void Enter()
@@ -55,18 +57,23 @@ public class FireBallBulletHell : BossAttack
         base.PhysicsUpdate();
         if (Time.time >= nextShotTimer)
         {
-            foreach(Transform spawn in boss.FireBallBulletHell)
+            foreach(Transform t in boss.FireBallBulletHell)
             {
-                GameObject fireball = Object.Instantiate(boss.fireball, spawn.transform.position, Quaternion.identity);
-                Fireball fb = fireball.GetComponent<Fireball>();
-                Vector2 dir = (spawn.transform.position - boss.transform.position).normalized;
-                fb.SetVelocity(dir, 7);
-                fb.lifeDistance = 10;
+                CreateFireball(t.position);
             }
             currentNumOfShots++;
 
             nextShotTimer = Time.time + intervalBetweenShots;
             boss.FireBallBulletHell.transform.Rotate(0, 0, rotationAmount);
         }
+    }
+
+    private void CreateFireball(Vector2 spawnPosition)
+    {
+        GameObject fireball = Object.Instantiate(boss.fireball, spawnPosition, Quaternion.identity);
+        Fireball fb = fireball.GetComponent<Fireball>();
+        Vector2 dir = ((Vector3)spawnPosition - boss.transform.position).normalized;
+        fb.SetVelocity(dir, 7);
+        fb.lifeDistance = 15;
     }
 }

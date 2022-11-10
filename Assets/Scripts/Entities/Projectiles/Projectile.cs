@@ -48,4 +48,9 @@ public abstract class Projectile : MonoBehaviour
         lifeTime = t;
         Destroy(gameObject, lifeTime);
     }
+
+    protected virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(gameObject);
+    }
 }
