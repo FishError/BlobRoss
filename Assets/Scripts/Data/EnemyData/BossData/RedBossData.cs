@@ -7,6 +7,7 @@ public class RedBossData : CombatEntityData
 {
     [Header("Phase 1 Attacks")]
     [Header("Mortar Strike")]
+    public int MaxMortarStrike;
     public float MortarStrikeDamageRatio;
     public float MortarStrikeRange;
     public float MortarStrikeCooldown;
