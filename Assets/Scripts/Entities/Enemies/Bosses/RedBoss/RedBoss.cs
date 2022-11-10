@@ -5,7 +5,7 @@ using UnityEngine;
 public class RedBoss : Boss
 {
     public GameObject fireball;
-    public Transform FireBallBulletHell;
+    public Transform FireBallBulletHell, firebolt;
 
     protected override void Awake()
     {

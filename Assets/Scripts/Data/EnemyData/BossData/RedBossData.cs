@@ -12,6 +12,7 @@ public class RedBossData : CombatEntityData
     public float MortarStrikeCooldown;
 
     [Header("Fire Ball")]
+    public int MaxFireballAmount;
     public float FireBallDamageRatio;
     public float FireBallRange;
     public float FireBallCooldown;

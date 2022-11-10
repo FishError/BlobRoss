@@ -20,6 +20,7 @@ MonoBehaviour:
   MortarStrikeDamageRatio: 1.2
   MortarStrikeRange: 999
   MortarStrikeCooldown: 10
+  MaxFireballAmount: 3
   FireBallDamageRatio: 1
   FireBallRange: 10
   FireBallCooldown: 5
