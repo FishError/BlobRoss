@@ -62287,8 +62287,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: 9fddbf50d559a954d822dea175dfd16c, type: 2}
   target: {fileID: 1230882239}
+  Blomb: {fileID: 0}
+  BlombSpawnArea: {fileID: 0}
   fireball: {fileID: 6100034279880317823, guid: df7fee56a56d8094a959183495b515b1, type: 3}
-  FireBallBulletHell: {fileID: 354543594}
+  WheelOfFire: {fileID: 354543594}
   firebolt: {fileID: 1732203686}
 --- !u!50 &1454387556
 Rigidbody2D:
