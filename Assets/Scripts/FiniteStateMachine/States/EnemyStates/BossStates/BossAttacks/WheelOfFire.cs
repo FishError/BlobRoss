@@ -39,7 +39,7 @@ public class WheelOfFire : BossAttack
     {
         base.Exit();
         currentNumOfShots = 0;
-        boss.FireBallBulletHell.transform.rotation = Quaternion.identity;
+        boss.WheelOfFire.transform.rotation = Quaternion.identity;
 
     }
 
@@ -57,14 +57,14 @@ public class WheelOfFire : BossAttack
         base.PhysicsUpdate();
         if (Time.time >= nextShotTimer)
         {
-            foreach(Transform t in boss.FireBallBulletHell)
+            foreach(Transform t in boss.WheelOfFire)
             {
                 CreateFireball(t.position);
             }
             currentNumOfShots++;
 
             nextShotTimer = Time.time + intervalBetweenShots;
-            boss.FireBallBulletHell.transform.Rotate(0, 0, rotationAmount);
+            boss.WheelOfFire.transform.Rotate(0, 0, rotationAmount);
         }
     }
 

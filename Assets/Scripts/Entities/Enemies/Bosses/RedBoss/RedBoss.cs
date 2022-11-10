@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class RedBoss : Boss
 {
+    public GameObject Blomb;
+    public Transform BlombSpawnArea;
+
     public GameObject fireball;
-    public Transform FireBallBulletHell, firebolt;
+    public Transform WheelOfFire;
 
     protected override void Awake()
     {
@@ -18,8 +21,11 @@ public class RedBoss : Boss
     {
         base.Start();
         Attacks.Add(new MortarStrike(this, (RedBossData)data, ""));
-        Attacks.Add(new FireBallAttack(this, (RedBossData)data, ""));
+        Attacks.Add(new FireBolt(this, (RedBossData)data, ""));
         Attacks.Add(new BlombSquad(this, (RedBossData)data, ""));
         Attacks.Add(new WheelOfFire(this, (RedBossData)data, ""));
+
+        //GameObject b = Instantiate(Blomb, transform.position + new Vector3(4, 0, 0), Quaternion.identity);
+        //b.GetComponent<Blomb>().target = target;
     }
 }
