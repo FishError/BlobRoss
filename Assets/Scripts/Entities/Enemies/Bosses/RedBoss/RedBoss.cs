@@ -18,7 +18,7 @@ public class RedBoss : Boss
     {
         base.Start();
         Attacks.Add(new MortarStrike(this, (RedBossData)data, ""));
-        Attacks.Add(new FlameBlast(this, (RedBossData)data, ""));
+        Attacks.Add(new FireBolt(this, (RedBossData)data, ""));
         Attacks.Add(new BlombSquad(this, (RedBossData)data, ""));
         Attacks.Add(new WheelOfFire(this, (RedBossData)data, ""));
     }

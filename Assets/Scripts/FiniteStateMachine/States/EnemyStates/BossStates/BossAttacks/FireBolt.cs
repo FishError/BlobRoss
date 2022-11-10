@@ -5,12 +5,12 @@ using UnityEngine;
 // Desciption:
 // Boss fires fireballs towards blob in a straight line, flying at speed of 8 and radius of 8px
 
-public class FlameBlast : BossAttack
+public class FireBolt : BossAttack
 {
     private RedBoss boss;
     private RedBossData data;
 
-    public FlameBlast(RedBoss boss, RedBossData data, string animName) : base(animName)
+    public FireBolt(RedBoss boss, RedBossData data, string animName) : base(animName)
     {
         this.boss = boss;
         this.data = data;
