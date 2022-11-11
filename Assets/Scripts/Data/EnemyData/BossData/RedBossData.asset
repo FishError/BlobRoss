@@ -17,17 +17,26 @@ MonoBehaviour:
   Attack: 10
   AttackSpeed: 1
   MovementSpeed: 4
+  WaitTimeBetweenAttacksP1: 3
+  AttackP2: 12
+  AttackSpeedP2: 1
+  MovementSpeedP2: 5
+  WaitTimeBetweenAttacksP2: 2
   MaxMortarStrike: 5
   MortarStrikeDamageRatio: 1.2
   MortarStrikeRange: 999
   MortarStrikeCooldown: 10
-  MaxFireballAmount: 3
-  FireBallDamageRatio: 1
-  FireBallRange: 10
-  FireBallCooldown: 5
-  SummonBlombsDamageRatio: 0
-  SummonBlombsRange: 999
-  SummonBlombsCooldown: 30
-  FireBallBulletHellDamageRatio: 1
-  FireBallBulletHellRange: 999
-  FireBallBulletHellCooldown: 15
+  MaxFireboltAmount: 3
+  FireboltDamageRatio: 1
+  FireboltRange: 10
+  FireboltCooldown: 5
+  MaxBlombSummons: 10
+  IntervalBetweenSummons: 0.3
+  BlombSquadDamageRatio: 0
+  BlombSquadRange: 999
+  BlombSquadCooldown: 30
+  MaxWaveAmount: 10
+  RotationBetweenWaves: 20
+  WheelOfFireDamageRatio: 1
+  WheelOfFireHellRange: 10
+  WheelOfFireCooldown: 15

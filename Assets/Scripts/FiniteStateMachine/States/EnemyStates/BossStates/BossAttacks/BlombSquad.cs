@@ -10,8 +10,8 @@ public class BlombSquad : BossAttack
     private RedBoss boss;
     private RedBossData data;
 
-    private static int maxNumOfBlombs = 10;
-    private int numOfSummonedBlombs;
+    private static int maxBlombSummons = 10;
+    private int blombCount;
 
     private static float intervalBetweenSummons = 0.3f;
     private float summonTimer;
@@ -21,8 +21,9 @@ public class BlombSquad : BossAttack
         this.boss = boss;
         this.data = data;
 
-        Range = this.data.SummonBlombsRange;
-        Cooldown = this.data.SummonBlombsCooldown;
+        maxBlombSummons = this.data.MaxBlombSummons;
+        Range = this.data.BlombSquadRange;
+        Cooldown = this.data.BlombSquadCooldown;
     }
 
     public override void Enter()
@@ -34,13 +35,13 @@ public class BlombSquad : BossAttack
     public override void Exit()
     {
         base.Exit();
-        numOfSummonedBlombs = 0;
+        blombCount = 0;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (numOfSummonedBlombs == maxNumOfBlombs)
+        if (blombCount == maxBlombSummons)
         {
             boss.StateMachine.ChangeState(boss.AgroState);
         }
@@ -49,7 +50,7 @@ public class BlombSquad : BossAttack
         {
             InstantiateBlomb();
 
-            numOfSummonedBlombs++;
+            blombCount++;
             summonTimer = Time.time + intervalBetweenSummons;
         }
     }

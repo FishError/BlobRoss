@@ -14,9 +14,9 @@ public class Boulder : EnemyProjectile
 
         if (gameObject.transform.position.y <= yPosition)
         {
-            this.rb.velocity = Vector2.zero;
-            this.SetLifeTime(5f);
-            this.GetComponent<Animator>().SetBool("goBreak", true);
+            rb.velocity = Vector2.zero;
+            SetLifeTime(5f);
+            GetComponent<Animator>().SetBool("goBreak", true);
             Destroy(createdIndicator);
         }
     }

@@ -37,6 +37,11 @@ public abstract class Projectile : MonoBehaviour
             Destroy(gameObject);
     }
 
+    public virtual void SetDamage(float amt)
+    {
+        damage = amt;
+    }
+
     public virtual void SetVelocity(Vector2 dir, float speed)
     {
         this.dir = dir;

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewRedBossData", menuName = "Data/Enemy Data/Boss Data")]
-public class RedBossData : CombatEntityData
+public class RedBossData : BossData
 {
+    [Space(15)]
     [Header("Phase 1 Attacks")]
     [Header("Mortar Strike")]
     public int MaxMortarStrike;
@@ -12,20 +13,25 @@ public class RedBossData : CombatEntityData
     public float MortarStrikeRange;
     public float MortarStrikeCooldown;
 
-    [Header("Fire Ball")]
-    public int MaxFireballAmount;
-    public float FireBallDamageRatio;
-    public float FireBallRange;
-    public float FireBallCooldown;
+    [Header("Firebolt")]
+    public int MaxFireboltAmount;
+    public float FireboltDamageRatio;
+    public float FireboltRange;
+    public float FireboltCooldown;
 
+    [Space(15)]
     [Header("Phase 2 Attacks")]
-    [Header("Summon Blombs")]
-    public float SummonBlombsDamageRatio;
-    public float SummonBlombsRange;
-    public float SummonBlombsCooldown;
+    [Header("Blomb Squad")]
+    public int MaxBlombSummons;
+    public float IntervalBetweenSummons;
+    public float BlombSquadDamageRatio;
+    public float BlombSquadRange;
+    public float BlombSquadCooldown;
 
-    [Header("Fire Ball Bullet Hell")]
-    public float FireBallBulletHellDamageRatio;
-    public float FireBallBulletHellRange;
-    public float FireBallBulletHellCooldown;
+    [Header("Wheel Of Fire")]
+    public int MaxWaveAmount;
+    public float RotationBetweenWaves;
+    public float WheelOfFireDamageRatio;
+    public float WheelOfFireHellRange;
+    public float WheelOfFireCooldown;
 }

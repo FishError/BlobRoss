@@ -11,28 +11,31 @@ public class WheelOfFire : BossAttack
     private RedBoss boss;
     private RedBossData data;
 
-    private float nextShotTimer;
-    private static float intervalBetweenShots = 0.5f;
-
-    private static int maxNumOfShots = 10;
+    private float nextWaveTimer;
+    private static float intervalBetweenWaves = 0.5f;
+    private int maxWaveAmount;
     private int currentNumOfShots = 0;
+    private float rotationAmount;
 
-    private float rotationAmount = 20f;
+    private static float fireballSpeed = 7;
+    private static float fireballLifeDistance = 15;
 
     public WheelOfFire(RedBoss boss, RedBossData data, string animName) : base(animName)
     {
         this.boss = boss;
         this.data = data;
 
-        DamageRatio = this.data.FireBallBulletHellDamageRatio;
-        Range = this.data.FireBallBulletHellRange;
-        Cooldown = this.data.FireBallBulletHellCooldown;
+        maxWaveAmount = this.data.MaxWaveAmount;
+        rotationAmount = this.data.RotationBetweenWaves;
+        DamageRatio = this.data.WheelOfFireDamageRatio;
+        Range = this.data.WheelOfFireHellRange;
+        Cooldown = this.data.WheelOfFireCooldown;
     }
 
     public override void Enter()
     {
         base.Enter();
-        nextShotTimer = Time.time;
+        nextWaveTimer = Time.time;
     }
 
     public override void Exit()
@@ -46,7 +49,7 @@ public class WheelOfFire : BossAttack
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (currentNumOfShots == maxNumOfShots)
+        if (currentNumOfShots == maxWaveAmount)
         {
             boss.StateMachine.ChangeState(boss.AgroState);
         }
@@ -55,7 +58,7 @@ public class WheelOfFire : BossAttack
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        if (Time.time >= nextShotTimer)
+        if (Time.time >= nextWaveTimer)
         {
             foreach(Transform t in boss.WheelOfFire)
             {
@@ -63,7 +66,7 @@ public class WheelOfFire : BossAttack
             }
             currentNumOfShots++;
 
-            nextShotTimer = Time.time + intervalBetweenShots;
+            nextWaveTimer = Time.time + intervalBetweenWaves;
             boss.WheelOfFire.transform.Rotate(0, 0, rotationAmount);
         }
     }
@@ -73,7 +76,8 @@ public class WheelOfFire : BossAttack
         GameObject fireball = Object.Instantiate(boss.fireball, spawnPosition, Quaternion.identity);
         Fireball fb = fireball.GetComponent<Fireball>();
         Vector2 dir = ((Vector3)spawnPosition - boss.transform.position).normalized;
-        fb.SetVelocity(dir, 7);
-        fb.lifeDistance = 15;
+        fb.SetDamage(boss.Attack * DamageRatio);
+        fb.SetVelocity(dir, fireballSpeed);
+        fb.lifeDistance = fireballLifeDistance;
     }
 }

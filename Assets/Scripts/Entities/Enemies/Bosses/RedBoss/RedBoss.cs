@@ -20,12 +20,23 @@ public class RedBoss : Boss
     protected override void Start()
     {
         base.Start();
+
+        waitTimeBetweenAttacks = ((RedBossData)data).WaitTimeBetweenAttacksP1;
+
         Attacks.Add(new MortarStrike(this, (RedBossData)data, ""));
         Attacks.Add(new FireBolt(this, (RedBossData)data, ""));
         Attacks.Add(new BlombSquad(this, (RedBossData)data, ""));
         Attacks.Add(new WheelOfFire(this, (RedBossData)data, ""));
+    }
 
-        //GameObject b = Instantiate(Blomb, transform.position + new Vector3(4, 0, 0), Quaternion.identity);
-        //b.GetComponent<Blomb>().target = target;
+    protected override void Update()
+    {
+        base.Update();
+
+        if (phase == 1 && HealthPoints < MaxHealthPoints / 2)
+        {
+            phase = 2;
+            UpdateStatsPhase2();
+        }
     }
 }

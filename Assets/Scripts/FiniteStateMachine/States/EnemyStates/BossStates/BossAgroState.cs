@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BossAgroState : BossEnemyState
 {
+    private float waitAttackTimer;
+
     public BossAgroState(RedBoss boss, FiniteStateMachine stateMachine, RedBossData data, string animName) : base(boss, stateMachine, data, animName) 
     {
 
@@ -12,6 +14,7 @@ public class BossAgroState : BossEnemyState
     public override void Enter()
     {
         base.Enter();
+        waitAttackTimer = Time.time + boss.waitTimeBetweenAttacks;
     }
 
     public override void Exit()
@@ -23,11 +26,14 @@ public class BossAgroState : BossEnemyState
     {
         base.LogicUpdate();
 
-        List<BossAttack> attacks = boss.AvaliableAttacks();
-        if (attacks.Count > 0)
+        if (Time.time >= waitAttackTimer)
         {
-            boss.AttackState.SetCurrentAttack(attacks[Random.Range(0, attacks.Count - 1)]);
-            stateMachine.ChangeState(boss.AttackState);
+            List<BossAttack> attacks = boss.AvaliableAttacks();
+            if (attacks.Count > 0)
+            {
+                boss.AttackState.SetCurrentAttack(attacks[Random.Range(0, attacks.Count - 1)]);
+                stateMachine.ChangeState(boss.AttackState);
+            }
         }
     }
 

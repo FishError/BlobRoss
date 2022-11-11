@@ -13,17 +13,20 @@ public class FireBolt : BossAttack
     private int currentAmtFireball;
     private Vector2 targetDirection;
     private float nextShotTimer;
-    private float intervalBetweenShots = 0.25f;
+    private static float intervalBetweenShots = 0.25f;
+
+    private static float fireballSpeed = 7;
+    private static float fireballLifeDistance = 15;
 
     public FireBolt(RedBoss boss, RedBossData data, string animName) : base(animName)
     {
         this.boss = boss;
         this.data = data;
 
-        MaxFireball = this.data.MaxFireballAmount;
-        DamageRatio = this.data.FireBallDamageRatio;
-        Cooldown = this.data.FireBallCooldown;
-        Range = this.data.FireBallRange;
+        MaxFireball = this.data.MaxFireboltAmount;
+        DamageRatio = this.data.FireboltDamageRatio;
+        Cooldown = this.data.FireboltCooldown;
+        Range = this.data.FireboltRange;
     }
 
     public override void Enter()
@@ -65,8 +68,9 @@ public class FireBolt : BossAttack
     {
         GameObject fireball = Object.Instantiate(boss.fireball, boss.firebolt.transform.position, Quaternion.identity);
         Fireball fb = fireball.GetComponent<Fireball>();
-        fb.SetVelocity(targetDirection, 8f);
-        fb.lifeDistance = 15;
+        fb.SetDamage(boss.Attack * DamageRatio);
+        fb.SetVelocity(targetDirection, fireballSpeed);
+        fb.lifeDistance = fireballLifeDistance;
         currentAmtFireball++;
     }
 }
