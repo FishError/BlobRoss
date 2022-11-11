@@ -66,10 +66,14 @@ public class MortarStrike : BossAttack
         GameObject indicator = Object.Instantiate(boss.boulderIndicator, new Vector2(randomPos.x, randomPos.y - 1f), Quaternion.identity);
 
         Boulder boulder = boulderObject.GetComponent<Boulder>();
-        boulder.SetDamage(boss.Attack * DamageRatio);
         boulder.SetYPosition(randomPos.y);
         boulder.SetIndicator(indicator);
         boulder.SetVelocity(Vector2.down, 20f);
+
+        AreaOfEffectIndicator aoeIndicator = indicator.GetComponent<AreaOfEffectIndicator>();
+        aoeIndicator.damage = boss.Attack * DamageRatio;
+        aoeIndicator.effectTriggerTime = 1f;
+
         currentStrike++;
     }
 
