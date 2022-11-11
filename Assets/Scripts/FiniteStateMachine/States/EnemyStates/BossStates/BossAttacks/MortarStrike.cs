@@ -12,8 +12,9 @@ public class MortarStrike : BossAttack
     private RedBossData data;
     private static int MaxMortarStrike;
     private float nextShotTimer;
-    private static float intervalBetweenShots = 0.5f;
+    private static float intervalBetweenShots = 1f;
     private int currentStrike = 0;
+    private float spawnRadius = 3f;
 
     public MortarStrike(RedBoss boss, RedBossData data, string animName) : base(animName)
     {
@@ -53,19 +54,22 @@ public class MortarStrike : BossAttack
         base.PhysicsUpdate();
         if (Time.time >= nextShotTimer)
         {
-            CreateBoulder();
+            SummonBoulder();
             nextShotTimer = Time.time + intervalBetweenShots;
         }
     }
 
-    private void CreateBoulder()
+    private void SummonBoulder()
     {
-        //TODO: find area of where boulder can land randomly
-        //GameObject boulder = Object.Instantiate(boss.boulder, spawnPosition, Quaternion.identity);
-        //Boulder rock = boulder.GetComponent<Boulder>();
-        //Vector2 dir = ((Vector3)spawnPosition - boss.transform.position).normalized;
-        //fb.SetVelocity(dir, 7);
-        //fb.lifeDistance = 15;
+        Vector2 randomPos = (Vector2)boss.target.transform.position + Random.insideUnitCircle * spawnRadius;
+        GameObject boulderObject = Object.Instantiate(boss.boulder, new Vector2(randomPos.x, randomPos.y + 20), Quaternion.identity);
+        GameObject indicator = Object.Instantiate(boss.boulderIndicator, new Vector2(randomPos.x, randomPos.y - 1f), Quaternion.identity);
+
+        Boulder boulder = boulderObject.GetComponent<Boulder>();
+        boulder.SetYPosition(randomPos.y);
+        boulder.SetIndicator(indicator);
+        boulder.SetVelocity(Vector2.down, 20f);
         currentStrike++;
     }
+
 }

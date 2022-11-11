@@ -17,6 +17,7 @@ MonoBehaviour:
   Attack: 10
   AttackSpeed: 1
   MovementSpeed: 4
+  MaxMortarStrike: 5
   MortarStrikeDamageRatio: 1.2
   MortarStrikeRange: 999
   MortarStrikeCooldown: 10

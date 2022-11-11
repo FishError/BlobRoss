@@ -7,7 +7,7 @@ public class RedBoss : Boss
     public GameObject Blomb;
     public Transform BlombSpawnArea;
 
-    public GameObject fireball, boulder;
+    public GameObject fireball, boulder, boulderIndicator;
     public Transform WheelOfFire;
 
     protected override void Awake()
