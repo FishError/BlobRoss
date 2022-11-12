@@ -22,7 +22,7 @@ public class Boss : Enemy
         StateMachine.Initialize(AgroState);
     }
 
-    protected void UpdateStatsPhase2()
+    protected virtual void UpdateStatsPhase2()
     {
         Attack = ((BossData)data).AttackP2;
         AttackSpeed = ((BossData)data).AttackSpeedP2;

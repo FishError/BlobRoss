@@ -25,8 +25,6 @@ public class RedBoss : Boss
 
         Attacks.Add(new MortarStrike(this, (RedBossData)data, ""));
         Attacks.Add(new FireBolt(this, (RedBossData)data, ""));
-        Attacks.Add(new BlombSquad(this, (RedBossData)data, ""));
-        Attacks.Add(new WheelOfFire(this, (RedBossData)data, ""));
     }
 
     protected override void Update()
@@ -38,5 +36,12 @@ public class RedBoss : Boss
             phase = 2;
             UpdateStatsPhase2();
         }
+    }
+
+    protected override void UpdateStatsPhase2()
+    {
+        base.UpdateStatsPhase2();
+        Attacks.Add(new BlombSquad(this, (RedBossData)data, ""));
+        Attacks.Add(new WheelOfFire(this, (RedBossData)data, ""));
     }
 }
