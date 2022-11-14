@@ -33,4 +33,9 @@ public class AudioManager : MonoBehaviour
         SFXSource.clip = clip;
         SFXSource.Play();
     }
+
+    public bool CheckClipIsPlaying(AudioClip clip)
+    {
+        return MusicSource.clip == clip && MusicSource.isPlaying;
+    }
 }

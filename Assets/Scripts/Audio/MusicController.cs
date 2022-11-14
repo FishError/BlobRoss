@@ -7,6 +7,9 @@ public class MusicController : MonoBehaviour
     public AudioClip clip;
     private void Start()
     {
-        AudioManager.Instance.PlayMusic(clip);
+        if (!AudioManager.Instance.CheckClipIsPlaying(clip))
+        {
+            AudioManager.Instance.PlayMusic(clip);
+        }
     }
 }
