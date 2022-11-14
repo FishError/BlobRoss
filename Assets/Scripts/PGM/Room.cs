@@ -5,20 +5,18 @@ using UnityEngine;
 public class MobInfo
 {
     public GameObject mob;
-    public float x_pos;
-    public float y_pos;
+    public Vector2 position;
 
-    public MobInfo(GameObject m, float x, float y)
+    public MobInfo(GameObject m, Vector2 pos)
     {
         mob = m;
-        x_pos = x;
-        y_pos = y;
+        position = pos;
     }
 }
 
 public class Room
 {
-    private List<MobInfo> _mobs;
+    public List<MobInfo> Mobs;
 
     public string Scene { get; private set; }
     public Room TopRoom { get; set; }
@@ -29,13 +27,13 @@ public class Room
     public Room(string sceneName)
     {
         Scene = sceneName;
-        _mobs = new List<MobInfo>();
+        Mobs = new List<MobInfo>();
     }
 
-    public void AddMobToRoom(GameObject mob, float x, float y)
+    public void AddMobToRoom(GameObject mob, Vector2 pos)
     {
-        MobInfo m = new MobInfo(mob, x, y);
-        _mobs.Add(m);
+        MobInfo m = new MobInfo(mob, pos);
+        Mobs.Add(m);
     }
 
     public void MatchSceneToRoomConstraints()

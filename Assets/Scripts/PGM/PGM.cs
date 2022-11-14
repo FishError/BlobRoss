@@ -13,16 +13,15 @@ public enum Direction
     Down
 }
 
-public class PGM: MonoBehaviour
+public class PGM
 {
-    public static Map ProcedurallyGenerateMap(int maxWidth, int maxHeight, int numOfRooms, string roomType)
+    public static Map ProcedurallyGenerateMap(int maxWidth, int maxHeight, int numOfRooms, string roomType, List<GameObject> mobList)
     {
         System.Random random = new System.Random();
         Room[,] array2D = new Room[maxHeight + 1, maxWidth + 1];
 
         int[] start = new int[] { random.Next(0, maxWidth), random.Next(0, maxHeight) };
-        print(start[0] + " " + start[1]);
-        array2D[start[0], start[1]] = new Room(roomType + "_" + random.Next(1, 4));
+        array2D[start[0], start[1]] = new Room(roomType + "_start");
         
         int roomCount = 1;
         int[] current = start;
@@ -34,7 +33,7 @@ public class PGM: MonoBehaviour
 
             if (array2D[current[0], current[1]] == null)
             {
-                array2D[current[0], current[1]] = new Room(roomType + "_" + random.Next(1, 4));
+                array2D[current[0], current[1]] = CreateRandomRoom(roomType, mobList, random);
                 roomCount++;
             }
         }
@@ -103,5 +102,17 @@ public class PGM: MonoBehaviour
         }
 
         return next;
+    }
+
+    private static Room CreateRandomRoom(string roomType, List<GameObject> mobList, System.Random random)
+    {
+        Room room = new Room(roomType + "_" + random.Next(1, 3));
+        int numOfMobs = random.Next(4, 7);
+        for (int i = 0; i < numOfMobs; i++)
+        {
+            GameObject mob = mobList[random.Next(mobList.Count)];
+            room.AddMobToRoom(mob.gameObject, Vector2.zero);
+        }
+        return room;
     }
 }

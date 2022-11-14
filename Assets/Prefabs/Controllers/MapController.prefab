@@ -49,6 +49,10 @@ MonoBehaviour:
   maxHeight: 5
   numOfRooms: 7
   roomType: Placeholder
+  RedMobs:
+  - {fileID: 3781740808952231675, guid: 8a017e2aafd48c24f8a2528718c0cdaa, type: 3}
+  - {fileID: 3395597389053595502, guid: db95295f92860a94ab9f2a0f105356a1, type: 3}
+  - {fileID: 1216158483919421035, guid: b4535db3975f48f41ad6d4bd1229cfa9, type: 3}
   player: {fileID: 0}
   cinemachineCamera: {fileID: 0}
 --- !u!114 &8538569393135357243
