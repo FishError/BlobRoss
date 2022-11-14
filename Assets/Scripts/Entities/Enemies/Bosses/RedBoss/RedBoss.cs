@@ -13,8 +13,8 @@ public class RedBoss : Boss
     protected override void Awake()
     {
         base.Awake();
-        AgroState = new BossAgroState(this, StateMachine, (RedBossData)data, "");
-        AttackState = new BossAttackState(this, StateMachine, (RedBossData)data, "");
+        AgroState = new BossAgroState(this, StateMachine, (RedBossData)data, "Move/Idle");
+        AttackState = new BossAttackState(this, StateMachine, (RedBossData)data);
     }
 
     protected override void Start()
@@ -23,8 +23,10 @@ public class RedBoss : Boss
 
         waitTimeBetweenAttacks = ((RedBossData)data).WaitTimeBetweenAttacksP1;
 
-        Attacks.Add(new MortarStrike(this, (RedBossData)data, ""));
-        Attacks.Add(new FireBolt(this, (RedBossData)data, ""));
+        //Attacks.Add(new MortarStrike(this, (RedBossData)data, Anim, "MortarStrike"));
+        Attacks.Add(new Firebolt(this, (RedBossData)data, Anim, "Firebolt"));
+        //Attacks.Add(new BlombSquad(this, (RedBossData)data, Anim, "BlombSquad"));
+        //Attacks.Add(new WheelOfFlame(this, (RedBossData)data, Anim, "WheelOfFlame"));
     }
 
     protected override void Update()
@@ -41,7 +43,7 @@ public class RedBoss : Boss
     protected override void UpdateStatsPhase2()
     {
         base.UpdateStatsPhase2();
-        Attacks.Add(new BlombSquad(this, (RedBossData)data, ""));
-        Attacks.Add(new WheelOfFire(this, (RedBossData)data, ""));
+        Attacks.Add(new BlombSquad(this, (RedBossData)data, Anim, "BlombSquad"));
+        Attacks.Add(new WheelOfFlame(this, (RedBossData)data, Anim, "WheelOfFlame"));
     }
 }

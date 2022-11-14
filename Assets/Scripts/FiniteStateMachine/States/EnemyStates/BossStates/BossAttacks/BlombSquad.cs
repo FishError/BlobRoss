@@ -16,7 +16,7 @@ public class BlombSquad : BossAttack
     private static float intervalBetweenSummons = 0.3f;
     private float summonTimer;
 
-    public BlombSquad(RedBoss boss, RedBossData data, string animName) : base(animName)
+    public BlombSquad(RedBoss boss, RedBossData data, Animator animator, string animName) : base(animator, animName)
     {
         this.boss = boss;
         this.data = data;

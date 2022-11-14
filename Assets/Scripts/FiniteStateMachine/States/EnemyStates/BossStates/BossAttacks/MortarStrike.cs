@@ -10,13 +10,16 @@ public class MortarStrike : BossAttack
 {
     private RedBoss boss;
     private RedBossData data;
+
+    private float animationTime;
+
     private static int MaxMortarStrike;
     private float nextShotTimer;
     private static float intervalBetweenShots = 1f;
     private int currentStrike = 0;
     private float spawnRadius = 3f;
 
-    public MortarStrike(RedBoss boss, RedBossData data, string animName) : base(animName)
+    public MortarStrike(RedBoss boss, RedBossData data, Animator animator, string animName) : base(animator, animName)
     {
         this.boss = boss;
         this.data = data;
@@ -30,7 +33,8 @@ public class MortarStrike : BossAttack
     public override void Enter()
     {
         base.Enter();
-        nextShotTimer = Time.time;
+        animationTime = 0;
+        nextShotTimer = 3/4; // frame number to create boulder divided by total frames
     }
 
     public override void Exit()
@@ -43,6 +47,9 @@ public class MortarStrike : BossAttack
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        if (boss.Anim.GetCurrentAnimatorStateInfo(0).IsName(animName))
+            animationTime = boss.Anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+
         if (currentStrike == MaxMortarStrike)
         {
             boss.StateMachine.ChangeState(boss.AgroState);
@@ -52,11 +59,13 @@ public class MortarStrike : BossAttack
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        if (Time.time >= nextShotTimer)
+        if (animationTime >= nextShotTimer)
         {
             SummonBoulder();
-            nextShotTimer = Time.time + intervalBetweenShots;
+            nextShotTimer++;
         }
+
+
     }
 
     private void SummonBoulder()

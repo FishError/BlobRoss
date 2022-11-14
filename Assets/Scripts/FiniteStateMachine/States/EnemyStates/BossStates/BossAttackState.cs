@@ -6,7 +6,7 @@ public class BossAttackState : BossEnemyState
 {
     private BossAttack currentAttack;
 
-    public BossAttackState(RedBoss boss, FiniteStateMachine stateMachine, RedBossData data, string animName) : base(boss, stateMachine, data, animName)
+    public BossAttackState(RedBoss boss, FiniteStateMachine stateMachine, RedBossData data, string animName = null) : base(boss, stateMachine, data, animName)
     {
         
     }

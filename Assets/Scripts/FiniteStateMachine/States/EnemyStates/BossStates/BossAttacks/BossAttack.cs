@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class BossAttack
 {
     // references
+    protected Animator animator;
     protected string animName;
 
     // attack stats
@@ -14,8 +15,9 @@ public abstract class BossAttack
 
     public float CooldownTimer { get; set; }
 
-    public BossAttack(string animName)
+    public BossAttack(Animator animator, string animName)
     {
+        this.animator = animator;
         this.animName = animName;
 
         CooldownTimer = Time.time;
@@ -23,11 +25,12 @@ public abstract class BossAttack
 
     public virtual void Enter()
     {
-
+        animator.SetBool(animName, true);
     }
 
     public virtual void Exit()
     {
+        animator.SetBool(animName, false);
         CooldownTimer = Time.time + Cooldown;
     }
 

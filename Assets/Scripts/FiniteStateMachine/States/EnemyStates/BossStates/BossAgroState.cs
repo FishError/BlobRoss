@@ -14,12 +14,14 @@ public class BossAgroState : BossEnemyState
     public override void Enter()
     {
         base.Enter();
+        boss.SetAnimHorizontalVertical(boss.lookAt);
         waitAttackTimer = Time.time + boss.waitTimeBetweenAttacks;
     }
 
     public override void Exit()
     {
         base.Exit();
+        boss.SetAnimHorizontalVertical(boss.lookAt);
     }
 
     public override void LogicUpdate()
@@ -49,5 +51,6 @@ public class BossAgroState : BossEnemyState
         boss.navMeshAgent.SetDestination(boss.target.transform.position);
         boss.rb.velocity = boss.navMeshAgent.velocity;
         boss.lookAt = boss.rb.velocity.normalized;
+        boss.SetAnimHorizontalVertical(boss.lookAt);
     }
 }

@@ -5,20 +5,22 @@ using UnityEngine;
 // Desciption:
 // Boss fires fireballs towards blob in a straight line, flying at speed of 8 and radius of 8px
 
-public class FireBolt : BossAttack
+public class Firebolt : BossAttack
 {
     private RedBoss boss;
     private RedBossData data;
+
+    private float animationTime;
+
     private static int MaxFireball;
     private int currentAmtFireball;
     private Vector2 targetDirection;
     private float nextShotTimer;
-    private static float intervalBetweenShots = 0.25f;
 
     private static float fireballSpeed = 7;
     private static float fireballLifeDistance = 15;
 
-    public FireBolt(RedBoss boss, RedBossData data, string animName) : base(animName)
+    public Firebolt(RedBoss boss, RedBossData data, Animator animator, string animName) : base(animator, animName)
     {
         this.boss = boss;
         this.data = data;
@@ -32,7 +34,9 @@ public class FireBolt : BossAttack
     public override void Enter()
     {
         base.Enter();
-        nextShotTimer = Time.time;
+        animationTime = 0;
+        nextShotTimer = 2/4; // frame number to create boulder divided by total frames
+        targetDirection = (boss.target.transform.position - boss.transform.position).normalized;
     }
 
     public override void Exit()
@@ -45,8 +49,12 @@ public class FireBolt : BossAttack
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        if (boss.Anim.GetCurrentAnimatorStateInfo(0).IsName(animName))
+            animationTime = boss.Anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+
         targetDirection = (boss.target.transform.position - boss.transform.position).normalized;
-        boss.firebolt.transform.localPosition = new Vector2(targetDirection.x, targetDirection.y);
+        boss.lookAt = targetDirection;
+        boss.SetAnimHorizontalVertical(boss.lookAt);
 
         if (currentAmtFireball == MaxFireball)
         {
@@ -57,20 +65,67 @@ public class FireBolt : BossAttack
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        if (Time.time >= nextShotTimer)
+        if (animationTime >= nextShotTimer)
         {
             CreateFireball();
-            nextShotTimer = Time.time + intervalBetweenShots;
+            nextShotTimer++;
         }
     }
 
     private void CreateFireball()
     {
-        GameObject fireball = Object.Instantiate(boss.fireball, boss.firebolt.transform.position, Quaternion.identity);
+        Vector3 spawnPos = GetFireballSpawnPosition();
+        GameObject fireball = Object.Instantiate(boss.fireball, spawnPos, Quaternion.identity);
         Fireball fb = fireball.GetComponent<Fireball>();
         fb.SetDamage(boss.Attack * DamageRatio);
-        fb.SetVelocity(targetDirection, fireballSpeed);
+        fb.SetVelocity((boss.target.transform.position - spawnPos).normalized, fireballSpeed);
         fb.lifeDistance = fireballLifeDistance;
         currentAmtFireball++;
+    }
+
+    private Vector3 GetFireballSpawnPosition()
+    {
+        Transform spawnPos = null;
+        Vector2 dir = CalculateDirection(targetDirection);
+        Debug.Log(dir);
+        if (dir == Vector2.left)
+        {
+            spawnPos = boss.firebolt.transform.Find("Left");
+        }
+        else if (dir == Vector2.right)
+        {
+            spawnPos = boss.firebolt.transform.Find("Right");
+        }
+        else if (dir == Vector2.down)
+        {
+            spawnPos = boss.firebolt.transform.Find("Down");
+        }
+        else if (dir == Vector2.up)
+        {
+            spawnPos = boss.firebolt.transform.Find("Up");
+        }
+
+        if (spawnPos == null)
+            return Vector3.zero;
+        return spawnPos.position;
+    }
+
+    private static Vector2 CalculateDirection(Vector2 v)
+    {
+        Vector2[] directions = new Vector2[] { Vector2.left, Vector2.right, Vector2.up, Vector2.down };
+        float maxDot = -Mathf.Infinity;
+        Vector2 closestDir = Vector2.zero;
+
+        foreach (Vector2 dir in directions)
+        {
+            float t = Vector2.Dot(v, dir);
+            if (t > maxDot)
+            {
+                closestDir = dir;
+                maxDot = t;
+            }
+        }
+
+        return closestDir;
     }
 }

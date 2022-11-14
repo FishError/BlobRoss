@@ -6,7 +6,7 @@ using UnityEngine;
 // Boss fires balls of molten rock outward in a straight line in a circular
 // arrangement 5 times with the balls shifting slightly in between each fire
 
-public class WheelOfFire : BossAttack
+public class WheelOfFlame : BossAttack
 {
     private RedBoss boss;
     private RedBossData data;
@@ -20,7 +20,7 @@ public class WheelOfFire : BossAttack
     private static float fireballSpeed = 7;
     private static float fireballLifeDistance = 15;
 
-    public WheelOfFire(RedBoss boss, RedBossData data, string animName) : base(animName)
+    public WheelOfFlame(RedBoss boss, RedBossData data, Animator animator, string animName) : base(animator, animName)
     {
         this.boss = boss;
         this.data = data;
