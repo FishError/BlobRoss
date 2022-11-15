@@ -16,7 +16,7 @@ public class MobInfo
 
 public class Room
 {
-    public List<MobInfo> Mobs;
+    public List<GameObject> Enemies;
 
     public string Scene { get; private set; }
     public Room TopRoom { get; set; }
@@ -27,13 +27,12 @@ public class Room
     public Room(string sceneName)
     {
         Scene = sceneName;
-        Mobs = new List<MobInfo>();
+        Enemies = new List<GameObject>();
     }
 
-    public void AddMobToRoom(GameObject mob, Vector2 pos)
+    public void AddMobToRoom(GameObject enemy, Vector2 pos)
     {
-        MobInfo m = new MobInfo(mob, pos);
-        Mobs.Add(m);
+        Enemies.Add(enemy);
     }
 
     public void MatchSceneToRoomConstraints()

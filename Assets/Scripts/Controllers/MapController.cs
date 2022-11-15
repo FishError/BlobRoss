@@ -40,54 +40,7 @@ public class MapController : MonoBehaviour
     {
         Map.CurrentRoom.MatchSceneToRoomConstraints();
 
-        GameObject unwalkable = GameObject.Find("Unwalkable");
-        if (unwalkable != null)
-        {
-            Tilemap[] tilemaps = unwalkable.GetComponentsInChildren<Tilemap>();
-
-            //TileBase[] t = tilemaps[0].GetTilesBlock(tilemaps[0].cellBounds);
-            //print(tilemaps[0].CellToLocal(new Vector3Int(tilemaps[0].cellBounds.xMin, tilemaps[0].cellBounds.yMin, 0)));
-            //print(tilemaps[1].HasTile(new Vector3Int(tilemaps[1].cellBounds.xMin, tilemaps[1].cellBounds.yMax, 0)));
-
-            List<Vector2> avaliableSpawnPos = new List<Vector2>();
-            foreach(Tilemap tilemap in tilemaps)
-            {
-                for (int x = tilemap.cellBounds.xMin; x < tilemap.cellBounds.xMax; x++)
-                {
-                    for (int y = tilemap.cellBounds.yMin; y < tilemap.cellBounds.yMax; y++)
-                    {
-                        Vector3Int pos = new Vector3Int(x, y, 0);
-                        if (tilemap.HasTile(pos))
-                        {
-                            avaliableSpawnPos.Remove(tilemap.CellToLocal(pos));
-                        }
-                        else
-                        {
-                            avaliableSpawnPos.Add(tilemap.CellToLocal(pos));
-                        }
-                    }
-                }
-            }
-            /*for (int x = tilemaps[0].cellBounds.xMin; x < tilemaps[0].cellBounds.xMax; x++)
-            {
-                for (int y = tilemaps[0].cellBounds.yMin; y < tilemaps[0].cellBounds.yMax; y++)
-                {
-                    Vector3Int pos = new Vector3Int(x, y, 0);
-                    if (tilemaps[0].HasTile(pos))
-                    {
-                        avaliableSpawnPos.Remove(tilemaps[0].CellToLocal(pos));
-                    }
-                    else
-                    {
-                        avaliableSpawnPos.Add(tilemaps[0].CellToLocal(pos));
-                    }
-                }
-            }*/
-            Vector2 p = avaliableSpawnPos[Random.Range(0, avaliableSpawnPos.Count - 1)];
-            //print(p);
-            GameObject mob = Instantiate(RedMobs[0], p, Quaternion.identity);
-            mob.GetComponent<Enemy>().target = player;
-        }
+        SpawnEnemies();
 
         GameObject roomConnector = null;
         switch (previousRoomDir)
@@ -121,5 +74,62 @@ public class MapController : MonoBehaviour
     {
         var grid = GameObject.Find("Grid").GetComponent<PolygonCollider2D>();
         cinemachineCamera.GetComponentInChildren<CinemachineConfiner>().m_BoundingShape2D = grid;
+    }
+
+    private void SpawnEnemies()
+    {
+        GameObject enemySpawnAreas = GameObject.Find("EnemySpawnAreas");
+        if (enemySpawnAreas != null)
+        {
+            foreach (GameObject enemy in Map.CurrentRoom.Enemies)
+            {
+                Transform area = enemySpawnAreas.transform.GetChild(Random.Range(0, enemySpawnAreas.transform.childCount));
+                Collider2D areaBounds = area.GetComponent<Collider2D>();
+                if (areaBounds is BoxCollider2D)
+                {
+                    BoxCollider2D boxBounds = (BoxCollider2D)areaBounds;
+                    float x = Random.Range(-boxBounds.size.x / 2, boxBounds.size.x / 2);
+                    float y = Random.Range(-boxBounds.size.y / 2, boxBounds.size.y / 2);
+                    Vector2 pos = new Vector2(area.position.x + x, area.position.y + y);
+                    GameObject enemyObject = Instantiate(enemy, pos, Quaternion.identity);
+                    enemyObject.GetComponent<Enemy>().target = player;
+                }
+            }
+        }
+
+        // Dynamic method I came up with but is buggy and sometimes spawns enemies in walls
+        // keeping this here for now just for reference in the future
+
+        /*GameObject unwalkable = GameObject.Find("Unwalkable");
+        if (unwalkable != null)
+        {
+            Tilemap[] unWalkableTilemaps = unwalkable.GetComponentsInChildren<Tilemap>(C);
+            List<Vector2> avaliableSpawnPos = new List<Vector2>();
+            foreach (Tilemap tilemap in unWalkableTilemaps)
+            {
+                for (int x = tilemap.cellBounds.xMin; x < tilemap.cellBounds.xMax; x++)
+                {
+                    for (int y = tilemap.cellBounds.yMin; y < tilemap.cellBounds.yMax; y++)
+                    {
+                        Vector3Int pos = new Vector3Int(x, y, 0);
+                        if (tilemap.HasTile(pos))
+                        {
+                            avaliableSpawnPos.Remove(tilemap.CellToLocal(pos));
+                        }
+                        else
+                        {
+                            avaliableSpawnPos.Add(tilemap.CellToLocal(pos));
+                        }
+                    }
+                }
+            }
+
+            foreach (GameObject enemy in Map.CurrentRoom.Enemies)
+            {
+                Vector2 randomPos = avaliableSpawnPos[Random.Range(0, avaliableSpawnPos.Count - 1)];
+                GameObject mob = Instantiate(enemy, randomPos, Quaternion.identity);
+                mob.GetComponent<Enemy>().target = player;
+            }
+        }*/
     }
 }

@@ -104,13 +104,13 @@ public class PGM
         return next;
     }
 
-    private static Room CreateRandomRoom(string roomType, List<GameObject> mobList, System.Random random)
+    private static Room CreateRandomRoom(string roomType, List<GameObject> enemyList, System.Random random)
     {
         Room room = new Room(roomType + "_" + random.Next(1, 3));
         int numOfMobs = random.Next(4, 7);
         for (int i = 0; i < numOfMobs; i++)
         {
-            GameObject mob = mobList[random.Next(mobList.Count)];
+            GameObject mob = enemyList[random.Next(enemyList.Count)];
             room.AddMobToRoom(mob.gameObject, Vector2.zero);
         }
         return room;

@@ -69,7 +69,7 @@ public class Enemy : CombatOrganismEntity
         navMeshAgent.speed = MovementSpeed;
 
         unWalkableLayers = LayerMask.GetMask("Wall");
-        targetDetectionIgnoreLayers = LayerMask.GetMask("Grid", "Enemy");
+        targetDetectionIgnoreLayers = LayerMask.GetMask("Ignore Raycast", "Enemy");
     }
 
     protected override void Update()
