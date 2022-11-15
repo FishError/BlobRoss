@@ -34,6 +34,7 @@ public class RedEquipmentEffectState : EquipmentEffectState
             {
                 SetEffect(1,0);
                 equipment.player.IdleState.SetIdle(1,0);
+                equipment.player.equipments[1].IdleState.SetIdle(1, 0);
                 equipment.LastX = v.x;
                 equipment.LastY = v.y;
             }
@@ -41,6 +42,7 @@ public class RedEquipmentEffectState : EquipmentEffectState
             {
                 SetEffect(-1,0);
                 equipment.player.IdleState.SetIdle(-1,0);
+                equipment.player.equipments[1].IdleState.SetIdle(-1, 0);
                 equipment.LastX = v.x;
                 equipment.LastY = v.y;
             }
@@ -48,6 +50,7 @@ public class RedEquipmentEffectState : EquipmentEffectState
             {
                 SetEffect(0,1);
                 equipment.player.IdleState.SetIdle(0,1);
+                equipment.player.equipments[1].IdleState.SetIdle(0, 1);
                 equipment.LastX = v.x;
                 equipment.LastY = v.y;
             }
@@ -55,6 +58,7 @@ public class RedEquipmentEffectState : EquipmentEffectState
             {
                 SetEffect(0,-1);
                 equipment.player.IdleState.SetIdle(0,-1);
+                equipment.player.equipments[1].IdleState.SetIdle(0, -1);
                 equipment.LastX = v.x;
                 equipment.LastY = v.y;
             }
