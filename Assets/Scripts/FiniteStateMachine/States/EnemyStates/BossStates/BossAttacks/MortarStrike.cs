@@ -15,7 +15,6 @@ public class MortarStrike : BossAttack
 
     private static int MaxMortarStrike;
     private float nextShotTimer;
-    private static float intervalBetweenShots = 1f;
     private int currentStrike = 0;
     private float spawnRadius = 3f;
 
@@ -50,7 +49,7 @@ public class MortarStrike : BossAttack
         if (boss.Anim.GetCurrentAnimatorStateInfo(0).IsName(animName))
             animationTime = boss.Anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
 
-        if (currentStrike == MaxMortarStrike)
+        if (currentStrike == MaxMortarStrike && animationTime >= MaxMortarStrike)
         {
             boss.StateMachine.ChangeState(boss.AgroState);
         }
@@ -70,18 +69,10 @@ public class MortarStrike : BossAttack
 
     private void SummonBoulder()
     {
-        Vector2 randomPos = (Vector2)boss.target.transform.position + Random.insideUnitCircle * spawnRadius;
-        GameObject boulderObject = Object.Instantiate(boss.boulder, new Vector2(randomPos.x, randomPos.y + 20), Quaternion.identity);
-        GameObject indicator = Object.Instantiate(boss.boulderIndicator, new Vector2(randomPos.x, randomPos.y - 1f), Quaternion.identity);
-
+        GameObject boulderObject = Object.Instantiate(boss.boulder, boss.mortarStrikeOrigin.position, Quaternion.identity);
         Boulder boulder = boulderObject.GetComponent<Boulder>();
-        boulder.SetYPosition(randomPos.y);
-        boulder.SetIndicator(indicator);
-        boulder.SetVelocity(Vector2.down, 20f);
-
-        AreaOfEffectIndicator aoeIndicator = indicator.GetComponent<AreaOfEffectIndicator>();
-        aoeIndicator.damage = boss.Attack * DamageRatio;
-        aoeIndicator.effectTriggerTime = 1f;
+        boulder.damage = boss.Attack * DamageRatio;
+        boulder.SetTrajectory(boss.target, spawnRadius);
 
         currentStrike++;
     }

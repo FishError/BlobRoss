@@ -56,7 +56,7 @@ public class Firebolt : BossAttack
         boss.lookAt = targetDirection;
         boss.SetAnimHorizontalVertical(boss.lookAt);
 
-        if (currentAmtFireball == MaxFireball)
+        if (currentAmtFireball == MaxFireball && animationTime >= MaxFireball)
         {
             boss.StateMachine.ChangeState(boss.AgroState);
         }
@@ -90,19 +90,19 @@ public class Firebolt : BossAttack
         Debug.Log(dir);
         if (dir == Vector2.left)
         {
-            spawnPos = boss.firebolt.transform.Find("Left");
+            spawnPos = boss.fireboltOrigins.transform.Find("Left");
         }
         else if (dir == Vector2.right)
         {
-            spawnPos = boss.firebolt.transform.Find("Right");
+            spawnPos = boss.fireboltOrigins.transform.Find("Right");
         }
         else if (dir == Vector2.down)
         {
-            spawnPos = boss.firebolt.transform.Find("Down");
+            spawnPos = boss.fireboltOrigins.transform.Find("Down");
         }
         else if (dir == Vector2.up)
         {
-            spawnPos = boss.firebolt.transform.Find("Up");
+            spawnPos = boss.fireboltOrigins.transform.Find("Up");
         }
 
         if (spawnPos == null)

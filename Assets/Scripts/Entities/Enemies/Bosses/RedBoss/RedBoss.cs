@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class RedBoss : Boss
 {
+    [Header("Blomb Squad")]
     public GameObject Blomb;
     public Transform BlombSpawnArea;
 
-    public GameObject fireball, boulder, boulderIndicator;
-    public Transform WheelOfFire, firebolt;
+    [Header("Firebolt")]
+    public GameObject fireball;
+    public Transform fireboltOrigins;
+
+    [Header("Mortar Strike")]
+    public GameObject boulder;
+    public Transform mortarStrikeOrigin;
+
+    [Header("Wheel of Flame")]
+    public Transform WheelOfFireOrigins;
 
     protected override void Awake()
     {
@@ -23,10 +32,10 @@ public class RedBoss : Boss
 
         waitTimeBetweenAttacks = ((RedBossData)data).WaitTimeBetweenAttacksP1;
 
-        //Attacks.Add(new MortarStrike(this, (RedBossData)data, Anim, "MortarStrike"));
+        Attacks.Add(new MortarStrike(this, (RedBossData)data, Anim, "MortarStrike"));
         Attacks.Add(new Firebolt(this, (RedBossData)data, Anim, "Firebolt"));
-        //Attacks.Add(new BlombSquad(this, (RedBossData)data, Anim, "BlombSquad"));
-        //Attacks.Add(new WheelOfFlame(this, (RedBossData)data, Anim, "WheelOfFlame"));
+        Attacks.Add(new BlombSquad(this, (RedBossData)data, Anim, "BlombSquad"));
+        Attacks.Add(new WheelOfFlame(this, (RedBossData)data, Anim, "WheelOfFlame"));
     }
 
     protected override void Update()

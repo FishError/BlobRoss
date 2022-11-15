@@ -42,7 +42,7 @@ public class WheelOfFlame : BossAttack
     {
         base.Exit();
         currentNumOfShots = 0;
-        boss.WheelOfFire.transform.rotation = Quaternion.identity;
+        boss.WheelOfFireOrigins.transform.rotation = Quaternion.identity;
 
     }
 
@@ -60,14 +60,14 @@ public class WheelOfFlame : BossAttack
         base.PhysicsUpdate();
         if (Time.time >= nextWaveTimer)
         {
-            foreach(Transform t in boss.WheelOfFire)
+            foreach(Transform t in boss.WheelOfFireOrigins)
             {
                 CreateFireball(t.position);
             }
             currentNumOfShots++;
 
             nextWaveTimer = Time.time + intervalBetweenWaves;
-            boss.WheelOfFire.transform.Rotate(0, 0, rotationAmount);
+            boss.WheelOfFireOrigins.transform.Rotate(0, 0, rotationAmount);
         }
     }
 

@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &79906719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 79906720}
+  m_Layer: 8
+  m_Name: MortarStrike
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &79906720
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79906719}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.438, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 373137879}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &212884143
 GameObject:
   m_ObjectHideFlags: 0
@@ -193,10 +224,10 @@ MonoBehaviour:
   Blomb: {fileID: 1216158483919421035, guid: b4535db3975f48f41ad6d4bd1229cfa9, type: 3}
   BlombSpawnArea: {fileID: 1056843769}
   fireball: {fileID: 6100034279880317823, guid: df7fee56a56d8094a959183495b515b1, type: 3}
+  fireboltOrigins: {fileID: 1689550967}
   boulder: {fileID: 6241805715494526490, guid: d7d00f0d686bcd84dbc04d57a683c0ee, type: 3}
-  boulderIndicator: {fileID: 2098398957063123359, guid: eb59003abf1360a4e847e91a136f79f8, type: 3}
-  WheelOfFire: {fileID: 1146667885}
-  firebolt: {fileID: 1689550967}
+  mortarStrikeOrigin: {fileID: 79906720}
+  WheelOfFireOrigins: {fileID: 1146667885}
 --- !u!212 &373137878
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -258,11 +289,12 @@ Transform:
   m_GameObject: {fileID: 373137876}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.13, y: 25.07, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1146667885}
   - {fileID: 1689550967}
+  - {fileID: 79906720}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -449,11 +481,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7034977938710112483, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.7758782
+      value: 7.1
       objectReference: {fileID: 0}
     - target: {fileID: 7034977938710112483, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.62
+      value: 15.6
       objectReference: {fileID: 0}
     - target: {fileID: 7034977938710112483, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -502,19 +534,19 @@ PrefabInstance:
       objectReference: {fileID: 504970262}
     - target: {fileID: 5240304747635189271, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.7758782
+      value: 2.0899997
       objectReference: {fileID: 0}
     - target: {fileID: 5240304747635189271, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.62
+      value: 12.320001
       objectReference: {fileID: 0}
     - target: {fileID: 5240304747806562004, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.7758782
+      value: 2.0899997
       objectReference: {fileID: 0}
     - target: {fileID: 5240304747806562004, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.62
+      value: 12.320001
       objectReference: {fileID: 0}
     - target: {fileID: 5240304748295829287, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_Name
@@ -526,11 +558,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5240304748295829288, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 5.01
       objectReference: {fileID: 0}
     - target: {fileID: 5240304748295829288, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 3.28
       objectReference: {fileID: 0}
     - target: {fileID: 5240304748295829288, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_LocalPosition.z
@@ -733,7 +765,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1146667885}
   m_Layer: 8
-  m_Name: WheelOfFire
+  m_Name: WheelOfFlame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62837,7 +62869,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2055176898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.291, z: 0}
+  m_LocalPosition: {x: 0, y: 0.479, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
