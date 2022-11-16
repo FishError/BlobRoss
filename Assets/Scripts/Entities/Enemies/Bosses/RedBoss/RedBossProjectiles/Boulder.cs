@@ -38,7 +38,7 @@ public class Boulder : EnemyProjectile
 
         GameObject indicator = Instantiate(boulderImpactIndicator, new Vector2(randomPos.x, randomPos.y - 1f), Quaternion.identity);
         AreaOfEffectIndicator aoeIndicator = indicator.GetComponent<AreaOfEffectIndicator>();
-        aoeIndicator.damage = damage;
-        aoeIndicator.effectTriggerTime = (transform.position.y - yPosition) / 20f;
+        aoeIndicator.Damage = damage;
+        aoeIndicator.EffectTriggerTime = (transform.position.y - yPosition) / 20f;
     }
 }

@@ -5,8 +5,8 @@ using UnityEngine;
 public class AreaOfEffectIndicator : MonoBehaviour
 {
     public Collider2D areaOfEffect;
-    public float damage;
-    public float effectTriggerTime;
+    public float Damage { get; set; }
+    public float EffectTriggerTime { get; set; }
     private float timer = 0;
 
     public GameObject OuterShape;
@@ -19,13 +19,13 @@ public class AreaOfEffectIndicator : MonoBehaviour
 
     private void Update()
     {
-        if (!areaOfEffect.enabled && timer >= effectTriggerTime)
+        if (!areaOfEffect.enabled && timer >= EffectTriggerTime)
         {
             areaOfEffect.enabled = true;
             Destroy(gameObject, 0.1f);
         }
 
-        if (timer < effectTriggerTime)
+        if (timer < EffectTriggerTime)
         {
             timer += Time.deltaTime;
             ExpandInnerShape();
@@ -37,15 +37,15 @@ public class AreaOfEffectIndicator : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             Player player = collision.gameObject.GetComponent<Player>();
-            player.ModifyHealthPoints(-damage);
+            player.ModifyHealthPoints(-Damage);
         }
     }
 
     private void ExpandInnerShape()
     {
-        float x = timer / effectTriggerTime * OuterShape.transform.localScale.x;
-        float y = timer / effectTriggerTime * OuterShape.transform.localScale.y;
-        float z = timer / effectTriggerTime * OuterShape.transform.localScale.z;
+        float x = timer / EffectTriggerTime * OuterShape.transform.localScale.x;
+        float y = timer / EffectTriggerTime * OuterShape.transform.localScale.y;
+        float z = timer / EffectTriggerTime * OuterShape.transform.localScale.z;
         InnerShape.transform.localScale = new Vector3(x, y, z);
     }
 }
