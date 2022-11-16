@@ -9,7 +9,7 @@ public class EnemyProjectile : Projectile
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             Player player = collision.gameObject.GetComponent<Player>();
-            player.ModifyHealthPoints(-damage);
+            player.ModifyHealthPoints(-Damage);
         }
 
         base.OnCollisionEnter2D(collision);

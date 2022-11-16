@@ -157,9 +157,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c389d97f600c73544bc87e4469d72ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  dir: {x: 0, y: 0}
-  speed: 0
+  data: {fileID: 11400000, guid: 316a06695ef135347b44c5e148e83760, type: 2}
   rb: {fileID: 0}
-  lifeTime: Infinity
-  lifeDistance: Infinity

@@ -71,7 +71,7 @@ public class MortarStrike : BossAttack
     {
         GameObject boulderObject = Object.Instantiate(boss.boulder, boss.mortarStrikeOrigin.position, Quaternion.identity);
         Boulder boulder = boulderObject.GetComponent<Boulder>();
-        boulder.SetDamage(boss.Attack * DamageRatio);
+        boulder.SetDamage(boss.Attack);
         boulder.SetTrajectory(boss.target, spawnRadius);
 
         currentStrike++;

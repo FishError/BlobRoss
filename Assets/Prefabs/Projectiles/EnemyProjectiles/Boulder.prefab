@@ -140,10 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fa822d0969b8fe478b111a08750c55f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  dir: {x: 0, y: 0}
-  speed: 0
+  data: {fileID: 11400000, guid: f02ff42931562bb479bae8110591b9d2, type: 2}
   rb: {fileID: 6241805715494526471}
-  lifeTime: Infinity
-  lifeDistance: Infinity
+  destroyAfterBreakTime: 5
   boulderImpactIndicator: {fileID: 2098398957063123359, guid: eb59003abf1360a4e847e91a136f79f8, type: 3}

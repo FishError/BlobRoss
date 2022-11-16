@@ -17,9 +17,6 @@ public class Firebolt : BossAttack
     private Vector2 targetDirection;
     private float nextShotTimer;
 
-    private static float fireballSpeed = 7;
-    private static float fireballLifeDistance = 15;
-
     public Firebolt(RedBoss boss, RedBossData data, Animator animator, string animName) : base(animator, animName)
     {
         this.boss = boss;
@@ -77,9 +74,8 @@ public class Firebolt : BossAttack
         Vector3 spawnPos = GetFireballSpawnPosition();
         GameObject fireball = Object.Instantiate(boss.fireball, spawnPos, Quaternion.identity);
         Fireball fb = fireball.GetComponent<Fireball>();
-        fb.SetDamage(boss.Attack * DamageRatio);
-        fb.SetVelocity((boss.target.transform.position - spawnPos).normalized, fireballSpeed);
-        fb.lifeDistance = fireballLifeDistance;
+        fb.SetDamage(boss.Attack);
+        fb.SetVelocity((boss.target.transform.position - spawnPos).normalized);
         currentAmtFireball++;
     }
 

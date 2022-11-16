@@ -17,9 +17,6 @@ public class WheelOfFlame : BossAttack
     private int currentNumOfShots = 0;
     private float rotationAmount;
 
-    private static float fireballSpeed = 7;
-    private static float fireballLifeDistance = 15;
-
     public WheelOfFlame(RedBoss boss, RedBossData data, Animator animator, string animName) : base(animator, animName)
     {
         this.boss = boss;
@@ -77,7 +74,6 @@ public class WheelOfFlame : BossAttack
         Fireball fb = fireball.GetComponent<Fireball>();
         Vector2 dir = ((Vector3)spawnPosition - boss.transform.position).normalized;
         fb.SetDamage(boss.Attack * DamageRatio);
-        fb.SetVelocity(dir, fireballSpeed);
-        fb.lifeDistance = fireballLifeDistance;
+        fb.SetVelocity(dir);
     }
 }

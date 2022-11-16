@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Boulder : EnemyProjectile
 {
+    public float destroyAfterBreakTime;
     public GameObject boulderImpactIndicator;
     protected bool falling;
     protected float yPosition;
@@ -15,14 +16,14 @@ public class Boulder : EnemyProjectile
         if (falling && gameObject.transform.position.y <= yPosition)
         {
             rb.velocity = Vector2.zero;
-            SetLifeTime(5f);
+            SetLifeTime(destroyAfterBreakTime);
             GetComponent<Animator>().SetBool("goBreak", true);
         }
     }
 
     public void SetTrajectory(GameObject target, float radius)
     {
-        SetVelocity(Vector2.up, 20f);
+        SetVelocity(Vector2.up);
         StartCoroutine(SetDownwardTrajectory(target, radius));
     }
 
@@ -34,11 +35,11 @@ public class Boulder : EnemyProjectile
         yPosition = randomPos.y;
 
         falling = true;
-        SetVelocity(Vector2.down, 20f);
+        SetVelocity(Vector2.down);
 
         GameObject indicator = Instantiate(boulderImpactIndicator, new Vector2(randomPos.x, randomPos.y - 1f), Quaternion.identity);
         AreaOfEffectIndicator aoeIndicator = indicator.GetComponent<AreaOfEffectIndicator>();
-        aoeIndicator.Damage = damage;
-        aoeIndicator.EffectTriggerTime = (transform.position.y - yPosition) / 20f;
+        aoeIndicator.Damage = Damage;
+        aoeIndicator.EffectTriggerTime = (transform.position.y - yPosition) / Speed;
     }
 }
