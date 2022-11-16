@@ -10,7 +10,7 @@ public class BlombSquad : BossAttack
     private RedBoss boss;
     private RedBossData data;
 
-    private static int maxBlombSummons = 10;
+    private static int maxBlombSummons;
     private int blombCount;
 
     private static float intervalBetweenSummons = 0.3f;
