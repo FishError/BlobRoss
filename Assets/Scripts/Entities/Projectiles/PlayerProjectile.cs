@@ -10,7 +10,6 @@ public abstract class PlayerProjectile : Projectile
         {
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             enemy.ModifyHealthPoints(-damage);
-            Destroy(gameObject);
         }
 
         base.OnCollisionEnter2D(collision);

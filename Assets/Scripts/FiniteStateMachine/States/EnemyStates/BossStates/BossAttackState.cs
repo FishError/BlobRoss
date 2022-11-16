@@ -15,20 +15,23 @@ public class BossAttackState : BossEnemyState
     {
         base.Enter();
         boss.rb.velocity = Vector2.zero;
-        currentAttack.Enter();
+        if (currentAttack != null)
+            currentAttack.Enter();
     }
 
     public override void Exit()
     {
         base.Exit();
-        currentAttack.Exit();
+        if (currentAttack != null)
+            currentAttack.Exit();
         currentAttack = null;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        currentAttack.LogicUpdate();
+        if (currentAttack != null)
+            currentAttack.LogicUpdate();
     }
 
     public override void DoChecks()
@@ -39,7 +42,8 @@ public class BossAttackState : BossEnemyState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        currentAttack.PhysicsUpdate();
+        if (currentAttack != null)
+            currentAttack.PhysicsUpdate();
     }
 
     public void SetCurrentAttack(BossAttack attack)

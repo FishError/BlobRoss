@@ -87,7 +87,6 @@ public class Firebolt : BossAttack
     {
         Transform spawnPos = null;
         Vector2 dir = CalculateDirection(targetDirection);
-        Debug.Log(dir);
         if (dir == Vector2.left)
         {
             spawnPos = boss.fireboltOrigins.transform.Find("Left");
