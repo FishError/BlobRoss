@@ -57,7 +57,7 @@ public class PaletteEffect : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Projectile"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("EnemyProjectile"))
         {
             enemyHitCounter++;
             Destroy(other.gameObject);
