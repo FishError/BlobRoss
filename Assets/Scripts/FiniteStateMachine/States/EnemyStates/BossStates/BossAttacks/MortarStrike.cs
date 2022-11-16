@@ -24,7 +24,6 @@ public class MortarStrike : BossAttack
         this.data = data;
 
         MaxMortarStrike = this.data.MaxMortarStrike;
-        DamageRatio = this.data.MortarStrikeDamageRatio;
         Range = this.data.MortarStrikeRange;
         Cooldown = this.data.MortarStrikeCooldown;
     }

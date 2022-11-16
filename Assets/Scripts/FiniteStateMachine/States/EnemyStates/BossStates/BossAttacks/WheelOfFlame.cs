@@ -24,7 +24,6 @@ public class WheelOfFlame : BossAttack
 
         maxWaveAmount = this.data.MaxWaveAmount;
         rotationAmount = this.data.RotationBetweenWaves;
-        DamageRatio = this.data.WheelOfFireDamageRatio;
         Range = this.data.WheelOfFireHellRange;
         Cooldown = this.data.WheelOfFireCooldown;
     }

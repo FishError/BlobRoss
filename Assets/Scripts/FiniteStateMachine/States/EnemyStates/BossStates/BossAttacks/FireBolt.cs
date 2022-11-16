@@ -23,7 +23,6 @@ public class Firebolt : BossAttack
         this.data = data;
 
         MaxFireball = this.data.MaxFireboltAmount;
-        DamageRatio = this.data.FireboltDamageRatio;
         Cooldown = this.data.FireboltCooldown;
         Range = this.data.FireboltRange;
     }
