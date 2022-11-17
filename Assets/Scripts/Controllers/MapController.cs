@@ -20,6 +20,7 @@ public class MapController : MonoBehaviour
     public GameObject player;
     public GameObject cinemachineCamera;
 
+    public RoomController CurrentRoomController { get; set; }
     public Map Map { get; private set; }
     public Direction previousRoomDir { get; set; }
 
@@ -38,6 +39,12 @@ public class MapController : MonoBehaviour
 
     private void ChangedActiveScene(Scene current, Scene next)
     {
+        GameObject roomController = GameObject.Find("RoomController");
+        if (roomController != null)
+        {
+            CurrentRoomController = roomController.GetComponent<RoomController>();
+            CurrentRoomController.SpawnEnemies(Map.CurrentRoom, player);
+        }
         Map.CurrentRoom.MatchSceneToRoomConstraints();
 
         SpawnEnemies();

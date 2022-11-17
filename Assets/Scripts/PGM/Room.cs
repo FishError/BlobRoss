@@ -30,7 +30,7 @@ public class Room
         Enemies = new List<GameObject>();
     }
 
-    public void AddMobToRoom(GameObject enemy, Vector2 pos)
+    public void AddMobToRoom(GameObject enemy)
     {
         Enemies.Add(enemy);
     }

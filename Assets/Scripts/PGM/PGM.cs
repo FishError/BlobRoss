@@ -111,7 +111,7 @@ public class PGM
         for (int i = 0; i < numOfMobs; i++)
         {
             GameObject mob = enemyList[random.Next(enemyList.Count)];
-            room.AddMobToRoom(mob.gameObject, Vector2.zero);
+            room.AddMobToRoom(mob.gameObject);
         }
         return room;
     }

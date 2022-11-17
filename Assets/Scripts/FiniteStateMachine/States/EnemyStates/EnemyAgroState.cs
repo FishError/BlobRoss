@@ -42,7 +42,7 @@ public class EnemyAgroState : EnemyState
 
         // set NavMeshDestination to target position to update path every FixedUpdate loop
         enemy.navMeshAgent.nextPosition = enemy.transform.position;
-        enemy.navMeshAgent.SetDestination(enemy.target.transform.position);
+        enemy.navMeshAgent.SetDestination(new Vector3(enemy.target.transform.position.x, enemy.target.transform.position.y, 0));
         enemy.rb.velocity = enemy.navMeshAgent.velocity;
         enemy.lookAt = enemy.rb.velocity.normalized;
         enemy.SetAnimHorizontalVertical(enemy.lookAt);
