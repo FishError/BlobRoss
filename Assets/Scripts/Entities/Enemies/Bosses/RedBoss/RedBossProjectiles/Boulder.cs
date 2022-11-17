@@ -15,9 +15,10 @@ public class Boulder : EnemyProjectile
 
         if (falling && gameObject.transform.position.y <= yPosition)
         {
-            rb.velocity = Vector2.zero;
+            SetVelocity(Vector2.zero, 0);
             SetLifeTime(destroyAfterBreakTime);
             GetComponent<Animator>().SetBool("goBreak", true);
+            falling = false;
         }
     }
 
