@@ -1,17 +1,113 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class RoomController : MonoBehaviour
 {
+    public Room Room { get; set; }
+
     public GameObject grid;
+    public GameObject exitsAndEntrances;
     public Transform enemySpawnAreas;
+    public Transform enemies;
 
     [Header("Room Connectors")]
     public GameObject roomConnectorLeft;
     public GameObject roomConnectorRight;
     public GameObject roomConnectorDown;
     public GameObject roomConnectorUp;
+
+    private bool canLeave;
+
+    private void Update()
+    {
+        if (enemies.childCount == 0 && canLeave)
+        {
+            canLeave = true;
+        }
+    }
+
+    public void SetCameraConfiner(GameObject cinemachineCamera)
+    {
+        cinemachineCamera.GetComponentInChildren<CinemachineConfiner>().m_BoundingShape2D = grid.GetComponent<PolygonCollider2D>();
+    }
+
+    public void PlayerSetup(Direction previousRoomDir, GameObject player)
+    {
+        GameObject roomConnector = null;
+        switch (previousRoomDir)
+        {
+            case Direction.Left:
+                roomConnector = roomConnectorLeft;
+                break;
+            case Direction.Right:
+                roomConnector = roomConnectorRight;
+                break;
+            case Direction.Up:
+                roomConnector = roomConnectorUp;
+                break;
+            case Direction.Down:
+                roomConnector = roomConnectorDown;
+                break;
+        }
+
+        if (roomConnector != null)
+        {
+            Transform spawnLocation = roomConnector.transform.Find("EntranceSpawn");
+            if (spawnLocation != null)
+            {
+                player.transform.position = spawnLocation.position;
+            }
+        }
+    }
+
+    public void MatchSceneWithRoomProperties(Room room)
+    {
+        if (exitsAndEntrances != null)
+        {
+            if (room.LeftRoom == null)
+            {
+                exitsAndEntrances.transform.Find("Left_Open").gameObject.SetActive(false);
+                exitsAndEntrances.transform.Find("Left_Closed").gameObject.SetActive(true);
+            }
+            else
+            {
+                exitsAndEntrances.transform.Find("Left_Open").gameObject.SetActive(true);
+                exitsAndEntrances.transform.Find("Left_Closed").gameObject.SetActive(false);
+            }
+            if (room.TopRoom == null)
+            {
+                exitsAndEntrances.transform.Find("Top_Open").gameObject.SetActive(false);
+                exitsAndEntrances.transform.Find("Top_Closed").gameObject.SetActive(true);
+            }
+            else
+            {
+                exitsAndEntrances.transform.Find("Top_Open").gameObject.SetActive(true);
+                exitsAndEntrances.transform.Find("Top_Closed").gameObject.SetActive(false);
+            }
+            if (room.RightRoom == null)
+            {
+                exitsAndEntrances.transform.Find("Right_Open").gameObject.SetActive(false);
+                exitsAndEntrances.transform.Find("Right_Closed").gameObject.SetActive(true);
+            }
+            else
+            {
+                exitsAndEntrances.transform.Find("Right_Open").gameObject.SetActive(true);
+                exitsAndEntrances.transform.Find("Right_Closed").gameObject.SetActive(false);
+            }
+            if (room.BottomRoom == null)
+            {
+                exitsAndEntrances.transform.Find("Bottom_Open").gameObject.SetActive(false);
+                exitsAndEntrances.transform.Find("Bottom_Closed").gameObject.SetActive(true);
+            }
+            else
+            {
+                exitsAndEntrances.transform.Find("Bottom_Open").gameObject.SetActive(true);
+                exitsAndEntrances.transform.Find("Bottom_Closed").gameObject.SetActive(false);
+            }
+        }
+    }
 
     public void SpawnEnemies(Room room, GameObject player)
     {
@@ -29,6 +125,7 @@ public class RoomController : MonoBehaviour
                     Vector2 pos = new Vector2(area.position.x + x, area.position.y + y);
                     GameObject enemyObject = Instantiate(enemy, pos, Quaternion.identity);
                     enemyObject.GetComponent<Enemy>().target = player;
+                    enemyObject.transform.SetParent(enemies);
                 }
             }
         }

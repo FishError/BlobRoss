@@ -16,7 +16,8 @@ public class MobInfo
 
 public class Room
 {
-    public List<GameObject> Enemies;
+    public List<GameObject> Enemies { get; set; }
+    public GameObject Reward { get; set; }
 
     public string Scene { get; private set; }
     public Room TopRoom { get; set; }
@@ -33,54 +34,6 @@ public class Room
     public void AddMobToRoom(GameObject enemy)
     {
         Enemies.Add(enemy);
-    }
-
-    public void MatchSceneToRoomConstraints()
-    {
-        GameObject ee = GameObject.Find("Exits/Entrances");
-        if (ee != null)
-        {
-            if (LeftRoom == null)
-            {
-                ee.transform.Find("Left_Open").gameObject.SetActive(false);
-                ee.transform.Find("Left_Closed").gameObject.SetActive(true);
-            }
-            else
-            {
-                ee.transform.Find("Left_Open").gameObject.SetActive(true);
-                ee.transform.Find("Left_Closed").gameObject.SetActive(false);
-            }
-            if (TopRoom == null)
-            {
-                ee.transform.Find("Top_Open").gameObject.SetActive(false);
-                ee.transform.Find("Top_Closed").gameObject.SetActive(true);
-            }
-            else
-            {
-                ee.transform.Find("Top_Open").gameObject.SetActive(true);
-                ee.transform.Find("Top_Closed").gameObject.SetActive(false);
-            }
-            if (RightRoom == null)
-            {
-                ee.transform.Find("Right_Open").gameObject.SetActive(false);
-                ee.transform.Find("Right_Closed").gameObject.SetActive(true);
-            }
-            else
-            {
-                ee.transform.Find("Right_Open").gameObject.SetActive(true);
-                ee.transform.Find("Right_Closed").gameObject.SetActive(false);
-            }
-            if (BottomRoom == null)
-            {
-                ee.transform.Find("Bottom_Open").gameObject.SetActive(false);
-                ee.transform.Find("Bottom_Closed").gameObject.SetActive(true);
-            }
-            else
-            {
-                ee.transform.Find("Bottom_Open").gameObject.SetActive(true);
-                ee.transform.Find("Bottom_Closed").gameObject.SetActive(false);
-            }
-        }
     }
 
     public void RemoveMobFromRoom()

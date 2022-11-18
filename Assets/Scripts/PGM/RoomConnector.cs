@@ -18,19 +18,19 @@ public class RoomConnector : MonoBehaviour
                 switch (dir)
                 {
                     case Direction.Left:
-                        mc.previousRoomDir = Direction.Right;
+                        mc.PreviousRoomDir = Direction.Right;
                         mc.Map.CurrentRoom = mc.Map.CurrentRoom.LeftRoom;
                         break;
                     case Direction.Right:
-                        mc.previousRoomDir = Direction.Left;
+                        mc.PreviousRoomDir = Direction.Left;
                         mc.Map.CurrentRoom = mc.Map.CurrentRoom.RightRoom;
                         break;
                     case Direction.Up:
-                        mc.previousRoomDir = Direction.Down;
+                        mc.PreviousRoomDir = Direction.Down;
                         mc.Map.CurrentRoom = mc.Map.CurrentRoom.TopRoom;
                         break;
                     case Direction.Down:
-                        mc.previousRoomDir = Direction.Up;
+                        mc.PreviousRoomDir = Direction.Up;
                         mc.Map.CurrentRoom = mc.Map.CurrentRoom.BottomRoom;
                         break;
                 }
