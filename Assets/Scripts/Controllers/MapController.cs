@@ -43,8 +43,9 @@ public class MapController : MonoBehaviour
         if (roomController != null)
         {
             CurrentRoomController = roomController.GetComponent<RoomController>();
-            CurrentRoomController.SpawnEnemies(Map.CurrentRoom, player);
-            CurrentRoomController.PlayerSetup(PreviousRoomDir, player);
+            CurrentRoomController.Room = Map.CurrentRoom;
+            CurrentRoomController.SpawnEnemies(player);
+            CurrentRoomController.UpdatePlayerPosition(PreviousRoomDir, player);
             CurrentRoomController.SetCameraConfiner(cinemachineCamera);
             CurrentRoomController.MatchSceneWithRoomProperties(Map.CurrentRoom);
         }

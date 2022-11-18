@@ -7,9 +7,9 @@ public class RoomConnector : MonoBehaviour
 {
     public Direction dir;
 
-    public void ChangeToConnectRoom(Collision2D collision)
+    public void ChangeToConnectRoom(Collider2D collider)
     {
-        if (collision.gameObject.layer == 6)
+        if (collider.gameObject.layer == 6)
         {
             GameObject gameObject = GameObject.Find("MapController");
             if (gameObject != null)

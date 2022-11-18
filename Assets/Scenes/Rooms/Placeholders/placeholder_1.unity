@@ -9292,6 +9292,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoomConnectorBottom
       objectReference: {fileID: 0}
+    - target: {fileID: 4680117687626755070, guid: 6f9300fb66588ab4f9bb8f22c6ba87ec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f9300fb66588ab4f9bb8f22c6ba87ec, type: 3}
 --- !u!4 &709810904 stripped
@@ -9361,7 +9365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5774568789544417624, guid: b6b31780003772f42b8deff55ea1056a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6b31780003772f42b8deff55ea1056a, type: 3}
@@ -9429,6 +9433,10 @@ PrefabInstance:
     - target: {fileID: 4663714243585674271, guid: c3d43e4181f10a74c9ea5f50c0d63a89, type: 3}
       propertyPath: m_Name
       value: RoomConnectorLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 4663714243585674271, guid: c3d43e4181f10a74c9ea5f50c0d63a89, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3d43e4181f10a74c9ea5f50c0d63a89, type: 3}
@@ -30918,6 +30926,10 @@ PrefabInstance:
     - target: {fileID: 5329384229760527793, guid: ec7200ab858b9fb4182f6fbea73d3ea8, type: 3}
       propertyPath: m_Name
       value: RoomConnectorTop
+      objectReference: {fileID: 0}
+    - target: {fileID: 5329384229760527793, guid: ec7200ab858b9fb4182f6fbea73d3ea8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ec7200ab858b9fb4182f6fbea73d3ea8, type: 3}

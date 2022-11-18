@@ -22,9 +22,13 @@ public class RoomController : MonoBehaviour
 
     private void Update()
     {
-        if (enemies.childCount == 0 && canLeave)
+        if (enemies.childCount == 0 && !canLeave)
         {
             canLeave = true;
+            roomConnectorLeft.SetActive(true);
+            roomConnectorRight.SetActive(true);
+            roomConnectorDown.SetActive(true);
+            roomConnectorUp.SetActive(true);
         }
     }
 
@@ -33,7 +37,7 @@ public class RoomController : MonoBehaviour
         cinemachineCamera.GetComponentInChildren<CinemachineConfiner>().m_BoundingShape2D = grid.GetComponent<PolygonCollider2D>();
     }
 
-    public void PlayerSetup(Direction previousRoomDir, GameObject player)
+    public void UpdatePlayerPosition(Direction previousRoomDir, GameObject player)
     {
         GameObject roomConnector = null;
         switch (previousRoomDir)
@@ -66,7 +70,7 @@ public class RoomController : MonoBehaviour
     {
         if (exitsAndEntrances != null)
         {
-            if (room.LeftRoom == null)
+            if (Room.LeftRoom == null)
             {
                 exitsAndEntrances.transform.Find("Left_Open").gameObject.SetActive(false);
                 exitsAndEntrances.transform.Find("Left_Closed").gameObject.SetActive(true);
@@ -76,7 +80,7 @@ public class RoomController : MonoBehaviour
                 exitsAndEntrances.transform.Find("Left_Open").gameObject.SetActive(true);
                 exitsAndEntrances.transform.Find("Left_Closed").gameObject.SetActive(false);
             }
-            if (room.TopRoom == null)
+            if (Room.TopRoom == null)
             {
                 exitsAndEntrances.transform.Find("Top_Open").gameObject.SetActive(false);
                 exitsAndEntrances.transform.Find("Top_Closed").gameObject.SetActive(true);
@@ -86,7 +90,7 @@ public class RoomController : MonoBehaviour
                 exitsAndEntrances.transform.Find("Top_Open").gameObject.SetActive(true);
                 exitsAndEntrances.transform.Find("Top_Closed").gameObject.SetActive(false);
             }
-            if (room.RightRoom == null)
+            if (Room.RightRoom == null)
             {
                 exitsAndEntrances.transform.Find("Right_Open").gameObject.SetActive(false);
                 exitsAndEntrances.transform.Find("Right_Closed").gameObject.SetActive(true);
@@ -96,7 +100,7 @@ public class RoomController : MonoBehaviour
                 exitsAndEntrances.transform.Find("Right_Open").gameObject.SetActive(true);
                 exitsAndEntrances.transform.Find("Right_Closed").gameObject.SetActive(false);
             }
-            if (room.BottomRoom == null)
+            if (Room.BottomRoom == null)
             {
                 exitsAndEntrances.transform.Find("Bottom_Open").gameObject.SetActive(false);
                 exitsAndEntrances.transform.Find("Bottom_Closed").gameObject.SetActive(true);
@@ -109,11 +113,11 @@ public class RoomController : MonoBehaviour
         }
     }
 
-    public void SpawnEnemies(Room room, GameObject player)
+    public void SpawnEnemies(GameObject player)
     {
         if (enemySpawnAreas != null)
         {
-            foreach (GameObject enemy in room.Enemies)
+            foreach (GameObject enemy in Room.Enemies)
             {
                 Transform area = enemySpawnAreas.transform.GetChild(Random.Range(0, enemySpawnAreas.transform.childCount));
                 Collider2D areaBounds = area.GetComponent<Collider2D>();
