@@ -45,7 +45,6 @@ public abstract class Projectile : MonoBehaviour
     {
         distanceTraveled += Vector2.Distance(previousPosition, transform.position);
         timeAlive += Time.deltaTime;
-        print(timeAlive);
         if (distanceTraveled >= LifeDistance || timeAlive >= LifeTime)
             Destroy(gameObject);
 

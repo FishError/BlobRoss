@@ -34,8 +34,6 @@ public class RedBoss : Boss
 
         Attacks.Add(new MortarStrike(this, (RedBossData)data, Anim, "MortarStrike"));
         Attacks.Add(new Firebolt(this, (RedBossData)data, Anim, "Firebolt"));
-        Attacks.Add(new BlombSquad(this, (RedBossData)data, Anim, "BlombSquad"));
-        Attacks.Add(new WheelOfFlame(this, (RedBossData)data, Anim, "WheelOfFlame"));
     }
 
     protected override void Update()
