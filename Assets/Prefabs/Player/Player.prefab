@@ -258,6 +258,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: ace5682d3b2a6a243a454ceb0ce53be0, type: 2}
+  equipmentsContainer: {fileID: 8283091162431665189}
+  equipments:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1083140480968960898
 MonoBehaviour:
   m_ObjectHideFlags: 0

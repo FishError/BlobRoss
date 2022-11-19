@@ -5,7 +5,7 @@ using UnityEngine;
 public class DasherCCState : EnemyCCState
 {
 
-    public DasherCCState(Dasher enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
+    public DasherCCState(Dasher dasher, FiniteStateMachine stateMachine, DasherData data, string animName) : base(dasher, stateMachine, data, animName) { }
 
     public override void Enter()
     {

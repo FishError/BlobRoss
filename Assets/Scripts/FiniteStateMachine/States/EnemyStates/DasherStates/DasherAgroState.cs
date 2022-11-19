@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class DasherAgroState : EnemyAgroState
 {
-    public DasherAgroState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
+    private Dasher dasher;
+    private DasherData data;
+
+    public DasherAgroState(Dasher dasher, FiniteStateMachine stateMachine, DasherData data, string animName) : base(dasher, stateMachine, data, animName) 
+    {
+        this.dasher = dasher;
+        this.data = data;
+    }
 
     public override void Enter()
     {
@@ -20,9 +27,9 @@ public class DasherAgroState : EnemyAgroState
     {
         base.LogicUpdate();
 
-        if (distance <= enemyData.AttackRange && enemy.AttackCoolDown <= 0)
+        if (distance <= data.AttackRange && dasher.AttackCoolDown <= 0)
         {
-            stateMachine.ChangeState(enemy.AttackState);
+            stateMachine.ChangeState(dasher.AttackState);
             return;
         }
     }

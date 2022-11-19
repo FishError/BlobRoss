@@ -10,7 +10,7 @@ public enum CrowdControl
     Snarred
 }
 
-public class EnemyCCState : EnemyState
+public class EnemyCCState : MobEnemyState
 {
     public CrowdControl crowdControlType { get; set; }
 
@@ -19,7 +19,7 @@ public class EnemyCCState : EnemyState
 
     protected float otherCCDuration;
 
-    public EnemyCCState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
+    public EnemyCCState(MobEnemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
 
     public override void Enter()
     {

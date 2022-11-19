@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewEnemyData", menuName = "Data/Enemy Data/Blomb Data")]
+[CreateAssetMenu(fileName = "NewBlombData", menuName = "Data/Enemy Data/Blomb Data")]
 public class BlombData : EnemyData
 {
     [Header("Explosion Properties")]

@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0523ba62a10263940b09569376b95aa4, type: 3}
+  m_Name: RedBossData
+  m_EditorClassIdentifier: 
+  HealthPoints: 1000
+  Defense: 10
+  Attack: 10
+  AttackSpeed: 1
+  MovementSpeed: 4
+  WaitTimeBetweenAttacksP1: 3
+  AttackP2: 12
+  AttackSpeedP2: 1
+  MovementSpeedP2: 5
+  WaitTimeBetweenAttacksP2: 2
+  MaxMortarStrike: 5
+  MortarStrikeDamageRatio: 1.2
+  MortarStrikeRange: 999
+  MortarStrikeCooldown: 10
+  MaxFireboltAmount: 3
+  FireboltDamageRatio: 1
+  FireboltRange: 10
+  FireboltCooldown: 5
+  MaxBlombSummons: 10
+  IntervalBetweenSummons: 0.3
+  BlombSquadDamageRatio: 0
+  BlombSquadRange: 999
+  BlombSquadCooldown: 30
+  MaxWaveAmount: 10
+  RotationBetweenWaves: 20
+  WheelOfFireDamageRatio: 1
+  WheelOfFireHellRange: 10
+  WheelOfFireCooldown: 15

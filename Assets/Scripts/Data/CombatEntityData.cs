@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class CombatEntityData : ScriptableObject
 {
-    [Header("Health")]
+    [Header("Defensive Stats")]
     public float HealthPoints;
     public float Defense;
 
-    [Header("Attack")]
+    [Header("Attack Stats")]
     public float Attack;
     public float AttackSpeed;
 
-    [Header("Move State")]
+    [Header("Movement Stats")]
     public float MovementSpeed;
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlombAlertedState : EnemyAlertedState
 {
-    public BlombAlertedState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
+    public BlombAlertedState(Blomb blomb, FiniteStateMachine stateMachine, BlombData data, string animName) : base(blomb, stateMachine, data, animName) { }
 
     public override void Enter()
     {

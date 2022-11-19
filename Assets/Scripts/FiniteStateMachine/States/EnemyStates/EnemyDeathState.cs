@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // not implemented yet
-public class EnemyDeathState : EnemyState
+public class EnemyDeathState : MobEnemyState
 {
-    public EnemyDeathState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
+    public EnemyDeathState(MobEnemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
 
     public override void Enter()
     {
