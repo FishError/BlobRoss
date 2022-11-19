@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewEnemyData", menuName = "Data/Enemy Data/Archie Data")]
+[CreateAssetMenu(fileName = "NewArchieData", menuName = "Data/Enemy Data/Archie Data")]
 public class ArchieData : EnemyData
 {
     // ratio method allows for attack properties to dynamically update if the base stats change

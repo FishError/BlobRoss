@@ -22,6 +22,10 @@ public class CombatOrganismEntity : Entity
     public float MovementSpeed { get; set; }
     #endregion
 
+    #region Status Effects
+    public List<StatusEffect> statusEffects;
+    #endregion
+
     #region Stat Modifer Functions
     // Health
     public virtual void ModifyMaxHealthPoints(float amt)
@@ -136,10 +140,6 @@ public class CombatOrganismEntity : Entity
     {
         MovementSpeed = data.MovementSpeed;
     }
-    #endregion
-
-    #region Status Effects
-    public List<StatusEffect> statusEffects;
     #endregion
 
     protected override void Start()

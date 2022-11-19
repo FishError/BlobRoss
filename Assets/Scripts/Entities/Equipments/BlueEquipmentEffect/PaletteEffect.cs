@@ -57,7 +57,7 @@ public class PaletteEffect : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Projectile"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("EnemyProjectile"))
         {
             enemyHitCounter++;
             Destroy(other.gameObject);
@@ -71,9 +71,12 @@ public class PaletteEffect : MonoBehaviour
             }
             else
             {
-                Enemy enemy = other.gameObject.GetComponent<Enemy>();
-                enemy.CCState.SetKnockbackValues(-other.GetContact(0).normal * equipment.Knockback, 0.5f);
-                enemy.StateMachine.ChangeState(enemy.CCState);
+                MobEnemy enemy = other.gameObject.GetComponent<MobEnemy>();
+                if (enemy != null)
+                {
+                    enemy.CCState.SetKnockbackValues(-other.GetContact(0).normal * equipment.Knockback, 0.5f);
+                    enemy.StateMachine.ChangeState(enemy.CCState);
+                }
             }
         }
     }
