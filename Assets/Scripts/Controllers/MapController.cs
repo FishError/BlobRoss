@@ -47,7 +47,7 @@ public class MapController : MonoBehaviour
             CurrentRoomController.SpawnEnemies(player);
             CurrentRoomController.UpdatePlayerPosition(PreviousRoomDir, player);
             CurrentRoomController.SetCameraConfiner(cinemachineCamera);
-            CurrentRoomController.MatchSceneWithRoomProperties(Map.CurrentRoom);
+            CurrentRoomController.MatchSceneWithRoomProperties();
         }
     }
 }

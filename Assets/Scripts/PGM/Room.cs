@@ -2,21 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MobInfo
-{
-    public GameObject mob;
-    public Vector2 position;
-
-    public MobInfo(GameObject m, Vector2 pos)
-    {
-        mob = m;
-        position = pos;
-    }
-}
-
 public class Room
 {
-    public List<GameObject> Enemies { get; set; }
+    public List<GameObject> Enemies { get; private set; }
     public GameObject Reward { get; set; }
 
     public string Scene { get; private set; }
@@ -31,18 +19,13 @@ public class Room
         Enemies = new List<GameObject>();
     }
 
-    public void AddMobToRoom(GameObject enemy)
+    public void AddEnemies(GameObject enemy)
     {
         Enemies.Add(enemy);
     }
 
-    public void RemoveMobFromRoom()
+    public void RemoveAllEnemies()
     {
-        // havent decided what method to use for this yet
-    }
-
-    public void UpdateMobInfo()
-    {
-        // needs to be developed in the future probably
+        Enemies.Clear();
     }
 }

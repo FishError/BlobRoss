@@ -12,6 +12,16 @@ public class RoomController : MonoBehaviour
     public Transform enemySpawnAreas;
     public Transform enemies;
 
+    [Header("Dynamic Tilemaps")]
+    public GameObject leftOpen;
+    public GameObject leftClosed;
+    public GameObject rightOpen;
+    public GameObject rightClosed;
+    public GameObject bottomOpen;
+    public GameObject bottomClosed;
+    public GameObject topOpen;
+    public GameObject topClosed;
+
     [Header("Room Connectors")]
     public GameObject roomConnectorLeft;
     public GameObject roomConnectorRight;
@@ -24,6 +34,7 @@ public class RoomController : MonoBehaviour
     {
         if (enemies.childCount == 0 && !canLeave)
         {
+            Room.RemoveAllEnemies();
             canLeave = true;
             roomConnectorLeft.SetActive(true);
             roomConnectorRight.SetActive(true);
@@ -66,51 +77,19 @@ public class RoomController : MonoBehaviour
         }
     }
 
-    public void MatchSceneWithRoomProperties(Room room)
+    public void MatchSceneWithRoomProperties()
     {
-        if (exitsAndEntrances != null)
-        {
-            if (Room.LeftRoom == null)
-            {
-                exitsAndEntrances.transform.Find("Left_Open").gameObject.SetActive(false);
-                exitsAndEntrances.transform.Find("Left_Closed").gameObject.SetActive(true);
-            }
-            else
-            {
-                exitsAndEntrances.transform.Find("Left_Open").gameObject.SetActive(true);
-                exitsAndEntrances.transform.Find("Left_Closed").gameObject.SetActive(false);
-            }
-            if (Room.TopRoom == null)
-            {
-                exitsAndEntrances.transform.Find("Top_Open").gameObject.SetActive(false);
-                exitsAndEntrances.transform.Find("Top_Closed").gameObject.SetActive(true);
-            }
-            else
-            {
-                exitsAndEntrances.transform.Find("Top_Open").gameObject.SetActive(true);
-                exitsAndEntrances.transform.Find("Top_Closed").gameObject.SetActive(false);
-            }
-            if (Room.RightRoom == null)
-            {
-                exitsAndEntrances.transform.Find("Right_Open").gameObject.SetActive(false);
-                exitsAndEntrances.transform.Find("Right_Closed").gameObject.SetActive(true);
-            }
-            else
-            {
-                exitsAndEntrances.transform.Find("Right_Open").gameObject.SetActive(true);
-                exitsAndEntrances.transform.Find("Right_Closed").gameObject.SetActive(false);
-            }
-            if (Room.BottomRoom == null)
-            {
-                exitsAndEntrances.transform.Find("Bottom_Open").gameObject.SetActive(false);
-                exitsAndEntrances.transform.Find("Bottom_Closed").gameObject.SetActive(true);
-            }
-            else
-            {
-                exitsAndEntrances.transform.Find("Bottom_Open").gameObject.SetActive(true);
-                exitsAndEntrances.transform.Find("Bottom_Closed").gameObject.SetActive(false);
-            }
-        }
+        leftOpen.SetActive(Room.LeftRoom != null);
+        leftClosed.SetActive(Room.LeftRoom == null);
+
+        rightOpen.SetActive(Room.RightRoom != null);
+        rightClosed.SetActive(Room.RightRoom == null);
+        
+        bottomOpen.SetActive(Room.BottomRoom != null);
+        bottomClosed.SetActive(Room.BottomRoom == null);
+        
+        topOpen.SetActive(Room.TopRoom != null);
+        topClosed.SetActive(Room.TopRoom == null);
     }
 
     public void SpawnEnemies(GameObject player)
