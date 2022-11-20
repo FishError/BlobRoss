@@ -8,7 +8,6 @@ public class RoomController : MonoBehaviour
     public Room Room { get; set; }
 
     public GameObject grid;
-    public GameObject exitsAndEntrances;
     public Transform enemySpawnAreas;
     public Transform enemies;
 
