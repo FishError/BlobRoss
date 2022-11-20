@@ -33,7 +33,14 @@ public class PGM
 
             if (array2D[current[0], current[1]] == null)
             {
-                array2D[current[0], current[1]] = CreateRandomRoom(roomType, mobList, random);
+                if (roomCount < numOfRooms - 1)
+                {
+                    array2D[current[0], current[1]] = CreateRandomRoom(roomType, mobList, random);
+                }
+                else
+                {
+                    array2D[current[0], current[1]] = new Room(roomType + "_boss_entrance");
+                }
                 roomCount++;
             }
         }

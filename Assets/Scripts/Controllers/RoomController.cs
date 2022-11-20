@@ -31,7 +31,7 @@ public class RoomController : MonoBehaviour
 
     private void Update()
     {
-        if (enemies.childCount == 0 && !canLeave)
+        if (enemies.childCount >= 0 && !canLeave)
         {
             Room.RemoveAllEnemies();
             canLeave = true;
@@ -44,7 +44,7 @@ public class RoomController : MonoBehaviour
 
     public void SetCameraConfiner(GameObject cinemachineCamera)
     {
-        cinemachineCamera.GetComponentInChildren<CinemachineConfiner>().m_BoundingShape2D = grid.GetComponent<PolygonCollider2D>();
+        cinemachineCamera.GetComponentInChildren<CinemachineConfiner>().m_BoundingShape2D = grid.GetComponent<Collider2D>();
     }
 
     public void UpdatePlayerPosition(Direction previousRoomDir, GameObject player)
