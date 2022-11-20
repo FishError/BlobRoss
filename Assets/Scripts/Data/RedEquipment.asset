@@ -10,9 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe6b06442e8ec43b8a990fdd965b33f2, type: 3}
-  m_Name: equipmentData
+  m_Name: RedEquipment
   m_EditorClassIdentifier: 
   rate: 1
+  DashVelocity: 0
+  DashCooldown: 0
+  Duration: 0
   duration: 0
   durability: 0
   knockback: 0
+  cooldown: 0
+  range: 0

@@ -19,17 +19,16 @@ public class PlayerMoveState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
         if (xInput > 0 || xInput < 0)
         {
-            SetMove(xInput,yInput);
+            if(!leftClick) SetMove(xInput,yInput);
             player.LastX = xInput;
             player.LastY = yInput;
             player.SetVelocityX(playerData.MovementSpeed * xInput);
         }
         if (yInput > 0 || yInput < 0)
         {
-            SetMove(xInput,yInput);
+            if(!leftClick) SetMove(xInput,yInput);
             player.LastX = xInput;
             player.LastY = yInput;
             player.SetVelocityY(playerData.MovementSpeed * yInput);
@@ -41,12 +40,14 @@ public class PlayerMoveState : PlayerState
         }
         if (xInput == 0f && yInput != 0f)
         {
+            if (!leftClick) SetMove(xInput, yInput);
             SetIdle(player.LastX, player.LastY);
             player.LastY = yInput;
             player.SetVelocityX(playerData.MovementSpeed * xInput);
         }
         if (xInput != 0f && yInput == 0f)
         {
+            if (!leftClick) SetMove(xInput, yInput);
             SetIdle(player.LastX, player.LastY);
             player.LastX = xInput;
             player.SetVelocityY(playerData.MovementSpeed * yInput);

@@ -8,6 +8,7 @@ public class PlayerState : EntityState
     protected PlayerData playerData;
     protected float xInput;
     protected float yInput;
+    protected bool leftClick;
 
     protected string animName;
 
@@ -30,8 +31,6 @@ public class PlayerState : EntityState
         this.blueEquipment = equipments.GetChild(1).GetComponent<BlueEquipment>();
         this.yellowEquipment = equipments.GetChild(2).GetComponent<YellowEquipment>();
         this.yellowEquipment.player = player;
-        // Debug.Log(blueEquipment.name);
-        // Debug.Log(yellowEquipment.name);
     }
 
     //Gets called when entered a specific state
@@ -55,6 +54,7 @@ public class PlayerState : EntityState
         // Setting x,y and equipment inputs for each equipment's states 
         xInput = player.InputHandler.NormInputX;
         yInput = player.InputHandler.NormInputY;
+        leftClick = player.InputHandler.leftClickInput;
  
         redEquipment.IdleState.XInput = xInput;
         redEquipment.IdleState.YInput = yInput;
@@ -76,10 +76,13 @@ public class PlayerState : EntityState
 
         blueEquipment.MoveState.XInput = xInput;
         blueEquipment.MoveState.YInput = yInput;
+        blueEquipment.MoveState.LeftClickInput = player.InputHandler.leftClickInput;
         blueEquipment.MoveState.RightClickInput = player.InputHandler.rightClickInput;
+        
 
         blueEquipment.EffectState.RightClickInput = player.InputHandler.rightClickInput;
 
+        //Yellow Equipment
         yellowEquipment.IdleState.XInput = xInput;
         yellowEquipment.IdleState.YInput = yInput;
         yellowEquipment.IdleState.SpaceClickInput = player.InputHandler.spaceClickInput;
@@ -106,7 +109,7 @@ public class PlayerState : EntityState
 
     }
 
-     public void SetMove(float x, float y)
+    public void SetMove(float x, float y)
     {
         player.Anim.SetFloat("Horizontal", x);
         player.Anim.SetFloat("Vertical", y);

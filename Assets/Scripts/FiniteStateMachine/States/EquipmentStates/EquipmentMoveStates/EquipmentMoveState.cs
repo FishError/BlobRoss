@@ -22,13 +22,13 @@ public class EquipmentMoveState : EquipmentState
         base.LogicUpdate();
         if (xInput > 0 || xInput < 0)
         {
-            SetMove(xInput,yInput);
+            if(!leftClickInput) SetMove(xInput,yInput);
             equipment.LastX = xInput;
             equipment.LastY = yInput;
         }
         if (yInput > 0 || yInput < 0)
         {
-            SetMove(xInput,yInput);
+            if (!leftClickInput) SetMove(xInput, yInput);
             equipment.LastX = xInput;
             equipment.LastY = yInput;
         }
