@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttackState : EnemyState
+public class EnemyAttackState : MobEnemyState
 {
     protected Vector2 targetDirection;
-    public EnemyAttackState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
+    public EnemyAttackState(MobEnemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
 
     public override void Enter()
     {
@@ -31,15 +31,5 @@ public class EnemyAttackState : EnemyState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-    }
-
-    protected void AnimationHasFinish(EntityState state)
-    {
-        AnimatorStateInfo animState = enemy.Anim.GetCurrentAnimatorStateInfo(0);
-        if (animState.IsName("Attack") && animState.normalizedTime >= 1)
-        {
-            stateMachine.ChangeState(state);
-            return;
-        }
     }
 }

@@ -4,33 +4,37 @@ using UnityEngine;
 
 public class DasherAttackState : EnemyAttackState
 {
+    private Dasher dasher;
+    private DasherData data;
+
     protected static float attackChargeUpTime = 0.5f;
 
-    public DasherAttackState(Dasher enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) 
+    public DasherAttackState(Dasher dasher, FiniteStateMachine stateMachine, DasherData data, string animName) : base(dasher, stateMachine, data, animName) 
     {
-        
+        this.dasher = dasher;
+        this.data = data;
     }
 
     public override void Enter()
     {
         base.Enter();
-        enemy.rb.velocity = Vector2.zero;
-        enemy.lookAt = targetDirection;
-        enemy.SetAnimHorizontalVertical(enemy.lookAt);
+        dasher.rb.velocity = Vector2.zero;
+        dasher.lookAt = targetDirection;
+        dasher.SetAnimHorizontalVertical(dasher.lookAt);
     }
 
     public override void Exit()
     {
         base.Exit();
-        enemy.rb.velocity = Vector2.zero;
-        enemy.AttackCoolDown = 1 / enemyData.AttackSpeed;
+        dasher.rb.velocity = Vector2.zero;
+        dasher.AttackCoolDown = 1 / data.AttackSpeed;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
 
-        AnimationHasFinish(enemy.AgroState);
+        ChangeStateAfterAnimation(dasher, animName, dasher.AgroState);
     }
 
     public override void DoChecks()
@@ -42,10 +46,10 @@ public class DasherAttackState : EnemyAttackState
     {
         base.PhysicsUpdate();
 
-        AnimatorStateInfo animState = enemy.Anim.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo animState = dasher.Anim.GetCurrentAnimatorStateInfo(0);
         if (animState.IsName("Attack") && animState.normalizedTime >= attackChargeUpTime)
         {
-            enemy.rb.velocity = targetDirection * enemy.MovementSpeed * ((Dasher)enemy).DashSpeedRatio;
+            dasher.rb.velocity = targetDirection * dasher.MovementSpeed * dasher.DashSpeedRatio;
         }
     }
 
@@ -55,10 +59,10 @@ public class DasherAttackState : EnemyAttackState
         if (Time.time > startTime + attackChargeUpTime)
         {
             if (collision.gameObject.tag == "Player")
-                collision.gameObject.GetComponent<Player>().ModifyHealthPoints(-enemy.Attack * ((Dasher)enemy).DashDamageRatio);
+                collision.gameObject.GetComponent<Player>().ModifyHealthPoints(-dasher.Attack * dasher.DashDamageRatio);
 
-            enemy.CCState.SetKnockbackValues(collision.GetContact(0).normal * ((Dasher)enemy).KnockbackForce, ((Dasher)enemy).KnockbackDuration);
-            stateMachine.ChangeState(enemy.CCState);
+            dasher.CCState.SetKnockbackValues(collision.GetContact(0).normal * dasher.KnockbackForce, dasher.KnockbackDuration);
+            stateMachine.ChangeState(dasher.CCState);
         }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlombPatrolState : EnemyPatrolState
 {
-    public BlombPatrolState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
+    public BlombPatrolState(Blomb blomb, FiniteStateMachine stateMachine, BlombData data, string animName) : base(blomb, stateMachine, data, animName) { }
 
     public override void Enter()
     {

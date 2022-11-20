@@ -5,27 +5,6 @@ using UnityEngine.AI;
 
 public class Enemy : CombatOrganismEntity
 {
-    #region States 
-    // base states that all children are required to have but dont always have use
-    // children may also have more than just these states
-    public EnemyIdleState IdleState { get; protected set; }
-    public EnemyPatrolState PatrolState { get; protected set; }
-    public EnemyAlertedState AlertedState { get; protected set; }
-    public EnemyAgroState AgroState { get; protected set; }
-    public EnemyAttackState AttackState { get; protected set; }
-    public EnemyCCState CCState { get; protected set; }
-    public EnemyDeathState DeathState { get; protected set; }
-
-    #endregion
-
-    #region Enemy Current Stats
-    // Attack
-    public float AttackCoolDown { get; set; }
-
-    // Move State
-    public float PatrolSpeed { get; set; }
-    #endregion
-
     #region NavMesh
     public NavMeshAgent navMeshAgent { get; private set; }
     #endregion
@@ -49,14 +28,12 @@ public class Enemy : CombatOrganismEntity
     {
         base.Start();
         // initialize other variables and do additional setup
-        StateMachine.Initialize(IdleState);
 
         MaxHealthPoints = data.HealthPoints;
         HealthPoints = MaxHealthPoints;
         Defense = data.Defense;
         Attack = data.Attack;
         AttackSpeed = data.AttackSpeed;
-        PatrolSpeed = ((EnemyData)data).PatrolSpeed;
         MovementSpeed = data.MovementSpeed;
 
         lookAt = transform.right;
@@ -70,13 +47,6 @@ public class Enemy : CombatOrganismEntity
 
         unWalkableLayers = LayerMask.GetMask("Wall");
         targetDetectionIgnoreLayers = LayerMask.GetMask("Ignore Raycast", "Enemy");
-    }
-
-    protected override void Update()
-    {
-        base.Update();
-        if (AttackCoolDown > 0)
-            AttackCoolDown -= Time.deltaTime;
     }
 
     protected override void FixedUpdate()
@@ -105,22 +75,6 @@ public class Enemy : CombatOrganismEntity
         }
 
         return false;
-    }
-
-    protected override void OnCollisionEnter2D(Collision2D collision)
-    {
-        base.OnCollisionEnter2D(collision);
-        if (collision.gameObject.tag == "Player")
-        {
-            if (StateMachine.CurrentState != AttackState && StateMachine.CurrentState != CCState)
-            {
-                collision.gameObject.GetComponent<Player>().ModifyHealthPoints(-Attack);
-            }
-            if (!alerted)
-            {
-                StateMachine.ChangeState(AlertedState);
-            }
-        }
     }
 
     public void DestroyObject(GameObject obj, float time)

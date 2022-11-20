@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DasherPatrolState : EnemyPatrolState
 {
-    public DasherPatrolState(Dasher enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
+    public DasherPatrolState(Dasher dasher, FiniteStateMachine stateMachine, DasherData data, string animName) : base(dasher, stateMachine, data, animName) { }
 
     public override void Enter()
     {

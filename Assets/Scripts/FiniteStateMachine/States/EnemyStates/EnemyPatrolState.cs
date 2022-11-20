@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyPatrolState : EnemyState
+public class EnemyPatrolState : MobEnemyState
 {
     protected float patrolDistance;
     protected Vector2 patrolDirection;
 
-    public EnemyPatrolState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
+    public EnemyPatrolState(MobEnemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
 
     public override void Enter()
     {

@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class BlombDeathState : EnemyDeathState
 {
-    public BlombDeathState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
+    private Blomb blomb;
+    private BlombData data;
+
+    public BlombDeathState(Blomb blomb, FiniteStateMachine stateMachine, BlombData data, string animName) : base(blomb, stateMachine, data, animName) 
+    {
+        this.blomb = blomb;
+        this.data = data;
+    }
 
     public override void Enter()
     {
         base.Enter();
-        Object.Destroy(enemy.gameObject);
+        Object.Destroy(blomb.gameObject);
     }
 
     public override void Exit()

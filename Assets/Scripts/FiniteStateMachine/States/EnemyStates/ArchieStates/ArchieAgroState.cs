@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class ArchieAgroState : EnemyAgroState
 {
+    private Archie archie;
+    private ArchieData data;
+
     protected float moveDistance;
     protected Vector2 moveDirection;
     protected RaycastHit2D hit;
 
-    public ArchieAgroState(Enemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName)
+    public ArchieAgroState(Archie archie, FiniteStateMachine stateMachine, ArchieData data, string animName) : base(archie, stateMachine, data, animName)
     {
+        this.archie = archie;
+        this.data = data;
     }
 
     public override void Enter()
@@ -25,11 +30,11 @@ public class ArchieAgroState : EnemyAgroState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        hit = Physics2D.Raycast(enemy.transform.position, targetDirection, distance, enemy.unWalkableLayers);
+        hit = Physics2D.Raycast(archie.transform.position, targetDirection, distance, archie.unWalkableLayers);
 
-        if (distance <= enemyData.AttackRange && enemy.AttackCoolDown <= 0 && hit.collider == null)
+        if (distance <= data.AttackRange && archie.AttackCoolDown <= 0 && hit.collider == null)
         {
-            stateMachine.ChangeState(enemy.AttackState);
+            stateMachine.ChangeState(archie.AttackState);
             return;
         }
     }
@@ -41,13 +46,13 @@ public class ArchieAgroState : EnemyAgroState
 
     public override void PhysicsUpdate()
     {
-        if (distance > enemyData.AttackRange || hit.collider != null)
+        if (distance > data.AttackRange || hit.collider != null)
         {
-            enemy.navMeshAgent.nextPosition = enemy.transform.position;
-            enemy.navMeshAgent.SetDestination(enemy.target.transform.position);
-            enemy.rb.velocity = enemy.navMeshAgent.velocity;
-            enemy.lookAt = enemy.rb.velocity.normalized;
-            enemy.SetAnimHorizontalVertical(enemy.lookAt);
+            archie.navMeshAgent.nextPosition = archie.transform.position;
+            archie.navMeshAgent.SetDestination(archie.target.transform.position);
+            archie.rb.velocity = archie.navMeshAgent.velocity;
+            archie.lookAt = archie.rb.velocity.normalized;
+            archie.SetAnimHorizontalVertical(archie.lookAt);
         }
     }
 }
