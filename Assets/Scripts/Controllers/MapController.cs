@@ -20,7 +20,6 @@ public class MapController : MonoBehaviour
     public GameObject player;
     public GameObject cinemachineCamera;
 
-    public RoomController CurrentRoomController { get; set; }
     public Map Map { get; private set; }
     public Direction PreviousRoomDir { get; set; }
 
@@ -42,12 +41,22 @@ public class MapController : MonoBehaviour
         GameObject roomController = GameObject.Find("RoomController");
         if (roomController != null)
         {
-            CurrentRoomController = roomController.GetComponent<RoomController>();
-            CurrentRoomController.Room = Map.CurrentRoom;
-            CurrentRoomController.SpawnEnemies(player);
-            CurrentRoomController.UpdatePlayerPosition(PreviousRoomDir, player);
-            CurrentRoomController.SetCameraConfiner(cinemachineCamera);
-            CurrentRoomController.MatchSceneWithRoomProperties();
+            RoomController controller = roomController.GetComponent<RoomController>();
+            controller.Room = Map.CurrentRoom;
+            controller.SpawnEnemies(player);
+            controller.UpdatePlayerPosition(PreviousRoomDir, player);
+            controller.SetCameraConfiner(cinemachineCamera);
+            controller.MatchSceneWithRoomProperties();
+        }
+        else
+        {
+            roomController = GameObject.Find("BossRoomController");
+            if (roomController != null)
+            {
+                BossRoomController controller = roomController.GetComponent<BossRoomController>();
+                controller.SetPlayerAtEnterPoint(player);
+                controller.SetCameraConfiner(cinemachineCamera);
+            }
         }
     }
 }

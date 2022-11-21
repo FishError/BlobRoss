@@ -44,7 +44,7 @@ public class RoomController : MonoBehaviour
 
     public void SetCameraConfiner(GameObject cinemachineCamera)
     {
-        cinemachineCamera.GetComponentInChildren<CinemachineConfiner>().m_BoundingShape2D = grid.GetComponent<PolygonCollider2D>();
+        cinemachineCamera.GetComponentInChildren<CinemachineConfiner>().m_BoundingShape2D = grid.GetComponent<Collider2D>();
     }
 
     public void UpdatePlayerPosition(Direction previousRoomDir, GameObject player)
