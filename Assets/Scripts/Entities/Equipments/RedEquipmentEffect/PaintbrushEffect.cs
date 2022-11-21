@@ -17,7 +17,6 @@ public class PaintbrushEffect : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
-            Debug.Log(enemy);
             enemy.ModifyHealthPoints(-equipment.damage);
         }
     }
