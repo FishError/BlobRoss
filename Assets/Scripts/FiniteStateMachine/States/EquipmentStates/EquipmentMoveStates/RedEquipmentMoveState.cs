@@ -10,7 +10,7 @@ public class RedEquipmentMoveState : EquipmentMoveState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if(leftClickInput){
+        if(leftClickInput && !equipment.OnCooldown){
             stateMachine.ChangeState(equipment.EffectState);
         } 
     }

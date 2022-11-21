@@ -35,6 +35,13 @@ public class MobEnemy : Enemy
     protected override void Update()
     {
         base.Update();
+
+        //TODO might have to move this up a level because Blob/player needs to be in same death
+        if (HealthPoints <= 0)
+        {
+            StateMachine.ChangeState(DeathState);
+        }
+
         if (AttackCoolDown > 0)
             AttackCoolDown -= Time.deltaTime;
     }

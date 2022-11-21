@@ -22,14 +22,17 @@ public class BlombAttackState : EnemyAttackState
     public override void Exit()
     {
         base.Exit();
-        Object.Instantiate(blomb.fieldOnDeath, blomb.transform.position, Quaternion.identity);
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
-        ChangeStateAfterAnimation(blomb, animName, blomb.DeathState);
+        AnimatorStateInfo animState = blomb.Anim.GetCurrentAnimatorStateInfo(0);
+        if (animState.IsName(animName) && animState.normalizedTime >= 1)
+        {
+            Object.Instantiate(blomb.fieldOnDeath, blomb.transform.position, Quaternion.identity);
+            Object.Destroy(blomb.gameObject);
+        }
     }
 
     public override void DoChecks()

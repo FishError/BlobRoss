@@ -10,6 +10,8 @@ public class EnemyDeathState : MobEnemyState
     public override void Enter()
     {
         base.Enter();
+        enemy.SetVelocityX(0f);
+        enemy.SetVelocityY(0f);
     }
 
     public override void Exit()
@@ -20,6 +22,13 @@ public class EnemyDeathState : MobEnemyState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        //Complete animation first and then destory gameobject
+        AnimatorStateInfo animState = enemy.Anim.GetCurrentAnimatorStateInfo(0);
+        if (animState.IsName(animName) && animState.normalizedTime >= 1)
+        {
+            Object.Destroy(enemy.gameObject);
+        }
+
     }
 
     public override void DoChecks()

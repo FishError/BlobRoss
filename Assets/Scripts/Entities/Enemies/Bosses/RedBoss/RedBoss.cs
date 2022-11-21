@@ -24,6 +24,7 @@ public class RedBoss : Boss
         base.Awake();
         AgroState = new BossAgroState(this, StateMachine, (RedBossData)data, "Move/Idle");
         AttackState = new BossAttackState(this, StateMachine, (RedBossData)data);
+        DeathState = new BossDeathState(this, StateMachine, (RedBossData)data, "red_boss_death");
     }
 
     protected override void Start()

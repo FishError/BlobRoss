@@ -19,35 +19,42 @@ public class PlayerMoveState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
         if (xInput > 0 || xInput < 0)
         {
-            SetMoveAnimation(xInput,yInput);
+            if(!leftClick) SetMove(xInput,yInput);
             player.LastX = xInput;
             player.LastY = yInput;
             player.SetVelocityX(playerData.MovementSpeed * xInput);
         }
         if (yInput > 0 || yInput < 0)
         {
-            SetMoveAnimation(xInput,yInput);
+            if(!leftClick) SetMove(xInput,yInput);
             player.LastX = xInput;
             player.LastY = yInput;
             player.SetVelocityY(playerData.MovementSpeed * yInput);
         }
         if (xInput == 0f && yInput == 0f)
         {
-            SetIdleAnimation(player.LastX, player.LastY);
+            if (!leftClick)
+            {
+                SetIdle(player.LastX, player.LastY);
+            }
+            else {
+                SetIdle(player.RedLastX, player.RedLastY);
+            }
             stateMachine.ChangeState(player.IdleState);
         }
         if (xInput == 0f && yInput != 0f)
         {
-            SetIdleAnimation(player.LastX, player.LastY);
+            if (!leftClick) SetMove(xInput, yInput);
+            SetIdle(player.LastX, player.LastY);
             player.LastY = yInput;
             player.SetVelocityX(playerData.MovementSpeed * xInput);
         }
         if (xInput != 0f && yInput == 0f)
         {
-            SetIdleAnimation(player.LastX, player.LastY);
+            if (!leftClick) SetMove(xInput, yInput);
+            SetIdle(player.LastX, player.LastY);
             player.LastX = xInput;
             player.SetVelocityY(playerData.MovementSpeed * yInput);
         }

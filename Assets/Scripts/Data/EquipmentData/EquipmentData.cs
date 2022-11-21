@@ -8,6 +8,10 @@ public class EquipmentData : ScriptableObject
     [Header("Equipment Rate")]
     public float rate = 1f;
 
+    [Header("Red Equipment Stats")]
+    public float Damage = 0f;
+    public float attackSpeed = 0f;
+
     [Header("Yellow Equipment Stats")]
     public float DashVelocity = 0f;
     public float DashCooldown = 0f;
