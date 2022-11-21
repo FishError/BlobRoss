@@ -53,7 +53,7 @@ public class CombatOrganismEntity : Entity
         HealthPoints += amt;
         if (HealthPoints < 0) HealthPoints = 0;
         else if (HealthPoints > MaxHealthPoints) HealthPoints = MaxHealthPoints;
-        //print(gameObject.name + " HP: " + HealthPoints + "/" + MaxHealthPoints);
+        print(gameObject.name + " HP: " + HealthPoints + "/" + MaxHealthPoints);
     }
 
     public virtual void ScaleHealthPoints(float percent)
