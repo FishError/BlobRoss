@@ -35,7 +35,13 @@ public class PlayerMoveState : PlayerState
         }
         if (xInput == 0f && yInput == 0f)
         {
-            SetIdle(player.LastX, player.LastY);
+            if (!leftClick)
+            {
+                SetIdle(player.LastX, player.LastY);
+            }
+            else {
+                SetIdle(player.RedLastX, player.RedLastY);
+            }
             stateMachine.ChangeState(player.IdleState);
         }
         if (xInput == 0f && yInput != 0f)

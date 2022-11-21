@@ -28,7 +28,7 @@ public class RedEquipment : Equipment
         OnCooldown = false;
     }
     protected override void Update()
-    {  
+    {
         base.Update();
         if (Cooldown > 0 && OnCooldown)
         {

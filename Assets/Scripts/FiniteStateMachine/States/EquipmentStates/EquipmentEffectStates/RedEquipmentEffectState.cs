@@ -82,12 +82,16 @@ public class RedEquipmentEffectState : EquipmentEffectState
             if (otherEquipment.Anim == null) continue;
             ((EquipmentState)otherEquipment.StateMachine.CurrentState).SetIdle(x, y);
             ((EquipmentState)otherEquipment.StateMachine.CurrentState).SetMove(x, y);
-            
+            otherEquipment.RedLastX = x;
+            otherEquipment.RedLastY = y;
+
         }
 
         // Match player current state's direction and red equipment's direction
         ((PlayerState)equipment.player.StateMachine.CurrentState).SetIdle(x, y);
         ((PlayerState)equipment.player.StateMachine.CurrentState).SetMove(x, y);
+        equipment.player.RedLastX = x;
+        equipment.player.RedLastY = y;
 
     }
 

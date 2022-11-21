@@ -34,7 +34,14 @@ public class EquipmentMoveState : EquipmentState
         }
         if (xInput == 0f && yInput == 0f)
         {
-            SetIdle(equipment.LastX,equipment.LastY);
+            if (!leftClickInput)
+            {
+                SetIdle(equipment.LastX, equipment.LastY);
+            }
+            else
+            {
+                SetIdle(equipment.RedLastX, equipment.RedLastY);
+            }
             equipment.Anim.SetFloat("offset",0f);
             stateMachine.ChangeState(equipment.IdleState);
         }
