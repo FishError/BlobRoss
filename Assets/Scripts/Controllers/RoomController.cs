@@ -31,7 +31,7 @@ public class RoomController : MonoBehaviour
 
     private void Update()
     {
-        if (enemies.childCount >= 0 && !canLeave)
+        if (enemies.childCount == 0 && !canLeave)
         {
             Room.RemoveAllEnemies();
             canLeave = true;

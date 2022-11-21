@@ -9,18 +9,6 @@ public class BossRoomController : MonoBehaviour
     public Transform enterPoint;
     public GameObject boss;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void SetCameraConfiner(GameObject cinemachineCamera)
     {
         cinemachineCamera.GetComponentInChildren<CinemachineConfiner>().m_BoundingShape2D = grid.GetComponent<Collider2D>();

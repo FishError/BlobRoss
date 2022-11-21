@@ -22,6 +22,7 @@ public class RedBoss : Boss
     protected override void Awake()
     {
         base.Awake();
+        IdleState = new BossIdleState(this, StateMachine, (RedBossData)data, "Move/Idle");
         AgroState = new BossAgroState(this, StateMachine, (RedBossData)data, "Move/Idle");
         AttackState = new BossAttackState(this, StateMachine, (RedBossData)data);
     }
