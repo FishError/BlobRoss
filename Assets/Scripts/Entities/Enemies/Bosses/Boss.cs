@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Boss : Enemy
 {
     #region States 
     public BossAgroState AgroState { get; protected set; }
     public BossAttackState AttackState { get; protected set; }
+    public BossDeathState DeathState { get; protected set; }
     #endregion
 
     public int phase { get; set; }
@@ -20,6 +22,15 @@ public class Boss : Enemy
         phase = 1;
         Attacks = new List<BossAttack>();
         StateMachine.Initialize(AgroState);
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        if (HealthPoints <= 0)
+        {
+            StateMachine.ChangeState(DeathState);
+        }
     }
 
     protected virtual void UpdateStatsPhase2()

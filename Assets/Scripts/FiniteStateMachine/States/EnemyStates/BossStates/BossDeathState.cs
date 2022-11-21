@@ -2,31 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// not implemented yet
-public class EnemyDeathState : MobEnemyState
+public class BossDeathState : BossEnemyState
 {
-    public EnemyDeathState(MobEnemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
+    public BossDeathState(RedBoss boss, FiniteStateMachine stateMachine, RedBossData data, string animName) : base(boss, stateMachine, data, animName) { }
 
     public override void Enter()
     {
         base.Enter();
-        enemy.SetVelocityX(0f);
-        enemy.SetVelocityY(0f);
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
+        boss.SetVelocityX(0f);
+        boss.SetVelocityY(0f);
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
         //Complete animation first and then destory gameobject
-        AnimatorStateInfo animState = enemy.Anim.GetCurrentAnimatorStateInfo(0);
+        AnimatorStateInfo animState = boss.Anim.GetCurrentAnimatorStateInfo(0);
         if (animState.IsName(animName) && animState.normalizedTime >= 1)
         {
-            Object.Destroy(enemy.gameObject);
+            Object.Destroy(boss.gameObject);
         }
 
     }
