@@ -16,7 +16,6 @@ public class BlombDeathState : EnemyDeathState
     public override void Enter()
     {
         base.Enter();
-        Object.Destroy(blomb.gameObject);
     }
 
     public override void Exit()
