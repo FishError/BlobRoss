@@ -23,15 +23,19 @@ public class BossStatusBarController : MonoBehaviour
         boss = boss.GetComponent<Boss>();
         boss.ResetMaxHealthPoints();
         boss.ResetHealthPoints();
-        hpText.text = boss.HealthPoints + "/" + boss.MaxHealthPoints;
+        hpText.text = Mathf.Floor(boss.HealthPoints) + "/" + boss.MaxHealthPoints;
         slider.maxValue = boss.MaxHealthPoints;
     }
 
     private void Update()
     {
-        print(slider.value);
         slider.value = boss.HealthPoints;
-        hpText.text = boss.HealthPoints + "/" + boss.MaxHealthPoints;
+        hpText.text = Mathf.Floor(boss.HealthPoints) + "/" + boss.MaxHealthPoints;
+
+        if(boss.HealthPoints <= 0)
+        {
+            this.gameObject.SetActive(false);
+        }
     }
 
 

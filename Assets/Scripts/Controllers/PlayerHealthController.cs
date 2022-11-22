@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+
 using TMPro;
+
 
 public class PlayerHealthController : MonoBehaviour
 {
@@ -11,7 +12,6 @@ public class PlayerHealthController : MonoBehaviour
     public Image fill;
     public TextMeshProUGUI text;
     public Player player;
-    public string deathScene;
     [SerializeField] private Gradient gradient;
 
     private void Start()
@@ -20,7 +20,7 @@ public class PlayerHealthController : MonoBehaviour
         player.ResetMaxHealthPoints();
         player.ResetHealthPoints();
         fill.color = gradient.Evaluate(1f);
-        text.text = player.HealthPoints + "/" + player.MaxHealthPoints;
+        text.text = Mathf.Floor(player.HealthPoints) + "/" + player.MaxHealthPoints;
         slider.maxValue = player.MaxHealthPoints;
     }
 
@@ -28,14 +28,6 @@ public class PlayerHealthController : MonoBehaviour
     {
         slider.value = player.HealthPoints;
         fill.color = gradient.Evaluate(slider.normalizedValue);
-        text.text = player.HealthPoints + "/" + player.MaxHealthPoints;
-        if (player.HealthPoints <= 0)
-        {
-            player.StateMachine.ChangeState(player.DeathState);
-            player.ResetMaxHealthPoints();
-            player.ResetHealthPoints();
-            SceneManager.LoadScene(deathScene);
-            //TODO: check if death animation has ended
-        }
+        text.text = Mathf.Floor(player.HealthPoints) + "/" + player.MaxHealthPoints;
     }
 }

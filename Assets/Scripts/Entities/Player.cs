@@ -70,6 +70,10 @@ public class Player : CombatOrganismEntity
     protected override void Update()
     {
         base.Update();
+        if (HealthPoints <= 0)
+        {
+            StateMachine.ChangeState(DeathState);
+        }
     }
 
     protected override void FixedUpdate()
