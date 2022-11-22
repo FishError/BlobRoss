@@ -9,6 +9,7 @@ public class Player : CombatOrganismEntity
     public PlayerMoveState MoveState { get; private set; }
     public PlayerYellowState YellowState { get; private set; }
     public PlayerCCState CCState { get; private set; }
+    public PlayerDeathState DeathState { get; private set; }
     #endregion
 
     #region Equipments
@@ -40,6 +41,7 @@ public class Player : CombatOrganismEntity
         MoveState = new PlayerMoveState(this, StateMachine, (PlayerData)data, "Move");
         YellowState = new PlayerYellowState(this, StateMachine, (PlayerData)data, "Move");
         CCState = new PlayerCCState(this, StateMachine, (PlayerData)data, "Idle");
+        DeathState = new PlayerDeathState(this, StateMachine, (PlayerData)data, "Death");
     }
 
     protected override void Start()

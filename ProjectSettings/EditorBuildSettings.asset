@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Rooms/Placeholders/placeholder_3.unity
     guid: 978908b2738d718488032c8d23d95f2d
+  - enabled: 1
+    path: Assets/Scenes/Sandboxes/UI_related/Sample_DeathScreen.unity
+    guid: 04ea393d9d1a43841abc4a26608cdbd8
+  - enabled: 1
+    path: Assets/Scenes/Sandboxes/UI_related/Sample_Audio_Manager.unity
+    guid: c6f3df9c7d12d474ab509c799ac9d6e0
   m_configObjects: {}
