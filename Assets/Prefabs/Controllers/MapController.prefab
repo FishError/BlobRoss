@@ -53,6 +53,11 @@ MonoBehaviour:
   - {fileID: 3781740808952231675, guid: 8a017e2aafd48c24f8a2528718c0cdaa, type: 3}
   - {fileID: 3395597389053595502, guid: db95295f92860a94ab9f2a0f105356a1, type: 3}
   - {fileID: 1216158483919421035, guid: b4535db3975f48f41ad6d4bd1229cfa9, type: 3}
+  Rewards:
+  - {fileID: 4923032315822117527, guid: 376ea4cde1f808445ad1e1e8805db528, type: 3}
+  - {fileID: 8856182514665052959, guid: 2d6e5f0b1d6323549a882083599e2c42, type: 3}
+  - {fileID: 5248074398021678397, guid: a7b461bc37eb1664d87090141f550d32, type: 3}
+  - {fileID: 5055050867268015233, guid: 8619de372f5778a4fb6cae6291d17ad6, type: 3}
   player: {fileID: 0}
   cinemachineCamera: {fileID: 0}
 --- !u!114 &8538569393135357243

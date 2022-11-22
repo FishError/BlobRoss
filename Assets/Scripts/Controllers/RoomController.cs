@@ -27,12 +27,22 @@ public class RoomController : MonoBehaviour
     public GameObject roomConnectorDown;
     public GameObject roomConnectorUp;
 
+    #region Room States
+    private bool oneEnemyRemaining;
     private bool canLeave;
+    #endregion
 
     private void Update()
     {
-        if (enemies.childCount >= 0 && !canLeave)
+        if (enemies.childCount == 1 && !oneEnemyRemaining)
         {
+            Enemy enemy = enemies.GetChild(0).GetComponent<Enemy>();
+            enemy.lootDrop = Room.Reward;
+            oneEnemyRemaining = true;
+        }
+
+        if (enemies.childCount == 0 && !canLeave)
+        {   
             Room.RemoveAllEnemies();
             canLeave = true;
             roomConnectorLeft.SetActive(true);
