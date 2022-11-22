@@ -15,7 +15,7 @@ public enum Direction
 
 public class PGM
 {
-    public static Map ProcedurallyGenerateMap(int maxWidth, int maxHeight, int numOfRooms, string roomType, List<GameObject> mobList)
+    public static Map ProcedurallyGenerateMap(int maxWidth, int maxHeight, int numOfRooms, string roomType, List<GameObject> mobList, List<GameObject> rewardList)
     {
         System.Random random = new System.Random();
         Room[,] array2D = new Room[maxHeight + 1, maxWidth + 1];
@@ -35,7 +35,7 @@ public class PGM
             {
                 if (roomCount < numOfRooms - 1)
                 {
-                    array2D[current[0], current[1]] = CreateRandomRoom(roomType, mobList, random);
+                    array2D[current[0], current[1]] = CreateRandomRoom(roomType, mobList, rewardList, random);
                 }
                 else
                 {
@@ -111,15 +111,18 @@ public class PGM
         return next;
     }
 
-    private static Room CreateRandomRoom(string roomType, List<GameObject> enemyList, System.Random random)
+    private static Room CreateRandomRoom(string roomType, List<GameObject> enemyList, List<GameObject> rewardList, System.Random random)
     {
         Room room = new Room(roomType + "_" + random.Next(1, 3));
         int numOfMobs = random.Next(4, 7);
         for (int i = 0; i < numOfMobs; i++)
         {
             GameObject mob = enemyList[random.Next(enemyList.Count)];
-            room.AddEnemies(mob.gameObject);
+            room.AddEnemy(mob);
         }
+        GameObject reward = rewardList[random.Next(rewardList.Count)];
+        room.AddReward(reward);
+
         return room;
     }
 }

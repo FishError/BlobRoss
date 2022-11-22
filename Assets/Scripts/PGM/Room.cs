@@ -5,7 +5,7 @@ using UnityEngine;
 public class Room
 {
     public List<GameObject> Enemies { get; private set; }
-    public GameObject Reward { get; set; }
+    public GameObject Reward { get; private set; }
 
     public string Scene { get; private set; }
     public Room TopRoom { get; set; }
@@ -19,7 +19,7 @@ public class Room
         Enemies = new List<GameObject>();
     }
 
-    public void AddEnemies(GameObject enemy)
+    public void AddEnemy(GameObject enemy)
     {
         Enemies.Add(enemy);
     }
@@ -27,5 +27,10 @@ public class Room
     public void RemoveAllEnemies()
     {
         Enemies.Clear();
+    }
+
+    public void AddReward(GameObject reward)
+    {
+        Reward = reward;
     }
 }

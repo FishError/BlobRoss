@@ -27,6 +27,9 @@ public class EnemyDeathState : MobEnemyState
         if (animState.IsName(animName) && animState.normalizedTime >= 1)
         {
             Object.Destroy(enemy.gameObject);
+
+            if (enemy.lootDrop != null)
+                Object.Instantiate(enemy.lootDrop, enemy.transform.position, Quaternion.identity);
         }
 
     }

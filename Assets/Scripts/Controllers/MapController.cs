@@ -16,6 +16,9 @@ public class MapController : MonoBehaviour
     [Header("Mob Lists")]
     public List<GameObject> RedMobs;
 
+    [Header("Room Clear Reward")]
+    public List<GameObject> Rewards;
+
     [Header("Player Reference")]
     public GameObject player;
     public GameObject cinemachineCamera;
@@ -32,7 +35,7 @@ public class MapController : MonoBehaviour
 
     public void GenerateAndLoadMap()
     {
-        Map = PGM.ProcedurallyGenerateMap(maxWidth, maxHeight, numOfRooms, roomType, RedMobs);
+        Map = PGM.ProcedurallyGenerateMap(maxWidth, maxHeight, numOfRooms, roomType, RedMobs, Rewards);
         SceneManager.LoadScene(Map.StartRoom.Scene);
     }
 

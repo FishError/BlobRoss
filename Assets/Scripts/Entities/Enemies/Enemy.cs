@@ -9,6 +9,9 @@ public class Enemy : CombatOrganismEntity
     public NavMeshAgent navMeshAgent { get; private set; }
     #endregion
 
+    [Header("Drops On Death")]
+    public GameObject lootDrop;
+
     [Header("Target Detection")]
     public GameObject target;
     public bool alerted { get; set; }
