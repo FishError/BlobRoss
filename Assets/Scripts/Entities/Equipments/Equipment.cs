@@ -19,6 +19,8 @@ public class Equipment : Entity
     #region Animation References
     public float LastX { get; set; }
     public float LastY { get; set; }
+    public float RedLastX { get; set; }
+    public float RedLastY { get; set; }
     #endregion
 
     #region Equipment Data
@@ -34,10 +36,15 @@ public class Equipment : Entity
     public float Cooldown { get; set; } 
     public float Range { get; set; } 
     #endregion
+
+    #region Player Parent Script
+    public Player player { get; set; }
+    #endregion
     
     protected override void Awake()
     {
         base.Awake();
+        player = transform.parent.parent.gameObject.GetComponent<Player>();
     }
 
     protected override void Start()

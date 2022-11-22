@@ -19,6 +19,8 @@ public class Player : CombatOrganismEntity
     #region Animation References
     public float LastX { get; set; }
     public float LastY { get; set; }
+    public float RedLastX { get; set; }
+    public float RedLastY { get; set; }
     #endregion
 
     #region Player Inputs

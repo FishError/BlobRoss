@@ -100,8 +100,8 @@ public class EquipmentState : EntityState
         equipment.Anim.SetFloat("IdleVertical", y);
     }
 
-    protected void SetEffect(float x, float y)
-    {
+    protected virtual void SetEffect(float x, float y)
+    { 
         equipment.Anim.SetFloat("EffectHorizontal", x);
         equipment.Anim.SetFloat("EffectVertical", y);
     }
