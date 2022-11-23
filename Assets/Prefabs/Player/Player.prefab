@@ -395,7 +395,6 @@ MonoBehaviour:
   fill: {fileID: 9150742610927692655}
   text: {fileID: 3496799340434061587}
   player: {fileID: 7034977938710112415}
-  deathScene: Sample_DeathScreen
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 0.071597844, b: 0, a: 1}
