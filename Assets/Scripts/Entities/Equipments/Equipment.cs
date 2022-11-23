@@ -34,7 +34,11 @@ public class Equipment : Entity
     #region Equipment Stats 
     public bool OnCooldown { get; set; } 
     public float Cooldown { get; set; } 
-    public float Range { get; set; } 
+    public float Range { get; set; }
+    #endregion
+
+    #region Color Droplet Upgrades 
+    public int colorDropletStack { get; set; } = 0;
     #endregion
 
     #region Player Parent Script

@@ -7,6 +7,7 @@ TagManager:
   - RedEquipment
   - BlueEquipment
   - YellowEquipment
+  - ColorDroplet
   layers:
   - Default
   - TransparentFX
@@ -46,6 +47,9 @@ TagManager:
     locked: 0
   - name: EntityBreadcrumbs
     uniqueID: 1012468183
+    locked: 0
+  - name: Collectible
+    uniqueID: 3814894459
     locked: 0
   - name: EntityOrganism
     uniqueID: 671580021
