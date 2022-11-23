@@ -9,6 +9,9 @@ public class Enemy : CombatOrganismEntity
     public NavMeshAgent navMeshAgent { get; private set; }
     #endregion
 
+    [Header("Drops On Death")]
+    public GameObject lootDrop;
+
     [Header("Target Detection")]
     public GameObject target;
     public bool alerted { get; set; }
@@ -46,7 +49,7 @@ public class Enemy : CombatOrganismEntity
         navMeshAgent.speed = MovementSpeed;
 
         unWalkableLayers = LayerMask.GetMask("Wall");
-        targetDetectionIgnoreLayers = LayerMask.GetMask("Grid", "Enemy");
+        targetDetectionIgnoreLayers = LayerMask.GetMask("Ignore Raycast", "Enemy");
     }
 
     protected override void FixedUpdate()

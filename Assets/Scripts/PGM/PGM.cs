@@ -13,16 +13,15 @@ public enum Direction
     Down
 }
 
-public class PGM: MonoBehaviour
+public class PGM
 {
-    public static Map ProcedurallyGenerateMap(int maxWidth, int maxHeight, int numOfRooms, string roomType)
+    public static Map ProcedurallyGenerateMap(int maxWidth, int maxHeight, int numOfRooms, string roomType, List<GameObject> mobList, List<GameObject> rewardList)
     {
         System.Random random = new System.Random();
         Room[,] array2D = new Room[maxHeight + 1, maxWidth + 1];
 
         int[] start = new int[] { random.Next(0, maxWidth), random.Next(0, maxHeight) };
-        print(start[0] + " " + start[1]);
-        array2D[start[0], start[1]] = new Room(roomType + "_" + random.Next(1, 4));
+        array2D[start[0], start[1]] = new Room(roomType + "_start");
         
         int roomCount = 1;
         int[] current = start;
@@ -34,7 +33,14 @@ public class PGM: MonoBehaviour
 
             if (array2D[current[0], current[1]] == null)
             {
-                array2D[current[0], current[1]] = new Room(roomType + "_" + random.Next(1, 4));
+                if (roomCount < numOfRooms - 1)
+                {
+                    array2D[current[0], current[1]] = CreateRandomRoom(roomType, mobList, rewardList, random);
+                }
+                else
+                {
+                    array2D[current[0], current[1]] = new Room(roomType + "_boss_entrance");
+                }
                 roomCount++;
             }
         }
@@ -103,5 +109,20 @@ public class PGM: MonoBehaviour
         }
 
         return next;
+    }
+
+    private static Room CreateRandomRoom(string roomType, List<GameObject> enemyList, List<GameObject> rewardList, System.Random random)
+    {
+        Room room = new Room(roomType + "_" + random.Next(1, 3));
+        int numOfMobs = random.Next(4, 7);
+        for (int i = 0; i < numOfMobs; i++)
+        {
+            GameObject mob = enemyList[random.Next(enemyList.Count)];
+            room.AddEnemy(mob);
+        }
+        GameObject reward = rewardList[random.Next(rewardList.Count)];
+        room.AddReward(reward);
+
+        return room;
     }
 }

@@ -6,6 +6,7 @@ using UnityEngine.Rendering;
 public class Boss : Enemy
 {
     #region States 
+    public BossIdleState IdleState { get; protected set; }
     public BossAgroState AgroState { get; protected set; }
     public BossAttackState AttackState { get; protected set; }
     public BossDeathState DeathState { get; protected set; }
@@ -21,7 +22,7 @@ public class Boss : Enemy
         base.Start();
         phase = 1;
         Attacks = new List<BossAttack>();
-        StateMachine.Initialize(AgroState);
+        StateMachine.Initialize(IdleState);
     }
 
     protected override void Update()

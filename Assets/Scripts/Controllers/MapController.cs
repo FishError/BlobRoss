@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cinemachine;
+using UnityEngine.Tilemaps;
 
 public class MapController : MonoBehaviour
 {
@@ -12,12 +13,18 @@ public class MapController : MonoBehaviour
     public int numOfRooms;
     public string roomType;
 
+    [Header("Mob Lists")]
+    public List<GameObject> RedMobs;
+
+    [Header("Room Clear Reward")]
+    public List<GameObject> Rewards;
+
     [Header("Player Reference")]
     public GameObject player;
     public GameObject cinemachineCamera;
 
     public Map Map { get; private set; }
-    public Direction previousRoomDir { get; set; }
+    public Direction PreviousRoomDir { get; set; }
 
     // Start is called before the first frame update
     void Start()
@@ -28,45 +35,31 @@ public class MapController : MonoBehaviour
 
     public void GenerateAndLoadMap()
     {
-        Map = PGM.ProcedurallyGenerateMap(maxWidth, maxHeight, numOfRooms, roomType);
+        Map = PGM.ProcedurallyGenerateMap(maxWidth, maxHeight, numOfRooms, roomType, RedMobs, Rewards);
         SceneManager.LoadScene(Map.StartRoom.Scene);
     }
 
     private void ChangedActiveScene(Scene current, Scene next)
     {
-        Map.CurrentRoom.MatchSceneToRoomConstraints();
-
-        GameObject roomConnector = null;
-        switch (previousRoomDir)
+        GameObject roomController = GameObject.Find("RoomController");
+        if (roomController != null)
         {
-            case Direction.Left:
-                roomConnector = GameObject.Find("RoomConnectorLeft");
-                break;
-            case Direction.Right:
-                roomConnector = GameObject.Find("RoomConnectorRight");
-                break;
-            case Direction.Up:
-                roomConnector = GameObject.Find("RoomConnectorTop");
-                break;
-            case Direction.Down:
-                roomConnector = GameObject.Find("RoomConnectorBottom");
-                break;
+            RoomController controller = roomController.GetComponent<RoomController>();
+            controller.Room = Map.CurrentRoom;
+            controller.SpawnEnemies(player);
+            controller.UpdatePlayerPosition(PreviousRoomDir, player);
+            controller.SetCameraConfiner(cinemachineCamera);
+            controller.MatchSceneWithRoomProperties();
         }
-
-        if (roomConnector != null)
+        else
         {
-            Transform spawnLocation = roomConnector.transform.Find("EntranceSpawn");
-            if (spawnLocation != null)
+            roomController = GameObject.Find("BossRoomController");
+            if (roomController != null)
             {
-                player.transform.position = spawnLocation.position;
+                BossRoomController controller = roomController.GetComponent<BossRoomController>();
+                controller.SetPlayerAtEnterPoint(player);
+                controller.SetCameraConfiner(cinemachineCamera);
             }
         }
-        SetCameraConfiner();
-    }
-
-    private void SetCameraConfiner()
-    {
-        var grid = GameObject.Find("Grid").GetComponent<PolygonCollider2D>();
-        cinemachineCamera.GetComponentInChildren<CinemachineConfiner>().m_BoundingShape2D = grid;
     }
 }
