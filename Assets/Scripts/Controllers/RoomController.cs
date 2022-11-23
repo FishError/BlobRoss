@@ -50,6 +50,8 @@ public class RoomController : MonoBehaviour
             roomConnectorDown.SetActive(true);
             roomConnectorUp.SetActive(true);
         }
+
+
     }
 
     public void SetCameraConfiner(GameObject cinemachineCamera)
