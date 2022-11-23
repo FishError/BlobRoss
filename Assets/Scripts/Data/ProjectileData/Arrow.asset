@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d4c0a3a0f324ed418bd5a3ccb9a32a9, type: 3}
   m_Name: Arrow
   m_EditorClassIdentifier: 
-  DamageRatio: 0
-  Speed: 0
-  lifeTime: Infinity
-  lifeDistance: Infinity
+  DamageRatio: 1
+  Speed: 10
+  LifeTime: 3
+  LifeDistance: Infinity

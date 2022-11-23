@@ -10,7 +10,6 @@ public class ArchieAttackState : EnemyAttackState
     protected float attackAngle;
     protected GameObject arrow;
     protected Transform spawnPosition;
-    private GameObject arrowObj;
 
     public ArchieAttackState(Archie archie, FiniteStateMachine stateMachine, ArchieData data, string animName, GameObject arrow, Transform spawnPosition) : base(archie, stateMachine, data, animName)
     {
@@ -27,18 +26,6 @@ public class ArchieAttackState : EnemyAttackState
         archie.rb.velocity = Vector2.zero;
         archie.lookAt = targetDirection;
         archie.SetAnimHorizontalVertical(archie.lookAt);
-
-        attackAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
-
-        Quaternion rot = Quaternion.Euler(new Vector3(0f, 0f, attackAngle - 90f));
-
-        arrowObj = GameObject.Instantiate(this.arrow, this.spawnPosition.position, rot);
-        arrowObj.GetComponent<Arrow>().archie = archie;
-        Rigidbody2D arrow_rb = arrowObj.GetComponent<Rigidbody2D>();
-        arrow_rb.velocity = targetDirection * archie.ProjectileSpeed;
-
-        archie.DestroyObject(arrowObj, archie.DestroyTime);
-
     }
 
     public override void Exit()
@@ -51,6 +38,22 @@ public class ArchieAttackState : EnemyAttackState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        AnimatorStateInfo animState = archie.Anim.GetCurrentAnimatorStateInfo(0);
+        if (animState.IsName(animName) && animState.normalizedTime >= 1)
+        {
+            archie.lookAt = targetDirection;
+            archie.SetAnimHorizontalVertical(archie.lookAt);
+
+            attackAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
+
+            Quaternion rot = Quaternion.Euler(new Vector3(0f, 0f, attackAngle));
+
+            GameObject arrowObj = Object.Instantiate(this.arrow, spawnPosition.position, rot);
+            Arrow arrow = arrowObj.GetComponent<Arrow>();
+            arrow.SetDamage(archie.Attack);
+            arrow.SetVelocity(targetDirection);
+        }
 
         ChangeStateAfterAnimation(archie, animName, archie.AgroState);
     }
