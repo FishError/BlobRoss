@@ -66,4 +66,10 @@ public class Equipment : Entity
     {
         base.FixedUpdate();
     }
+
+    // Setting the upgrade if more work needs to be done for them. Look at RedEquipment.cs for example
+    public virtual void setUpgrade()
+    {
+
+    }
 }
