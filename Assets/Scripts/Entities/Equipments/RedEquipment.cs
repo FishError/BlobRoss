@@ -43,11 +43,6 @@ public class RedEquipment : Equipment
             OnCooldown = false;
         }
 
-        Debug.Log("Damge " + damage);
-        Debug.Log("attackSpeed " + attackSpeed);
-        Debug.Log("cooldoown " + Cooldown);
-
-
     }
 
     public override void setUpgrade()

@@ -10,7 +10,7 @@ public class ColorDropletData : ScriptableObject
     public float attackSpeedUpgrade = 0f;
 
     [Header("Blue Equipment Upgrades")]
-    public float durabilityUpgrade = 0f;
+    public int durabilityUpgrade = 0;
     public float durationUpgrade = 0f;
 
     [Header("Yellow Equipment Upgrades")]

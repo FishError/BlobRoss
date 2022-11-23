@@ -17,6 +17,8 @@ public class ColorDropletController : MonoBehaviour
             {
                 // Get red equipment from player
                 RedEquipment redEquipment = ((RedEquipment)player.equipments[0]);
+
+                // Increment color droplet stack counter
                 redEquipment.colorDropletStack++;
                 if (redEquipment.colorDropletStack == 0) return;
 
@@ -26,26 +28,47 @@ public class ColorDropletController : MonoBehaviour
                 // Upgrade attack speed
                 redEquipment.attackSpeed += colorDropletData.attackSpeedUpgrade;
 
+                // Set upgrade
                 redEquipment.setUpgrade();
             }
 
             if (color == Color.Blue)
             {
                 // Get blue equipment from player
-                equipment = player.equipments[1];
-                equipment.colorDropletStack++;
+                BlueEquipment blueEquipment = ((BlueEquipment)player.equipments[1]);
+
+                // Increment color droplet stack counter
+                blueEquipment.colorDropletStack++;
+                if (blueEquipment.colorDropletStack == 0) return;
+
+                // Upgrade durability
+                blueEquipment.Durability += colorDropletData.durabilityUpgrade;
+
+                // Upgrade duration
+                blueEquipment.Duration += colorDropletData.durationUpgrade;
+
+                // Set upgrade
+                blueEquipment.setUpgrade();
             }
 
+            if (color == Color.Yellow)
+            {
+                // Get yellow equipment from player
+                YellowEquipment yellowEquipment = ((YellowEquipment)player.equipments[2]);
+
+                // Increment color droplet stack counter
+                yellowEquipment.colorDropletStack++;
+                if (yellowEquipment.colorDropletStack == 0) return;
+
+                // Upgrade cooldown
+                yellowEquipment.Cooldown += colorDropletData.cooldownUpgrade;
+
+            }
 
             Destroy(gameObject);
 
             
-            //if (color == Color.Yellow)
-            //{
-            //    // Get yellow equipment from player
-            //    equipment = player.equipments[2];
-            //    equipment.colorDropletStack++;
-            //}
+            
 
 
 
