@@ -10,7 +10,7 @@ public class EnemyAttackState : MobEnemyState
     public override void Enter()
     {
         base.Enter();
-        targetDirection = (enemy.target.transform.position - enemy.transform.position).normalized;
+        targetDirection = ((Vector2)(enemy.target.transform.position - enemy.transform.position)).normalized;
     }
 
     public override void Exit()

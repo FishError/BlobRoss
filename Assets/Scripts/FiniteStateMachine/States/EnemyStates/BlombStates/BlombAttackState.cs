@@ -32,6 +32,9 @@ public class BlombAttackState : EnemyAttackState
         {
             Object.Instantiate(blomb.fieldOnDeath, blomb.transform.position, Quaternion.identity);
             Object.Destroy(blomb.gameObject);
+
+            if (enemy.lootDrop != null)
+                Object.Instantiate(enemy.lootDrop, enemy.transform.position, Quaternion.identity);
         }
     }
 
