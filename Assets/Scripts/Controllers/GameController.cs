@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     public GameObject playerObject;
-    public GameObject bossObject;
     public BossRoomController bossController;
     public GameObject playerCamera;
     public GameObject mapController;
@@ -26,24 +25,28 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bossController = GameObject.Find("BossRoomController").GetComponent<BossRoomController>();
-
         if (playerObject == null)
         {
-            SceneManager.LoadScene(deathScene);
-            Destroy(playerCamera);
-            Destroy(mapController);
-            Destroy(optionsController);
-            Destroy(gameObject);
+            LoadDefeatScreen();
         }
+    }
 
-        if(bossController.isBossDefeated)
-        {
-            SceneManager.LoadScene(winScene);
-            Destroy(playerCamera);
-            Destroy(mapController);
-            Destroy(optionsController);
-            Destroy(gameObject);
-        }
+    public void LoadDefeatScreen()
+    {
+        SceneManager.LoadScene(deathScene);
+        Destroy(playerCamera);
+        Destroy(mapController);
+        Destroy(optionsController);
+        Destroy(gameObject);
+    }
+
+    public void LoadWinScreen()
+    {
+        SceneManager.LoadScene(winScene);
+        Destroy(playerObject);
+        Destroy(playerCamera);
+        Destroy(mapController);
+        Destroy(optionsController);
+        Destroy(gameObject);
     }
 }

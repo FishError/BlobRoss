@@ -8,19 +8,14 @@ public class BossRoomController : MonoBehaviour
     public GameObject grid;
     public Transform enterPoint;
     public GameObject boss;
-    public bool isBossDefeated = false;
-
-    private void Start()
-    {
-        GameObject.Find("GameController").GetComponent<GameController>().bossObject = this.boss;
-    }
 
     private void Update()
     {
         if(boss == null)
         {
-            isBossDefeated = true;
+            GameObject.Find("GameController").GetComponent<GameController>().LoadWinScreen();
         }
+
         EnableHpBar();
     }
 
