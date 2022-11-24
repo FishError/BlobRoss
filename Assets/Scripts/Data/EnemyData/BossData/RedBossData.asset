@@ -23,20 +23,16 @@ MonoBehaviour:
   MovementSpeedP2: 5
   WaitTimeBetweenAttacksP2: 2
   MaxMortarStrike: 5
-  MortarStrikeDamageRatio: 1.2
   MortarStrikeRange: 999
   MortarStrikeCooldown: 10
   MaxFireboltAmount: 3
-  FireboltDamageRatio: 1
   FireboltRange: 10
   FireboltCooldown: 5
   MaxBlombSummons: 10
   IntervalBetweenSummons: 0.3
-  BlombSquadDamageRatio: 0
   BlombSquadRange: 999
   BlombSquadCooldown: 30
   MaxWaveAmount: 10
   RotationBetweenWaves: 20
-  WheelOfFireDamageRatio: 1
   WheelOfFireHellRange: 10
   WheelOfFireCooldown: 15

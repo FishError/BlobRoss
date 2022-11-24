@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Rooms/Placeholders/placeholder_boss.unity
     guid: 174a8ba065e5f9c40a75be4fbdc678d8
+  - enabled: 1
+    path: Assets/Scenes/Sandboxes/UI_related/Sample_DeathScreen.unity
+    guid: 04ea393d9d1a43841abc4a26608cdbd8
   m_configObjects: {}

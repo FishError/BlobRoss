@@ -30,7 +30,7 @@ public class PlayerState : EntityState
         this.redEquipment = equipments.GetChild(0).GetComponent<RedEquipment>();
         this.blueEquipment = equipments.GetChild(1).GetComponent<BlueEquipment>();
         this.yellowEquipment = equipments.GetChild(2).GetComponent<YellowEquipment>();
-        this.yellowEquipment.player = player;
+        this.yellowEquipment.getPlayer = player;
     }
 
     //Gets called when entered a specific state

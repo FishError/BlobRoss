@@ -1,0 +1,45 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class PlayerDeathState : PlayerState
+{
+    private string deathScene = "Sample_DeathScreen";
+    public PlayerDeathState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, string animName) : base(player, stateMachine, playerData, animName)
+    {
+    }
+
+    public override void DoChecks()
+    {
+        base.DoChecks();
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+        player.SetVelocityX(0f);
+        player.SetVelocityY(0f);
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+    }
+
+    public override void LogicUpdate()
+    {
+        base.LogicUpdate();
+        AnimatorStateInfo animState = player.Anim.GetCurrentAnimatorStateInfo(0);
+        if (animState.IsName(animName) && animState.normalizedTime >= 1)
+        {
+            Object.Destroy(player.gameObject);
+            SceneManager.LoadScene(deathScene);
+        }
+    }
+
+    public override void PhysicsUpdate()
+    {
+        base.PhysicsUpdate();
+    }
+}

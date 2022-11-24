@@ -200,6 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fb6a90f9aa2cbd41bc4fa1742da1981, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneName: Sample_Audio_Manager
 --- !u!1 &8130406612397933865
 GameObject:
   m_ObjectHideFlags: 0

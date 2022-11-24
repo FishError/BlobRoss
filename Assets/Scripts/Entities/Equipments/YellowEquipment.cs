@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class YellowEquipment : Equipment
 {
-    public Player player { get; set; }
+    public Player getPlayer { get; set; }
 
     #region Yellow Equipment Stats
     public float Duration { get; set; }
