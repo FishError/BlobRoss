@@ -9,6 +9,11 @@ public class BossRoomController : MonoBehaviour
     public Transform enterPoint;
     public GameObject boss;
 
+    private void Update()
+    {
+        EnableHpBar();
+    }
+
     public void SetCameraConfiner(GameObject cinemachineCamera)
     {
         cinemachineCamera.GetComponentInChildren<CinemachineConfiner>().m_BoundingShape2D = grid.GetComponent<Collider2D>();
@@ -18,5 +23,14 @@ public class BossRoomController : MonoBehaviour
     {
         player.transform.position = enterPoint.position;
         boss.GetComponent<Boss>().target = player;
+    }
+
+    public void EnableHpBar()
+    {
+        if (boss != null && boss.GetComponent<Renderer>().isVisible)
+        {
+            GameObject hpBar = boss.transform.Find("BossStatusBar").gameObject;
+            hpBar.SetActive(true);
+        }
     }
 }

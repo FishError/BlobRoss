@@ -21,6 +21,7 @@ public class BossDeathState : BossEnemyState
         if (animState.IsName(animName) && animState.normalizedTime >= 1)
         {
             Object.Destroy(boss.gameObject);
+            
         }
 
     }
