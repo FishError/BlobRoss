@@ -21,6 +21,7 @@ public class EnemyAttackState : MobEnemyState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        targetDirection = ((Vector2)(enemy.target.transform.position - enemy.transform.position)).normalized;
     }
 
     public override void DoChecks()

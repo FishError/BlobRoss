@@ -39480,7 +39480,7 @@ GameObject:
   - component: {fileID: 1164699443}
   - component: {fileID: 1164699442}
   - component: {fileID: 1164699441}
-  m_Layer: 9
+  m_Layer: 2
   m_Name: Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
