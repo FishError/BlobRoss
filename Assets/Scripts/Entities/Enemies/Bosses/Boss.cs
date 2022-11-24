@@ -32,6 +32,12 @@ public class Boss : Enemy
         {
             StateMachine.ChangeState(DeathState);
         }
+
+        if(target.GetComponent<Player>().HealthPoints <= 0)
+        {
+            SetVelocityX(0);
+            SetVelocityY(0);
+        }
     }
 
     protected virtual void UpdateStatsPhase2()
