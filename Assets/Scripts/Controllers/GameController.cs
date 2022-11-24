@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour
     {
         if (playerObject == null)
         {
-            LoadDefeatScreen();
+            StartCoroutine(WaitDefeatScreen());
         }
     }
 
@@ -48,5 +48,17 @@ public class GameController : MonoBehaviour
         Destroy(mapController);
         Destroy(optionsController);
         Destroy(gameObject);
+    }
+
+    public IEnumerator WaitDefeatScreen()
+    {
+        yield return new WaitForSeconds(1f);
+        LoadDefeatScreen();
+    }
+
+    public IEnumerator WaitWinScreen()
+    {
+        yield return new WaitForSeconds(1f);
+        LoadWinScreen();
     }
 }

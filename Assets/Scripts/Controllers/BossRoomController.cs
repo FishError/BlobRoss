@@ -13,7 +13,7 @@ public class BossRoomController : MonoBehaviour
     {
         if(boss == null)
         {
-            GameObject.Find("GameController").GetComponent<GameController>().LoadWinScreen();
+            StartCoroutine(GameObject.Find("GameController").GetComponent<GameController>().WaitWinScreen());
         }
 
         EnableHpBar();
