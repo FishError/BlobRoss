@@ -138,7 +138,6 @@ GameObject:
   m_Component:
   - component: {fileID: 877232778}
   - component: {fileID: 877232777}
-  - component: {fileID: 877232776}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -146,14 +145,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &877232776
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 877232775}
-  m_Enabled: 1
 --- !u!20 &877232777
 Camera:
   m_ObjectHideFlags: 0
@@ -470,6 +461,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2012253602}
     m_Modifications:
+    - target: {fileID: 8130406612261180920, guid: 93c51a535298ba345a53429a4cc4145d, type: 3}
+      propertyPath: sceneName
+      value: Main_Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8130406612261180920, guid: 93c51a535298ba345a53429a4cc4145d, type: 3}
+      propertyPath: mainMenuScene
+      value: Main_Menu
+      objectReference: {fileID: 0}
     - target: {fileID: 8130406612261180922, guid: 93c51a535298ba345a53429a4cc4145d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

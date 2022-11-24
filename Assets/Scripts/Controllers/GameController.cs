@@ -7,23 +7,33 @@ using UnityEngine.SceneManagement;
 // manages the game play loop and contains references to other controllers
 public class GameController : MonoBehaviour
 {
+    public GameObject playerObject;
+    public GameObject playerCamera;
     public MapController mapController;
+    public GameObject eventSystem;
+
+    private static string deathScene = "Death_Screen";
+    private Player player;
 
     // Start is called before the first frame update
     void Start()
     {
+        print("hi");
         SceneManager.activeSceneChanged += ChangedActiveScene;
+
+        player = playerObject.GetComponent<Player>();
+        eventSystem = GameObject.Find("EventSystem");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.escapeKey.isPressed)
+        if (playerObject == null)
         {
-            Destroy(GameObject.Find("Player"));
-            Destroy(GameObject.Find("Camera"));
-            Destroy(GameObject.Find("GameController"));
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(deathScene);
+            Destroy(playerCamera);
+            Destroy(mapController.gameObject);
+            Destroy(gameObject);
         }
     }
 

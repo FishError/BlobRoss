@@ -10,6 +10,12 @@ public class EnemyAttackState : MobEnemyState
     public override void Enter()
     {
         base.Enter();
+        if (enemy.target == null)
+        {
+            stateMachine.ChangeState(enemy.IdleState);
+            return;
+        }
+
         targetDirection = ((Vector2)(enemy.target.transform.position - enemy.transform.position)).normalized;
     }
 
@@ -21,6 +27,12 @@ public class EnemyAttackState : MobEnemyState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        if (enemy.target == null)
+        {
+            stateMachine.ChangeState(enemy.IdleState);
+            return;
+        }
+
         targetDirection = ((Vector2)(enemy.target.transform.position - enemy.transform.position)).normalized;
     }
 

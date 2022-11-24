@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerDeathState : PlayerState
 {
-    private string deathScene = "Sample_DeathScreen";
     public PlayerDeathState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, string animName) : base(player, stateMachine, playerData, animName)
     {
     }
@@ -34,7 +33,6 @@ public class PlayerDeathState : PlayerState
         if (animState.IsName(animName) && animState.normalizedTime >= 1)
         {
             Object.Destroy(player.gameObject);
-            SceneManager.LoadScene(deathScene);
         }
     }
 

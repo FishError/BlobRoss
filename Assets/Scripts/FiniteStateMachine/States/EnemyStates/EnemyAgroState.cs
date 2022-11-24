@@ -15,6 +15,12 @@ public class EnemyAgroState : MobEnemyState
     public override void Enter()
     {
         base.Enter();
+        if (enemy.target == null)
+        {
+            stateMachine.ChangeState(enemy.IdleState);
+            return;
+        }
+
         enemy.SetAnimHorizontalVertical(enemy.lookAt);
     }
 
@@ -27,6 +33,12 @@ public class EnemyAgroState : MobEnemyState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        if (enemy.target == null)
+        {
+            stateMachine.ChangeState(enemy.IdleState);
+            return;
+        }
+
         distance = Vector2.Distance(enemy.target.transform.position, enemy.transform.position);
         targetDirection = (enemy.target.transform.position - enemy.transform.position).normalized;
     }

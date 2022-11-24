@@ -5,10 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class DeathMenu : MonoBehaviour
 {
-    public string sceneName;
+    public string mainMenuScene;
+
     public void TryAgain()
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(mainMenuScene);
     }
 
     public void QuitGame()
