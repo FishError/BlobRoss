@@ -13,6 +13,12 @@ public class ColorDropletController : MonoBehaviour
         {
             Player player = other.gameObject.GetComponent<Player>();
 
+            if(color == Color.White)
+            {
+                // Heal player
+                player.ModifyHealthPoints(colorDropletData.healPoints);
+            }
+
             if (color == Color.Red)
             {
                 // Get red equipment from player

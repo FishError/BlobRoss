@@ -5,7 +5,8 @@ using UnityEngine;
 public enum Color {
     Red,
     Blue,
-    Yellow
+    Yellow,
+    White
 }
 
 public class Equipment : Entity
