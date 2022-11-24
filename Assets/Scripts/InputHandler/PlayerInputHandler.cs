@@ -15,7 +15,6 @@ public class PlayerInputHandler : MonoBehaviour
     private void OnMovement(InputValue value)
     {
         RawMovementInput = value.Get<Vector2>();
-        
     }
 
     private void OnAttack(InputValue value)

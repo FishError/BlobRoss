@@ -33,10 +33,15 @@ public class MapController : MonoBehaviour
         GenerateAndLoadMap();
     }
 
+    void OnDestroy()
+    {
+        SceneManager.activeSceneChanged -= ChangedActiveScene;
+    }
+
     public void GenerateAndLoadMap()
     {
         Map = PGM.ProcedurallyGenerateMap(maxWidth, maxHeight, numOfRooms, roomType, RedMobs, Rewards);
-        SceneManager.LoadScene(Map.StartRoom.Scene);
+        SceneManager.LoadScene(Map.CurrentRoom.Scene);
     }
 
     private void ChangedActiveScene(Scene current, Scene next)

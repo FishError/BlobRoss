@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8538569393135357245}
   - component: {fileID: 8538569393135357242}
-  - component: {fileID: 8538569393135357243}
+  - component: {fileID: 3262234051108603070}
   m_Layer: 0
   m_Name: MapController
   m_TagString: Untagged
@@ -60,7 +60,7 @@ MonoBehaviour:
   - {fileID: 5055050867268015233, guid: 8619de372f5778a4fb6cae6291d17ad6, type: 3}
   player: {fileID: 0}
   cinemachineCamera: {fileID: 0}
---- !u!114 &8538569393135357243
+--- !u!114 &3262234051108603070
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
