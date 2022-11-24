@@ -9,6 +9,7 @@ public class RedEquipment : Equipment
 {
     #region Red Equipment Stats
     public float damage { get; set; }
+    public float attackSpeed { get; set; }
     #endregion
 
     protected override void Awake()
@@ -24,7 +25,8 @@ public class RedEquipment : Equipment
     {
         base.Start();
         damage = equipmentData.Damage;
-        Cooldown = (1 / equipmentData.attackSpeed);
+        attackSpeed = equipmentData.attackSpeed;
+        Cooldown = (1 / attackSpeed);
         OnCooldown = false;
     }
     protected override void Update()
@@ -37,10 +39,15 @@ public class RedEquipment : Equipment
 
         if (Cooldown <= 0)
         {
-            Cooldown = (1 / equipmentData.attackSpeed);
+            Cooldown = (1 / attackSpeed);
             OnCooldown = false;
         }
 
+    }
 
+    public override void setUpgrade()
+    {
+        base.setUpgrade();
+        Cooldown = (1/attackSpeed);
     }
 }

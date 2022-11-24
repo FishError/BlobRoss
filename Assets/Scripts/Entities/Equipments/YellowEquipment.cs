@@ -11,6 +11,8 @@ public class YellowEquipment : Equipment
     public float Velocity { get; set; }
     #endregion
 
+    float tempCooldown;
+
     protected override void Awake()
     {
         base.Awake();
@@ -23,6 +25,8 @@ public class YellowEquipment : Equipment
         Cooldown = equipmentData.DashCooldown;
         Velocity = equipmentData.DashVelocity;
         OnCooldown = false;
+
+        tempCooldown = equipmentData.DashCooldown;
     }
 
     protected override void Start()
@@ -35,14 +39,14 @@ public class YellowEquipment : Equipment
     protected override void Update()
     {
         base.Update();
-        if (Cooldown > 0 && OnCooldown)
+        if (tempCooldown > 0 && OnCooldown)
         {
-            Cooldown -= Time.deltaTime;
+            tempCooldown -= Time.deltaTime;
         }
 
-        if (Cooldown <= 0)
+        if (tempCooldown <= 0)
         {
-            Cooldown = equipmentData.DashCooldown;
+            tempCooldown = Cooldown;
             OnCooldown = false;
         }
     }
