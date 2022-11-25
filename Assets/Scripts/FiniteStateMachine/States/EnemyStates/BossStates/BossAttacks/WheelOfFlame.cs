@@ -72,7 +72,7 @@ public class WheelOfFlame : BossAttack
         GameObject fireball = Object.Instantiate(boss.fireball, spawnPosition, Quaternion.identity);
         Fireball fb = fireball.GetComponent<Fireball>();
         Vector2 dir = ((Vector3)spawnPosition - boss.transform.position).normalized;
-        fb.SetDamage(boss.Attack * DamageRatio);
+        fb.SetDamage(boss.Attack);
         fb.SetVelocity(dir);
     }
 }
