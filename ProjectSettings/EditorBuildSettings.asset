@@ -6,24 +6,30 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Rooms/Placeholders/placeholder_start.unity
+    path: Assets/Scenes/Production/Main_Menu.unity
+    guid: 9f95015607a31d24e9e10c5ba80b2367
+  - enabled: 1
+    path: Assets/Scenes/Production/Rooms/Placeholders/placeholder_start.unity
     guid: 1e335fc97a42c3c4eb0f4d82ada29f6f
   - enabled: 1
-    path: Assets/Scenes/Rooms/Placeholders/placeholder_1.unity
+    path: Assets/Scenes/Production/Rooms/Placeholders/placeholder_1.unity
     guid: 6fb1445113a97824a9cd06969f134f0e
   - enabled: 1
-    path: Assets/Scenes/Rooms/Placeholders/placeholder_2.unity
+    path: Assets/Scenes/Production/Rooms/Placeholders/placeholder_2.unity
     guid: 68b45aca15d7c5142844c3e0152a26b5
   - enabled: 1
-    path: Assets/Scenes/Rooms/Placeholders/placeholder_boss_entrance.unity
+    path: Assets/Scenes/Production/Rooms/Placeholders/placeholder_boss_entrance.unity
     guid: dbc91ac1982d8b842b530ac928f9a42f
   - enabled: 1
-    path: Assets/Scenes/Rooms/Placeholders/placeholder_boss.unity
+    path: Assets/Scenes/Production/Rooms/Placeholders/placeholder_boss.unity
     guid: 174a8ba065e5f9c40a75be4fbdc678d8
   - enabled: 1
-    path: Assets/Scenes/Sandboxes/PGM_related/PGM_mob_spawning_test.unity
-    guid: 9ea8c8ee69a889844a0e55c3cdb9b868
+    path: Assets/Scenes/Production/Game.unity
+    guid: c239cd5160755974b8257c73e6c2cf81
   - enabled: 1
-    path: Assets/Scenes/Sandboxes/UI_related/Sample_DeathScreen.unity
-    guid: 04ea393d9d1a43841abc4a26608cdbd8
+    path: Assets/Scenes/Production/Death_Screen.unity
+    guid: 4f391f08ba21b414f9d79eed5f2c0919
+  - enabled: 1
+    path: Assets/Scenes/Production/Win_Screen.unity
+    guid: 6bfefd7cbeb109748b5ed92c6e190f58
   m_configObjects: {}

@@ -7,28 +7,58 @@ using UnityEngine.SceneManagement;
 // manages the game play loop and contains references to other controllers
 public class GameController : MonoBehaviour
 {
-    public MapController mapController;
+    public GameObject playerObject;
+    public BossRoomController bossController;
+    public GameObject playerCamera;
+    public GameObject mapController;
+    public GameObject optionsController;
+
+    private static string deathScene = "Death_Screen";
+    private static string winScene = "Win_Screen";
 
     // Start is called before the first frame update
     void Start()
     {
-        SceneManager.activeSceneChanged += ChangedActiveScene;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Keyboard.current.escapeKey.isPressed)
+        if (playerObject == null)
         {
-            Destroy(GameObject.Find("Player"));
-            Destroy(GameObject.Find("Camera"));
-            Destroy(GameObject.Find("GameController"));
-            SceneManager.LoadScene(0);
+            StartCoroutine(WaitDefeatScreen());
         }
     }
 
-    private void ChangedActiveScene(Scene current, Scene next)
+    public void LoadDefeatScreen()
     {
+        SceneManager.LoadScene(deathScene);
+        Destroy(playerCamera);
+        Destroy(mapController);
+        Destroy(optionsController);
+        Destroy(gameObject);
+    }
 
+    public void LoadWinScreen()
+    {
+        SceneManager.LoadScene(winScene);
+        Destroy(playerObject);
+        Destroy(playerCamera);
+        Destroy(mapController);
+        Destroy(optionsController);
+        Destroy(gameObject);
+    }
+
+    public IEnumerator WaitDefeatScreen()
+    {
+        yield return new WaitForSeconds(1f);
+        LoadDefeatScreen();
+    }
+
+    public IEnumerator WaitWinScreen()
+    {
+        yield return new WaitForSeconds(1f);
+        LoadWinScreen();
     }
 }

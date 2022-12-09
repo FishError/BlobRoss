@@ -12,6 +12,11 @@ public class RedEquipmentEffectState : EquipmentEffectState
         base.Enter();
     }
 
+    public override void Exit()
+    {
+        base.Exit();
+        equipment.OnCooldown = true;
+    }
 
     public override void LogicUpdate()
     {
@@ -53,7 +58,6 @@ public class RedEquipmentEffectState : EquipmentEffectState
                 equipment.LastX = v.x;
                 equipment.LastY = v.y;
             }
-            equipment.OnCooldown = true;
             return;
 
         }

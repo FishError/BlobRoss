@@ -65,15 +65,18 @@ public class Enemy : CombatOrganismEntity
 
     public bool TargetDetected()
     {
-        Vector2 dir = target.transform.position - transform.position;
-        float angle = Vector2.Angle(dir, lookAt);
-
-        if (angle < ((EnemyData)data).FieldOfView / 2)
+        if (target != null)
         {
-            RaycastHit2D r = Physics2D.Raycast(transform.position, dir, ((EnemyData)data).DetectionRange, ~targetDetectionIgnoreLayers);
-            if (r.collider != null && r.collider.gameObject == target)
+            Vector2 dir = target.transform.position - transform.position;
+            float angle = Vector2.Angle(dir, lookAt);
+
+            if (angle < ((EnemyData)data).FieldOfView / 2)
             {
-                return true;
+                RaycastHit2D r = Physics2D.Raycast(transform.position, dir, ((EnemyData)data).DetectionRange, ~targetDetectionIgnoreLayers);
+                if (r.collider != null && r.collider.gameObject == target)
+                {
+                    return true;
+                }
             }
         }
 
