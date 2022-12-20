@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : CombatOrganismEntity
 {
+    public PlayerData Data { get; set; }
+
     #region States
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
@@ -37,11 +39,13 @@ public class Player : CombatOrganismEntity
     protected override void Awake()
     {
         base.Awake();
-        IdleState = new PlayerIdleState(this, StateMachine, (PlayerData)data, "Idle");
-        MoveState = new PlayerMoveState(this, StateMachine, (PlayerData)data, "Move");
-        YellowState = new PlayerYellowState(this, StateMachine, (PlayerData)data, "Move");
-        CCState = new PlayerCCState(this, StateMachine, (PlayerData)data, "Idle");
-        DeathState = new PlayerDeathState(this, StateMachine, (PlayerData)data, "Death");
+        Data = (PlayerData)data;
+
+        IdleState = new PlayerIdleState(this, StateMachine, Data, "Idle");
+        MoveState = new PlayerMoveState(this, StateMachine, Data, "Move");
+        YellowState = new PlayerYellowState(this, StateMachine, Data, "Move");
+        CCState = new PlayerCCState(this, StateMachine, Data, "Idle");
+        DeathState = new PlayerDeathState(this, StateMachine, Data, "Death");
     }
 
     protected override void Start()
@@ -60,8 +64,8 @@ public class Player : CombatOrganismEntity
         Defense = data.Defense;
         Attack = data.Attack;
         AttackSpeed = data.AttackSpeed;
-        CritRate = ((PlayerData)data).CritRate;
-        CritDamage = ((PlayerData)data).CritDamage;
+        CritRate = Data.CritRate;
+        CritDamage = Data.CritDamage;
         MovementSpeed = data.MovementSpeed;
         LastX = 0;
         LastY = -1;
@@ -97,7 +101,7 @@ public class Player : CombatOrganismEntity
 
     public void ResetCritRate()
     {
-        CritRate = ((PlayerData)data).CritRate;
+        CritRate = Data.CritRate;
     }
 
     // Crit Damage
@@ -115,7 +119,7 @@ public class Player : CombatOrganismEntity
 
     public void ResetCritDamage()
     {
-        CritDamage = ((PlayerData)data).CritDamage;
+        CritDamage = Data.CritDamage;
     }
     #endregion
 }

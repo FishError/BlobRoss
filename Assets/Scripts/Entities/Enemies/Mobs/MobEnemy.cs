@@ -7,13 +7,13 @@ public class MobEnemy : Enemy
     #region States 
     // base states that all children are required to have but dont always have use
     // children may also have more than just these states
-    public EnemyIdleState IdleState { get; protected set; }
-    public EnemyPatrolState PatrolState { get; protected set; }
-    public EnemyAlertedState AlertedState { get; protected set; }
-    public EnemyAgroState AgroState { get; protected set; }
-    public EnemyAttackState AttackState { get; protected set; }
-    public EnemyCCState CCState { get; protected set; }
-    public EnemyDeathState DeathState { get; protected set; }
+    public MobState IdleState { get; protected set; }
+    public MobState PatrolState { get; protected set; }
+    public MobState AlertedState { get; protected set; }
+    public MobState AgroState { get; protected set; }
+    public MobState AttackState { get; protected set; }
+    public MobState CCState { get; protected set; }
+    public MobState DeathState { get; protected set; }
     #endregion
 
     #region Enemy Current Stats

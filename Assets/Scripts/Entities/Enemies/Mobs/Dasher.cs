@@ -4,6 +4,20 @@ using UnityEngine;
 
 public class Dasher : MobEnemy
 {
+    /*#region States 
+    // base states that all children are required to have but dont always have use
+    // children may also have more than just these states
+    public DasherIdleState IdleState { get; protected set; }
+    public DasherPatrolState PatrolState { get; protected set; }
+    public DasherAlertedState AlertedState { get; protected set; }
+    public DasherAgroState AgroState { get; protected set; }
+    public DasherAttackState AttackState { get; protected set; }
+    public DasherCCState CCState { get; protected set; }
+    public DasherDeathState DeathState { get; protected set; }
+    #endregion*/
+
+    public DasherData Data { get; protected set; }
+
     public float DashDamageRatio { get; set; }
     public float DashSpeedRatio { get; set; }
     public float KnockbackForce { get; set; }
@@ -12,22 +26,25 @@ public class Dasher : MobEnemy
     protected override void Awake()
     {
         base.Awake();
-        IdleState = new DasherIdleState(this, StateMachine, (DasherData)data, "Idle");
-        PatrolState = new DasherPatrolState(this, StateMachine, (DasherData)data, "Move");
-        AlertedState = new DasherAlertedState(this, StateMachine, (DasherData)data, "Alerted");
-        AgroState = new DasherAgroState(this, StateMachine, (DasherData)data, "Move");
-        AttackState = new DasherAttackState(this, StateMachine, (DasherData)data, "Attack");
-        CCState = new DasherCCState(this, StateMachine, (DasherData)data, "Idle");
-        DeathState = new DasherDeathState(this, StateMachine, (DasherData)data, "Death");
+        Data = (DasherData)data;
+
+        IdleState = new DasherIdleState(this, StateMachine, Data, "Idle");
+        PatrolState = new DasherPatrolState(this, StateMachine, Data, "Move");
+        AlertedState = new DasherAlertedState(this, StateMachine, Data, "Alerted");
+        AgroState = new DasherAgroState(this, StateMachine, Data, "Move");
+        AttackState = new DasherAttackState(this, StateMachine, Data, "Attack");
+        CCState = new DasherCCState(this, StateMachine, Data, "Idle");
+        DeathState = new DasherDeathState(this, StateMachine, Data, "Death");
     }
 
     protected override void Start()
     {
         base.Start();
-        DashDamageRatio = ((DasherData)data).DashDamageRatio;
-        DashSpeedRatio = ((DasherData)data).DashSpeedRatio;
-        KnockbackForce = ((DasherData)data).KnockbackForce;
-        KnockbackDuration = ((DasherData)data).KnockbackDuration;
+
+        DashDamageRatio = Data.DashDamageRatio;
+        DashSpeedRatio = Data.DashSpeedRatio;
+        KnockbackForce = Data.KnockbackForce;
+        KnockbackDuration = Data.KnockbackDuration;
     }
 
     protected override void Update()

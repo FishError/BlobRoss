@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyState : EntityState
 {
     protected string animName;
+    protected float distance;
 
     public EnemyState(FiniteStateMachine stateMachine, string animName) : base(stateMachine)
     {
