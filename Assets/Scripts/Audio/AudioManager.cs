@@ -5,6 +5,7 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     public AudioSource MusicSource;
+    public AudioSource SFXSource;
     public static AudioManager Instance = null;
 
     private void Awake()
@@ -20,11 +21,18 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void PlayMusic(AudioClip clip)
+    public void PlayMusicAudio(AudioClip clip)
     {
         MusicSource.clip = clip;
         MusicSource.Play();
         MusicSource.loop = true;
+    }
+
+    public void PlaySFXAudio(AudioClip clip)
+    {
+        SFXSource.clip = clip;
+        SFXSource.Play();
+        SFXSource.loop = false;
     }
 
     public bool CheckClipIsPlaying(AudioClip clip)

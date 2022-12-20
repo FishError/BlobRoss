@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MusicController : MonoBehaviour
+public class SFXController : MonoBehaviour
 {
     public AudioClip clip;
-    private void Start()
+    
+    public void PlaySoundEffect(AudioClip clip)
     {
         if (!AudioManager.Instance.CheckClipIsPlaying(clip))
-        {
-            AudioManager.Instance.PlayMusicAudio(clip);
-        }
+            AudioManager.Instance.PlaySFXAudio(clip);
     }
 }
