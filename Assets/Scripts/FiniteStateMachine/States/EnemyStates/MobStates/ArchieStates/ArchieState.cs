@@ -19,6 +19,7 @@ public class ArchieState : MobState
     {
         base.Enter();
         startPosition = archie.transform.position;
+        targetDirection = (archie.target.transform.position - archie.transform.position).normalized;
         archie.Anim.SetBool(animName, true);
     }
 
