@@ -6,10 +6,10 @@ using UnityEngine.Rendering;
 public class Boss : Enemy
 {
     #region States 
-    public BossIdleState IdleState { get; protected set; }
-    public BossAgroState AgroState { get; protected set; }
-    public BossAttackState AttackState { get; protected set; }
-    public BossDeathState DeathState { get; protected set; }
+    public BossBaseIdleState IdleState { get; protected set; }
+    public BossBaseAgroState AgroState { get; protected set; }
+    public BossBaseAttackState AttackState { get; protected set; }
+    public BossBaseDeathState DeathState { get; protected set; }
     #endregion
 
     public int phase { get; set; }

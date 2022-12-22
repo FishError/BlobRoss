@@ -2,20 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dasher : MobEnemy
+public class Dasher : Mob
 {
-    /*#region States 
-    // base states that all children are required to have but dont always have use
-    // children may also have more than just these states
-    public DasherIdleState IdleState { get; protected set; }
-    public DasherPatrolState PatrolState { get; protected set; }
-    public DasherAlertedState AlertedState { get; protected set; }
-    public DasherAgroState AgroState { get; protected set; }
-    public DasherAttackState AttackState { get; protected set; }
-    public DasherCCState CCState { get; protected set; }
-    public DasherDeathState DeathState { get; protected set; }
-    #endregion*/
-
     public DasherData Data { get; protected set; }
 
     public float DashDamageRatio { get; set; }
@@ -28,13 +16,14 @@ public class Dasher : MobEnemy
         base.Awake();
         Data = (DasherData)data;
 
-        IdleState = new DasherIdleState(this, StateMachine, Data, "Idle");
-        PatrolState = new DasherPatrolState(this, StateMachine, Data, "Move");
-        AlertedState = new DasherAlertedState(this, StateMachine, Data, "Alerted");
+        IdleState = new MobBaseIdleState(this, StateMachine, Data, "Idle");
+        PatrolState = new MobBasePatrolState(this, StateMachine, Data, "Move");
+        AlertedState = new MobBaseAlertedState(this, StateMachine, Data, "Alerted");
+        CCState = new MobBaseCCState(this, StateMachine, Data, "Idle");
+        DeathState = new MobBaseDeathState(this, StateMachine, Data, "Death");
+
         AgroState = new DasherAgroState(this, StateMachine, Data, "Move");
         AttackState = new DasherAttackState(this, StateMachine, Data, "Attack");
-        CCState = new DasherCCState(this, StateMachine, Data, "Idle");
-        DeathState = new DasherDeathState(this, StateMachine, Data, "Death");
     }
 
     protected override void Start()

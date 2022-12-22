@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Archie : MobEnemy
+public class Archie : Mob
 {
+    public ArchieData Data { get; protected set; }
+
     [SerializeField] protected GameObject arrow;
     [SerializeField] protected Transform spawnPosition;
 
@@ -14,22 +16,26 @@ public class Archie : MobEnemy
     protected override void Awake()
     {
         base.Awake();
-        IdleState = new ArchieIdleState(this, StateMachine, (ArchieData)data, "Idle");
-        PatrolState = new ArchiePatrolState(this, StateMachine, (ArchieData)data, "Move");
-        AlertedState = new ArchieAlertedState(this, StateMachine, (ArchieData)data, "Alerted");
-        AgroState = new ArchieAgroState(this, StateMachine, (ArchieData)data, "Move");
-        AttackState = new ArchieAttackState(this, StateMachine, (ArchieData)data, "Attack", arrow, spawnPosition);
-        CCState = new ArchieCCState(this, StateMachine, (ArchieData)data, "Idle");
-        DeathState = new ArchieDeathState(this, StateMachine, (ArchieData)data, "Death");
+        Data = (ArchieData)data;
+
+        IdleState = new MobBaseIdleState(this, StateMachine, Data, "Idle");
+        PatrolState = new MobBasePatrolState(this, StateMachine, Data, "Move");
+        AlertedState = new MobBaseAlertedState(this, StateMachine, Data, "Alerted");
+        CCState = new MobBaseCCState(this, StateMachine, Data, "Idle");
+        DeathState = new MobBaseDeathState(this, StateMachine, Data, "Death");
+
+        AgroState = new ArchieAgroState(this, StateMachine, Data, "Move");
+        AttackState = new ArchieAttackState(this, StateMachine, Data, "Attack", arrow, spawnPosition);
     }
 
     protected override void Start()
     {
         base.Start();
-        ArcherDamageRatio = ((ArchieData)data).ArcherDamageRatio;
-        ArcherSpeedRatio = ((ArchieData)data).ArcherSpeedRatio;
-        ProjectileSpeed = ((ArchieData)data).ProjectileSpeed;
-        DestroyTime = ((ArchieData)data).DestroyTime;
+
+        ArcherDamageRatio = Data.ArcherDamageRatio;
+        ArcherSpeedRatio = Data.ArcherSpeedRatio;
+        ProjectileSpeed = Data.ProjectileSpeed;
+        DestroyTime = Data.DestroyTime;
     }
 
     protected override void Update()

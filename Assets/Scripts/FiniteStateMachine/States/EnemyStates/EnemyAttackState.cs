@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyAttackState : MobEnemyState
 {
     protected Vector2 targetDirection;
-    public EnemyAttackState(MobEnemy enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
+    public EnemyAttackState(Mob enemy, FiniteStateMachine stateMachine, EnemyData enemyData, string animName) : base(enemy, stateMachine, enemyData, animName) { }
 
     public override void Enter()
     {
