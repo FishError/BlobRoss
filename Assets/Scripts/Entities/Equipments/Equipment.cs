@@ -34,7 +34,8 @@ public class Equipment : Entity
 
     #region Equipment Stats 
     public bool OnCooldown { get; set; } 
-    public float Cooldown { get; set; } 
+    public float Cooldown { get; set; }
+    private float cooldownTimer;
     public float Range { get; set; }
     #endregion
 
@@ -50,17 +51,28 @@ public class Equipment : Entity
     {
         base.Awake();
         player = transform.parent.parent.gameObject.GetComponent<Player>();
+        OnCooldown = false;
     }
 
     protected override void Start()
     {
         base.Start();
         StateMachine.Initialize(IdleState);
+        cooldownTimer = Cooldown;
     }
 
     protected override void Update()
     {
         base.Update();
+        if (cooldownTimer > 0 && OnCooldown)
+        {
+            cooldownTimer -= Time.deltaTime;
+        }
+        if (cooldownTimer <= 0)
+        {
+            cooldownTimer = Cooldown;
+            OnCooldown = false;
+        }
     }
 
     protected override void FixedUpdate()
@@ -68,7 +80,7 @@ public class Equipment : Entity
         base.FixedUpdate();
     }
 
-    // Setting the upgrade if more work needs to be done for them. Look at RedEquipment.cs for example
+    //For additional calculations when stats on equipment are upgraded
     public virtual void setUpgrade()
     {
 

@@ -11,7 +11,7 @@ public class YellowEquipment : Equipment
     public float Velocity { get; set; }
     #endregion
 
-    float tempCooldown;
+    float upgradedCooldown;
 
     protected override void Awake()
     {
@@ -21,12 +21,10 @@ public class YellowEquipment : Equipment
         EffectState = new YellowEquipmentEffectState(this, StateMachine, equipmentData, "EquipmentEffect");
         color = Color.Yellow;
 
+        //Initialize Yellow Equipment Stats
         Duration = equipmentData.Duration;
         Cooldown = equipmentData.DashCooldown;
         Velocity = equipmentData.DashVelocity;
-        OnCooldown = false;
-
-        tempCooldown = equipmentData.DashCooldown;
     }
 
     protected override void Start()
@@ -39,15 +37,5 @@ public class YellowEquipment : Equipment
     protected override void Update()
     {
         base.Update();
-        if (tempCooldown > 0 && OnCooldown)
-        {
-            tempCooldown -= Time.deltaTime;
-        }
-
-        if (tempCooldown <= 0)
-        {
-            tempCooldown = Cooldown;
-            OnCooldown = false;
-        }
     }
 }

@@ -17,31 +17,22 @@ public class BlueEquipment : Equipment
         MoveState = new BlueEquipmentMoveState(this, StateMachine, equipmentData, "EquipmentMove");
         EffectState = new BlueEquipmentEffectState(this, StateMachine, equipmentData, "EquipmentEffect");
         color = Color.Blue;
-    }
 
-    protected override void Start()
-    {
-        base.Start();
+        //Initialize Blue Equipment Stats
         Duration = equipmentData.duration;
         Durability = equipmentData.durability;
         Knockback = equipmentData.knockback;
         Cooldown = equipmentData.cooldown;
         Range = equipmentData.range;
-        OnCooldown = false;
+    }
+
+    protected override void Start()
+    {
+        base.Start();
     }
 
     protected override void Update()
     {
         base.Update();
-        if (Cooldown > 0 && OnCooldown)
-        {
-            Cooldown -= Time.deltaTime;
-        }
-
-        if (Cooldown <= 0)
-        {
-            Cooldown = equipmentData.cooldown;
-            OnCooldown = false;
-        }
     }
 }

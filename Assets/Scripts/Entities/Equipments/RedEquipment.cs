@@ -19,30 +19,21 @@ public class RedEquipment : Equipment
         MoveState = new RedEquipmentMoveState(this, StateMachine, equipmentData, "EquipmentMove");
         EffectState = new RedEquipmentEffectState(this,StateMachine,equipmentData,"EquipmentEffect");
         color = Color.Red;
+
+        //Initialize Red Equipment Stats
+        damage = equipmentData.Damage;
+        attackSpeed = equipmentData.attackSpeed;
+        Cooldown = (1 / attackSpeed);
     }
 
     protected override void Start()
     {
         base.Start();
-        damage = equipmentData.Damage;
-        attackSpeed = equipmentData.attackSpeed;
-        Cooldown = (1 / attackSpeed);
-        OnCooldown = false;
     }
+
     protected override void Update()
     {
         base.Update();
-        if (Cooldown > 0 && OnCooldown)
-        {
-            Cooldown -= Time.deltaTime;
-        }
-
-        if (Cooldown <= 0)
-        {
-            Cooldown = (1 / attackSpeed);
-            OnCooldown = false;
-        }
-
     }
 
     public override void setUpgrade()
