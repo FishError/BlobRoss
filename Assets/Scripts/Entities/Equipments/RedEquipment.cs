@@ -20,7 +20,7 @@ public class RedEquipment : Equipment
         EffectState = new RedEquipmentEffectState(this,StateMachine,equipmentData,"EquipmentEffect");
         color = Color.Red;
 
-        //Initialize Red Equipment Stats
+        // Initialize Red Equipment Stats
         damage = equipmentData.Damage;
         attackSpeed = equipmentData.attackSpeed;
         Cooldown = (1 / attackSpeed);

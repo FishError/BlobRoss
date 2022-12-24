@@ -20,7 +20,7 @@ public class EquipmentIdleState : EquipmentState
     {
         if(equipment.Anim == null) return;
         base.LogicUpdate();
-        if(xInput != 0 || yInput != 0)
+        if(equipment.XInput != 0 || equipment.YInput != 0)
         {
             equipment.Anim.SetFloat("offset",0f);
             stateMachine.ChangeState(equipment.MoveState);
@@ -28,7 +28,7 @@ public class EquipmentIdleState : EquipmentState
 
         /* 
             If Equipment enters Idle state but effect animation 
-            is still playing, sync equipment and blob animation
+            is still playing, sync both equipment idle and blob idle animations
         */ 
         if(!equipment.Anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")){
             SyncAnimations();

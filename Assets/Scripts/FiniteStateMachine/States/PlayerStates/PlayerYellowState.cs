@@ -10,7 +10,7 @@ public class PlayerYellowState : PlayerState
     {
         base.Enter();
 
-        ((YellowEquipmentEffectState)yellowEquipment.EffectState).YellowStateEnter();
+        ((YellowEquipmentEffectState)player.equipments[2].EffectState).YellowStateEnter();
     }
 
     public override void Exit()
@@ -27,7 +27,7 @@ public class PlayerYellowState : PlayerState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
-        ((YellowEquipmentEffectState)yellowEquipment.EffectState).YellowStatePhysicsUpdate();
+        ((YellowEquipmentEffectState)player.equipments[2].EffectState).YellowStatePhysicsUpdate();
     }
 
     public override void DoChecks()

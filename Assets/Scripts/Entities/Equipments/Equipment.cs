@@ -17,6 +17,45 @@ public class Equipment : Entity
     public EquipmentEffectState EffectState { get; protected set; }
     #endregion
 
+    #region Inputs
+    protected float xInput;
+    protected float yInput;
+    protected bool leftClickInput;
+    protected bool rightClickInput;
+    protected bool spaceClickInput;
+
+
+    public float XInput
+    {
+        get { return xInput; }
+        set { xInput = value; }
+    }
+
+    public float YInput
+    {
+        get { return yInput; }
+        set { yInput = value; }
+    }
+
+    public bool LeftClickInput
+    {
+        get { return leftClickInput; }
+        set { leftClickInput = value; }
+    }
+
+    public bool RightClickInput
+    {
+        get { return rightClickInput; }
+        set { rightClickInput = value; }
+    }
+
+    public bool SpaceClickInput
+    {
+        get { return spaceClickInput; }
+        set { spaceClickInput = value; }
+    }
+    #endregion
+
     #region Animation References
     public float LastX { get; set; }
     public float LastY { get; set; }

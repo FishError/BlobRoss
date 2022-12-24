@@ -18,7 +18,7 @@ public class BlueEquipment : Equipment
         EffectState = new BlueEquipmentEffectState(this, StateMachine, equipmentData, "EquipmentEffect");
         color = Color.Blue;
 
-        //Initialize Blue Equipment Stats
+        // Initialize Blue Equipment Stats
         Duration = equipmentData.duration;
         Durability = equipmentData.durability;
         Knockback = equipmentData.knockback;

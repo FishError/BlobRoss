@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class YellowEquipment : Equipment
 {
-    public Player getPlayer { get; set; }
-
     #region Yellow Equipment Stats
     public float Duration { get; set; }
     public float Velocity { get; set; }
     #endregion
-
-    float upgradedCooldown;
 
     protected override void Awake()
     {
@@ -21,7 +17,7 @@ public class YellowEquipment : Equipment
         EffectState = new YellowEquipmentEffectState(this, StateMachine, equipmentData, "EquipmentEffect");
         color = Color.Yellow;
 
-        //Initialize Yellow Equipment Stats
+        // Initialize Yellow Equipment Stats
         Duration = equipmentData.Duration;
         Cooldown = equipmentData.DashCooldown;
         Velocity = equipmentData.DashVelocity;
