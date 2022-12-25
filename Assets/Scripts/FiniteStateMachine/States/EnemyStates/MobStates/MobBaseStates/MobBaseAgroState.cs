@@ -6,7 +6,7 @@ public class MobBaseAgroState : MobBaseState
 {
     protected Vector2 targetDirection;
 
-    public MobBaseAgroState(Mob enemy, FiniteStateMachine stateMachine, EnemyData data, string animName) : base(enemy, stateMachine, data, animName) 
+    public MobBaseAgroState(Mob enemy, FiniteStateMachine stateMachine, EnemyData data, Animator animator, string animName) : base(enemy, stateMachine, data, animator, animName) 
     {
         
     }

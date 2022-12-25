@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class EnemyState : EntityState
 {
+    protected Animator animator;
     protected string animName;
     protected float distance;
 
-    public EnemyState(FiniteStateMachine stateMachine, string animName) : base(stateMachine)
+    public EnemyState(FiniteStateMachine stateMachine, Animator animator, string animName) : base(stateMachine)
     {
+        this.animator = animator;
         this.animName = animName;
     }
 
@@ -21,11 +23,12 @@ public class EnemyState : EntityState
     {
         base.Enter();
         DoChecks();
+        animator.SetBool(animName, true);
     }
 
     public override void Exit()
     {
-        
+        animator.SetBool(animName, false);
     }
 
     public override void LogicUpdate()

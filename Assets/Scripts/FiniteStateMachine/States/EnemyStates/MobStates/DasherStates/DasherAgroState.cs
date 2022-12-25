@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DasherAgroState : DasherState
 {
-    public DasherAgroState(Dasher dasher, FiniteStateMachine stateMachine, DasherData data, string animName) : base(dasher, stateMachine, data, animName) 
+    public DasherAgroState(Dasher dasher, FiniteStateMachine stateMachine, DasherData data, Animator animator, string animName) : base(dasher, stateMachine, data, animator, animName) 
     {
         this.dasher = dasher;
         this.data = data;

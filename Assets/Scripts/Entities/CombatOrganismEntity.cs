@@ -5,7 +5,7 @@ using UnityEngine;
 public class CombatOrganismEntity : Entity
 {
     #region Combat Entity Data
-    [SerializeField] public CombatEntityData data;
+    public CombatEntityData data;
     #endregion
 
     #region Combat Entity Current Stats

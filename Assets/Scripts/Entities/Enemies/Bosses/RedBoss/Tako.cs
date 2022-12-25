@@ -26,10 +26,10 @@ public class Tako : Boss
         base.Awake();
         Data = (TakoData)data;
 
-        IdleState = new BossBaseIdleState(this, StateMachine, Data, "Move/Idle");
-        AgroState = new BossBaseAgroState(this, StateMachine, Data, "Move/Idle");
-        AttackState = new BossBaseAttackState(this, StateMachine, Data);
-        DeathState = new BossBaseDeathState(this, StateMachine, Data, "red_boss_death");
+        IdleState = new BossBaseIdleState(this, StateMachine, Data, Anim, "Move/Idle");
+        AgroState = new BossBaseAgroState(this, StateMachine, Data, Anim, "Move/Idle");
+        AttackState = new BossBaseAttackState(this, StateMachine, Data, Anim);
+        DeathState = new BossBaseDeathState(this, StateMachine, Data, Anim, "red_boss_death");
     }
 
     protected override void Start()

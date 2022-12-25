@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossState : EnemyState
 {
-    public BossState(FiniteStateMachine stateMachine, string animName) : base(stateMachine, animName)
+    public BossState(FiniteStateMachine stateMachine, Animator animator, string animName) : base(stateMachine, animator, animName)
     {
 
     }

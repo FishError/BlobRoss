@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossBaseIdleState : BossBaseState
 {
-    public BossBaseIdleState(Boss boss, FiniteStateMachine stateMachine, BossData data, string animName) : base(boss, stateMachine, data, animName)
+    public BossBaseIdleState(Boss boss, FiniteStateMachine stateMachine, BossData data, Animator animator, string animName) : base(boss, stateMachine, data, animator, animName)
     {
 
     }

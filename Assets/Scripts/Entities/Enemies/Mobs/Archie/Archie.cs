@@ -18,14 +18,14 @@ public class Archie : Mob
         base.Awake();
         Data = (ArchieData)data;
 
-        IdleState = new MobBaseIdleState(this, StateMachine, Data, "Idle");
-        PatrolState = new MobBasePatrolState(this, StateMachine, Data, "Move");
-        AlertedState = new MobBaseAlertedState(this, StateMachine, Data, "Alerted");
-        CCState = new MobBaseCCState(this, StateMachine, Data, "Idle");
-        DeathState = new MobBaseDeathState(this, StateMachine, Data, "Death");
+        IdleState = new MobBaseIdleState(this, StateMachine, Data, Anim, "Idle");
+        PatrolState = new MobBasePatrolState(this, StateMachine, Data, Anim, "Move");
+        AlertedState = new MobBaseAlertedState(this, StateMachine, Data, Anim, "Alerted");
+        CCState = new MobBaseCCState(this, StateMachine, Data, Anim, "Idle");
+        DeathState = new MobBaseDeathState(this, StateMachine, Data, Anim, "Death");
 
-        AgroState = new ArchieAgroState(this, StateMachine, Data, "Move");
-        AttackState = new ArchieAttackState(this, StateMachine, Data, "Attack", arrow, spawnPosition);
+        AgroState = new ArchieAgroState(this, StateMachine, Data, Anim, "Move");
+        AttackState = new ArchieAttackState(this, StateMachine, Data, Anim, "Attack", arrow, spawnPosition);
     }
 
     protected override void Start()

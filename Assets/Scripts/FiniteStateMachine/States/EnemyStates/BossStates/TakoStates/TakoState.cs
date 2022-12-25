@@ -7,7 +7,7 @@ public class TakoState : BossState
     protected Tako boss;
     protected TakoData data;
 
-    public TakoState(Tako boss, FiniteStateMachine stateMachine, TakoData data, string animName) : base(stateMachine, animName)
+    public TakoState(Tako boss, FiniteStateMachine stateMachine, TakoData data, Animator animator, string animName) : base(stateMachine, animator, animName)
     {
         this.boss = boss;
         this.data = data;
@@ -23,12 +23,11 @@ public class TakoState : BossState
         base.Enter();
         DoChecks();
         startPosition = boss.transform.position;
-        boss.Anim.SetBool(animName, true);
     }
 
     public override void Exit()
     {
-        boss.Anim.SetBool(animName, false);
+        
     }
 
     public override void LogicUpdate()

@@ -7,7 +7,7 @@ public class BlombState : MobState
     protected Blomb blomb;
     protected BlombData data;
 
-    public BlombState(Blomb blomb, FiniteStateMachine stateMachine, BlombData data, string animName) : base(stateMachine, animName)
+    public BlombState(Blomb blomb, FiniteStateMachine stateMachine, BlombData data, Animator animator, string animName) : base(stateMachine, animator, animName)
     {
         this.blomb = blomb;
         this.data = data;
@@ -17,13 +17,11 @@ public class BlombState : MobState
     {
         base.Enter();
         startPosition = blomb.transform.position;
-        blomb.Anim.SetBool(animName, true);
     }
 
     public override void Exit()
     {
         base.Exit();
-        blomb.Anim.SetBool(animName, false);
     }
 
     public override void LogicUpdate()

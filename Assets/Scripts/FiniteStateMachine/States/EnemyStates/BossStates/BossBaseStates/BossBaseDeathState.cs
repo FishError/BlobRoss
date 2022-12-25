@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossBaseDeathState : BossBaseState
 {
-    public BossBaseDeathState(Boss boss, FiniteStateMachine stateMachine, BossData data, string animName) : base(boss, stateMachine, data, animName) { }
+    public BossBaseDeathState(Boss boss, FiniteStateMachine stateMachine, BossData data, Animator animator, string animName) : base(boss, stateMachine, data, animator, animName) { }
 
     public override void Enter()
     {

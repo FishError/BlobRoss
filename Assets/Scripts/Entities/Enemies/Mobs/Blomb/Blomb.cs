@@ -17,14 +17,14 @@ public class Blomb : Mob
         base.Awake();
         Data = (BlombData)data;
 
-        IdleState = new MobBaseIdleState(this, StateMachine, Data, "Idle");
-        PatrolState = new MobBasePatrolState(this, StateMachine, Data, "Move");
-        AlertedState = new MobBaseAlertedState(this, StateMachine, Data, "Idle");
-        CCState = new MobBaseCCState(this, StateMachine, Data, "Idle");
-        DeathState = new MobBaseDeathState(this, StateMachine, Data, "Death");
+        IdleState = new MobBaseIdleState(this, StateMachine, Data, Anim, "Idle");
+        PatrolState = new MobBasePatrolState(this, StateMachine, Data, Anim, "Move");
+        AlertedState = new MobBaseAlertedState(this, StateMachine, Data, Anim, "Idle");
+        CCState = new MobBaseCCState(this, StateMachine, Data, Anim, "Idle");
+        DeathState = new MobBaseDeathState(this, StateMachine, Data, Anim, "Death");
 
-        AgroState = new BlombAgroState(this, StateMachine, Data, "Move");
-        AttackState = new BlombAttackState(this, StateMachine, Data, "Attack");
+        AgroState = new BlombAgroState(this, StateMachine, Data, Anim, "Move");
+        AttackState = new BlombAttackState(this, StateMachine, Data, Anim, "Attack");
     }
 
     protected override void Start()

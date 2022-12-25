@@ -11,7 +11,7 @@ public class MobBaseCCState : MobBaseState
 
     protected float otherCCDuration;
 
-    public MobBaseCCState(Mob enemy, FiniteStateMachine stateMachine, EnemyData data, string animName) : base(enemy, stateMachine, data, animName) { }
+    public MobBaseCCState(Mob enemy, FiniteStateMachine stateMachine, EnemyData data, Animator animator, string animName) : base(enemy, stateMachine, data, animator, animName) { }
 
     public override void Enter()
     {

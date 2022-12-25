@@ -5,7 +5,7 @@ using UnityEngine;
 public class BlombAgroState : BlombState
 {
 
-    public BlombAgroState(Blomb blomb, FiniteStateMachine stateMachine, BlombData data, string animName) : base(blomb, stateMachine, data, animName) 
+    public BlombAgroState(Blomb blomb, FiniteStateMachine stateMachine, BlombData data, Animator animator, string animName) : base(blomb, stateMachine, data, animator, animName) 
     {
         this.blomb = blomb;
         this.data = data;

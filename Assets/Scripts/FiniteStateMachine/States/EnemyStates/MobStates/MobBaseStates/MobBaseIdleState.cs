@@ -6,7 +6,7 @@ public class MobBaseIdleState : MobBaseState
 {
     protected float idleTime;
 
-    public MobBaseIdleState(Mob enemy, FiniteStateMachine stateMachine, EnemyData data, string animName) : base(enemy, stateMachine, data, animName) { }
+    public MobBaseIdleState(Mob enemy, FiniteStateMachine stateMachine, EnemyData data, Animator animator, string animName) : base(enemy, stateMachine, data, animator, animName) { }
 
     public override void Enter()
     {

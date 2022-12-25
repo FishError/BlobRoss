@@ -7,7 +7,7 @@ public class DasherState : MobState
     protected Dasher dasher;
     protected DasherData data;
 
-    public DasherState(Dasher dasher, FiniteStateMachine stateMachine, DasherData data, string animName) : base(stateMachine, animName)
+    public DasherState(Dasher dasher, FiniteStateMachine stateMachine, DasherData data, Animator animator, string animName) : base(stateMachine, animator, animName)
     {
         this.dasher = dasher;
         this.data = data;
@@ -17,13 +17,11 @@ public class DasherState : MobState
     {
         base.Enter();
         startPosition = dasher.transform.position;
-        dasher.Anim.SetBool(animName, true);
     }
 
     public override void Exit()
     {
         base.Exit();
-        dasher.Anim.SetBool(animName, false);
     }
 
     public override void LogicUpdate()

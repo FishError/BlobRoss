@@ -6,7 +6,7 @@ public class BossBaseAgroState : BossBaseState
 {
     private float waitAttackTimer;
 
-    public BossBaseAgroState(Boss boss, FiniteStateMachine stateMachine, BossData data, string animName) : base(boss, stateMachine, data, animName) 
+    public BossBaseAgroState(Boss boss, FiniteStateMachine stateMachine, BossData data, Animator animator, string animName) : base(boss, stateMachine, data, animator, animName) 
     {
 
     }

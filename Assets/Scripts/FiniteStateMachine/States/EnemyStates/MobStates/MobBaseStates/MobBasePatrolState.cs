@@ -7,7 +7,7 @@ public class MobBasePatrolState : MobBaseState
     protected float patrolDistance;
     protected Vector2 patrolDirection;
 
-    public MobBasePatrolState(Mob enemy, FiniteStateMachine stateMachine, EnemyData data, string animName) : base(enemy, stateMachine, data, animName) { }
+    public MobBasePatrolState(Mob enemy, FiniteStateMachine stateMachine, EnemyData data, Animator animator, string animName) : base(enemy, stateMachine, data, animator, animName) { }
 
     public override void Enter()
     {

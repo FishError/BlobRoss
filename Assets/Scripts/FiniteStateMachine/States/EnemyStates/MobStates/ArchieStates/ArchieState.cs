@@ -9,7 +9,7 @@ public class ArchieState : MobState
 
     protected Vector2 targetDirection;
 
-    public ArchieState(Archie archie, FiniteStateMachine stateMachine, ArchieData data, string animName) : base(stateMachine, animName)
+    public ArchieState(Archie archie, FiniteStateMachine stateMachine, ArchieData data, Animator animator, string animName) : base(stateMachine, animator, animName)
     {
         this.archie = archie;
         this.data = data;
@@ -20,13 +20,12 @@ public class ArchieState : MobState
         base.Enter();
         startPosition = archie.transform.position;
         targetDirection = (archie.target.transform.position - archie.transform.position).normalized;
-        archie.Anim.SetBool(animName, true);
+
     }
 
     public override void Exit()
     {
         base.Exit();
-        archie.Anim.SetBool(animName, false);
     }
 
     public override void LogicUpdate()

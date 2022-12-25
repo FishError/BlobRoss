@@ -7,7 +7,7 @@ public class BossBaseState : BossState
     protected Boss boss;
     protected BossData data;
 
-    public BossBaseState(Boss boss, FiniteStateMachine stateMachine, BossData data, string animName) : base(stateMachine, animName)
+    public BossBaseState(Boss boss, FiniteStateMachine stateMachine, BossData data, Animator animator, string animName) : base(stateMachine, animator, animName)
     {
         this.boss = boss;
         this.data = data;
@@ -15,7 +15,7 @@ public class BossBaseState : BossState
 
     public override void DoChecks()
     {
-
+        base.DoChecks();
     }
 
     public override void Enter()
@@ -23,21 +23,20 @@ public class BossBaseState : BossState
         base.Enter();
         DoChecks();
         startPosition = boss.transform.position;
-        boss.Anim.SetBool(animName, true);
     }
 
     public override void Exit()
     {
-        boss.Anim.SetBool(animName, false);
+        base.Exit();
     }
 
     public override void LogicUpdate()
     {
-
+        base.LogicUpdate();
     }
 
     public override void PhysicsUpdate()
     {
-
+        base.PhysicsUpdate();
     }
 }

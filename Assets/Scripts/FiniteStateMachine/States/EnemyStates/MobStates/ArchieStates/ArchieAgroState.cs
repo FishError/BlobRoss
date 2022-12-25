@@ -8,7 +8,7 @@ public class ArchieAgroState : ArchieState
     protected Vector2 moveDirection;
     protected RaycastHit2D hit;
 
-    public ArchieAgroState(Archie archie, FiniteStateMachine stateMachine, ArchieData data, string animName) : base(archie, stateMachine, data, animName)
+    public ArchieAgroState(Archie archie, FiniteStateMachine stateMachine, ArchieData data, Animator animator, string animName) : base(archie, stateMachine, data, animator, animName)
     {
         this.archie = archie;
         this.data = data;

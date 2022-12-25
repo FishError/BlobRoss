@@ -8,7 +8,7 @@ public class ArchieAttackState : ArchieState
     protected GameObject arrow;
     protected Transform spawnPosition;
 
-    public ArchieAttackState(Archie archie, FiniteStateMachine stateMachine, ArchieData data, string animName, GameObject arrow, Transform spawnPosition) : base(archie, stateMachine, data, animName)
+    public ArchieAttackState(Archie archie, FiniteStateMachine stateMachine, ArchieData data, Animator animator, string animName, GameObject arrow, Transform spawnPosition) : base(archie, stateMachine, data, animator, animName)
     {
         this.archie = archie;
         this.data = data;

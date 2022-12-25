@@ -12,7 +12,7 @@ public enum CrowdControl
 
 public class MobState : EnemyState
 {
-    public MobState(FiniteStateMachine stateMachine, string animName) : base(stateMachine, animName)
+    public MobState(FiniteStateMachine stateMachine, Animator animator, string animName) : base(stateMachine, animator, animName)
     {
         
     }

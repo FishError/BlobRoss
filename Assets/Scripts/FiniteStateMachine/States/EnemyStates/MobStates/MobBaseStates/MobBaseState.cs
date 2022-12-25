@@ -7,7 +7,7 @@ public class MobBaseState : MobState
     protected Mob enemy;
     protected EnemyData data;
 
-    public MobBaseState(Mob enemy, FiniteStateMachine stateMachine, EnemyData data, string animName) : base(stateMachine, animName)
+    public MobBaseState(Mob enemy, FiniteStateMachine stateMachine, EnemyData data, Animator animator, string animName) : base(stateMachine, animator, animName)
     {
         this.enemy = enemy;
         this.data = data;
@@ -17,13 +17,11 @@ public class MobBaseState : MobState
     {
         base.Enter();
         startPosition = enemy.transform.position;
-        enemy.Anim.SetBool(animName, true);
     }
 
     public override void Exit()
     {
         base.Exit();
-        enemy.Anim.SetBool(animName, false);
     }
 
     public override void LogicUpdate()
