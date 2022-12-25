@@ -34,4 +34,12 @@ public class YellowEquipment : Equipment
     {
         base.Update();
     }
+
+    public override void setUpgrade()
+    {
+        if (!spaceClickInput && !OnCooldown)
+        {
+            cooldownTimer = Cooldown;
+        }
+    }
 }

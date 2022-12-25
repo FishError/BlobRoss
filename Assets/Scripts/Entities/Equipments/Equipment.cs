@@ -74,7 +74,7 @@ public class Equipment : Entity
     #region Equipment Stats 
     public bool OnCooldown { get; set; } 
     public float Cooldown { get; set; }
-    private float cooldownTimer;
+    protected float cooldownTimer;
     public float Range { get; set; }
     #endregion
 
@@ -119,7 +119,7 @@ public class Equipment : Entity
         base.FixedUpdate();
     }
 
-    //For additional calculations when stats on equipment are upgraded
+    //For additional work needed when stats on equipment are upgraded
     public virtual void setUpgrade()
     {
 

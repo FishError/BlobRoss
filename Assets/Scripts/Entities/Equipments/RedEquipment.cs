@@ -40,5 +40,9 @@ public class RedEquipment : Equipment
     {
         base.setUpgrade();
         Cooldown = (1/attackSpeed);
+        if (!leftClickInput && !OnCooldown)
+        {
+            cooldownTimer = Cooldown;
+        }
     }
 }

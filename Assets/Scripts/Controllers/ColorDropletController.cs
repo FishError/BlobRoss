@@ -19,7 +19,7 @@ public class ColorDropletController : MonoBehaviour
                 player.ModifyHealthPoints(colorDropletData.healPoints);
             }
 
-            if (color == Color.Red)
+            else if (color == Color.Red)
             {
                 // Get red equipment from player
                 RedEquipment redEquipment = ((RedEquipment)player.equipments[0]);
@@ -38,7 +38,7 @@ public class ColorDropletController : MonoBehaviour
                 redEquipment.setUpgrade();
             }
 
-            if (color == Color.Blue)
+            else if (color == Color.Blue)
             {
                 // Get blue equipment from player
                 BlueEquipment blueEquipment = ((BlueEquipment)player.equipments[1]);
@@ -57,7 +57,7 @@ public class ColorDropletController : MonoBehaviour
                 blueEquipment.setUpgrade();
             }
 
-            if (color == Color.Yellow)
+            else if (color == Color.Yellow)
             {
                 // Get yellow equipment from player
                 YellowEquipment yellowEquipment = ((YellowEquipment)player.equipments[2]);
@@ -68,6 +68,9 @@ public class ColorDropletController : MonoBehaviour
 
                 // Upgrade cooldown
                 yellowEquipment.Cooldown += colorDropletData.cooldownUpgrade;
+
+                // Set upgrade
+                yellowEquipment.setUpgrade();
 
             }
 
