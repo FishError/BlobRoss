@@ -21,11 +21,11 @@ public abstract class Entity : MonoBehaviour
     protected virtual void Awake()
     {
         StateMachine = gameObject.AddComponent<FiniteStateMachine>();
+        Anim = GetComponent<Animator>();
     }
 
     protected virtual void Start()
     {
-        Anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
 
