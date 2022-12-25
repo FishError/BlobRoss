@@ -70,10 +70,10 @@ public class PaletteEffect : MonoBehaviour
             }
             else
             {
-                MobEnemy enemy = other.gameObject.GetComponent<MobEnemy>();
+                Mob enemy = other.gameObject.GetComponent<Mob>();
                 if (enemy != null)
                 {
-                    enemy.CCState.SetKnockbackValues(-other.GetContact(0).normal * equipment.Knockback, 0.5f);
+                    //enemy.CCState.SetKnockbackValues(-other.GetContact(0).normal * equipment.Knockback, 0.5f);
                     enemy.StateMachine.ChangeState(enemy.CCState);
                 }
             }
