@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
-    private float masterVolume, musicVolume, sfxVolume;
-    private float masterVolumeSlider, musicVolumeSlider, sfxVolumeSlider;
     [SerializeField] private Slider masterSlider, musicSlider, sfxSlider;
     public AudioMixer audioMixer;
     public TMPro.TMP_Dropdown resolutionDropdown;

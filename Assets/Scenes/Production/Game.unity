@@ -481,6 +481,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: OptionController
       objectReference: {fileID: 0}
+    - target: {fileID: 6551626619605398391, guid: 1354c48e86369964e862892ff4e1b9c7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6948515914699751809, guid: 1354c48e86369964e862892ff4e1b9c7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7438782316658890560, guid: 1354c48e86369964e862892ff4e1b9c7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1354c48e86369964e862892ff4e1b9c7, type: 3}
 --- !u!1 &1766236026 stripped

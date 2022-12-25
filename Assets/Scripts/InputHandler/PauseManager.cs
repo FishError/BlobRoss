@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
@@ -54,6 +55,16 @@ public class PauseManager : MonoBehaviour
     public void OnBackUnPause()
     {
         Time.timeScale = 1;
+    }
+
+    public void BackToMainMenu(string scene)
+    {
+        SceneManager.LoadScene(scene);
+        Destroy(GameObject.Find("Player"));
+        Destroy(GameObject.Find("Camera"));
+        Destroy(GameObject.Find("GameController"));
+        Destroy(GameObject.Find("MapController"));
+        Destroy(GameObject.Find("OptionController"));
     }
 
     public void QuitGame()
