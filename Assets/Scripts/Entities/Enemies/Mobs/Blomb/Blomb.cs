@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Blomb : MobEnemy
+public class Blomb : Mob
 {
+    public BlombData Data { get; protected set; }
+
     public GameObject fieldOnDeath;
 
     public float ExplosionDamageRatio { get; set; }
@@ -13,21 +15,25 @@ public class Blomb : MobEnemy
     protected override void Awake()
     {
         base.Awake();
-        IdleState = new BlombIdleState(this, StateMachine, (BlombData)data, "Idle");
-        PatrolState = new BlombPatrolState(this, StateMachine, (BlombData)data, "Move");
-        AlertedState = new BlombAlertedState(this, StateMachine, (BlombData)data, "Idle");
-        AgroState = new BlombAgroState(this, StateMachine, (BlombData)data, "Move");
-        AttackState = new BlombAttackState(this, StateMachine, (BlombData)data, "Attack");
-        CCState = new EnemyCCState(this, StateMachine, (BlombData)data, "Idle");
-        DeathState = new BlombDeathState(this, StateMachine, (BlombData)data, "Death");
+        Data = (BlombData)data;
+
+        IdleState = new MobBaseIdleState(this, StateMachine, Data, Anim, "Idle");
+        PatrolState = new MobBasePatrolState(this, StateMachine, Data, Anim, "Move");
+        AlertedState = new MobBaseAlertedState(this, StateMachine, Data, Anim, "Idle");
+        CCState = new MobBaseCCState(this, StateMachine, Data, Anim, "Idle");
+        DeathState = new MobBaseDeathState(this, StateMachine, Data, Anim, "Death");
+
+        AgroState = new BlombAgroState(this, StateMachine, Data, Anim, "Move");
+        AttackState = new BlombAttackState(this, StateMachine, Data, Anim, "Attack");
     }
 
     protected override void Start()
     {
         base.Start();
-        ExplosionDamageRatio = ((BlombData)data).ExplosionDamageRatio;
-        KnockbackForce = ((BlombData)data).KnockbackForce;
-        KnockbackDuration = ((BlombData)data).KnockbackDuration;
+
+        ExplosionDamageRatio = Data.ExplosionDamageRatio;
+        KnockbackForce = Data.KnockbackForce;
+        KnockbackDuration = Data.KnockbackDuration;
     }
 
     protected override void Update()

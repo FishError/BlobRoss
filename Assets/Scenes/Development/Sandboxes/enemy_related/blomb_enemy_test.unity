@@ -1089,6 +1089,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 215994712899673087, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 215994712899673087, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1861920455061308300, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1139,11 +1147,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
---- !u!4 &450367225 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1861920455061308300, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
-  m_PrefabInstance: {fileID: 450367224}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &452853539
 GameObject:
   m_ObjectHideFlags: 0
@@ -1798,6 +1801,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &455759385 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7034977938710112480, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
+  m_PrefabInstance: {fileID: 450367224}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &472227130
 GameObject:
   m_ObjectHideFlags: 0
@@ -4210,7 +4218,7 @@ PrefabInstance:
     - target: {fileID: 5240304747635189270, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_Follow
       value: 
-      objectReference: {fileID: 450367225}
+      objectReference: {fileID: 0}
     - target: {fileID: 5240304747635189271, guid: 3dd171c7615f49f48abc3cac2a303a46, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.4525566
@@ -40875,11 +40883,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &1292131074 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1861920455061308301, guid: d55e1ffbd04c5f545a0590b49f94a4a8, type: 3}
-  m_PrefabInstance: {fileID: 450367224}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1348222984
 GameObject:
   m_ObjectHideFlags: 0
@@ -41013,6 +41016,10 @@ PrefabInstance:
     - target: {fileID: 3162569716085920807, guid: 7260f11011e255846ac09addc3e38684, type: 3}
       propertyPath: m_Name
       value: GameController
+      objectReference: {fileID: 0}
+    - target: {fileID: 3162569716085920807, guid: 7260f11011e255846ac09addc3e38684, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3162569717160405911, guid: 7260f11011e255846ac09addc3e38684, type: 3}
       propertyPath: m_IsActive
@@ -41945,7 +41952,7 @@ PrefabInstance:
     - target: {fileID: 1216158483919421033, guid: b4535db3975f48f41ad6d4bd1229cfa9, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 1292131074}
+      objectReference: {fileID: 455759385}
     - target: {fileID: 1216158483919421035, guid: b4535db3975f48f41ad6d4bd1229cfa9, type: 3}
       propertyPath: m_Name
       value: Blomb
