@@ -60,6 +60,7 @@ public class PauseManager : MonoBehaviour
     public void BackToMainMenu(string scene)
     {
         SceneManager.LoadScene(scene);
+        //Temporary: Need a better way to destroy objects that has DontDestroyOnLoad
         Destroy(GameObject.Find("Player"));
         Destroy(GameObject.Find("Camera"));
         Destroy(GameObject.Find("GameController"));
