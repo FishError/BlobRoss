@@ -12,41 +12,6 @@ public class EquipmentState : EntityState
     protected EquipmentData equipmentData;
     private string animName;
 
-    #region inputs
-    protected float xInput;
-    protected float yInput;
-    protected bool leftClickInput;
-    protected bool rightClickInput;
-    protected bool spaceClickInput;
-    #endregion
-
-    public float XInput{
-        get { return xInput; }
-        set { xInput = value; } 
-    }
-
-    public float YInput{
-        get { return yInput; }
-        set { yInput = value; } 
-    }
-    
-    public bool LeftClickInput{
-        get { return leftClickInput; }
-        set { leftClickInput = value; } 
-    }
-
-    public bool RightClickInput
-    {
-        get { return rightClickInput; }
-        set { rightClickInput = value; }
-    }
-    //Put same for SpaceClickInput
-    public bool SpaceClickInput
-    {
-        get { return spaceClickInput; }
-        set { spaceClickInput = value; }
-    }
-
     public EquipmentState(Equipment equipment, FiniteStateMachine stateMachine, EquipmentData equipmentData, string animName): base(stateMachine)
     {
         this.equipment = equipment;

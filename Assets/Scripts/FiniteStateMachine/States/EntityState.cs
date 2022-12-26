@@ -43,6 +43,7 @@ public abstract class EntityState
 
     }
 
+    // Let Animation finish first before changing states
     protected void ChangeStateAfterAnimation(Entity entity, string animName, EntityState state)
     {
         AnimatorStateInfo animState = entity.Anim.GetCurrentAnimatorStateInfo(0);
