@@ -17,7 +17,18 @@ public class YellowEquipmentEffectState : EquipmentEffectState
         base.Enter();
         trailRenderer = equipment.GetComponent<TrailRenderer>();
         trailRenderer.emitting = true;
-        yellowEquipment.getPlayer.StateMachine.ChangeState(yellowEquipment.getPlayer.YellowState);
+        yellowEquipment.player.StateMachine.ChangeState(yellowEquipment.player.YellowState);
+    }
+
+    public void YellowStateEnter()
+    {
+        direction = new Vector2(yellowEquipment.player.LastX, yellowEquipment.player.LastY);
+        yellowEquipment.player.SetVelocity(yellowEquipment.Velocity, direction);
+    }
+
+    public void YellowStateExit()
+    {
+
     }
 
     public override void LogicUpdate()
@@ -26,20 +37,9 @@ public class YellowEquipmentEffectState : EquipmentEffectState
         equipment.StartCoroutine(StopDash());
     }
 
-    public void YellowStateEnter()
-    {
-        direction = new Vector2(yellowEquipment.getPlayer.LastX, yellowEquipment.getPlayer.LastY);
-        yellowEquipment.getPlayer.SetVelocity(yellowEquipment.Velocity, direction);
-    }
-
     public void YellowStatePhysicsUpdate()
     {
-        yellowEquipment.getPlayer.SetVelocity(yellowEquipment.Velocity, direction);
-    }
-
-    public void YellowStateExit()
-    {
-
+        yellowEquipment.player.SetVelocity(yellowEquipment.Velocity, direction);
     }
 
     private IEnumerator StopDash()
@@ -52,9 +52,10 @@ public class YellowEquipmentEffectState : EquipmentEffectState
 
     private void handleOtherEntityAnimations()
     {
-        if(xInput != 0 || yInput != 0){
-            yellowEquipment.getPlayer.StateMachine.ChangeState(yellowEquipment.getPlayer.MoveState);
-            foreach(Equipment equipment in yellowEquipment.getPlayer.equipments){
+        //TODO animation controller refactor here
+        if(equipment.XInput != 0 || equipment.YInput != 0){
+            yellowEquipment.player.StateMachine.ChangeState(yellowEquipment.player.MoveState);
+            foreach(Equipment equipment in yellowEquipment.player.equipments){
                 if(equipment.Anim != null && equipment.Anim.GetCurrentAnimatorStateInfo(0).IsName("Move")){
                     equipment.StateMachine.ChangeState(equipment.MoveState);
                     equipment.Anim.Play("Base Layer.Move",0,0f);
@@ -64,8 +65,8 @@ public class YellowEquipmentEffectState : EquipmentEffectState
             yellowEquipment.StateMachine.ChangeState(equipment.MoveState);
 
         } else {
-            yellowEquipment.getPlayer.StateMachine.ChangeState(yellowEquipment.getPlayer.IdleState);
-            foreach(Equipment equipment in yellowEquipment.getPlayer.equipments){
+            yellowEquipment.player.StateMachine.ChangeState(yellowEquipment.player.IdleState);
+            foreach(Equipment equipment in yellowEquipment.player.equipments){
                 if(equipment.Anim != null && equipment.Anim.GetCurrentAnimatorStateInfo(0).IsName("Idle")){
                     equipment.StateMachine.ChangeState(equipment.IdleState);
                     equipment.Anim.Play("Base Layer.Idle",0,0f);

@@ -12,25 +12,11 @@ public class PlayerState : EntityState
 
     protected string animName;
 
-    #region Equipments
-    //TODO: replace this with just Equipments[] equipments eventually once red, blue and yellow equipments have animation
-    public Transform equipments;
-    public RedEquipment redEquipment {get; private set; }
-    public BlueEquipment blueEquipment { get; private set; }
-    public YellowEquipment yellowEquipment {get; private set; }
-    #endregion
-
     public PlayerState(Player player, FiniteStateMachine stateMachine, PlayerData playerData, string animName) : base(stateMachine)
     {
         this.player = player;
         this.playerData = playerData;
         this.animName = animName;
-        //Change to find children
-        this.equipments = player.gameObject.transform.Find("Equipments");
-        this.redEquipment = equipments.GetChild(0).GetComponent<RedEquipment>();
-        this.blueEquipment = equipments.GetChild(1).GetComponent<BlueEquipment>();
-        this.yellowEquipment = equipments.GetChild(2).GetComponent<YellowEquipment>();
-        this.yellowEquipment.getPlayer = player;
     }
 
     //Gets called when entered a specific state
@@ -54,46 +40,17 @@ public class PlayerState : EntityState
         // Setting x,y and equipment inputs for each equipment's states 
         xInput = player.InputHandler.NormInputX;
         yInput = player.InputHandler.NormInputY;
+        // To ensure that player faces the same direction as the direction the paintbrush swings
         leftClick = player.InputHandler.leftClickInput;
- 
-        redEquipment.IdleState.XInput = xInput;
-        redEquipment.IdleState.YInput = yInput;
-        redEquipment.IdleState.LeftClickInput = player.InputHandler.leftClickInput;
 
-        redEquipment.MoveState.XInput = xInput;
-        redEquipment.MoveState.YInput = yInput;
-        redEquipment.MoveState.LeftClickInput = player.InputHandler.leftClickInput;
-
-        redEquipment.EffectState.XInput = xInput;
-        redEquipment.EffectState.YInput = yInput;
-        redEquipment.EffectState.LeftClickInput = player.InputHandler.leftClickInput;
-
-        //TODO: copy 9 lines above for yellow & blue
-        //Blue Equipment
-        blueEquipment.IdleState.XInput = xInput;
-        blueEquipment.IdleState.YInput = yInput;
-        blueEquipment.IdleState.RightClickInput = player.InputHandler.rightClickInput;
-
-        blueEquipment.MoveState.XInput = xInput;
-        blueEquipment.MoveState.YInput = yInput;
-        blueEquipment.MoveState.LeftClickInput = player.InputHandler.leftClickInput;
-        blueEquipment.MoveState.RightClickInput = player.InputHandler.rightClickInput;
-        
-
-        blueEquipment.EffectState.RightClickInput = player.InputHandler.rightClickInput;
-
-        //Yellow Equipment
-        yellowEquipment.IdleState.XInput = xInput;
-        yellowEquipment.IdleState.YInput = yInput;
-        yellowEquipment.IdleState.SpaceClickInput = player.InputHandler.spaceClickInput;
-
-        yellowEquipment.MoveState.XInput = xInput;
-        yellowEquipment.MoveState.YInput = yInput;
-        yellowEquipment.MoveState.SpaceClickInput = player.InputHandler.spaceClickInput;
-
-        yellowEquipment.EffectState.XInput = xInput;
-        yellowEquipment.EffectState.YInput = yInput;
-        yellowEquipment.EffectState.SpaceClickInput = player.InputHandler.spaceClickInput;
+        foreach (Equipment equipment in player.equipments)
+        {
+            equipment.XInput = xInput;
+            equipment.YInput = yInput;
+            equipment.LeftClickInput = player.InputHandler.leftClickInput;
+            equipment.RightClickInput = player.InputHandler.rightClickInput;
+            equipment.SpaceClickInput = player.InputHandler.spaceClickInput;
+        }
 
     }
 

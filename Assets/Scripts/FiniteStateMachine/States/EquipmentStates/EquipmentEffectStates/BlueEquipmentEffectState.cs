@@ -4,63 +4,44 @@ using UnityEngine;
 
 public class BlueEquipmentEffectState : EquipmentEffectState
 {
-    public BlueEquipmentEffectState(Equipment equipment, FiniteStateMachine stateMachine, EquipmentData equipmentData, string animName) : base(equipment, stateMachine, equipmentData, animName)
-    {
-    }
-
+    public BlueEquipmentEffectState(Equipment equipment, FiniteStateMachine stateMachine, EquipmentData equipmentData, string animName) : base(equipment, stateMachine, equipmentData, animName) {}
 
     public override void Enter()
     {
         base.Enter();
-
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        ActivateEffect();
+        ActivateEffect(equipment.RightClickInput);
     }
 
-    private void ActivateEffect()
+    protected override void ActivateEffect(bool equipmentKeyInput)
     {
-        //When using effect
-
-        if (xInput > 0 || xInput < 0)
-        {
-            SetEffect(xInput, yInput);
-            equipment.LastX = xInput;
-            equipment.LastY = yInput;
+        base.ActivateEffect(equipmentKeyInput);
+        if (equipmentKeyInput && !equipment.OnCooldown){
+            if (equipment.XInput != 0 && equipment.YInput != 0)
+            {
+                SetEffect(equipment.XInput, equipment.YInput);
+                equipment.LastX = equipment.XInput;
+                equipment.LastY = equipment.YInput;
+            }
+            else if (equipment.XInput == 0f && equipment.YInput == 0f)
+            {
+                SetEffect(equipment.LastX, equipment.LastY);
+            }
+            else if (equipment.XInput == 0f && equipment.YInput != 0f)
+            {
+                SetEffect(equipment.LastX, equipment.YInput);
+                equipment.LastY = equipment.YInput;
+            }
+            else if (equipment.XInput != 0f && equipment.YInput == 0f)
+            {
+                SetEffect(equipment.XInput, equipment.LastY);
+                equipment.LastX = equipment.XInput;
+            }
+            return;
         }
-        if (yInput > 0 || yInput < 0)
-        {
-            SetEffect(xInput, yInput);
-            equipment.LastX = xInput;
-            equipment.LastY = yInput;
-        }
-        if (xInput == 0f && yInput == 0f)
-        {
-            SetEffect(equipment.LastX, equipment.LastY);
-        }
-        if (xInput == 0f && yInput != 0f)
-        {
-            SetEffect(equipment.LastX, equipment.LastY);
-            equipment.LastY = yInput;
-        }
-        if (xInput != 0f && yInput == 0f)
-        {
-            SetEffect(equipment.LastX, equipment.LastY);
-            equipment.LastX = xInput;
-        }
-        //When no longer using equipment's effect
-        else if (xInput == 0f && yInput == 0f)
-        {
-            SetIdle(equipment.LastX, equipment.LastY);
-            stateMachine.ChangeState(equipment.IdleState);
-        }
-        else
-        {
-            stateMachine.ChangeState(equipment.MoveState);
-        }
-
     }
 }

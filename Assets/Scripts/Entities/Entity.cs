@@ -31,7 +31,11 @@ public abstract class Entity : MonoBehaviour
 
     protected virtual void Update()
     {
-        CurrentVelocity = rb.velocity;
+        if(rb != null)
+        {
+            CurrentVelocity = rb.velocity;
+        }
+        
         StateMachine.CurrentState.LogicUpdate();
     }
 

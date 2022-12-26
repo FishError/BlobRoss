@@ -10,9 +10,7 @@ public class YellowEquipmentIdleState : EquipmentIdleState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-
-        if(spaceClickInput && !equipment.OnCooldown)
-        {
+        if(equipment.SpaceClickInput && !equipment.OnCooldown) {
             stateMachine.ChangeState(equipment.EffectState);
         }
     }

@@ -27,7 +27,6 @@ public class PaletteEffect : MonoBehaviour
         {
             ResetEffectProperties();
             this.gameObject.SetActive(false);
-            enemyHitCounter = 0;
         }
     }
 
