@@ -10,7 +10,7 @@ public class RedEquipmentIdleState : EquipmentIdleState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if(leftClickInput && !equipment.OnCooldown){
+        if(equipment.LeftClickInput && !equipment.OnCooldown) {
             stateMachine.ChangeState(equipment.EffectState);
         }
     }

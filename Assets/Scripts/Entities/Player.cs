@@ -15,7 +15,6 @@ public class Player : CombatOrganismEntity
     #endregion
 
     #region Equipments
-    public Transform equipmentsContainer;
     public Equipment[] equipments = new Equipment[3];
     #endregion
 
@@ -53,8 +52,8 @@ public class Player : CombatOrganismEntity
         base.Start();
         InputHandler = GetComponent<PlayerInputHandler>();
 
-        equipmentsContainer = gameObject.transform.Find("Equipments");
-        equipments[0] = equipmentsContainer.GetChild(0).GetComponent<RedEquipment>();;
+        Transform equipmentsContainer = gameObject.transform.Find("Equipments");
+        equipments[0] = equipmentsContainer.GetChild(0).GetComponent<RedEquipment>();
         equipments[1] = equipmentsContainer.GetChild(1).GetComponent<BlueEquipment>();
         equipments[2] = equipmentsContainer.GetChild(2).GetComponent<YellowEquipment>();
         StateMachine.Initialize(IdleState);
