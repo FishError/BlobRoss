@@ -9,6 +9,7 @@ public class PaintbrushEffect : MonoBehaviour
     void OnEnable()
     {
         equipment = transform.parent.gameObject.GetComponent<RedEquipment>();
+        equipment.GetComponent<AudioSource>().Play();
         
     }
 
