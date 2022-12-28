@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 3474046877265217112}
   - component: {fileID: 5696186379152502355}
   - component: {fileID: 2208621196012644236}
+  - component: {fileID: 1391237835524067325}
   m_Layer: 7
   m_Name: Paintbrush
   m_TagString: RedEquipment
@@ -287,7 +288,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 1985323726339297493, guid: 7b6a786c258d24d3fa7671b11db9f9e8, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 0db99305bd1fbc4458b7a4a56ac28888, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 87e6a6aad4bf9df4aa7a0a15925eeab7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.8
   m_Pitch: 1
@@ -373,3 +374,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1391237835524067325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3474046877265217115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152e604cc78cded4e88c0b59ac3f72db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

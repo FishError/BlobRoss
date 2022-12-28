@@ -8,4 +8,9 @@ public class AnimationEvents : MonoBehaviour
     {
         this.transform.GetChild(0).gameObject.SetActive(true);
     }
+
+    public void PlaySoundEffect()
+    {
+        gameObject.GetComponent<AudioSource>().Play();
+    }
 }

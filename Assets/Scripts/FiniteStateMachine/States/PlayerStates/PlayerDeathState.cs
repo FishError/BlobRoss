@@ -29,6 +29,7 @@ public class PlayerDeathState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
         AnimatorStateInfo animState = player.Anim.GetCurrentAnimatorStateInfo(0);
         if (animState.IsName(animName) && animState.normalizedTime >= 1)
         {
