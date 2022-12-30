@@ -11,6 +11,8 @@ public class MobBaseDeathState : MobBaseState
         base.Enter();
         enemy.SetVelocityX(0f);
         enemy.SetVelocityY(0f);
+        enemy.isDeathStateCalled = true;
+        enemy.DeathState.PlayEnemyAudio(enemy, enemy.gameObject, 0, 0f, false);
     }
 
     public override void Exit()
@@ -23,6 +25,7 @@ public class MobBaseDeathState : MobBaseState
         base.LogicUpdate();
         //Complete animation first and then destory gameobject
         AnimatorStateInfo animState = enemy.Anim.GetCurrentAnimatorStateInfo(0);
+
         if (animState.IsName(animName) && animState.normalizedTime >= 1)
         {
             Object.Destroy(enemy.gameObject);

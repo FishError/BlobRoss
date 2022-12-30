@@ -7,7 +7,6 @@ public class Blomb : Mob
     public BlombData Data { get; protected set; }
 
     public GameObject fieldOnDeath;
-
     public float ExplosionDamageRatio { get; set; }
     public float KnockbackForce { get; set; }
     public float KnockbackDuration { get; set; }

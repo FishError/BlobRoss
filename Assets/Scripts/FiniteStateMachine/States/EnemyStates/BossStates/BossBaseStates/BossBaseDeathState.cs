@@ -11,6 +11,8 @@ public class BossBaseDeathState : BossBaseState
         base.Enter();
         boss.SetVelocityX(0f);
         boss.SetVelocityY(0f);
+        boss.isDeathStateCalled = true;
+        boss.DeathState.PlayEnemyAudio(boss, boss.gameObject, 0, 0f, false);
     }
 
     public override void LogicUpdate()

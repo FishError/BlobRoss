@@ -15,6 +15,7 @@ public class BlombAttackState : BlombState
     {
         base.Enter();
         blomb.rb.velocity = Vector2.zero;
+        blomb.AttackState.PlayEnemyAudio(blomb, blomb.gameObject, 2, 0f, true);
     }
 
     public override void Exit()
@@ -28,7 +29,8 @@ public class BlombAttackState : BlombState
         AnimatorStateInfo animState = blomb.Anim.GetCurrentAnimatorStateInfo(0);
         if (animState.IsName(animName) && animState.normalizedTime >= 1)
         {
-            Object.Instantiate(blomb.fieldOnDeath, blomb.transform.position, Quaternion.identity);
+            GameObject fireField = Object.Instantiate(blomb.fieldOnDeath, blomb.transform.position, Quaternion.identity);
+            blomb.AttackState.PlayEnemyAudio(blomb, fireField.gameObject, 3, 0f, false);
             Object.Destroy(blomb.gameObject);
 
             if (blomb.lootDrop != null)
