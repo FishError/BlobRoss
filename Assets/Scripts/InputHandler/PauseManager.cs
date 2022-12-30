@@ -6,12 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
-    private GameObject optionMenu;
+    private GameObject pauseMenu;
+    public List<GameObject> destroyObjects = new List<GameObject>();
 
     private void Start()
     {
         Time.timeScale = 1;
-        optionMenu = GameObject.Find("OptionMenuController");
+        pauseMenu = GameObject.Find("PauseMenuController");
     }
 
     private void OnPause(InputValue value)
@@ -32,7 +33,7 @@ public class PauseManager : MonoBehaviour
     private void PauseGame()
     {
         Time.timeScale = 0f;
-        optionMenu.transform.GetChild(0).gameObject.SetActive(true);
+        pauseMenu.transform.GetChild(0).gameObject.SetActive(true);
     }
 
     private void UnpauseGame()
@@ -43,11 +44,11 @@ public class PauseManager : MonoBehaviour
 
     private void CheckChild()
     {
-        for (int i = 0; i < optionMenu.transform.childCount; i++)
+        for (int i = 0; i < pauseMenu.transform.childCount; i++)
         {;
-            if (optionMenu.transform.GetChild(i).gameObject.activeInHierarchy)
+            if (pauseMenu.transform.GetChild(i).gameObject.activeInHierarchy)
             {
-                optionMenu.transform.GetChild(i).gameObject.SetActive(false);
+                pauseMenu.transform.GetChild(i).gameObject.SetActive(false);
             }
         }
     }
@@ -60,12 +61,10 @@ public class PauseManager : MonoBehaviour
     public void BackToMainMenu(string scene)
     {
         SceneManager.LoadScene(scene);
-        //Temporary: Need a better way to destroy objects that has DontDestroyOnLoad
-        Destroy(GameObject.Find("Player"));
-        Destroy(GameObject.Find("Camera"));
-        Destroy(GameObject.Find("GameController"));
-        Destroy(GameObject.Find("MapController"));
-        Destroy(GameObject.Find("OptionController"));
+        for (int i = 0; i < destroyObjects.Count; i++)
+        {
+            Destroy(destroyObjects[i]);
+        }
     }
 
     public void QuitGame()

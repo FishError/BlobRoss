@@ -71,9 +71,9 @@ public class SettingsMenu : MonoBehaviour
         QualitySettings.SetQualityLevel(qualityIndex);
     }
 
-    public void SetFullscreen(bool isFullscreen) {
-        Screen.fullScreen = isFullscreen;
-        PlayerPrefs.SetInt("isFullscreen", boolToInt(isFullscreen));
+    public void ToggleFullscreen() {
+        Screen.fullScreen = fullScreenToggle.isOn;
+        PlayerPrefs.SetInt("isFullscreen", boolToInt(fullScreenToggle.isOn));
     }
 
     public void SetResolution (int resolutionIndex) {
@@ -117,8 +117,7 @@ public class SettingsMenu : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("isFullscreen"))
         {
-            Screen.fullScreen = intToBool(PlayerPrefs.GetInt("isFullscreen"));
-            fullScreenToggle.isOn = Screen.fullScreen;
+            fullScreenToggle.isOn = intToBool(PlayerPrefs.GetInt("isFullscreen"));
         }
     }
 
@@ -139,14 +138,7 @@ public class SettingsMenu : MonoBehaviour
     {
         GameObject fps = GameObject.Find("FPSCanvas").transform.GetChild(0).gameObject;
 
-        if (fpsToggle.isOn)
-        {
-            fps.SetActive(true);
-        }
-        else
-        {
-            fps.SetActive(false);
-        }
+        fps.SetActive(fpsToggle.isOn);
         PlayerPrefs.SetInt("fpsToggle", boolToInt(fpsToggle.isOn));
 
     }
@@ -165,14 +157,7 @@ public class SettingsMenu : MonoBehaviour
 
     private bool intToBool(int value)
     {
-        if(value == 1)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return value == 1;
     }
 
     
