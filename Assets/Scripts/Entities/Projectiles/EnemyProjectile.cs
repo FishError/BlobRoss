@@ -25,4 +25,9 @@ public class EnemyProjectile : Projectile
         audio.GetComponent<SFXDestroyer>().parentObject = this.gameObject;
         audio.PlayOneShot(audioClips[index], volume);
     }
+
+    public void PlayOnSpecificVolume(float volume)
+    {
+        PlayProjectileAudio(0, volume);
+    }
 }
