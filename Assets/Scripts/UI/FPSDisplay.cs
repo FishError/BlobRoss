@@ -4,23 +4,21 @@ using TMPro;
 public class FPSDisplay : MonoBehaviour
 {
     public TextMeshProUGUI FpsText;
+    private int frameRate;
+    private float hudRefreshRate = 1f;
+    private float timer;
 
-    private float pollingTime = 1f;
-    private float time;
-    private int frameCount;
+    private void Start()
+    {
+        Time.timeScale = 1;
+    }
 
     void Update() {
-        time += Time.deltaTime;
-
-        frameCount++;
-
-        if(time >= pollingTime) {
-            int frameRate = Mathf.RoundToInt(frameCount / time);
+        if(Time.unscaledTime > timer)
+        {
+            frameRate = (int)(1f / Time.unscaledDeltaTime);
             FpsText.text = frameRate.ToString() + " FPS";
-
-            time -= pollingTime;
-            frameCount = 0;
+            timer = Time.unscaledTime + hudRefreshRate;
         }
-        
     }
 }

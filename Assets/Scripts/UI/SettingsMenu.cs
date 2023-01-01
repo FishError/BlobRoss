@@ -6,13 +6,13 @@ using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
-    private float masterVolume, musicVolume, sfxVolume;
-    private float masterVolumeSlider, musicVolumeSlider, sfxVolumeSlider;
     [SerializeField] private Slider masterSlider, musicSlider, sfxSlider;
     public AudioMixer audioMixer;
+    public Toggle fullScreenToggle, fpsToggle;
     public TMPro.TMP_Dropdown resolutionDropdown;
 
     Resolution[] resolutions;
+    bool resolutionChanged = false;
 
     void Start() {
         resolutions = Screen.resolutions;
@@ -32,9 +32,17 @@ public class SettingsMenu : MonoBehaviour
                }
         }
         resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
+        if (intToBool(PlayerPrefs.GetInt("resChanged")))
+        {
+            resolutionDropdown.value = PlayerPrefs.GetInt("resolutionIndex");
+        }
+        else
+        {
+            resolutionDropdown.value = currentResolutionIndex;
+        }
         resolutionDropdown.RefreshShownValue();
 
+        LoadVideoSettings();
         LoadAudioSettings();
     }
 
@@ -63,13 +71,19 @@ public class SettingsMenu : MonoBehaviour
         QualitySettings.SetQualityLevel(qualityIndex);
     }
 
-    public void SetFullscreen(bool isFullscreen) {
-        Screen.fullScreen = isFullscreen;
+    public void ToggleFullscreen() {
+        Screen.fullScreen = fullScreenToggle.isOn;
+        PlayerPrefs.SetInt("isFullscreen", boolToInt(fullScreenToggle.isOn));
     }
 
     public void SetResolution (int resolutionIndex) {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        PlayerPrefs.SetInt("resolutionIndex", resolutionIndex);
+        PlayerPrefs.SetInt("width", resolution.width);
+        PlayerPrefs.SetInt("height", resolution.height);
+        resolutionChanged = true;
+        PlayerPrefs.SetInt("resChanged", boolToInt(resolutionChanged));
     }
 
     public void SetAudioMixerVolume(string type, float volume)
@@ -85,6 +99,13 @@ public class SettingsMenu : MonoBehaviour
         LoadAudioSliderSettings();
     }
 
+    public void LoadVideoSettings()
+    {
+        LoadResolution();
+        LoadFullScreenMode();
+        LoadFPS();
+    }
+
     public void LoadAudioSliderSettings()
     {
         masterSlider.value = PlayerPrefs.GetFloat("masterVolumeSlider", 0.7f);
@@ -92,6 +113,52 @@ public class SettingsMenu : MonoBehaviour
         sfxSlider.value = PlayerPrefs.GetFloat("sfxVolumeSlider", 0.7f);
     }
 
+    public void LoadFullScreenMode()
+    {
+        if (PlayerPrefs.HasKey("isFullscreen"))
+        {
+            fullScreenToggle.isOn = intToBool(PlayerPrefs.GetInt("isFullscreen"));
+        }
+    }
+
+    public void LoadResolution()
+    {
+        Screen.SetResolution(PlayerPrefs.GetInt("width"), PlayerPrefs.GetInt("height"), intToBool(PlayerPrefs.GetInt("isFullscreen")));
+    }
+
+    public void LoadFPS()
+    {
+        if (PlayerPrefs.HasKey("fpsToggle"))
+        {
+            fpsToggle.isOn = intToBool(PlayerPrefs.GetInt("fpsToggle"));
+        }
+    }
+
+    public void ToggleFPS()
+    {
+        GameObject fps = GameObject.Find("FPSCanvas").transform.GetChild(0).gameObject;
+
+        fps.SetActive(fpsToggle.isOn);
+        PlayerPrefs.SetInt("fpsToggle", boolToInt(fpsToggle.isOn));
+
+    }
+
+    private int boolToInt(bool value)
+    {
+        if (value)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    private bool intToBool(int value)
+    {
+        return value == 1;
+    }
 
     
 }
