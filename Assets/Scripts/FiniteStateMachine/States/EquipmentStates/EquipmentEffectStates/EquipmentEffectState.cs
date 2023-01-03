@@ -17,18 +17,19 @@ public class EquipmentEffectState : EquipmentState
     protected virtual void ActivateEffect(bool equipmentKeyInput) {
 
         //When not using equipment's effect
-        if (!equipmentKeyInput || equipment.OnCooldown)
-        {
-            if (equipment.XInput == 0f && equipment.YInput == 0f)
-            {
-                SetIdle(equipment.LastX, equipment.LastY);
-                stateMachine.ChangeState(equipment.IdleState);
-            }
-            else
-            {
-                stateMachine.ChangeState(equipment.MoveState);
-            }
-        }
+        //if (!equipmentKeyInput && equipment.OnCooldown)
+        //{
+        //    Debug.Log("Yes");
+        //    if (equipment.XInput == 0f && equipment.YInput == 0f)
+        //    {
+        //        SetIdle(equipment.LastX, equipment.LastY);
+        //        stateMachine.ChangeState(equipment.IdleState);
+        //    }
+        //    else
+        //    {
+        //        stateMachine.ChangeState(equipment.MoveState);
+        //    }
+        //}
 
     }
 }
