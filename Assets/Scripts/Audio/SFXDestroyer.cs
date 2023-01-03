@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class SFXDestroyer : MonoBehaviour
 {
-    AudioSource audioSource;
+    AudioSource audioOrigin;
     public GameObject parentObject;
     public bool playAfterDestroy = false;
     
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        audioOrigin = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -20,7 +20,7 @@ public class SFXDestroyer : MonoBehaviour
             Destroy(gameObject);
         }
         
-        if (!audioSource.isPlaying)
+        if (!audioOrigin.isPlaying)
         {
             Destroy(gameObject);
         }
