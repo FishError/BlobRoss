@@ -32,4 +32,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Production/Win_Screen.unity
     guid: 6bfefd7cbeb109748b5ed92c6e190f58
+  - enabled: 1
+    path: Assets/Scenes/Development/Rooms/Placeholders/placeholder_base.unity
+    guid: 12f51622a948f8b47a3e6a9382e07245
+  - enabled: 1
+    path: Assets/Scenes/Development/Rooms/Placeholders/placeholder_boss_entrance_new.unity
+    guid: 0ee2ac8b63201a94cb1af21cf40a91b5
+  - enabled: 1
+    path: Assets/Scenes/Development/Rooms/Placeholders/dev_placeholder_boss.unity
+    guid: 80b7306457dc58641a2db336e1d8f377
   m_configObjects: {}

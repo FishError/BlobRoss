@@ -21,8 +21,9 @@ public class PGM
         Room[,] array2D = new Room[maxHeight + 1, maxWidth + 1];
 
         int[] start = new int[] { random.Next(0, maxWidth), random.Next(0, maxHeight) };
-        array2D[start[0], start[1]] = new Room(roomType + "_start");
-        
+        //array2D[start[0], start[1]] = new Room(roomType + "_start");
+        array2D[start[0], start[1]] = new Room("placeholder_base");
+
         int roomCount = 1;
         int[] current = start;
         while (roomCount != numOfRooms)
@@ -39,7 +40,7 @@ public class PGM
                 }
                 else
                 {
-                    array2D[current[0], current[1]] = new Room(roomType + "_boss_entrance");
+                    array2D[current[0], current[1]] = new Room("placeholder_boss_entrance_new");
                 }
                 roomCount++;
             }
@@ -49,25 +50,60 @@ public class PGM
         {
             for (int x = 0; x < array2D.GetUpperBound(1); x++)
             {
-                if (array2D[x, y] != null)
+                if (array2D[y, x] != null)
                 {
-                    Room room = array2D[x, y];
-                    if (x < array2D.GetUpperBound(0) - 1 && array2D[x + 1, y] != null)
-                        room.BottomRoom = array2D[x + 1, y];
+                    Room room = array2D[y, x];
+                    if (x < array2D.GetUpperBound(1) - 1 && array2D[y, x + 1] != null)
+                        room.RightRoom = array2D[y, x + 1];
 
-                    if (x > 0 && array2D[x - 1, y] != null)
-                        room.TopRoom = array2D[x - 1, y];
+                    if (x > 0 && array2D[y, x - 1] != null)
+                        room.LeftRoom = array2D[y, x - 1];
 
-                    if (y < array2D.GetUpperBound(1) - 1 && array2D[x, y + 1] != null)
-                        room.RightRoom = array2D[x, y + 1];
+                    if (y < array2D.GetUpperBound(0) - 1 && array2D[y + 1, x] != null)
+                        room.BottomRoom = array2D[y + 1, x];
 
-                    if (y > 0 && array2D[x, y - 1] != null)
-                        room.LeftRoom = array2D[x, y - 1];
+                    if (y > 0 && array2D[y - 1, x] != null)
+                        room.TopRoom = array2D[y - 1, x];
                 }
             }
         }
 
-        return new Map(array2D[start[0], start[1]]);
+        return new Map(array2D[start[0], start[1]], array2D);
+    }
+
+    public static IEnumerator LoadMap(MapController mc)
+    {
+        Room[,] array2D = mc.Map.Array2D;
+        List<AsyncOperation> operations = new List<AsyncOperation>();
+        for (int y = 0; y < array2D.GetUpperBound(0); y++)
+        {
+            for (int x = 0; x < array2D.GetUpperBound(1); x++)
+            {
+                if (array2D[y, x] != null)
+                {
+                    Room room = array2D[y, x];
+                    int operationIndex = SceneManager.sceneCount;
+                    room.index = operationIndex;
+                    AsyncOperation operation = SceneManager.LoadSceneAsync(room.Scene, LoadSceneMode.Additive);
+                    Vector2 pos = new Vector2(x * 35, y * -35);
+
+                    operation.completed += (s) =>
+                    {
+                        Scene scene = SceneManager.GetSceneAt(operationIndex);
+                        GameObject roomObject = scene.GetRootGameObjects()[0];
+                        roomObject.transform.position = pos;
+                        RoomController roomController = roomObject.GetComponent<RoomController>();
+                        roomController.Room = room;
+                        roomController.MatchSceneWithRoomProperties();
+                        mc.roomControllers.Add(roomController);
+                    };
+
+                    operations.Add(operation);
+                }
+            }
+        }
+        
+        yield return new WaitUntil(() => operations.All(op => op.isDone));
     }
 
     private static List<Direction> GetAvailableDirections(int[] current, Room[,] matrix)
@@ -113,7 +149,8 @@ public class PGM
 
     private static Room CreateRandomRoom(string roomType, List<GameObject> enemyList, List<GameObject> rewardList, System.Random random)
     {
-        Room room = new Room(roomType + "_" + random.Next(1, 3));
+        //Room room = new Room(roomType + "_" + random.Next(1, 3));
+        Room room = new Room("placeholder_base");
         int numOfMobs = random.Next(4, 7);
         for (int i = 0; i < numOfMobs; i++)
         {

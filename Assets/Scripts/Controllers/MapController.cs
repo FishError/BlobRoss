@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cinemachine;
 using UnityEngine.Tilemaps;
+using UnityEngine.AI;
 
 public class MapController : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class MapController : MonoBehaviour
     [Header("Mob Lists")]
     public List<GameObject> RedMobs;
 
+    [Header("NavMesh")]
+    public NavMeshSurface2d navMeshSurface;
+
     [Header("Room Clear Reward")]
     public List<GameObject> Rewards;
 
@@ -24,47 +28,55 @@ public class MapController : MonoBehaviour
     public GameObject cinemachineCamera;
 
     public Map Map { get; private set; }
-    public Direction PreviousRoomDir { get; set; }
+
+    public List<RoomController> roomControllers { get; set; }
 
     // Start is called before the first frame update
     void Start()
     {
-        SceneManager.activeSceneChanged += ChangedActiveScene;
-        GenerateAndLoadMap();
+        //SceneManager.activeSceneChanged += ChangedActiveScene;
+        StartCoroutine(GenerateAndLoadMap());
+
+        roomControllers = new List<RoomController>();
     }
 
-    void OnDestroy()
+    /*void OnDestroy()
     {
         SceneManager.activeSceneChanged -= ChangedActiveScene;
-    }
+    }*/
 
-    public void GenerateAndLoadMap()
+    public IEnumerator GenerateAndLoadMap()
     {
         Map = PGM.ProcedurallyGenerateMap(maxWidth, maxHeight, numOfRooms, roomType, RedMobs, Rewards);
-        SceneManager.LoadScene(Map.CurrentRoom.Scene);
+        yield return StartCoroutine(PGM.LoadMap(this));
+        navMeshSurface.BuildNavMesh();
+        SpawnPlayer();
     }
 
-    private void ChangedActiveScene(Scene current, Scene next)
+    private void SpawnPlayer()
     {
-        GameObject roomController = GameObject.Find("RoomController");
+        GameObject roomController = SceneManager.GetSceneAt(Map.StartRoom.index).GetRootGameObjects()[0];
+        player.transform.position = roomController.transform.position;
+    }
+
+    public void LoadBossRoom()
+    {
+        foreach (RoomController rc in roomControllers)
+        {
+            SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(rc.Room.index));
+        }
+
+        SceneManager.LoadSceneAsync("dev_placeholder_boss");
+    }
+
+    /*private void ChangedActiveScene(Scene current, Scene next)
+    {
+        GameObject roomController = GameObject.Find("BossRoomController");
         if (roomController != null)
         {
-            RoomController controller = roomController.GetComponent<RoomController>();
-            controller.Room = Map.CurrentRoom;
-            controller.SpawnEnemies(player);
-            controller.UpdatePlayerPosition(PreviousRoomDir, player);
+            BossRoomController controller = roomController.GetComponent<BossRoomController>();
+            controller.SetPlayerAtEnterPoint(player);
             controller.SetCameraConfiner(cinemachineCamera);
-            controller.MatchSceneWithRoomProperties();
         }
-        else
-        {
-            roomController = GameObject.Find("BossRoomController");
-            if (roomController != null)
-            {
-                BossRoomController controller = roomController.GetComponent<BossRoomController>();
-                controller.SetPlayerAtEnterPoint(player);
-                controller.SetCameraConfiner(cinemachineCamera);
-            }
-        }
-    }
+    }*/
 }
