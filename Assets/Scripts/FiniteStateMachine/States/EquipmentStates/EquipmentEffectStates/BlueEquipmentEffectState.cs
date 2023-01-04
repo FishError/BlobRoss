@@ -14,13 +14,8 @@ public class BlueEquipmentEffectState : EquipmentEffectState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        ActivateEffect(equipment.RightClickInput);
-    }
-
-    protected override void ActivateEffect(bool equipmentKeyInput)
-    {
-        base.ActivateEffect(equipmentKeyInput);
-        if (equipmentKeyInput && !equipment.OnCooldown){
+        if (equipment.RightClickInput && !equipment.OnCooldown)
+        {
             if (equipment.XInput != 0 && equipment.YInput != 0)
             {
                 SetEffect(equipment.XInput, equipment.YInput);
@@ -41,7 +36,18 @@ public class BlueEquipmentEffectState : EquipmentEffectState
                 SetEffect(equipment.XInput, equipment.LastY);
                 equipment.LastX = equipment.XInput;
             }
-            return;
+        }
+        else
+        {
+            if (equipment.XInput == 0f && equipment.YInput == 0f)
+            {
+                SetIdle(equipment.LastX, equipment.LastY);
+                stateMachine.ChangeState(equipment.IdleState);
+            }
+            else
+            {
+                stateMachine.ChangeState(equipment.MoveState);
+            }
         }
     }
 }
