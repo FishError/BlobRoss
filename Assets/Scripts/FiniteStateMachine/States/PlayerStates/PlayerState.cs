@@ -78,13 +78,4 @@ public class PlayerState : EntityState
         player.Anim.SetFloat("IdleHorizontal", x);
         player.Anim.SetFloat("IdleVertical", y);
     }
-
-    public void PlayPlayerBasedAudio(Player player, GameObject parentObject, int index, float delay, bool playAfterDestroy)
-    {
-        AudioSource audio = Object.Instantiate(player.audioSource);
-        audio.GetComponent<SFXDestroyer>().parentObject = parentObject;
-        audio.GetComponent<SFXDestroyer>().playAfterDestroy = playAfterDestroy;
-        audio.clip = player.audioClips[index];
-        audio.PlayDelayed(delay);
-    }
 }

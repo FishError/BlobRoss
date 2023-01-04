@@ -14,8 +14,7 @@ public class BlombExplosionEffect : MonoBehaviour
             player.CCState.SetKnockbackValues(-collision.GetContact(0).normal * blomb.KnockbackForce, blomb.KnockbackDuration);
             player.StateMachine.ChangeState(player.CCState);
             player.ModifyHealthPoints(-blomb.Attack * blomb.ExplosionDamageRatio);
-            PlayerState playerState = (PlayerState) player.StateMachine.CurrentState;
-            playerState.PlayPlayerBasedAudio(player, player.gameObject, 1, 0f, false);
+            SFXManager.Instance.PlayPlayerBasedAudio(player, player.gameObject, 1, 0f, false);
         }
     }
 }

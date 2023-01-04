@@ -71,7 +71,7 @@ public class WheelOfFlame : BossAttack
     {
         GameObject fireball = Object.Instantiate(boss.fireball, spawnPosition, Quaternion.identity);
         Fireball fb = fireball.GetComponent<Fireball>();
-        fb.PlayOnSpecificVolume(0.1f);
+        SFXManager.Instance.PlayProjectileBasedAudio(fb.audioSource, 2, 0.1f);
         Vector2 dir = ((Vector3)spawnPosition - boss.transform.position).normalized;
         fb.SetDamage(boss.Attack);
         fb.SetVelocity(dir);

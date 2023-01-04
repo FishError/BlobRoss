@@ -40,13 +40,4 @@ public class EnemyState : EntityState
     {
 
     }
-
-    public void PlayEnemyAudio(Enemy enemy, GameObject parentObject, int index, float delay, bool playAfterDestroy)
-    {
-        AudioSource audio = Object.Instantiate(enemy.audioSource);
-        audio.GetComponent<SFXDestroyer>().parentObject = parentObject;
-        audio.GetComponent<SFXDestroyer>().playAfterDestroy = playAfterDestroy;
-        audio.clip = enemy.audioClips[index];
-        audio.PlayDelayed(delay);
-    }
 }
