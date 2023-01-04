@@ -392,17 +392,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408167797}
   m_CullTransparentMesh: 1
---- !u!114 &494378117 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3950424390069962460, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
-  m_PrefabInstance: {fileID: 3950424390023207513}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89c78ddc43089b946a529d8014b72b00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &532281184
 GameObject:
   m_ObjectHideFlags: 0
@@ -769,7 +758,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 494378117}
+      - m_Target: {fileID: 3950424390069962460, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
         m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
         m_MethodName: PlaySoundEffect
         m_Mode: 2
@@ -1569,7 +1558,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 494378117}
+      - m_Target: {fileID: 3950424390069962460, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
         m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
         m_MethodName: PlaySoundEffect
         m_Mode: 2
@@ -1715,7 +1704,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 494378117}
+      - m_Target: {fileID: 3950424390069962460, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
         m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
         m_MethodName: PlaySoundEffect
         m_Mode: 2
@@ -4852,7 +4841,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 494378117}
+      - m_Target: {fileID: 3950424390069962460, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
         m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
         m_MethodName: PlaySoundEffect
         m_Mode: 2
@@ -5395,7 +5384,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 494378117}
+      - m_Target: {fileID: 3950424390069962460, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
         m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
         m_MethodName: PlaySoundEffect
         m_Mode: 2
@@ -6886,7 +6875,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 494378117}
+      - m_Target: {fileID: 3950424390069962460, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
         m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
         m_MethodName: PlaySoundEffect
         m_Mode: 2
@@ -7014,7 +7003,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 494378117}
+      - m_Target: {fileID: 3950424390069962460, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
         m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
         m_MethodName: PlaySoundEffect
         m_Mode: 2
@@ -8888,7 +8877,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 494378117}
+      - m_Target: {fileID: 3950424390069962460, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
         m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
         m_MethodName: PlaySoundEffect
         m_Mode: 2
