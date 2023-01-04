@@ -45,11 +45,13 @@ public class ArchieAttackState : ArchieState
             attackAngle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
 
             Quaternion rot = Quaternion.Euler(new Vector3(0f, 0f, attackAngle));
+            archie.AttackState.PlayEnemyAudio(archie, archie.gameObject, 2, 0f, false);
 
             GameObject arrowObj = Object.Instantiate(this.arrow, spawnPosition.position, rot);
             Arrow arrow = arrowObj.GetComponent<Arrow>();
             arrow.SetDamage(archie.Attack);
             arrow.SetVelocity(targetDirection);
+            
         }
 
         ChangeStateAfterAnimation(archie, animName, archie.AgroState);

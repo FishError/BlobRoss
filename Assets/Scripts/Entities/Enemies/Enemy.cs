@@ -14,6 +14,7 @@ public class Enemy : CombatOrganismEntity
 
     [Header("Target Detection")]
     public GameObject target;
+
     public bool alerted { get; set; }
     public Vector2 lookAt { get; set; }
 

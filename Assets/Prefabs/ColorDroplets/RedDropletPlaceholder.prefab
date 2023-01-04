@@ -116,3 +116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: 0
   colorDropletData: {fileID: 11400000, guid: cb6b2b65f48ad422e94324478f380f05, type: 2}
+  audioSource: {fileID: 7268142938181158435, guid: 48743acc0f48d6a428465307a877519d, type: 3}
+  audioClips:
+  - {fileID: 8300000, guid: e9ddccb8dee6ed744ace65dc5f09865b, type: 3}
+  - {fileID: 8300000, guid: 55d1ec4196049004b9778ea5290ba690, type: 3}

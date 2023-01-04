@@ -15,6 +15,11 @@ public class Boss : Enemy
     public int phase { get; set; }
     public float waitTimeBetweenAttacks { get; set; }
 
+    #region Others
+    public bool isDeathStateCalled = false;
+    #endregion
+
+
     protected List<BossAttack> Attacks;
 
     protected override void Start()
@@ -28,7 +33,7 @@ public class Boss : Enemy
     protected override void Update()
     {
         base.Update();
-        if (HealthPoints <= 0)
+        if (HealthPoints <= 0 && !isDeathStateCalled)
         {
             StateMachine.ChangeState(DeathState);
         }

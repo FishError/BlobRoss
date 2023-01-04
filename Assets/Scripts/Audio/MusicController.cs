@@ -9,7 +9,7 @@ public class MusicController : MonoBehaviour
     {
         if (!AudioManager.Instance.CheckClipIsPlaying(clip))
         {
-            AudioManager.Instance.PlayMusic(clip);
+            AudioManager.Instance.PlayMusicAudio(clip);
         }
     }
 }

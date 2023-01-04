@@ -9,6 +9,7 @@ public class Boulder : EnemyProjectile
     protected bool falling;
     protected float yPosition;
 
+
     protected override void Update()
     {
         base.Update();
@@ -17,6 +18,7 @@ public class Boulder : EnemyProjectile
         {
             SetVelocity(Vector2.zero, 0);
             SetLifeTime(destroyAfterBreakTime);
+            PlayProjectileAudio(0, 1f);
             GetComponent<Animator>().SetBool("goBreak", true);
             falling = false;
         }

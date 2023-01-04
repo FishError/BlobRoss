@@ -120,6 +120,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db3d2228357b49e4e9347016dd74fbee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 7268142938181158435, guid: 48743acc0f48d6a428465307a877519d, type: 3}
+  audioClips:
+  - {fileID: 8300000, guid: e41a55a4ba562454d9cbde4de8cbd534, type: 3}
   equipmentData: {fileID: 11400000, guid: 4cf99e84d9c889149b45a3b8dc30bbec, type: 2}
 --- !u!114 &2870913036178011999
 MonoBehaviour:

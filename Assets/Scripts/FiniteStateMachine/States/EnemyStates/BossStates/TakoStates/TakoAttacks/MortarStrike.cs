@@ -59,6 +59,7 @@ public class MortarStrike : BossAttack
         base.PhysicsUpdate();
         if (animationTime >= nextShotTimer)
         {
+            boss.AttackState.PlayEnemyAudio(boss, boss.gameObject, 2, 0f, false);
             SummonBoulder();
             nextShotTimer++;
         }
