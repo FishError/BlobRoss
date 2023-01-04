@@ -30,6 +30,7 @@ public class BlombSquad : BossAttack
     {
         base.Enter();
         summonTimer = Time.time;
+        boss.AttackState.PlayEnemyAudio(boss, boss.gameObject, 3, 0f, true);
     }
 
     public override void Exit()
@@ -68,5 +69,6 @@ public class BlombSquad : BossAttack
         GameObject blomb = Object.Instantiate(boss.Blomb, randomPos, Quaternion.identity);
         Blomb b = blomb.GetComponent<Blomb>();
         b.target = boss.target;
+        boss.AttackState.PlayEnemyAudio(boss, boss.gameObject, 4, 0f, false);
     }
 }

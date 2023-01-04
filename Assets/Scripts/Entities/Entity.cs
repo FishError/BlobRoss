@@ -18,6 +18,10 @@ public abstract class Entity : MonoBehaviour
     protected Vector2 workspace;
     #endregion
 
+    #region Audio Source Reference
+    public AudioSource audioSource;
+    public AudioClip[] audioClips;
+    #endregion
     protected virtual void Awake()
     {
         StateMachine = gameObject.AddComponent<FiniteStateMachine>();

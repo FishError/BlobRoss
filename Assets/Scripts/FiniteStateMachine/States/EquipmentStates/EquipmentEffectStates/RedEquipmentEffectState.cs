@@ -92,7 +92,5 @@ public class RedEquipmentEffectState : EquipmentEffectState
         ((PlayerState)equipment.player.StateMachine.CurrentState).SetMove(x, y);
         equipment.player.RedLastX = x;
         equipment.player.RedLastY = y;
-
     }
-
 }

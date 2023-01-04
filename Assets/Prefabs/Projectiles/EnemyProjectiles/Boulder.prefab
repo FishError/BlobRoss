@@ -142,5 +142,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: f02ff42931562bb479bae8110591b9d2, type: 2}
   rb: {fileID: 6241805715494526471}
+  audioSource: {fileID: 7268142938181158435, guid: 48743acc0f48d6a428465307a877519d, type: 3}
+  audioClips:
+  - {fileID: 8300000, guid: 5e95582a8e4d0dd41a185cc9ca26dbaa, type: 3}
   destroyAfterBreakTime: 5
   boulderImpactIndicator: {fileID: 2098398957063123359, guid: eb59003abf1360a4e847e91a136f79f8, type: 3}

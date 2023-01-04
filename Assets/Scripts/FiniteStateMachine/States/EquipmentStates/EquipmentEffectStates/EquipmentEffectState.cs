@@ -32,4 +32,12 @@ public class EquipmentEffectState : EquipmentState
         //}
 
     }
+
+    public void PlayEquipmentEffectAudio(int index)
+    {
+        AudioSource audio = Object.Instantiate(equipment.audioSource);
+        audio.GetComponent<SFXDestroyer>().parentObject = equipment.gameObject;
+        audio.clip = equipment.audioClips[index];
+        audio.Play();
+    }
 }

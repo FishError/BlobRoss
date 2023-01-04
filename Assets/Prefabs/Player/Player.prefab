@@ -441,6 +441,7 @@ GameObject:
   - component: {fileID: 7034977938710112410}
   - component: {fileID: 7034977938710112415}
   - component: {fileID: 1083140480968960898}
+  - component: {fileID: 724984796126670020}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -504,7 +505,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 671580021
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -816240967, guid: 6bf8c7fb0cc34d343a13e4df56bbb282, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -648,12 +649,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb3ed463c9c386d4587d423e27022eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 7268142938181158435, guid: 48743acc0f48d6a428465307a877519d, type: 3}
+  audioClips:
+  - {fileID: 8300000, guid: 97a2cdadd3d384a4eb83b4b67a26de12, type: 3}
+  - {fileID: 8300000, guid: 74c0157a89fa7b14ab5ab5c996f1b467, type: 3}
   data: {fileID: 11400000, guid: ace5682d3b2a6a243a454ceb0ce53be0, type: 2}
-  equipmentsContainer: {fileID: 8283091162431665189}
   equipments:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  isDeathStateCalled: 0
 --- !u!114 &1083140480968960898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -667,6 +672,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectID: 
+--- !u!114 &724984796126670020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7034977938710112480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152e604cc78cded4e88c0b59ac3f72db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9015215919905509744
 GameObject:
   m_ObjectHideFlags: 0

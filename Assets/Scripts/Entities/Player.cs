@@ -35,6 +35,10 @@ public class Player : CombatOrganismEntity
     public float CritDamage { get; set; }
     #endregion
 
+    #region Others
+    public bool isDeathStateCalled = false;
+    #endregion
+
     protected override void Awake()
     {
         base.Awake();
@@ -73,7 +77,7 @@ public class Player : CombatOrganismEntity
     protected override void Update()
     {
         base.Update();
-        if (HealthPoints <= 0)
+        if (HealthPoints <= 0 && !isDeathStateCalled)
         {
             StateMachine.ChangeState(DeathState);
         }

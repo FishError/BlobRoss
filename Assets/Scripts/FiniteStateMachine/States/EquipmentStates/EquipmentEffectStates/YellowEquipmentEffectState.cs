@@ -24,6 +24,7 @@ public class YellowEquipmentEffectState : EquipmentEffectState
     {
         direction = new Vector2(yellowEquipment.player.LastX, yellowEquipment.player.LastY);
         yellowEquipment.player.SetVelocity(yellowEquipment.Velocity, direction);
+        equipment.EffectState.PlayEquipmentEffectAudio(0);
     }
 
     public void YellowStateExit()

@@ -27,6 +27,7 @@ public class DasherAttackState : DasherState
         attackDirection = (dasher.target.transform.position - dasher.transform.position).normalized;
         dasher.lookAt = attackDirection;
         dasher.SetAnimHorizontalVertical(dasher.lookAt);
+        dasher.AttackState.PlayEnemyAudio(dasher, dasher.gameObject, 2, 0.5f, false);
     }
 
     public override void Exit()
@@ -71,7 +72,12 @@ public class DasherAttackState : DasherState
         if (Time.time > startTime + attackChargeUpTime)
         {
             if (collision.gameObject.tag == "Player")
+            {
                 collision.gameObject.GetComponent<Player>().ModifyHealthPoints(-dasher.Attack * dasher.DashDamageRatio);
+                PlayerState playerState = (PlayerState) collision.gameObject.GetComponent<Player>().StateMachine.CurrentState;
+                playerState.PlayPlayerBasedAudio(collision.gameObject.GetComponent<Player>(), collision.gameObject, 1, 0f, false);
+            }
+                
 
             ((MobBaseCCState)dasher.CCState).SetKnockbackValues(collision.GetContact(0).normal * dasher.KnockbackForce, dasher.KnockbackDuration);
             stateMachine.ChangeState(dasher.CCState);
