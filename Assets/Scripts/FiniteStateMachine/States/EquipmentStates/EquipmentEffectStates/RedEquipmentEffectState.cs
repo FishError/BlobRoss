@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class RedEquipmentEffectState : EquipmentEffectState
 {
-    float originalAttackClipDuration;
     public RedEquipmentEffectState(Equipment equipment, FiniteStateMachine stateMachine, EquipmentData equipmentData, string animName) : base(equipment, stateMachine, equipmentData, animName) { }
 
     public override void Enter()
@@ -21,11 +20,10 @@ public class RedEquipmentEffectState : EquipmentEffectState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if(equipment.colorDropletStack == 0)
+        if (equipment.colorDropletStack == 0)
         {
-            originalAttackClipDuration = equipment.Anim.GetCurrentAnimatorStateInfo(0).length;
+            ((RedEquipment)equipment).originalAttackClipDuration = equipment.Anim.GetCurrentAnimatorStateInfo(0).length;
         }
-        modifyAnimationClipSpeed();
         setAttackDirection();
         equipment.OnCooldown = true;
         if (equipment.XInput == 0f && equipment.YInput == 0f)
@@ -71,17 +69,6 @@ public class RedEquipmentEffectState : EquipmentEffectState
             equipment.LastX = direction.x;
             equipment.LastY = direction.y;
         }        
-    }
-
-
-    private void modifyAnimationClipSpeed()
-    {
-        // If the cooldown is faster than the attack animation clip duration
-        if (originalAttackClipDuration > equipment.Cooldown)
-        {
-            float attackSpeed = originalAttackClipDuration / equipment.Cooldown;
-            equipment.Anim.SetFloat("AttackSpeed", attackSpeed);
-        }
     }
 
     protected override void SetEffect(float x, float y)
