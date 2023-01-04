@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 7590902237858024037}
   - component: {fileID: 7590902237858024042}
   m_Layer: 8
-  m_Name: Red Boss
+  m_Name: Tako
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -431,7 +431,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 671580021
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 3
   m_Sprite: {fileID: -171227005, guid: 851f97f8c938be44487e09fca371944a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -545,11 +545,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 7590902237858024036}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e65b0f2fae5e27e4bb0fe500a46a10d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 5206d639f9e0ea24d894f950dc49c52b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 7268142938181158435, guid: 48743acc0f48d6a428465307a877519d, type: 3}
+  audioClips:
+  - {fileID: 8300000, guid: 97a2cdadd3d384a4eb83b4b67a26de12, type: 3}
+  - {fileID: 8300000, guid: 331153e62feb53540bde1e1ffe2f3049, type: 3}
+  - {fileID: 8300000, guid: e114454efb3e4654a9448079dc68b9fd, type: 3}
+  - {fileID: 8300000, guid: 8cd7551b681b9bd478286acada070892, type: 3}
+  - {fileID: 8300000, guid: 9e359071ebc118c4495e4619fb1043ad, type: 3}
+  - {fileID: 8300000, guid: cb8a051a2c241b042af604dbf82050e5, type: 3}
   data: {fileID: 11400000, guid: 9fddbf50d559a954d822dea175dfd16c, type: 2}
+  lootDrop: {fileID: 0}
   target: {fileID: 0}
+  isDeathStateCalled: 0
   Blomb: {fileID: 1216158483919421035, guid: b4535db3975f48f41ad6d4bd1229cfa9, type: 3}
   BlombSpawnArea: {fileID: 0}
   fireball: {fileID: 6100034279880317823, guid: df7fee56a56d8094a959183495b515b1, type: 3}

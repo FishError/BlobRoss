@@ -16,7 +16,9 @@ public class BossBaseAttackState : BossBaseState
         base.Enter();
         boss.rb.velocity = Vector2.zero;
         if (currentAttack != null)
+        {
             currentAttack.Enter();
+        }
     }
 
     public override void Exit()
@@ -25,6 +27,7 @@ public class BossBaseAttackState : BossBaseState
         if (currentAttack != null)
             currentAttack.Exit();
         currentAttack = null;
+
     }
 
     public override void LogicUpdate()

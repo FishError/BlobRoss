@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1216158483919421032}
   - component: {fileID: 1216158483919421033}
   - component: {fileID: 1216158483919421034}
+  - component: {fileID: 973459115469993621}
   m_Layer: 8
   m_Name: Blomb
   m_TagString: Untagged
@@ -160,8 +161,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5b299e29aec6348aed237b986fc535, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 7268142938181158435, guid: 48743acc0f48d6a428465307a877519d, type: 3}
+  audioClips:
+  - {fileID: 8300000, guid: 97a2cdadd3d384a4eb83b4b67a26de12, type: 3}
+  - {fileID: 8300000, guid: 331153e62feb53540bde1e1ffe2f3049, type: 3}
+  - {fileID: 8300000, guid: d5a2fb688b0b5004b88323069c5ee9c8, type: 3}
+  - {fileID: 8300000, guid: 9ae2fbc34f5d04b41a1895950fcb41de, type: 3}
   data: {fileID: 11400000, guid: 241537cd2219a874faa319dfcb8a4f06, type: 2}
+  lootDrop: {fileID: 0}
   target: {fileID: 0}
+  isDeathStateCalled: 0
   fieldOnDeath: {fileID: 2455258822297052913, guid: 18dc9b23d2a541547bd285cc8841ceaa, type: 3}
 --- !u!195 &1216158483919421034
 NavMeshAgent:
@@ -185,6 +194,18 @@ NavMeshAgent:
   m_BaseOffset: 0.25
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &973459115469993621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216158483919421035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152e604cc78cded4e88c0b59ac3f72db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1216158484650130156
 GameObject:
   m_ObjectHideFlags: 0
