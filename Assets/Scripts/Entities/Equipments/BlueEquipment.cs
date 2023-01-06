@@ -10,6 +10,11 @@ public class BlueEquipment : Equipment
     public float Knockback { get; set; }
     #endregion
 
+    //TODO Move palette effect to Palette script once new blue equipments are gonna be implemented
+    #region Palette 
+    public GameObject paletteEffect;
+    #endregion
+
     protected override void Awake()
     {
         base.Awake();

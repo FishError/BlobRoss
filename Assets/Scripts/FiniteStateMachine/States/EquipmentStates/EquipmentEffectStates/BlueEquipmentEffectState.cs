@@ -9,6 +9,8 @@ public class BlueEquipmentEffectState : EquipmentEffectState
     public override void Enter()
     {
         base.Enter();
+        BlueEquipment blueEquipment = ((BlueEquipment)equipment);
+        Object.Instantiate(blueEquipment.paletteEffect, blueEquipment.paletteEffect.transform.position, Quaternion.identity);
     }
 
     public override void LogicUpdate()
