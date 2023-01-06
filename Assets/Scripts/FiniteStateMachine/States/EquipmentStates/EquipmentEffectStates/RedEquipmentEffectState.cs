@@ -20,10 +20,6 @@ public class RedEquipmentEffectState : EquipmentEffectState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        if (equipment.colorDropletStack == 0)
-        {
-            ((RedEquipment)equipment).originalAttackClipDuration = equipment.Anim.GetCurrentAnimatorStateInfo(0).length;
-        }
         setAttackDirection();
         equipment.OnCooldown = true;
         if (equipment.XInput == 0f && equipment.YInput == 0f)
