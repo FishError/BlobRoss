@@ -74,8 +74,8 @@ public class Equipment : Entity
     #region Equipment Stats 
     public bool OnCooldown { get; set; } 
     public float Cooldown { get; set; }
-    protected float cooldownTimer;
     public float Range { get; set; }
+    protected float cooldownTimer;
     #endregion
 
     #region Color Droplet Upgrades 

@@ -12,6 +12,10 @@ public class RedEquipment : Equipment
     public float attackSpeed { get; set; }
     #endregion
 
+    #region Animation Data
+    public float originalAttackClipDuration { get; set; }
+    #endregion
+
     protected override void Awake()
     {
         base.Awake();
@@ -24,6 +28,14 @@ public class RedEquipment : Equipment
         damage = equipmentData.Damage;
         attackSpeed = equipmentData.attackSpeed;
         Cooldown = (1 / attackSpeed);
+
+        foreach (AnimationClip clip in Anim.runtimeAnimatorController.animationClips) {
+            if (clip.name.ToLower().Contains("effect")){
+                originalAttackClipDuration = clip.length;
+                break;
+            }
+        }
+
     }
 
     protected override void Start()
@@ -40,6 +52,12 @@ public class RedEquipment : Equipment
     {
         base.setUpgrade();
         Cooldown = (1/attackSpeed);
+        // If the cooldown is faster than the attack animation clip duration
+        if (originalAttackClipDuration != 0 && originalAttackClipDuration > Cooldown)
+        {
+            float attackSpeed = originalAttackClipDuration / Cooldown;
+            Anim.SetFloat("AttackSpeed", attackSpeed);
+        }
         if (!leftClickInput && !OnCooldown)
         {
             cooldownTimer = Cooldown;

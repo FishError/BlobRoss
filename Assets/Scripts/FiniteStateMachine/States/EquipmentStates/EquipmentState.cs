@@ -10,7 +10,7 @@ public class EquipmentState : EntityState
 
     protected Equipment equipment;
     protected EquipmentData equipmentData;
-    private string animName;
+    protected string animName;
 
     public EquipmentState(Equipment equipment, FiniteStateMachine stateMachine, EquipmentData equipmentData, string animName): base(stateMachine)
     {
