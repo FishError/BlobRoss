@@ -32,7 +32,6 @@ public class MapController : MonoBehaviour
     [Header("Loading Screen")]
     public GameObject loadingScreen;
     public Slider progressSlider;
-    private int scenesLoaded;
 
     public Map Map { get; private set; }
 
@@ -41,28 +40,17 @@ public class MapController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //SceneManager.activeSceneChanged += ChangedActiveScene;
         StartCoroutine(GenerateAndLoadMap());
 
         roomControllers = new List<RoomController>();
     }
 
-    /*void OnDestroy()
-    {
-        SceneManager.activeSceneChanged -= ChangedActiveScene;
-    }*/
-
     public IEnumerator GenerateAndLoadMap()
     {
-        scenesLoaded = 0;
         progressSlider.value = 0;
         loadingScreen.SetActive(true);
         Map = PGM.ProcedurallyGenerateMap(maxWidth, maxHeight, numOfRooms, roomType, RedMobs, Rewards);
-        yield return StartCoroutine(LoadMap());
-        navMeshSurface.BuildNavMesh();
-        SpawnPlayer();
-        yield return new WaitForSeconds(0.2f);
-        loadingScreen.SetActive(false);
+        yield return StartCoroutine(LoadMap(OnUpdateProgress, OnSceneLoaded, false));
     }
 
     private void SpawnPlayer()
@@ -71,10 +59,12 @@ public class MapController : MonoBehaviour
         player.transform.position = roomController.transform.position;
     }
 
-    public IEnumerator LoadMap()
+    public IEnumerator LoadMap(System.Action<float> progress, System.Action<Scene, Vector2, Room> onSceneLoaded, bool activateDirectly)
     {
         Room[,] array2D = Map.Array2D;
-        List<AsyncOperation> operations = new List<AsyncOperation>();
+        int totalScenesLoaded = 0;
+        List<AsyncOperation> sceneLoadOperations = new List<AsyncOperation>();
+        
         for (int y = 0; y < array2D.GetUpperBound(0); y++)
         {
             for (int x = 0; x < array2D.GetUpperBound(1); x++)
@@ -82,29 +72,79 @@ public class MapController : MonoBehaviour
                 if (array2D[y, x] != null)
                 {
                     Room room = array2D[y, x];
-                    int operationIndex = SceneManager.sceneCount;
-                    room.index = operationIndex;
-                    AsyncOperation operation = SceneManager.LoadSceneAsync(room.Scene, LoadSceneMode.Additive);
+                    room.index = SceneManager.sceneCount;
                     Vector2 pos = new Vector2(x * 35, y * -35);
+
+                    AsyncOperation operation = SceneManager.LoadSceneAsync(room.Scene, LoadSceneMode.Additive);
+                    operation.allowSceneActivation = activateDirectly;
 
                     operation.completed += (s) =>
                     {
-                        Scene scene = SceneManager.GetSceneAt(operationIndex);
-                        GameObject roomObject = scene.GetRootGameObjects()[0];
-                        roomObject.transform.position = pos;
-                        RoomController roomController = roomObject.GetComponent<RoomController>();
-                        roomController.Room = room;
-                        roomController.MatchSceneWithRoomProperties();
-                        roomControllers.Add(roomController);
-                        UpdateLoadingProgressSlider();
-                    };
+                        totalScenesLoaded++;
+                        onSceneLoaded(SceneManager.GetSceneAt(room.index), pos, room);
 
-                    operations.Add(operation);
+                    };
+                    
+                    sceneLoadOperations.Add(operation);
                 }
             }
         }
 
-        yield return new WaitUntil(() => operations.All(op => op.isDone));
+        float activeProgress = 0;
+        float targetProgress = (activateDirectly) ? 1 * numOfRooms : 0.9f * numOfRooms;
+        WaitForSeconds waitForSeconds = new WaitForSeconds(0.1f);
+
+        while (!Mathf.Approximately(activeProgress, targetProgress))
+        {
+            activeProgress = 0;
+
+            foreach (AsyncOperation op in sceneLoadOperations)
+            {
+                activeProgress += op.progress;
+            }
+
+            progress.Invoke(Mathf.InverseLerp(0, targetProgress + numOfRooms, activeProgress + totalScenesLoaded));
+
+            yield return waitForSeconds;
+        }
+
+        if (!activateDirectly)
+        {
+            activeProgress = targetProgress;
+
+            foreach (AsyncOperation op in sceneLoadOperations)
+            {
+                op.allowSceneActivation = true;
+            }
+        }
+
+        while (totalScenesLoaded != numOfRooms)
+        {
+            yield return waitForSeconds;
+
+            progress.Invoke(Mathf.InverseLerp(0, targetProgress + numOfRooms, activeProgress + totalScenesLoaded));
+        }
+
+        navMeshSurface.BuildNavMesh();
+        SpawnPlayer();
+
+        yield return waitForSeconds;
+        loadingScreen.SetActive(false);
+    }
+
+    private void OnSceneLoaded(Scene scene, Vector2 pos, Room room)
+    {
+        GameObject roomObject = scene.GetRootGameObjects()[0];
+        roomObject.transform.position = pos;
+        RoomController roomController = roomObject.GetComponent<RoomController>();
+        roomController.Room = room;
+        roomController.MatchSceneWithRoomProperties();
+        roomControllers.Add(roomController);
+    }
+
+    private void OnUpdateProgress(float progress)
+    {
+        progressSlider.value = progress;
     }
 
     public void LoadBossRoom()
@@ -114,23 +154,15 @@ public class MapController : MonoBehaviour
             SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(rc.Room.index));
         }
 
-        SceneManager.LoadSceneAsync("dev_placeholder_boss");
-    }
-
-    private void UpdateLoadingProgressSlider()
-    {
-        scenesLoaded++;
-        progressSlider.value = (float)scenesLoaded / numOfRooms;
-    }
-
-    /*private void ChangedActiveScene(Scene current, Scene next)
-    {
-        GameObject roomController = GameObject.Find("BossRoomController");
-        if (roomController != null)
+        AsyncOperation operation = SceneManager.LoadSceneAsync("dev_placeholder_boss");
+        operation.completed += (s) =>
         {
-            BossRoomController controller = roomController.GetComponent<BossRoomController>();
-            controller.SetPlayerAtEnterPoint(player);
-            controller.SetCameraConfiner(cinemachineCamera);
-        }
-    }*/
+            Scene scene = SceneManager.GetSceneByName("dev_placeholder_boss");
+            GameObject roomObject = scene.GetRootGameObjects()[0];
+            BossRoomController roomController = roomObject.GetComponent<BossRoomController>();
+            roomController.SetPlayerAtEnterPoint(player);
+            roomController.SetCameraConfiner(cinemachineCamera);
+        };
+    }
+
 }

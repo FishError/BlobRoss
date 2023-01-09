@@ -16,6 +16,7 @@ public class Dasher : Mob
         base.Awake();
         Data = (DasherData)data;
 
+        SpawnState = new MobBaseSpawnState(this, StateMachine, Data, Anim, "Idle");
         IdleState = new MobBaseIdleState(this, StateMachine, Data, Anim, "Idle");
         PatrolState = new MobBasePatrolState(this, StateMachine, Data, Anim, "Move");
         AlertedState = new MobBaseAlertedState(this, StateMachine, Data, Anim, "Alerted");

@@ -10,6 +10,7 @@ public abstract class Entity : MonoBehaviour
 
     #region Animation References
     public Animator Anim { get; protected set; }
+    public SpriteRenderer Renderer { get; protected set; }
     #endregion
 
     #region Physics References
@@ -26,6 +27,7 @@ public abstract class Entity : MonoBehaviour
     {
         StateMachine = gameObject.AddComponent<FiniteStateMachine>();
         Anim = GetComponent<Animator>();
+        Renderer = GetComponent<SpriteRenderer>();
     }
 
     protected virtual void Start()

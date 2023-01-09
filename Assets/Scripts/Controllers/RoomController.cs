@@ -98,7 +98,7 @@ public class RoomController : MonoBehaviour
         topGate.SetActive(false);
     }
 
-    public void SpawnEnemies(GameObject player)
+    public IEnumerator SpawnEnemies(GameObject player)
     {
         if (enemySpawnAreas != null)
         {
@@ -116,6 +116,8 @@ public class RoomController : MonoBehaviour
                     enemyObject.GetComponent<Enemy>().target = player;
                     enemyObject.transform.SetParent(enemies);
                 }
+
+                yield return new WaitForSeconds(0.5f);
             }
         }
 
@@ -155,7 +157,7 @@ public class RoomController : MonoBehaviour
         }*/
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private IEnumerator OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
@@ -163,9 +165,9 @@ public class RoomController : MonoBehaviour
             {
                 if (Room.Enemies.Count > 0)
                 {
-                    state = RoomStates.PlayerEntered;
                     ActivateGates();
-                    SpawnEnemies(collision.gameObject);
+                    yield return StartCoroutine(SpawnEnemies(collision.gameObject));
+                    state = RoomStates.PlayerEntered;
                 }
                 else
                 {
