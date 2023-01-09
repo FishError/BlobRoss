@@ -10,7 +10,7 @@ public class ColorDropletController : MonoBehaviour
 
     private void Start()
     {
-        SFXManager.Instance.PlayColorDropletBasedAudio(audioSource, this.gameObject, 0, true);
+        SFXManager.Instance.PlayColorDropletRelatedAudio(audioSource, this.gameObject, 0, true);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -79,7 +79,7 @@ public class ColorDropletController : MonoBehaviour
                 yellowEquipment.setUpgrade();
 
             }
-            SFXManager.Instance.PlayColorDropletBasedAudio(audioSource, this.gameObject, 1, false);
+            SFXManager.Instance.PlayColorDropletRelatedAudio(audioSource, this.gameObject, 1, false);
             StartCoroutine(SFXManager.Instance.WaitForAudioClipToEnd(this.gameObject, SFXManager.Instance.colorDropletSoundEffects[1].length));
         }
     }

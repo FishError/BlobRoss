@@ -12,7 +12,7 @@ public class MobBaseDeathState : MobBaseState
         enemy.SetVelocityX(0f);
         enemy.SetVelocityY(0f);
         enemy.isDeathStateCalled = true;
-        SFXManager.Instance.PlayEnemyBasedAudio(enemy, enemy.gameObject, 0, 0f, false);
+        SFXManager.Instance.PlayEnemyRelatedAudio(enemy, enemy.gameObject, 0, 0f, false);
     }
 
     public override void Exit()

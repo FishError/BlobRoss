@@ -18,7 +18,7 @@ public class Boulder : EnemyProjectile
         {
             SetVelocity(Vector2.zero, 0);
             SetLifeTime(destroyAfterBreakTime);
-            SFXManager.Instance.PlayProjectileBasedAudio(this.audioSource, 1, 0.8f);
+            SFXManager.Instance.PlayProjectileRelatedAudio(this.audioSource, 1, 0.8f);
             GetComponent<Animator>().SetBool("goBreak", true);
             falling = false;
         }

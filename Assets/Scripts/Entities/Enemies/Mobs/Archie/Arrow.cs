@@ -7,6 +7,6 @@ public class Arrow : EnemyProjectile
     protected override void Start()
     {
         base.Start();
-        SFXManager.Instance.PlayProjectileBasedAudio(this.audioSource, 0, 0.8f);
+        SFXManager.Instance.PlayProjectileRelatedAudio(this.audioSource, 0, 0.8f);
     }
 }

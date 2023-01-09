@@ -15,7 +15,7 @@ public class BlombAttackState : BlombState
     {
         base.Enter();
         blomb.rb.velocity = Vector2.zero;
-        SFXManager.Instance.PlayEnemyBasedAudio(blomb, blomb.gameObject, 2, 0f, true);
+        SFXManager.Instance.PlayEnemyRelatedAudio(blomb, blomb.gameObject, 2, 0f, true);
     }
 
     public override void Exit()
@@ -30,7 +30,7 @@ public class BlombAttackState : BlombState
         if (animState.IsName(animName) && animState.normalizedTime >= 1)
         {
             GameObject fireField = Object.Instantiate(blomb.fieldOnDeath, blomb.transform.position, Quaternion.identity);
-            SFXManager.Instance.PlayEnemyBasedAudio(blomb, fireField.gameObject, 3, 0f, false);
+            SFXManager.Instance.PlayEnemyRelatedAudio(blomb, fireField.gameObject, 3, 0f, false);
             Object.Destroy(blomb.gameObject);
 
             if (blomb.lootDrop != null)

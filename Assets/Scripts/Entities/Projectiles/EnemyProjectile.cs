@@ -10,7 +10,7 @@ public class EnemyProjectile : Projectile
         {
             Player player = collision.gameObject.GetComponent<Player>();
             player.ModifyHealthPoints(-Damage);
-            SFXManager.Instance.PlayPlayerBasedAudio(player, player.gameObject, 1, 0f, false);
+            SFXManager.Instance.PlayPlayerRelatedAudio(player, player.gameObject, 1, 0f, false);
         }
 
         base.OnCollisionEnter2D(collision);

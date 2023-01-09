@@ -51,7 +51,7 @@ public class SFXManager : MonoBehaviour
             AudioManager.Instance.PlaySFXAudio(clip);
     }
 
-    public void PlayPlayerBasedAudio(Player player, GameObject parentObject, int index, float delay, bool playAfterDestroy)
+    public void PlayPlayerRelatedAudio(Player player, GameObject parentObject, int index, float delay, bool playAfterDestroy)
     {
         AudioSource audio = Object.Instantiate(player.audioSource);
         audio.GetComponent<SFXDestroyer>().parentObject = parentObject;
@@ -60,7 +60,7 @@ public class SFXManager : MonoBehaviour
         audio.PlayDelayed(delay);
     }
 
-    public void PlayEquipmentBasedAudio(Equipment equipment, int index)
+    public void PlayEquipmentRelatedAudio(Equipment equipment, int index)
     {
         AudioSource audio = Object.Instantiate(equipment.audioSource);
         audio.GetComponent<SFXDestroyer>().parentObject = equipment.gameObject;
@@ -68,7 +68,7 @@ public class SFXManager : MonoBehaviour
         audio.Play();
     }
 
-    public void PlayEnemyBasedAudio(Enemy enemy, GameObject parentObject, int index, float delay, bool playAfterDestroy)
+    public void PlayEnemyRelatedAudio(Enemy enemy, GameObject parentObject, int index, float delay, bool playAfterDestroy)
     {
         AudioSource audio = Object.Instantiate(enemy.audioSource);
         audio.GetComponent<SFXDestroyer>().parentObject = parentObject;
@@ -77,14 +77,14 @@ public class SFXManager : MonoBehaviour
         audio.PlayDelayed(delay);
     }
 
-    public void PlayProjectileBasedAudio(AudioSource audioSource, int index, float volume)
+    public void PlayProjectileRelatedAudio(AudioSource audioSource, int index, float volume)
     {
         AudioSource audio = Object.Instantiate(audioSource);
         audio.GetComponent<SFXDestroyer>().parentObject = this.gameObject;
         audio.PlayOneShot(projectileSoundEffects[index], volume);
     }
 
-    public void PlayColorDropletBasedAudio(AudioSource audioSource, GameObject parentObject, int index, bool playAfterDestroy)
+    public void PlayColorDropletRelatedAudio(AudioSource audioSource, GameObject parentObject, int index, bool playAfterDestroy)
     {
         AudioSource audio = Object.Instantiate(audioSource);
         audio.GetComponent<SFXDestroyer>().parentObject = parentObject;

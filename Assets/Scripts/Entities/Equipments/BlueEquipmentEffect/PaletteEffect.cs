@@ -13,7 +13,7 @@ public class PaletteEffect : MonoBehaviour
     private void OnEnable()
     {
         equipment = transform.parent.GetComponent<BlueEquipment>();
-        SFXManager.Instance.PlayEquipmentBasedAudio(equipment, 1);
+        SFXManager.Instance.PlayEquipmentRelatedAudio(equipment, 1);
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
         direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
         direction.Normalize();
