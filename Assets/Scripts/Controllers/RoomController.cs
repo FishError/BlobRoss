@@ -2,6 +2,14 @@ using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+
+public enum RoomStates
+{
+    NotCleared,
+    PlayerEntered,
+    Cleared
+}
 
 public class RoomController : MonoBehaviour
 {
@@ -10,48 +18,55 @@ public class RoomController : MonoBehaviour
     public GameObject grid;
     public Transform enemySpawnAreas;
     public Transform enemies;
+    public Transform playerSpawn;
 
     [Header("Dynamic Tilemaps")]
-    public GameObject leftOpen;
     public GameObject leftClosed;
-    public GameObject rightOpen;
     public GameObject rightClosed;
-    public GameObject bottomOpen;
     public GameObject bottomClosed;
-    public GameObject topOpen;
     public GameObject topClosed;
 
-    [Header("Room Connectors")]
-    public GameObject roomConnectorLeft;
-    public GameObject roomConnectorRight;
-    public GameObject roomConnectorDown;
-    public GameObject roomConnectorUp;
+    public GameObject leftGate;
+    public GameObject rightGate;
+    public GameObject bottomGate;
+    public GameObject topGate;
 
     #region Room States
+    private RoomStates state;
     private bool oneEnemyRemaining;
-    private bool canLeave;
     #endregion
+
+    private void Start()
+    {
+        state = RoomStates.NotCleared;
+    }
 
     private void Update()
     {
-        if (enemies.childCount == 1 && !oneEnemyRemaining)
+        switch (state)
         {
-            Enemy enemy = enemies.GetChild(0).GetComponent<Enemy>();
-            enemy.lootDrop = Room.Reward;
-            oneEnemyRemaining = true;
+            case RoomStates.NotCleared:
+                break;
+            case RoomStates.PlayerEntered:
+                if (enemies.childCount == 1 && !oneEnemyRemaining)
+                {
+                    Enemy enemy = enemies.GetChild(0).GetComponent<Enemy>();
+                    enemy.lootDrop = Room.Reward;
+                    oneEnemyRemaining = true;
+                }
+
+                if (enemies.childCount == 0)
+                {
+                    Room.RemoveAllEnemies();
+                    DeactivateGates();
+                    state = RoomStates.Cleared;
+                }
+                break;
+            case RoomStates.Cleared:
+                break;
+            default:
+                break;
         }
-
-        if (enemies.childCount == 0 && !canLeave)
-        {   
-            Room.RemoveAllEnemies();
-            canLeave = true;
-            roomConnectorLeft.SetActive(true);
-            roomConnectorRight.SetActive(true);
-            roomConnectorDown.SetActive(true);
-            roomConnectorUp.SetActive(true);
-        }
-
-
     }
 
     public void SetCameraConfiner(GameObject cinemachineCamera)
@@ -59,51 +74,31 @@ public class RoomController : MonoBehaviour
         cinemachineCamera.GetComponentInChildren<CinemachineConfiner>().m_BoundingShape2D = grid.GetComponent<Collider2D>();
     }
 
-    public void UpdatePlayerPosition(Direction previousRoomDir, GameObject player)
-    {
-        GameObject roomConnector = null;
-        switch (previousRoomDir)
-        {
-            case Direction.Left:
-                roomConnector = roomConnectorLeft;
-                break;
-            case Direction.Right:
-                roomConnector = roomConnectorRight;
-                break;
-            case Direction.Up:
-                roomConnector = roomConnectorUp;
-                break;
-            case Direction.Down:
-                roomConnector = roomConnectorDown;
-                break;
-        }
-
-        if (roomConnector != null)
-        {
-            Transform spawnLocation = roomConnector.transform.Find("EntranceSpawn");
-            if (spawnLocation != null)
-            {
-                player.transform.position = spawnLocation.position;
-            }
-        }
-    }
-
     public void MatchSceneWithRoomProperties()
     {
-        leftOpen.SetActive(Room.LeftRoom != null);
         leftClosed.SetActive(Room.LeftRoom == null);
-
-        rightOpen.SetActive(Room.RightRoom != null);
         rightClosed.SetActive(Room.RightRoom == null);
-        
-        bottomOpen.SetActive(Room.BottomRoom != null);
         bottomClosed.SetActive(Room.BottomRoom == null);
-        
-        topOpen.SetActive(Room.TopRoom != null);
         topClosed.SetActive(Room.TopRoom == null);
     }
 
-    public void SpawnEnemies(GameObject player)
+    public void ActivateGates()
+    {
+        leftGate.SetActive(Room.LeftRoom != null);
+        rightGate.SetActive(Room.RightRoom != null);
+        bottomGate.SetActive(Room.BottomRoom != null);
+        topGate.SetActive(Room.TopRoom != null);
+    }
+
+    public void DeactivateGates()
+    {
+        leftGate.SetActive(false);
+        rightGate.SetActive(false);
+        bottomGate.SetActive(false);
+        topGate.SetActive(false);
+    }
+
+    public IEnumerator SpawnEnemies(GameObject player)
     {
         if (enemySpawnAreas != null)
         {
@@ -121,6 +116,8 @@ public class RoomController : MonoBehaviour
                     enemyObject.GetComponent<Enemy>().target = player;
                     enemyObject.transform.SetParent(enemies);
                 }
+
+                yield return new WaitForSeconds(0.5f);
             }
         }
 
@@ -158,5 +155,25 @@ public class RoomController : MonoBehaviour
                 mob.GetComponent<Enemy>().target = player;
             }
         }*/
+    }
+
+    private IEnumerator OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            if (state == RoomStates.NotCleared)
+            {
+                if (Room.Enemies.Count > 0)
+                {
+                    ActivateGates();
+                    yield return StartCoroutine(SpawnEnemies(collision.gameObject));
+                    state = RoomStates.PlayerEntered;
+                }
+                else
+                {
+                    state = RoomStates.Cleared;
+                }
+            }
+        }
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: RedEquipmentData
   m_EditorClassIdentifier: 
   rate: 1
-  Damage: 5
+  Damage: 100
   attackSpeed: 2
   DashVelocity: 0
   DashCooldown: 0

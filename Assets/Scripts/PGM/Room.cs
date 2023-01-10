@@ -13,6 +13,9 @@ public class Room
     public Room LeftRoom { get; set; }
     public Room RightRoom { get; set; }
 
+    public RoomController Controller { get; set; }
+    public int index { get; set; }
+
     public Room(string sceneName)
     {
         Scene = sceneName;
