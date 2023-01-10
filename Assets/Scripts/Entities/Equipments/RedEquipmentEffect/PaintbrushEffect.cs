@@ -19,7 +19,7 @@ public class PaintbrushEffect : MonoBehaviour
 
         if (animState.normalizedTime >= animationCounter)
         {
-            equipment.EffectState.PlayEquipmentEffectAudio(0);
+            SFXManager.Instance.PlayEquipmentRelatedAudio(equipment, 0);
             animationCounter++;
         }
     }
@@ -30,8 +30,7 @@ public class PaintbrushEffect : MonoBehaviour
         {
             Enemy enemy = other.gameObject.GetComponent<Enemy>();
             enemy.ModifyHealthPoints(-equipment.damage);
-            EnemyState enemyState = (EnemyState)enemy.StateMachine.CurrentState;
-            enemyState.PlayEnemyAudio(enemy, enemy.gameObject, 1, 0f, false);
+            SFXManager.Instance.PlayEnemyRelatedAudio(enemy, enemy.gameObject, 1, 0f, false);
         }
     }
 }

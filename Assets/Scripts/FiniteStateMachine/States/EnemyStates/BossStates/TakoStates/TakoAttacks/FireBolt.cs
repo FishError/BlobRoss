@@ -73,7 +73,7 @@ public class Firebolt : BossAttack
         Vector3 spawnPos = GetFireballSpawnPosition();
         GameObject fireball = Object.Instantiate(boss.fireball, spawnPos, Quaternion.identity);
         Fireball fb = fireball.GetComponent<Fireball>();
-        fb.PlayOnSpecificVolume(0.8f);
+        SFXManager.Instance.PlayProjectileRelatedAudio(fb.audioSource, 2, 0.8f);
         fb.SetDamage(boss.Attack);
         fb.SetVelocity((boss.target.transform.position - spawnPos).normalized);
         currentAmtFireball++;

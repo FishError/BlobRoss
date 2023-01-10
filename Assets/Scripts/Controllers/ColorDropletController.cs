@@ -7,11 +7,10 @@ public class ColorDropletController : MonoBehaviour
     public Color color;
     public ColorDropletData colorDropletData;
     public AudioSource audioSource;
-    public AudioClip[] audioClips;
 
     private void Start()
     {
-        PlayColorDropletAudio(this.gameObject, 0, 0f, true);
+        SFXManager.Instance.PlayColorDropletRelatedAudio(audioSource, this.gameObject, 0, true);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -80,23 +79,8 @@ public class ColorDropletController : MonoBehaviour
                 yellowEquipment.setUpgrade();
 
             }
-            PlayColorDropletAudio(this.gameObject, 1, 0f, false);
-            StartCoroutine(WaitForClipToEnd(audioClips[1].length));
+            SFXManager.Instance.PlayColorDropletRelatedAudio(audioSource, this.gameObject, 1, false);
+            StartCoroutine(SFXManager.Instance.WaitForAudioClipToEnd(this.gameObject, SFXManager.Instance.colorDropletSoundEffects[1].length));
         }
-    }
-
-    IEnumerator WaitForClipToEnd(float clipLength)
-    {
-        yield return new WaitForSeconds(clipLength);
-        Destroy(gameObject);
-    }
-
-    public void PlayColorDropletAudio(GameObject parentObject, int index, float delay, bool playAfterDestroy)
-    {
-        AudioSource audio = Object.Instantiate(audioSource);
-        audio.GetComponent<SFXDestroyer>().parentObject = parentObject;
-        audio.GetComponent<SFXDestroyer>().playAfterDestroy = playAfterDestroy;
-        audio.clip = audioClips[index];
-        audio.PlayDelayed(delay);
     }
 }

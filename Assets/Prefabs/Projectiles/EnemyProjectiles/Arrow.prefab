@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: c0a123a226c434344bf636f40bd7a4d8, type: 2}
+  audioSource: {fileID: 7268142938181158435, guid: 48743acc0f48d6a428465307a877519d, type: 3}
   rb: {fileID: 0}
 --- !u!60 &8818640322995540952
 PolygonCollider2D:

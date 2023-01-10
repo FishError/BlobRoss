@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3950424390069962461
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3950424390069962463}
+  - component: {fileID: 3950424390069962460}
+  m_Layer: 0
+  m_Name: SFXManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3950424390069962463
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3950424390069962461}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3950424390069962460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3950424390069962461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89c78ddc43089b946a529d8014b72b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSoundEffects:
+  - {fileID: 8300000, guid: 97a2cdadd3d384a4eb83b4b67a26de12, type: 3}
+  - {fileID: 8300000, guid: 74c0157a89fa7b14ab5ab5c996f1b467, type: 3}
+  equipmentSoundEffects:
+  - {fileID: 8300000, guid: 87e6a6aad4bf9df4aa7a0a15925eeab7, type: 3}
+  - {fileID: 8300000, guid: e41a55a4ba562454d9cbde4de8cbd534, type: 3}
+  - {fileID: 8300000, guid: a122685b93654cd4eb51eabe8c90a8d4, type: 3}
+  archieSoundEffects:
+  - {fileID: 8300000, guid: 97a2cdadd3d384a4eb83b4b67a26de12, type: 3}
+  - {fileID: 8300000, guid: 331153e62feb53540bde1e1ffe2f3049, type: 3}
+  blombSoundEffects:
+  - {fileID: 8300000, guid: 97a2cdadd3d384a4eb83b4b67a26de12, type: 3}
+  - {fileID: 8300000, guid: 331153e62feb53540bde1e1ffe2f3049, type: 3}
+  - {fileID: 8300000, guid: d5a2fb688b0b5004b88323069c5ee9c8, type: 3}
+  - {fileID: 8300000, guid: 9ae2fbc34f5d04b41a1895950fcb41de, type: 3}
+  dasherSoundEffects:
+  - {fileID: 8300000, guid: 97a2cdadd3d384a4eb83b4b67a26de12, type: 3}
+  - {fileID: 8300000, guid: 331153e62feb53540bde1e1ffe2f3049, type: 3}
+  - {fileID: 8300000, guid: e1c1d636d1053d74ca11ad74ff757209, type: 3}
+  takoSoundEffects:
+  - {fileID: 8300000, guid: 97a2cdadd3d384a4eb83b4b67a26de12, type: 3}
+  - {fileID: 8300000, guid: 331153e62feb53540bde1e1ffe2f3049, type: 3}
+  - {fileID: 8300000, guid: e114454efb3e4654a9448079dc68b9fd, type: 3}
+  - {fileID: 8300000, guid: 8cd7551b681b9bd478286acada070892, type: 3}
+  - {fileID: 8300000, guid: 9e359071ebc118c4495e4619fb1043ad, type: 3}
+  - {fileID: 8300000, guid: cb8a051a2c241b042af604dbf82050e5, type: 3}
+  projectileSoundEffects:
+  - {fileID: 8300000, guid: c319a86e649d588498c55e6a7a2669af, type: 3}
+  - {fileID: 8300000, guid: 5e95582a8e4d0dd41a185cc9ca26dbaa, type: 3}
+  - {fileID: 8300000, guid: e9c87971be7bdb14c981830c2a9a275f, type: 3}
+  colorDropletSoundEffects:
+  - {fileID: 8300000, guid: e9ddccb8dee6ed744ace65dc5f09865b, type: 3}
+  - {fileID: 8300000, guid: 55d1ec4196049004b9778ea5290ba690, type: 3}

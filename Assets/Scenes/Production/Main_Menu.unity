@@ -758,8 +758,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 8002120758840237474, guid: 3394bf56fede26740a99eded2e410461, type: 3}
-        m_TargetAssemblyTypeName: SFXController, Assembly-CSharp
+      - m_Target: {fileID: 3950424390069962460, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
+        m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
         m_MethodName: PlaySoundEffect
         m_Mode: 2
         m_Arguments:
@@ -1367,7 +1367,7 @@ RectTransform:
   - {fileID: 2055852012}
   - {fileID: 1779985236}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1558,8 +1558,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8002120758840237474, guid: 3394bf56fede26740a99eded2e410461, type: 3}
-        m_TargetAssemblyTypeName: SFXController, Assembly-CSharp
+      - m_Target: {fileID: 3950424390069962460, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
+        m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
         m_MethodName: PlaySoundEffect
         m_Mode: 2
         m_Arguments:
@@ -1704,8 +1704,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8002120758840237474, guid: 3394bf56fede26740a99eded2e410461, type: 3}
-        m_TargetAssemblyTypeName: SFXController, Assembly-CSharp
+      - m_Target: {fileID: 3950424390069962460, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
+        m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
         m_MethodName: PlaySoundEffect
         m_Mode: 2
         m_Arguments:
@@ -1763,7 +1763,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5685170536943728121, guid: b00b5d2faee367b4e9b2895843359148, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5685170536943728121, guid: b00b5d2faee367b4e9b2895843359148, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4841,6 +4841,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 3950424390069962460, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
+        m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
+        m_MethodName: PlaySoundEffect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 5f14769f6d5c06f46b5d04fb30365582, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_IsOn: 1
 --- !u!114 &3671858126591488200
 MonoBehaviour:
@@ -4914,6 +4926,63 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &3950424390023207513
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3950424390069962461, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
+      propertyPath: m_Name
+      value: SFXManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950424390069962463, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950424390069962463, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950424390069962463, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950424390069962463, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950424390069962463, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950424390069962463, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950424390069962463, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950424390069962463, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950424390069962463, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950424390069962463, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3950424390069962463, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
 --- !u!224 &3975858845766336814
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5071,8 +5140,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 8002120758840237474, guid: 3394bf56fede26740a99eded2e410461, type: 3}
-        m_TargetAssemblyTypeName: SFXController, Assembly-CSharp
+      - m_Target: {fileID: 3950424390069962460, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
+        m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
         m_MethodName: PlaySoundEffect
         m_Mode: 2
         m_Arguments:
@@ -5315,8 +5384,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8002120758840237474, guid: 3394bf56fede26740a99eded2e410461, type: 3}
-        m_TargetAssemblyTypeName: SFXController, Assembly-CSharp
+      - m_Target: {fileID: 3950424390069962460, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
+        m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
         m_MethodName: PlaySoundEffect
         m_Mode: 2
         m_Arguments:
@@ -6806,8 +6875,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 8002120758840237474, guid: 3394bf56fede26740a99eded2e410461, type: 3}
-        m_TargetAssemblyTypeName: SFXController, Assembly-CSharp
+      - m_Target: {fileID: 3950424390069962460, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
+        m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
         m_MethodName: PlaySoundEffect
         m_Mode: 2
         m_Arguments:
@@ -6934,8 +7003,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 8002120758840237474, guid: 3394bf56fede26740a99eded2e410461, type: 3}
-        m_TargetAssemblyTypeName: SFXController, Assembly-CSharp
+      - m_Target: {fileID: 3950424390069962460, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
+        m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
         m_MethodName: PlaySoundEffect
         m_Mode: 2
         m_Arguments:
@@ -7425,8 +7494,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 8002120758840237474, guid: 3394bf56fede26740a99eded2e410461, type: 3}
-        m_TargetAssemblyTypeName: SFXController, Assembly-CSharp
+      - m_Target: {fileID: 3950424390069962460, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
+        m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
         m_MethodName: PlaySoundEffect
         m_Mode: 2
         m_Arguments:
@@ -8803,6 +8872,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3950424390069962460, guid: cf1ae9e39688a0743b72bc7f8855f1e6, type: 3}
+        m_TargetAssemblyTypeName: SFXManager, Assembly-CSharp
+        m_MethodName: PlaySoundEffect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 5f14769f6d5c06f46b5d04fb30365582, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

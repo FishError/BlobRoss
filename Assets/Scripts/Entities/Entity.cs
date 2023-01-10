@@ -21,7 +21,6 @@ public abstract class Entity : MonoBehaviour
 
     #region Audio Source Reference
     public AudioSource audioSource;
-    public AudioClip[] audioClips;
     #endregion
     protected virtual void Awake()
     {
