@@ -20,7 +20,7 @@ public class PlayerDeathState : PlayerState
         player.SetVelocityX(0f);
         player.SetVelocityY(0f);
         player.isDeathStateCalled = true;
-        player.DeathState.PlayPlayerBasedAudio(player, player.gameObject, 0, 0f, false);
+        SFXManager.Instance.PlayPlayerRelatedAudio(player, player.gameObject, 0, 0f, false);
     }
 
     public override void Exit()

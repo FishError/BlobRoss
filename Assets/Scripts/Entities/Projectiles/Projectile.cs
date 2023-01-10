@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Projectile : MonoBehaviour
 {
     public ProjectileData data;
+    public AudioSource audioSource;
 
     public float DamageRatio { get; set; }
     public float Damage { get; set; }

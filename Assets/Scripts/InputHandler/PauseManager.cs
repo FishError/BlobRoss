@@ -61,6 +61,7 @@ public class PauseManager : MonoBehaviour
     public void BackToMainMenu(string scene)
     {
         SceneManager.LoadScene(scene);
+        destroyObjects.Add(GameObject.Find("SFXManager"));
         for (int i = 0; i < destroyObjects.Count; i++)
         {
             Destroy(destroyObjects[i]);
