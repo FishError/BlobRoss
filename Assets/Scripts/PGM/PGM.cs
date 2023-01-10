@@ -40,7 +40,7 @@ public class PGM
                 }
                 else
                 {
-                    array2D[current[0], current[1]] = new Room("placeholder_boss_entrance_new");
+                    array2D[current[0], current[1]] = new Room("placeholder_boss_entrance");
                 }
                 roomCount++;
             }

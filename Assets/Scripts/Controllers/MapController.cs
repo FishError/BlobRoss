@@ -59,12 +59,32 @@ public class MapController : MonoBehaviour
         player.transform.position = roomController.transform.position;
     }
 
+    private void OnSceneLoaded(Scene scene, Vector2 pos, Room room)
+    {
+        GameObject roomObject = scene.GetRootGameObjects()[0];
+        roomObject.transform.position = pos;
+        RoomController roomController = roomObject.GetComponent<RoomController>();
+        roomController.Room = room;
+        roomController.MatchSceneWithRoomProperties();
+        roomControllers.Add(roomController);
+    }
+
+    private void OnUpdateProgress(float progress)
+    {
+        progressSlider.value = progress;
+    }
+
+    public void OnEnterBossRoom()
+    {
+        StartCoroutine(UnloadMapAndLoadBossRoom(OnUpdateProgress));
+    }
+
     public IEnumerator LoadMap(System.Action<float> progress, System.Action<Scene, Vector2, Room> onSceneLoaded, bool activateDirectly)
     {
         Room[,] array2D = Map.Array2D;
         int totalScenesLoaded = 0;
         List<AsyncOperation> sceneLoadOperations = new List<AsyncOperation>();
-        
+
         for (int y = 0; y < array2D.GetUpperBound(0); y++)
         {
             for (int x = 0; x < array2D.GetUpperBound(1); x++)
@@ -84,7 +104,7 @@ public class MapController : MonoBehaviour
                         onSceneLoaded(SceneManager.GetSceneAt(room.index), pos, room);
 
                     };
-                    
+
                     sceneLoadOperations.Add(operation);
                 }
             }
@@ -132,22 +152,7 @@ public class MapController : MonoBehaviour
         loadingScreen.SetActive(false);
     }
 
-    private void OnSceneLoaded(Scene scene, Vector2 pos, Room room)
-    {
-        GameObject roomObject = scene.GetRootGameObjects()[0];
-        roomObject.transform.position = pos;
-        RoomController roomController = roomObject.GetComponent<RoomController>();
-        roomController.Room = room;
-        roomController.MatchSceneWithRoomProperties();
-        roomControllers.Add(roomController);
-    }
-
-    private void OnUpdateProgress(float progress)
-    {
-        progressSlider.value = progress;
-    }
-
-    public IEnumerator UnloadMapAndLoadBossRoom()
+    private IEnumerator UnloadMapAndLoadBossRoom(System.Action<float> progress)
     {
         progressSlider.value = 0;
         loadingScreen.SetActive(true);
@@ -162,13 +167,14 @@ public class MapController : MonoBehaviour
             op.completed += (s) =>
             {
                 totalScenesUnloaded++;
+                roomControllers.Remove(rc);
             };
         }
 
-        AsyncOperation bossSceneLoadOperation = SceneManager.LoadSceneAsync("dev_placeholder_boss");
+        AsyncOperation bossSceneLoadOperation = SceneManager.LoadSceneAsync(6, LoadSceneMode.Additive);
         bossSceneLoadOperation.completed += (s) =>
         {
-            Scene scene = SceneManager.GetSceneByName("dev_placeholder_boss");
+            Scene scene = SceneManager.GetSceneByName("placeholder_boss");
             GameObject roomObject = scene.GetRootGameObjects()[0];
             BossRoomController roomController = roomObject.GetComponent<BossRoomController>();
             roomController.SetPlayerAtEnterPoint(player);
@@ -188,16 +194,19 @@ public class MapController : MonoBehaviour
                 activeProgress += op.progress;
             }
 
-            //progress.Invoke(Mathf.InverseLerp(0, targetProgress + numOfRooms, activeProgress + totalScenesLoaded));
+            if (bossSceneLoadOperation.isDone)
+                activeProgress++;
+   
+            progress.Invoke(Mathf.InverseLerp(0, targetProgress + numOfRooms + 1, activeProgress + totalScenesUnloaded + 1));
 
             yield return waitForSeconds;
         }
 
-        while (totalScenesUnloaded != numOfRooms && bossSceneLoadOperation.isDone)
+        while (totalScenesUnloaded != numOfRooms && !bossSceneLoadOperation.isDone)
         {
             yield return waitForSeconds;
 
-            //progress.Invoke(Mathf.InverseLerp(0, targetProgress + numOfRooms, activeProgress + totalScenesUnloaded + 1));
+            progress.Invoke(Mathf.InverseLerp(0, targetProgress + numOfRooms + 1, activeProgress + totalScenesUnloaded + 1));
         }
 
         yield return waitForSeconds;
