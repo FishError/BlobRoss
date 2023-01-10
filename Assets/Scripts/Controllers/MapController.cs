@@ -91,7 +91,7 @@ public class MapController : MonoBehaviour
         }
 
         float activeProgress = 0;
-        float targetProgress = (activateDirectly) ? 1 * numOfRooms : 0.9f * numOfRooms;
+        float targetProgress = (activateDirectly) ? numOfRooms : 0.9f * numOfRooms;
         WaitForSeconds waitForSeconds = new WaitForSeconds(0.1f);
 
         while (!Mathf.Approximately(activeProgress, targetProgress))
@@ -147,15 +147,26 @@ public class MapController : MonoBehaviour
         progressSlider.value = progress;
     }
 
-    public void LoadBossRoom()
+    public IEnumerator UnloadMapAndLoadBossRoom()
     {
+        progressSlider.value = 0;
+        loadingScreen.SetActive(true);
+
+        int totalScenesUnloaded = 0;
+        List<AsyncOperation> sceneUnloadOperations = new List<AsyncOperation>();
+
         foreach (RoomController rc in roomControllers)
         {
-            SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(rc.Room.index));
+            AsyncOperation op = SceneManager.UnloadSceneAsync(SceneManager.GetSceneAt(rc.Room.index));
+            sceneUnloadOperations.Add(op);
+            op.completed += (s) =>
+            {
+                totalScenesUnloaded++;
+            };
         }
 
-        AsyncOperation operation = SceneManager.LoadSceneAsync("dev_placeholder_boss");
-        operation.completed += (s) =>
+        AsyncOperation bossSceneLoadOperation = SceneManager.LoadSceneAsync("dev_placeholder_boss");
+        bossSceneLoadOperation.completed += (s) =>
         {
             Scene scene = SceneManager.GetSceneByName("dev_placeholder_boss");
             GameObject roomObject = scene.GetRootGameObjects()[0];
@@ -163,6 +174,34 @@ public class MapController : MonoBehaviour
             roomController.SetPlayerAtEnterPoint(player);
             roomController.SetCameraConfiner(cinemachineCamera);
         };
+
+        float activeProgress = 0;
+        float targetProgress = numOfRooms + 1;
+        WaitForSeconds waitForSeconds = new WaitForSeconds(0.1f);
+
+        while (!Mathf.Approximately(activeProgress, targetProgress))
+        {
+            activeProgress = 0;
+
+            foreach (AsyncOperation op in sceneUnloadOperations)
+            {
+                activeProgress += op.progress;
+            }
+
+            //progress.Invoke(Mathf.InverseLerp(0, targetProgress + numOfRooms, activeProgress + totalScenesLoaded));
+
+            yield return waitForSeconds;
+        }
+
+        while (totalScenesUnloaded != numOfRooms && bossSceneLoadOperation.isDone)
+        {
+            yield return waitForSeconds;
+
+            //progress.Invoke(Mathf.InverseLerp(0, targetProgress + numOfRooms, activeProgress + totalScenesUnloaded + 1));
+        }
+
+        yield return waitForSeconds;
+        loadingScreen.SetActive(false);
     }
 
 }

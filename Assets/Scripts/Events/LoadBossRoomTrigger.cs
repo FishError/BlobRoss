@@ -18,7 +18,7 @@ public class LoadBossRoomTrigger : MonoBehaviour
     {
         if (mapController != null)
         {
-            mapController.LoadBossRoom();
+            mapController.UnloadMapAndLoadBossRoom();
         }
     }
 }
